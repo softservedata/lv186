@@ -7,47 +7,13 @@
 		value="http://java.training.local:8080/registrator/logout" />
 	<test name="Test1">
 		<classes>
-			<!-- <class name="com.softserve.edu.TestNGTest3" /> -->
-			<class name="com.softserve.edu.TestNGTest4" />
-			<!-- <class name="com.softserve.edu.CalcTest" /> -->
-			<!-- <class name="com.softserve.edu.TestNGTest2" /> -->
-			<class name="com.softserve.edu.CalcTestNG">
+			<class name="com.softserve.edu.FourthTest">
 				<methods>
-					<include name="div" />
+					<include name="testSeleniumIDE" />
 				</methods>
 			</class>
-			<class name="com.softserve.edu.TestNGTest10">
-				<methods>
-					<include name="method1" />
-					<include name="method2" />
-					<include name="method3" />
-				</methods>
-			</class>
-			<class name="com.softserve.edu.TestNGTest10A">
-				<methods>
-					<include name="method1" />
-					<include name="method2" />
-					<include name="method3" />
-				</methods>
-			</class>
+			<class name="com.softserve.edu.FifthTest" />
 		</classes>
 	</test> <!-- Test -->
 	<!-- - - - - - - - - - -->
-	<test name="test2">
-		<groups>
-			<run>
-				<include name="method1" />
-			</run>
-		</groups>
-		<classes>
-			<class name="com.softserve.edu.TestNGTest5" />
-		</classes>
-	</test>
-	<test name="test3">
-		<parameter name="number" value="213" />
-		<parameter name="language" value="english" />
-		<classes>
-			<class name="com.softserve.edu.TestNGTest6" />
-		</classes>
-	</test>
 </suite> <!-- Suite -->

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM
+     "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="My test suite">
+  <test name="testingFields">
+      <groups>
+      <run>
+        <include name="NumberFieldTest"/>
+      </run>
+    </groups>
+  <classes>
+       <class name="com.softserve.edu.TestFieldsInApp.NewCommentTest" />
+    </classes>
+  </test>
+</suite>

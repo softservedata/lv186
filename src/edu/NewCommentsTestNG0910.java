@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 import edu.IBrowser.BrowsersList;
 
 public class NewCommentsTestNG0910 {
-	private boolean isTestCompleted;
+
 	WebDriver driver;
 	
 	@DataProvider
@@ -33,27 +33,19 @@ public class NewCommentsTestNG0910 {
             };
     }
 	
-	
-	@BeforeMethod
-    public void beforeMethod() {
-        isTestCompleted = false;  
-    }
-
     @AfterMethod
     public void afterMethod() throws IOException {
-        if (!isTestCompleted) {
-            // takeScreenShort
-            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("./screenshotSearch01.png"));
-        } 
-        driver.quit();
-        
+        if ( driver != null) {
+        	driver.quit();
+        }  
     }
     @Test(dataProvider = "driverParameters")
     public void test9(BrowsersList browser,String url)  {
     	
     	driver = browser.getWebDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+  	    driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
     	
     	driver.get(url);
         //
@@ -91,13 +83,14 @@ public class NewCommentsTestNG0910 {
         Assert.assertEquals(driver.findElement(By.id("errorfield")).getText(), "Number field should be unique of empty");
         Assert.assertEquals(driver.findElement(By.id("errorfield")).getCssValue("color").toString(),"rgba(255, 0, 0, 1)");
     
-        isTestCompleted = true;
     }
     @Test(dataProvider = "driverParameters")
     public void test10(BrowsersList browser,String url)  {
     	
     	driver = browser.getWebDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+  	    driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
     	
     	driver.get(url);
         //
@@ -113,20 +106,19 @@ public class NewCommentsTestNG0910 {
         driver.findElement(By.cssSelector("input.buttonAsLink")).click();
         //
         //to confirm that  test is passed
-        //1. The �New Comments� page is still opened.
+        //1. The New Comments page is still opened.
         //
         
         WebDriverWait wait = new WebDriverWait(driver,10);
         Assert.assertTrue(wait.until(ExpectedConditions.urlContains(url+"/Editor/EditComment")));
         Assert.assertEquals(driver.getTitle(),"Editor");
         //
-        //2. Red label with text �Please, select at least one category� 
-        //appears above �Comment Text� field.
+        //2. Red label with text Please, select at least one category
+        //appears above Comment Text field.
         //
         Assert.assertEquals(driver.findElement(By.id("errorfield")).getText(), "Please, select at least one category");
         Assert.assertEquals(driver.findElement(By.id("errorfield")).getCssValue("color").toString(),"rgba(255, 0, 0, 1)");
     
-        isTestCompleted = true;
     }
     
 }

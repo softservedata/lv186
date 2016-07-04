@@ -56,6 +56,8 @@ WebDriver driver;
   	  
   	    driver = browser.getWebDriver();
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+  	    driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
         
         
         driver.get(url);   

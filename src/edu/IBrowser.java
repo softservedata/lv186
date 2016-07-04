@@ -18,6 +18,8 @@ public interface IBrowser {
             
         	System.setProperty("webdriver.chrome.driver" , 
         			"/Applications/Google Chrome.app/Contents/chromedriver");
+        	//System.setProperty("webdriver.chrome.driver",
+					//"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
         	
             return new ChromeDriver();
         }

@@ -73,6 +73,8 @@ public class NewCommentsTestNG {
 	  
 	  driver = browser.getWebDriver();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
 
@@ -132,7 +134,7 @@ public class NewCommentsTestNG {
 	   *  Test new comments functional. It use valid comment text 
 	   *  without number and 1 category to test this test case.
 	   *  The main purpose is to confirm that this new comment was created
-	   *  with incorrect definitions.
+	   *  with correct definitions.
 	   */
 	  
 	  boolean isWebElementFound = false;
@@ -141,6 +143,8 @@ public class NewCommentsTestNG {
 	  
 	  driver = browser.getWebDriver();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -208,6 +212,8 @@ public class NewCommentsTestNG {
       
 	  driver = browser.getWebDriver();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -266,6 +272,8 @@ public class NewCommentsTestNG {
       
 	  driver = browser.getWebDriver();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -336,6 +344,8 @@ public class NewCommentsTestNG {
       
 	  driver = browser.getWebDriver();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
       
@@ -407,6 +417,8 @@ public class NewCommentsTestNG {
 	  
 	  driver = browser.getWebDriver();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -495,6 +507,8 @@ public class NewCommentsTestNG {
 	  
 	  driver = browser.getWebDriver();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
       

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="2" total="16" passed="14">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="214096" started-at="2016-07-04T14:48:05Z" finished-at="2016-07-04T14:51:39Z">
+    <groups>
+    </groups>
+    <test name="Test2" duration-ms="214096" started-at="2016-07-04T14:48:05Z" finished-at="2016-07-04T14:51:39Z">
+      <class name="com.softserve.edu.DeleteFunction">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeSuite" is-config="true" duration-ms="24" started-at="2016-07-04T17:48:05Z" finished-at="2016-07-04T17:48:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeSuite" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:05Z" finished-at="2016-07-04T17:48:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeTest" is-config="true" duration-ms="1" started-at="2016-07-04T17:48:05Z" finished-at="2016-07-04T17:48:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeTest" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:05Z" finished-at="2016-07-04T17:48:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeClass" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:05Z" finished-at="2016-07-04T17:48:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:05Z" finished-at="2016-07-04T17:48:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteWithoutCheking(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteWithoutCheking" duration-ms="13827" started-at="2016-07-04T17:48:05Z" data-provider="driverParameters" finished-at="2016-07-04T17:48:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteWithoutCheking -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="2" started-at="2016-07-04T17:48:19Z" finished-at="2016-07-04T17:48:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="DeleteWithoutCheking(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteWithoutCheking" duration-ms="7116" started-at="2016-07-04T17:48:19Z" data-provider="driverParameters" finished-at="2016-07-04T17:48:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteWithoutCheking -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:19Z" finished-at="2016-07-04T17:48:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:26Z" finished-at="2016-07-04T17:48:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="DeleteDismiss(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteDismiss" duration-ms="10335" started-at="2016-07-04T17:48:26Z" data-provider="driverParameters" finished-at="2016-07-04T17:48:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteDismiss -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:26Z" finished-at="2016-07-04T17:48:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:36Z" finished-at="2016-07-04T17:48:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:36Z" finished-at="2016-07-04T17:48:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteDismiss(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteDismiss" duration-ms="5900" started-at="2016-07-04T17:48:36Z" data-provider="driverParameters" finished-at="2016-07-04T17:48:42Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteDismiss -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:42Z" finished-at="2016-07-04T17:48:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:42Z" finished-at="2016-07-04T17:48:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteAccept" duration-ms="11229" started-at="2016-07-04T17:48:42Z" data-provider="driverParameters" finished-at="2016-07-04T17:48:53Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteAccept -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:53Z" finished-at="2016-07-04T17:48:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="DeleteAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteAccept" duration-ms="6803" started-at="2016-07-04T17:48:53Z" data-provider="driverParameters" finished-at="2016-07-04T17:49:00Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteAccept -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:48:53Z" finished-at="2016-07-04T17:48:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:49:00Z" finished-at="2016-07-04T17:49:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="3" started-at="2016-07-04T17:49:00Z" finished-at="2016-07-04T17:49:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="DeleteSomeAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteSomeAccept" duration-ms="32251" started-at="2016-07-04T17:49:00Z" data-provider="driverParameters" finished-at="2016-07-04T17:49:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:496)
+	at org.testng.Assert.assertTrue(Assert.java:42)
+	at org.testng.Assert.assertTrue(Assert.java:52)
+	at com.softserve.edu.DeleteFunction.DeleteSomeAccept(DeleteFunction.java:170)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteSomeAccept -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:49:32Z" finished-at="2016-07-04T17:49:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="FAIL" signature="DeleteSomeAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="DeleteSomeAccept" duration-ms="27746" started-at="2016-07-04T17:49:32Z" data-provider="driverParameters" finished-at="2016-07-04T17:50:00Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:496)
+	at org.testng.Assert.assertTrue(Assert.java:42)
+	at org.testng.Assert.assertTrue(Assert.java:52)
+	at com.softserve.edu.DeleteFunction.DeleteSomeAccept(DeleteFunction.java:170)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteSomeAccept -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:49:32Z" finished-at="2016-07-04T17:49:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterClass" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:00Z" finished-at="2016-07-04T17:50:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:00Z" finished-at="2016-07-04T17:50:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterTest" is-config="true" duration-ms="0" started-at="2016-07-04T17:51:39Z" finished-at="2016-07-04T17:51:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterTest" is-config="true" duration-ms="0" started-at="2016-07-04T17:51:39Z" finished-at="2016-07-04T17:51:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.softserve.edu.DeleteFunction@f4468b]" name="afterSuite" is-config="true" duration-ms="1" started-at="2016-07-04T17:51:39Z" finished-at="2016-07-04T17:51:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterSuite" is-config="true" duration-ms="0" started-at="2016-07-04T17:51:39Z" finished-at="2016-07-04T17:51:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.softserve.edu.DeleteFunction -->
+      <class name="com.softserve.edu.DeleteFunctionV1">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeClass" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:00Z" finished-at="2016-07-04T17:50:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:00Z" finished-at="2016-07-04T17:50:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteWithoutCheking(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteWithoutCheking" duration-ms="12858" started-at="2016-07-04T17:50:00Z" data-provider="driverParameters" finished-at="2016-07-04T17:50:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteWithoutCheking -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-07-04T17:50:13Z" finished-at="2016-07-04T17:50:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="DeleteWithoutCheking(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteWithoutCheking" duration-ms="7432" started-at="2016-07-04T17:50:13Z" data-provider="driverParameters" finished-at="2016-07-04T17:50:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteWithoutCheking -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:13Z" finished-at="2016-07-04T17:50:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:20Z" finished-at="2016-07-04T17:50:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:20Z" finished-at="2016-07-04T17:50:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteDismiss(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteDismiss" duration-ms="16460" started-at="2016-07-04T17:50:20Z" data-provider="driverParameters" finished-at="2016-07-04T17:50:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteDismiss -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-07-04T17:50:37Z" finished-at="2016-07-04T17:50:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:37Z" finished-at="2016-07-04T17:50:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteDismiss(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteDismiss" duration-ms="8105" started-at="2016-07-04T17:50:37Z" data-provider="driverParameters" finished-at="2016-07-04T17:50:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteDismiss -->
+        <test-method status="PASS" signature="DeleteAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteAccept" duration-ms="13148" started-at="2016-07-04T17:50:45Z" data-provider="driverParameters" finished-at="2016-07-04T17:50:58Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteAccept -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:45Z" finished-at="2016-07-04T17:50:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:45Z" finished-at="2016-07-04T17:50:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-07-04T17:50:58Z" finished-at="2016-07-04T17:50:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:50:58Z" finished-at="2016-07-04T17:50:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteAccept" duration-ms="8766" started-at="2016-07-04T17:50:58Z" data-provider="driverParameters" finished-at="2016-07-04T17:51:07Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteAccept -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-07-04T17:51:07Z" finished-at="2016-07-04T17:51:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="1" started-at="2016-07-04T17:51:07Z" finished-at="2016-07-04T17:51:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteSomeAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteSomeAccept" duration-ms="18316" started-at="2016-07-04T17:51:07Z" data-provider="driverParameters" finished-at="2016-07-04T17:51:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteSomeAccept -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:51:25Z" finished-at="2016-07-04T17:51:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:51:25Z" finished-at="2016-07-04T17:51:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="DeleteSomeAccept(com.softserve.edu.IBrowser$BrowsersList)[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="DeleteSomeAccept" duration-ms="13704" started-at="2016-07-04T17:51:25Z" data-provider="driverParameters" finished-at="2016-07-04T17:51:39Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome_Temporary]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteSomeAccept -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-07-04T17:51:39Z" finished-at="2016-07-04T17:51:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.softserve.edu.DeleteFunctionV1@c4c815]" name="afterClass" is-config="true" duration-ms="0" started-at="2016-07-04T17:51:39Z" finished-at="2016-07-04T17:51:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.softserve.edu.DeleteFunctionV1 -->
+    </test> <!-- Test2 -->
+  </suite> <!-- Suite -->
+</testng-results>

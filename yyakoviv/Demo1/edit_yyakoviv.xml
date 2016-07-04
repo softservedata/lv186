@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Test1">
+		<classes>
+			<class name="com.softserve.edu.Demo1">
+				<methods>
+					<include name="EditWithoutChecking" />
+					<include name="EditManyChecking" />
+					<include name="EditOneChecking" />
+					<include name="EditAndReturn" />
+					<include name="EditAndRefresh" />					
+				</methods>
+			</class>		
+			<class name="com.softserve.edu.EditFuncV1" />
+				<methods>
+					<include name="EditWithoutChecking" />
+					<include name="EditManyChecking" />
+					<include name="EditOneChecking" />
+					<include name="EditAndReturn" />
+					<include name="EditAndRefresh" />					
+				</methods>				
+		</classes>
+		
+		
+			
+	</test> <!-- Test -->
+	<!-- - - - - - - - - - -->
+</suite> <!-- Suite -->

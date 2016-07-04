@@ -72,9 +72,6 @@ public class NewCommentsTestNG {
       WebElement comment = null;
 	  
 	  driver = browser.getWebDriver();
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
 
@@ -142,9 +139,6 @@ public class NewCommentsTestNG {
       WebElement comment = null;
 	  
 	  driver = browser.getWebDriver();
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -211,9 +205,6 @@ public class NewCommentsTestNG {
       List<WebElement> comments = null;
       
 	  driver = browser.getWebDriver();
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -271,9 +262,6 @@ public class NewCommentsTestNG {
       WebElement comment = null;
       
 	  driver = browser.getWebDriver();
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -343,9 +331,6 @@ public class NewCommentsTestNG {
       WebElement comment = null;
       
 	  driver = browser.getWebDriver();
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
       
@@ -416,9 +401,6 @@ public class NewCommentsTestNG {
 
 	  
 	  driver = browser.getWebDriver();
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
      
@@ -506,9 +488,6 @@ public class NewCommentsTestNG {
       WebElement comment = null;
 	  
 	  driver = browser.getWebDriver();
-      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-	  driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
       
       driver.get(url);
       

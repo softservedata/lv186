@@ -473,6 +473,12 @@ public class CommentsTestDemo1 {
 			 * When duplicate scan is successful.
 			 */
 			if (duplicatComments.size() > 0) {
+				try {
+					getscreenshot();
+				} 
+				catch (IOException e) {
+					e.printStackTrace();
+				}
 				isWebElementFound = true;
 				duplicateComment = duplicatComments.get(0);
 			} else {

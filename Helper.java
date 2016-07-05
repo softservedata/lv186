@@ -1,13 +1,6 @@
 package gmail.com.demo;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
-
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 
 /**
  * class for randomazing CSS selector for checkbox selection.
@@ -15,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 class Helper {
 
 	private static Random rand;
-	private static WebDriver driver;
 
 	/**
 	 * @return CSS selector for WebDriver to select random checkbox.

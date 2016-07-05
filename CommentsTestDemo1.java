@@ -34,15 +34,6 @@ public class CommentsTestDemo1 {
 	WebDriverWait wait;
 	
 	/**
-	 * Takes the screenshot.
-	 * @throws IOException when unable to write file.
-	 */
-	public void getscreenshot() throws IOException {
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File("D:\\screenshot.png"));
-	}
-
-	/**
 	 * Closes the browser, after each test method have been executed.
 	 */
 	@AfterMethod(alwaysRun = true)
@@ -61,33 +52,20 @@ public class CommentsTestDemo1 {
 	 */
 	@DataProvider
 	public Object[][] TestData(Method method) {
-		if (method.getName().equals("duplicateTest1")
-				|| method.getName().equals("duplicateTest2")
-				|| method.getName().equals("duplicateTest3")
-				|| method.getName().equals("duplicateTest5")
-				|| method.getName().equals("duplicateTest6")
-				|| method.getName().equals("duplicateTest7")
+		if (method.getName().equals("duplicateTest1") || method.getName().equals("duplicateTest2")
+				|| method.getName().equals("duplicateTest3") || method.getName().equals("duplicateTest5")
+				|| method.getName().equals("duplicateTest6") || method.getName().equals("duplicateTest7")
 				|| method.getName().equals("duplicateTest8")) {
 			return new Object[][] {
-					{
-							BrowsersList.FIREFOX_TEMPORARY,
-							new String(
-									"http://commentssprintone.azurewebsites.net"), },
-					{ BrowsersList.CHROME_TEMPORARY,
-							new String("http://comments.azurewebsites.net") } };
+					{ BrowsersList.FIREFOX_TEMPORARY, new String("http://commentssprintone.azurewebsites.net"), },
+					{ BrowsersList.CHROME_TEMPORARY, new String("http://comments.azurewebsites.net") } };
 		} else if (method.getName().equals("duplicateTest4")) {
 			return new Object[][] {
-					{
-							BrowsersList.FIREFOX_TEMPORARY,
-							new String(
-									"http://commentssprintone.azurewebsites.net"),
+					{ BrowsersList.FIREFOX_TEMPORARY, new String("http://commentssprintone.azurewebsites.net"),
 							new String(
 									"Comment Text,Number,Active,Категории,Available Categories,Selected Categories,Cat0,Cat1,Cat2,Cat3,Cat4,Cat5") },
-					{
-							BrowsersList.CHROME_TEMPORARY,
-							new String("http://comments.azurewebsites.net"),
-							new String(
-									"Comment Text,Number,Active,Категории,Available Categories,Selected Categories,Cat0,Cat1,Cat2,Cat3,Cat4,Cat5") } };
+					{ BrowsersList.CHROME_TEMPORARY, new String("http://comments.azurewebsites.net"), new String(
+							"Comment Text,Number,Active,Категории,Available Categories,Selected Categories,Cat0,Cat1,Cat2,Cat3,Cat4,Cat5") } };
 		} else
 			return new Object[][] { { null } };
 	}
@@ -117,9 +95,7 @@ public class CommentsTestDemo1 {
 			/*
 			 * Finds the 'Duplicate' link and clicks it.
 			 */
-			driver.findElement(
-					By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-					.click();
+			driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 			/*
 			 * Hooks the alert.
 			 */
@@ -131,15 +107,12 @@ public class CommentsTestDemo1 {
 			/*
 			 * Finds the 'Duplicate' link and clicks it.
 			 */
-			driver.findElement(
-					By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-					.click();
+			driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 			/*
 			 * Hooks the pop-up div.
 			 */
 			message = driver.findElement(By.id("msgText")).getText();
-			driver.findElement(By.cssSelector("button.ui-button")).sendKeys(
-					"Enter");
+			driver.findElement(By.cssSelector("button.ui-button")).sendKeys("Enter");
 			Assert.assertEquals(message, "Please select one comment");
 		}
 	}
@@ -164,9 +137,7 @@ public class CommentsTestDemo1 {
 			 */
 			driver.findElement(By.cssSelector(getRandomCSS())).click();
 			driver.findElement(By.cssSelector(getRandomCSS())).click();
-			driver.findElement(
-					By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-					.click();
+			driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 			Alert alert = driver.switchTo().alert();
 			message = alert.getText();
 			alert.accept();
@@ -175,18 +146,16 @@ public class CommentsTestDemo1 {
 			driver.findElement(By.linkText("Number")).click();
 			driver.findElement(By.cssSelector(getRandomCSS())).click();
 			driver.findElement(By.cssSelector(getRandomCSS())).click();
-			driver.findElement(
-					By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-					.click();
+			driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 			message = driver.findElement(By.id("msgText")).getText();
-			driver.findElement(By.cssSelector("button.ui-button")).sendKeys(
-					"Enter");
+			driver.findElement(By.cssSelector("button.ui-button")).sendKeys("Enter");
 			Assert.assertEquals(message, "Please select one comment");
 		}
 	}
-	
+
 	/**
 	 * Tests the expected link to open.
+	 * 
 	 * @param browsers
 	 *            provides WebDriver for Firefox and Chrome browsers.
 	 * @param url
@@ -203,13 +172,11 @@ public class CommentsTestDemo1 {
 		 * Clicks the random checkbox on the page.
 		 */
 		driver.findElement(By.cssSelector(getRandomCSS())).click();
-		driver.findElement(
-				By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-				.click();
+		driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 		String expected = url + "/Editor/DuplicateComment";
 		Assert.assertEquals(driver.getCurrentUrl(), expected);
 	}
-	
+
 	/**
 	 * Tests the appearance of pop-up message when several checkboxes i.e.
 	 * comments are selected.
@@ -219,11 +186,10 @@ public class CommentsTestDemo1 {
 	 * @param url
 	 *            provides the URLs for Comments Application.
 	 * @param expected
-	 * 			  provides the expected list of label on the page.
+	 *            provides the expected list of label on the page.
 	 */
 	@Test(dataProvider = "TestData")
-	public void duplicateTest4(BrowsersList browsers, String url,
-			String expected) {
+	public void duplicateTest4(BrowsersList browsers, String url, String expected) {
 		driver = browsers.getWebDriver();
 		driver.get(url);
 		List<String> expectedList = Arrays.asList(expected.split(","));
@@ -239,15 +205,12 @@ public class CommentsTestDemo1 {
 			expectedList.set(3, "Categories");
 		}
 		driver.findElement(By.cssSelector(getRandomCSS())).click();
-		driver.findElement(
-				By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-				.click();
+		driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 		/*
 		 * Finds all labels.
 		 */
-		List<WebElement> list = driver.findElements(By.xpath("//label[@for] "
-				+ "| //div[@class='category-list-title'] "
-				+ "| //div[@class='categoryitem']/span"));
+		List<WebElement> list = driver.findElements(By.xpath(
+				"//label[@for] " + "| //div[@class='category-list-title'] " + "| //div[@class='categoryitem']/span"));
 		StringBuilder sb = new StringBuilder();
 		/*
 		 * Gather the value of labels.
@@ -260,9 +223,10 @@ public class CommentsTestDemo1 {
 		List<String> actualList = Arrays.asList(builtActual.split(","));
 		Assert.assertTrue(actualList.containsAll(expectedList));
 	}
-	
+
 	/**
 	 * Tests the presence of inputs on the page.
+	 * 
 	 * @param browsers
 	 *            provides WebDriver for Firefox and Chrome browsers.
 	 * @param url
@@ -282,17 +246,11 @@ public class CommentsTestDemo1 {
 		/*
 		 * 'Duplicate' link.
 		 */
-		driver.findElement(
-				By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-				.click();
-		
-		List<WebElement> elementsList = driver.findElements(By
-				.xpath("//input[@id='Text']" + "|//input[@id='Number']"
-						+ "|//input[@id='Active']"
-						+ "|//input[@name='AllSelect']"
-						+ "|//input[@name='CurSelect']"
-						+ "|//input[@name='CurUnSelectBtn']"
-						+ "|//input[@name='AllUnSelectBtn']"));
+		driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
+
+		List<WebElement> elementsList = driver.findElements(By.xpath("//input[@id='Text']" + "|//input[@id='Number']"
+				+ "|//input[@id='Active']" + "|//input[@name='AllSelect']" + "|//input[@name='CurSelect']"
+				+ "|//input[@name='CurUnSelectBtn']" + "|//input[@name='AllUnSelectBtn']"));
 
 		for (WebElement e : elementsList) {
 			Assert.assertTrue(e.isDisplayed());
@@ -302,6 +260,7 @@ public class CommentsTestDemo1 {
 
 	/**
 	 * Tests the 'Refresh' button on the page.
+	 * 
 	 * @param browsers
 	 *            provides WebDriver for Firefox and Chrome browsers.
 	 * @param url
@@ -311,32 +270,27 @@ public class CommentsTestDemo1 {
 	public void duplicateTest6(BrowsersList browsers, String url) {
 		driver = browsers.getWebDriver();
 		driver.get(url);
-		
+
 		if (url.equals("http://comments.azurewebsites.net")) {
 			driver.findElement(By.linkText("Number")).click();
 		}
 
 		driver.findElement(By.cssSelector(getRandomCSS())).click();
-		
+
 		/*
 		 * Clicks the 'Duplicate link'.
 		 */
-		driver.findElement(
-				By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-				.click();
+		driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 		/*
 		 * Gathers attributes of all fields on page.
 		 */
 		List<String> beforeStatus = new ArrayList<String>();
-		beforeStatus.add(driver.findElement(By.cssSelector("#Text"))
-				.getAttribute("value"));
-		beforeStatus.add(driver.findElement(By.cssSelector("#Number"))
-				.getAttribute("value"));
-		beforeStatus.add(driver.findElement(By.cssSelector("#Active"))
-				.getAttribute("value"));
+		beforeStatus.add(driver.findElement(By.cssSelector("#Text")).getAttribute("value"));
+		beforeStatus.add(driver.findElement(By.cssSelector("#Number")).getAttribute("value"));
+		beforeStatus.add(driver.findElement(By.cssSelector("#Active")).getAttribute("value"));
 
-		List<WebElement> selectedCategories = driver.findElements(By
-				.cssSelector("div#selectedCategories input#Categories"));
+		List<WebElement> selectedCategories = driver
+				.findElements(By.cssSelector("div#selectedCategories input#Categories"));
 		for (WebElement e : selectedCategories) {
 			beforeStatus.add(e.getAttribute("value"));
 		}
@@ -344,38 +298,33 @@ public class CommentsTestDemo1 {
 		 * Type some info to the fields.
 		 */
 		driver.findElement(By.cssSelector("#Text")).sendKeys("Blah-blah-blah");
-		driver.findElement(By.cssSelector("#Number")).sendKeys(
-				String.valueOf(getRand().nextInt(10)));
+		driver.findElement(By.cssSelector("#Number")).sendKeys(String.valueOf(getRand().nextInt(10)));
 		driver.findElement(By.cssSelector("#Active")).click();
 		driver.findElement(By.cssSelector("input[value='>>']")).click();
 		/*
 		 * Click 'Refresh' button.
 		 */
-		driver.findElement(By.xpath("//div[@id='editor-navigation']/*[1]"))
-				.click();
+		driver.findElement(By.xpath("//div[@id='editor-navigation']/*[1]")).click();
 		/*
 		 * Gather attributes of all fields on page.
 		 */
 		List<String> afterStatus = new ArrayList<String>();
-		afterStatus.add(driver.findElement(By.cssSelector("#Text"))
-				.getAttribute("value"));
-		afterStatus.add(driver.findElement(By.cssSelector("#Number"))
-				.getAttribute("value"));
-		afterStatus.add(driver.findElement(By.cssSelector("#Active"))
-				.getAttribute("value"));
+		afterStatus.add(driver.findElement(By.cssSelector("#Text")).getAttribute("value"));
+		afterStatus.add(driver.findElement(By.cssSelector("#Number")).getAttribute("value"));
+		afterStatus.add(driver.findElement(By.cssSelector("#Active")).getAttribute("value"));
 
-		List<WebElement> selectedCategories2 = driver.findElements(By
-				.cssSelector("div#selectedCategories input#Categories"));
+		List<WebElement> selectedCategories2 = driver
+				.findElements(By.cssSelector("div#selectedCategories input#Categories"));
 		for (WebElement e : selectedCategories2) {
 			afterStatus.add(e.getAttribute("value"));
 		}
 
 		Assert.assertEquals(beforeStatus, afterStatus);
 	}
-	
+
 	/**
-	 * Tests clicking the 'Save&Return' button when the number 
-	 * is the same.
+	 * Tests clicking the 'Save&Return' button when the number is the same.
+	 * 
 	 * @param browsers
 	 *            provides WebDriver for Firefox and Chrome browsers.
 	 * @param url
@@ -391,26 +340,26 @@ public class CommentsTestDemo1 {
 		}
 
 		driver.findElement(By.cssSelector(getRandomCSS())).click();
-		
-		driver.findElement(
-				By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-				.click();
+
+		driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 		driver.findElement(By.cssSelector("#editor-navigation :nth-child(3)")).click();
 		/*
 		 * Take the screenshot of message.
 		 */
-		try {getscreenshot();
-		}
-		catch (IOException e){
+		try {
+			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrFile, new File("D:\\screenshot.png"));
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		Assert.assertTrue(driver.findElement(By.id("errorfield")).isDisplayed());
-		Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(url+"/Editor/SaveReturn"));
+		Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(url + "/Editor/SaveReturn"));
 	}
-	
+
 	/**
-	 * Tests clicking the 'Save&Return' button when the number 
-	 * is unique and tests the pagination.
+	 * Tests clicking the 'Save&Return' button when the number is unique and
+	 * tests the pagination.
+	 * 
 	 * @param browsers
 	 *            provides WebDriver for Firefox and Chrome browsers.
 	 * @param url
@@ -426,9 +375,7 @@ public class CommentsTestDemo1 {
 		}
 
 		driver.findElement(By.cssSelector(getRandomCSS())).click();
-		driver.findElement(
-				By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)"))
-				.click();
+		driver.findElement(By.cssSelector("#command-navigation .buttonAsLink:nth-child(2)")).click();
 		/*
 		 * Stores the original text from TextField.
 		 */
@@ -437,8 +384,7 @@ public class CommentsTestDemo1 {
 		 * Set the unique number.
 		 */
 		driver.findElement(By.cssSelector("#Number")).clear();
-		driver.findElement(By.cssSelector("#Number")).sendKeys(
-				String.valueOf(getRand().nextInt(1000) + 30));
+		driver.findElement(By.cssSelector("#Number")).sendKeys(String.valueOf(getRand().nextInt(1000) + 30));
 		/*
 		 * Clicks 'Save&Return' button.
 		 */
@@ -447,36 +393,37 @@ public class CommentsTestDemo1 {
 		if (url.equals("http://comments.azurewebsites.net")) {
 			driver.findElement(By.linkText("Number")).click();
 		}
-		
+
 		boolean isWebElementFound = false;
 		List<WebElement> duplicatComments = null;
 		List<WebElement> originalComments = null;
 		List<WebElement> rows = null;
 		WebElement duplicateComment = null;
 		/*
-		 * Finds the duplicate and original comments.
-		 * Also tests the pagination - presence of '>'
-		 * button and amount of text rows on each page.
+		 * Finds the duplicate and original comments. Also tests the pagination
+		 * - presence of '>' button and amount of text rows on each page.
 		 */
 		while (!isWebElementFound) {
 			/*
 			 * Scan for duplicate.
 			 */
-			duplicatComments = driver.findElements(By
-					.xpath("//td[contains(text(),'Copy of')]"));
+			duplicatComments = driver.findElements(By.xpath("//td[contains(text(),'Copy of')]"));
 			/*
 			 * Scan for original comment.
 			 */
-			originalComments = driver.findElements(By
-					.xpath("//td[contains(text(), '"+original+"')]"));
+			originalComments = driver.findElements(By.xpath("//td[contains(text(), '" + original + "')]"));
 			/*
 			 * When duplicate scan is successful.
 			 */
 			if (duplicatComments.size() > 0) {
+				/*
+				 * Take the screenshot of duplicate
+				 * comment presence.
+				 */
 				try {
-					getscreenshot();
-				} 
-				catch (IOException e) {
+					File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+					FileUtils.copyFile(scrFile, new File("D:\\screenshot1.png"));
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				isWebElementFound = true;
@@ -488,8 +435,8 @@ public class CommentsTestDemo1 {
 				List<WebElement> next = driver.findElements(By.linkText(">"));
 				if (next.size() > 0) {
 					/*
-					 * Asserts that the is 10 rows on each page,
-					 * while '>' button is present.
+					 * Asserts that the is 10 rows on each page, while '>'
+					 * button is present.
 					 */
 					rows = driver.findElements(By.cssSelector(".webgrid-alternating-row, .webgrid-row-style"));
 					Assert.assertTrue(rows.size() == 10);

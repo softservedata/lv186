@@ -79,11 +79,11 @@
 			<artifactId>selenium-server</artifactId>
 			<version>${org.seleniumhq.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>htmlunit-driver</artifactId>
-			<version>${org.seleniumhq.selenium.htmlunit-driver}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.seleniumhq.selenium</groupId> -->
+<!-- 			<artifactId>htmlunit-driver</artifactId> -->
+<!-- 			<version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+<!-- 		</dependency> -->
 
 		<!-- - - - Logging - - - -->
 		<dependency>
@@ -168,7 +168,7 @@
 									${testng.reports.directory}
 								</surefire.reports.directory>
 								<surefire.webdriver.name>
-									default
+									getFromCode
 								</surefire.webdriver.name>
 							</systemPropertyVariables>
 							<suiteXmlFiles>

@@ -1,10 +1,33 @@
 package com.softserve.edu.pages;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends ATopPage {
+
+    public static enum LoginPageL10n {
+        LOGIN_LABEL("Логін","Логин","Login"),
+        PASSWORD_LABEL("Пароль","Пароль","Password"),
+        SUBMIT_BUTTON("Увійти","Войти","Sign in");
+        //
+        private HashMap<ChangeLanguageFields, String> field;
+
+        private LoginPageL10n(String... localization) {
+            this.field = new HashMap<ChangeLanguageFields, String>();
+            int i = 0;
+            for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
+                this.field.put(language, localization[i]);
+                i++;
+            }
+        }
+
+        public String getLocalization(ChangeLanguageFields language) {
+            return this.field.get(language).trim();
+        }
+    }
 
     // Fields
 
@@ -25,7 +48,7 @@ public class LoginPage extends ATopPage {
 
     // PageObject
 
-    // get Data
+    // get Data PageObject
 
     public WebElement getLoginLabel() {
         return this.loginLabel;
@@ -47,7 +70,7 @@ public class LoginPage extends ATopPage {
         return this.signin;
     }
 
-    // Functional
+    // get Data Business Logic
 
     public String getLoginLabelText() {
         return getLoginLabel().getText().trim();
@@ -69,24 +92,14 @@ public class LoginPage extends ATopPage {
         return getSignin().getText().trim();
     }
 
-    // set Data
+    // set Data PageObject
 
     public void setLoginInput(String login) {
         getLoginInput().sendKeys(login);
     }
 
-    public void setLoginInputClear(String login) {
-        clearLoginInput();
-        setLoginInput(login);
-    }
-
     public void setPasswordInput(String password) {
         getPasswordInput().sendKeys(password);
-    }
-
-    public void setPasswordInputClear(String password) {
-        clearPasswordInput();
-        setPasswordInput(password);
     }
 
     public void clearLoginInput() {
@@ -97,11 +110,11 @@ public class LoginPage extends ATopPage {
         getPasswordInput().clear();
     }
 
-    public void clickLogin() {
+    public void clickLoginInput() {
         getLoginInput().click();
     }
 
-    public void clickPassword() {
+    public void clickPasswordInput() {
         getPasswordInput().click();
     }
 
@@ -109,7 +122,19 @@ public class LoginPage extends ATopPage {
         getSignin().click();
     }
 
-    // Business Logic
+    // set Data Business Logic
+
+    public void setLoginInputClear(String login) {
+        clearLoginInput();
+        setLoginInput(login);
+    }
+
+    public void setPasswordInputClear(String password) {
+        clearPasswordInput();
+        setPasswordInput(password);
+    }
+
+    // Functional Business Logic
 
     public LoginPage changeLanguage(ChangeLanguageFields language) {
         setChangeLanguage(language);
@@ -118,12 +143,12 @@ public class LoginPage extends ATopPage {
     }
 
     // TODO Develop User class
-    private void setLoginData(IUser user) {
-        // private void setLoginData(String login, String password) {
-        // setLoginInputClear(login);
-        // setPasswordInputClear(password);
-        setLoginInputClear(user.getLogin());
-        setPasswordInputClear(user.getPassword());
+    //private void setLoginData(IUser user) {
+    private void setLoginData(String login, String password) {
+        setLoginInputClear(login);
+        setPasswordInputClear(password);
+        //setLoginInputClear(user.getLogin());
+        //setPasswordInputClear(user.getPassword());
         clickSignin();
     }
 
@@ -133,11 +158,10 @@ public class LoginPage extends ATopPage {
     // return new HomePage();
     // }
 
-    public AdminHomePage successAdminLogin(IUser admin) {
-        // public AdminHomePage successAdminLogin(String login, String password)
-        // {
-        // setLoginData(login, password);
-        setLoginData(admin);
+    //public AdminHomePage successAdminLogin(IUser admin) {
+    public AdminHomePage successAdminLogin(String login, String password) {
+        setLoginData(login, password);
+        //setLoginData(admin);
         // Return a new page object representing the destination.
         return new AdminHomePage(driver);
     }
@@ -147,13 +171,12 @@ public class LoginPage extends ATopPage {
     // // Return a new page object representing the destination.
     // return new RegistratorHomePage();
     // }
-    //
+
     // TODO Develop User class
-    public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
-        // public LoginValidatorPage unsuccessfulLogin(String login, String
-        // password) {
-        // setLoginData(login, password);
-        setLoginData(invalidUser);
+    //public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
+    public LoginValidatorPage unsuccessfulLogin(String login, String password) {
+        setLoginData(login, password);
+        //setLoginData(invalidUser);
         return new LoginValidatorPage(driver); // return this;
     }
 }

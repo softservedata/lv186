@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.data.IUser;
+
 public class LoginPage extends ATopPage {
 
     public static enum LoginPageL10n {
@@ -143,12 +145,12 @@ public class LoginPage extends ATopPage {
     }
 
     // TODO Develop User class
-    //private void setLoginData(IUser user) {
-    private void setLoginData(String login, String password) {
-        setLoginInputClear(login);
-        setPasswordInputClear(password);
-        //setLoginInputClear(user.getLogin());
-        //setPasswordInputClear(user.getPassword());
+    private void setLoginData(IUser user) {
+    //private void setLoginData(String login, String password) {
+        //setLoginInputClear(login);
+        //setPasswordInputClear(password);
+        setLoginInputClear(user.getLogin());
+        setPasswordInputClear(user.getPassword());
         clickSignin();
     }
 
@@ -158,10 +160,10 @@ public class LoginPage extends ATopPage {
     // return new HomePage();
     // }
 
-    //public AdminHomePage successAdminLogin(IUser admin) {
-    public AdminHomePage successAdminLogin(String login, String password) {
-        setLoginData(login, password);
-        //setLoginData(admin);
+    public AdminHomePage successAdminLogin(IUser admin) {
+    //public AdminHomePage successAdminLogin(String login, String password) {
+        //setLoginData(login, password);
+        setLoginData(admin);
         // Return a new page object representing the destination.
         return new AdminHomePage(driver);
     }
@@ -173,10 +175,10 @@ public class LoginPage extends ATopPage {
     // }
 
     // TODO Develop User class
-    //public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
-    public LoginValidatorPage unsuccessfulLogin(String login, String password) {
-        setLoginData(login, password);
-        //setLoginData(invalidUser);
+    public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {
+    //public LoginValidatorPage unsuccessfulLogin(String login, String password) {
+        //setLoginData(login, password);
+        setLoginData(invalidUser);
         return new LoginValidatorPage(driver); // return this;
     }
 }

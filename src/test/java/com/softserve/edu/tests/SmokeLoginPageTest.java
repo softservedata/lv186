@@ -5,8 +5,11 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.data.IUser;
+import com.softserve.edu.data.UserRepository;
 import com.softserve.edu.pages.ATopPage.ChangeLanguageFields;
 import com.softserve.edu.pages.LoginPage;
 import com.softserve.edu.pages.LoginValidatorPage;
@@ -51,8 +54,8 @@ public class SmokeLoginPageTest {
 		driver.quit();
 	}
 
-	@Test
-	public void checkInvalidLogin() throws Exception {
+	//@Test
+	public void checkInvalidLogin1() throws Exception {
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://registrator.herokuapp.com/login");
@@ -63,7 +66,8 @@ public class SmokeLoginPageTest {
 		// Switch to Ukrainian
 		ChangeLanguageFields curreanLanguage = ChangeLanguageFields.UKRAINIAN;
 		loginPage = loginPage.changeLanguage(curreanLanguage);
-		LoginValidatorPage loginValidatorPage = loginPage.unsuccessfulLogin("proba", "proba");
+		//LoginValidatorPage loginValidatorPage = loginPage.unsuccessfulLogin("proba", "proba");
+		LoginValidatorPage loginValidatorPage = loginPage.unsuccessfulLogin(UserRepository.get().invalidUser());
 		// STUB
 		//LoginValidatorPage loginValidatorPage = new LoginValidatorPage(driver);
 		//Assert.assertEquals(loginValidatorPage.getInvalidLoginValidatorText(), "Неправильний логін або пароль");
@@ -71,5 +75,33 @@ public class SmokeLoginPageTest {
 		Thread.sleep(2000);
 		driver.quit();
 	}
+
+    @DataProvider//(parallel = true)
+    public Object[][] getUsers() {
+        return new Object[][] {
+                { UserRepository.get().invalidUser() },
+                };
+    }
+
+    @Test(dataProvider = "getUsers")
+    public void checkInvalidLogin2(IUser invalidUser) throws Exception {
+        // precondition
+        WebDriver driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.get("http://registrator.herokuapp.com/login");
+        //
+        LoginPage loginPage = new LoginPage(driver);
+        // test steps
+        // 1. Switch to Ukrainian
+        ChangeLanguageFields curreanLanguage = ChangeLanguageFields.UKRAINIAN;
+        loginPage = loginPage.changeLanguage(curreanLanguage);
+        // 2. invalid login
+        LoginValidatorPage loginValidatorPage = loginPage.unsuccessfulLogin(invalidUser);
+        // check
+        Assert.assertEquals(loginValidatorPage.getInvalidLoginValidatorText(), LoginValidatorPageL10n.INVALID_LOGINVALIDATOR_LABEL.getLocalization(curreanLanguage));
+        Thread.sleep(2000);
+        // return to previous state
+        driver.quit();
+    }
 
 }

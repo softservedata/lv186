@@ -1,6 +1,5 @@
 package com.softserve.edu.pages;
 
-import java.util.HashMap;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,56 +7,36 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.data.IUser;
 
-public class LoginPage extends ATopPage {
-
-    public static enum LoginPageL10n {
-        LOGIN_LABEL("Логін","Логин","Login"),
-        PASSWORD_LABEL("Пароль","Пароль","Password"),
-        SUBMIT_BUTTON("Увійти","Войти","Sign in");
-        //
-        private HashMap<ChangeLanguageFields, String> field;
-
-        private LoginPageL10n(String... localization) {
-            this.field = new HashMap<ChangeLanguageFields, String>();
-            int i = 0;
-            for (ChangeLanguageFields language : ChangeLanguageFields.values()) {
-                this.field.put(language, localization[i]);
-                i++;
-            }
-        }
-
-        public String getLocalization(ChangeLanguageFields language) {
-            return this.field.get(language).trim();
-        }
-    }
-
+public class LoginPageMagento  {
+       
     // Fields
-
-    private WebElement loginLabel;
-    private WebElement loginInput;
+	protected WebDriver driver;
+    private WebElement userNameLabel;
+    private WebElement userNameInput;
     private WebElement passwordLabel;
     private WebElement passwordInput;
     private WebElement signin;
-
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        this.loginLabel = driver.findElement(By.xpath("//label[contains(@for,'inputEmail')]"));
-        this.loginInput = driver.findElement(By.id("login"));
-        this.passwordLabel = driver.findElement(By.xpath("//label[contains(@for,'inputPassword')]"));
-        this.passwordInput = driver.findElement(By.id("password"));
-        this.signin = driver.findElement(By.cssSelector("button.btn.btn-primary"));
+    private WebElement forgotPassword;
+    public LoginPageMagento(WebDriver driver) {
+    	this.driver=driver;
+        this.userNameLabel = driver.findElement(By.xpath("//*[@for='username']/span"));
+        this.userNameInput = driver.findElement(By.id("username"));
+        this.passwordLabel = driver.findElement(By.xpath("//*[@for='login']/span"));
+        this.passwordInput = driver.findElement(By.id("login"));
+        this.signin = driver.findElement(By.cssSelector("button.action-login.action-primary"));
+        this.forgotPassword = driver.findElement(By.cssSelector("a.action-forgotpassword)"));
     }
 
     // PageObject
 
     // get Data PageObject
 
-    public WebElement getLoginLabel() {
-        return this.loginLabel;
+    public WebElement getUserNameLabel() {
+        return this.userNameLabel;
     }
 
-    public WebElement getLoginInput() {
-        return this.loginInput;
+    public WebElement getUserNameInput() {
+        return this.userNameInput;
     }
 
     public WebElement getPasswordLabel() {
@@ -71,15 +50,18 @@ public class LoginPage extends ATopPage {
     public WebElement getSignin() {
         return this.signin;
     }
+    public WebElement getForgotPassword() {
+        return this.forgotPassword;
+    }
 
     // get Data Business Logic
 
     public String getLoginLabelText() {
-        return getLoginLabel().getText().trim();
+        return getUserNameLabel().getText().trim();
     }
 
     public String getLoginInputText() {
-        return getLoginInput().getText();
+        return getUserNameInput().getText();
     }
 
     public String getPasswordLabelText() {
@@ -97,7 +79,7 @@ public class LoginPage extends ATopPage {
     // set Data PageObject
 
     public void setLoginInput(String login) {
-        getLoginInput().sendKeys(login);
+        getUserNameInput().sendKeys(login);
     }
 
     public void setPasswordInput(String password) {
@@ -105,7 +87,7 @@ public class LoginPage extends ATopPage {
     }
 
     public void clearLoginInput() {
-        getLoginInput().clear();
+        getUserNameInput().clear();
     }
 
     public void clearPasswordInput() {
@@ -113,7 +95,7 @@ public class LoginPage extends ATopPage {
     }
 
     public void clickLoginInput() {
-        getLoginInput().click();
+        getUserNameInput().click();
     }
 
     public void clickPasswordInput() {
@@ -138,11 +120,7 @@ public class LoginPage extends ATopPage {
 
     // Functional Business Logic
 
-    public LoginPage changeLanguage(ChangeLanguageFields language) {
-        setChangeLanguage(language);
-        // Return a new page object representing the destination.
-        return new LoginPage(driver);
-    }
+   
 
     // TODO Develop User class
     private void setLoginData(IUser user) {

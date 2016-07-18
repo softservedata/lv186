@@ -2,26 +2,16 @@ package com.softserve.edu.data;
 
 public interface IUser {
 
-    // setters
-    
-    IUser setCity(String city);
+	// getters
 
-    IUser setPassport(String passport);
+	String getUserName();
 
-    // getters
+	String getFirstName();
 
-    String getFirstname();
+	String getLastName();
 
-    String getLastname();
+	String getMail();
 
-    String getLogin();
-
-    String getPassword();
-
-    String getMail();
-
-    String getCity();
-
-    String getPassport();
+	String getPassword();
 
 }

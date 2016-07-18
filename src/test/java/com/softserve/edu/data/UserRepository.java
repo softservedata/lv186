@@ -18,7 +18,7 @@ public class UserRepository {
         return instance;
     }
 
-    public IUser adminUser() {
+   /* public IUser adminUser() {
         return User.get()
                 .setFirstname("Адміністратор")
                 .setLastname("Адміністратор")
@@ -46,7 +46,7 @@ public class UserRepository {
                 .setPassword("customer")
                 .setMail("customer@customer.com")
                 .build();
-    }
+    }*/
 
 //    public List<IUser> getExistUsersCVS() {
 //        return new UserUtils().getAllUsers();

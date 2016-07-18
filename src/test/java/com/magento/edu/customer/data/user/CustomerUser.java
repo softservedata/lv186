@@ -11,6 +11,7 @@ interface IBuildUser {
 public class CustomerUser implements IIPersonalInfo_User,IISigninInfo_User,IBuildUser,ICustomerUser{
 	private IPersonalInfo_User personalInfo;
 	private ISigninInfo_User signinInfo;
+	private IContactInfo_User contactInfo;
 	
 	private CustomerUser() {}
 	public static IIPersonalInfo_User get() {
@@ -29,12 +30,19 @@ public class CustomerUser implements IIPersonalInfo_User,IISigninInfo_User,IBuil
 	public ICustomerUser build() {
         return this;
     }
+	public ICustomerUser setContactInfo_User(IContactInfo_User contactInfo) {
+		this.contactInfo = contactInfo;
+		return this;
+	}
 //getters
 	public IPersonalInfo_User getPersonalInfo() {
 		return personalInfo;
 	}
 	public ISigninInfo_User getSigninInfo() {
 		return signinInfo;
+	}
+	public IContactInfo_User getContactInfo() {
+		return contactInfo;
 	}
 	
 }

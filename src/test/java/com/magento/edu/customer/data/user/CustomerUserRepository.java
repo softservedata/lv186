@@ -30,7 +30,17 @@ public class CustomerUserRepository {
         				.setPassword("25263004Ya")
         				.setConfirmPassword("25263004Ya")
         				.build())
-        		.build();
+        		.build()
+        		.setContactInfo_User(ContactInfo_User.get()
+        				.setPhoneNumber("0987656786")
+        				.setStreetAddress("st. petra pancha 10")
+        				.setCity("Lviv")
+        				.setState("Lviv")
+        				.setPostalCode("70020")
+        				.setCountry("Ukraine")
+        				.build()
+        				.setCompanyName("")
+        				.setFax(""));
     }
     
     public ICustomerUser invalidUser() {

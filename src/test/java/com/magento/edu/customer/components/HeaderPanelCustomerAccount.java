@@ -11,19 +11,48 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	
 	public WebElement customer_welcome;
 	public WebElement dropdown_account_menu_button;
-	public WebElement myAccountButton;
-	public WebElement myWishListButton;
-	public WebElement signOutButton;
+	public AccountMenuDropDown accountMenuDropDown;
 	public RightAccountMenu rightAccountMenu;
-	
+	//-----------------AccountMenuDropDown-------------------
+	private class AccountMenuDropDown {
+		public WebElement myAccountButton;
+		public WebElement myWishListButton;
+		public WebElement signOutButton;
+		
+		public AccountMenuDropDown(WebDriver driver) {
+			this.myAccountButton = driver.findElement(By.linkText("My Account"));
+			this.myWishListButton = driver.findElement(By.cssSelector("li.link.wishlist")).
+					findElement(By.partialLinkText("My Wish List"));
+			this.signOutButton = driver.findElement(By.partialLinkText("Sign Out"));
+		}
+		public WebElement getMyAccountButton() {
+			return myAccountButton;
+		}
+		public WebElement getMyWishListButton() {
+			return myWishListButton;
+		}
+		public WebElement getSignOutButton() {
+			return signOutButton;
+		}
+		public AccountDashboardPage clickMyAccountButton() {
+			this.getMyAccountButton().click();
+			return new AccountDashboardPage(driver);
+		}
+		public void clickMyWishListButton() {
+			this.getMyWishListButton().click();
+		}
+		public HomePage clickSignOutButton() {
+			this.getSignOutButton().click();
+			return new HomePage(driver);
+			
+		}
+	}
+	//--------------------------------
 	protected HeaderPanelCustomerAccount(WebDriver driver) {
 		super(driver);
 		this.customer_welcome = driver.findElement(By.className("customer-welcome")); 
 		this.dropdown_account_menu_button = driver.findElement(By.cssSelector("button.action.switch"));
-		this.myAccountButton = driver.findElement(By.linkText("My Account"));
-		this.myWishListButton = driver.findElement(By.cssSelector("li.link.wishlist")).
-				findElement(By.partialLinkText("My Wish List"));
-		this.signOutButton = driver.findElement(By.partialLinkText("Sign Out"));
+		
 		this.rightAccountMenu = new RightAccountMenu(driver);
 	}
 	//getters
@@ -33,17 +62,12 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	public WebElement getDropdown_account_menu_button() {
 		return dropdown_account_menu_button;
 	}
-	public WebElement getMyAccountButton() {
-		return myAccountButton;
-	}
-	public WebElement getMyWishListButton() {
-		return myWishListButton;
-	}
-	public WebElement getSignOutButton() {
-		return signOutButton;
-	}
+	
 	public RightAccountMenu getRightAccountMenu() {
 		return rightAccountMenu;
+	}
+	public AccountMenuDropDown getAccountMenuDropDown() {
+		return this.accountMenuDropDown;
 	}
 	//business logic
 	public String getCustomer_welcomeText() {
@@ -54,18 +78,8 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	}
 	public void clickDropdown_account_menu_button() {
 		this.getDropdown_account_menu_button().click();
+		this.accountMenuDropDown = new AccountMenuDropDown(driver);
 	}
-	public AccountDashboardPage clickMyAccountButton() {
-		this.getMyAccountButton().click();
-		return new AccountDashboardPage(driver);
-	}
-	public void clickMyWishListButton() {
-		this.getMyWishListButton().click();
-	}
-	public HomePage clickSignOutButton() {
-		this.getSignOutButton().click();
-		return new HomePage(driver);
-		
-	}
+	
 	
 }

@@ -22,7 +22,7 @@ public class RightAccountMenu {
 	public RightAccountMenu(WebDriver driver) {
 		this.driver = driver;
 		
-		this.accountDashboardLink = driver.findElement(By.linkText("Account Dashboard"));
+		//this.accountDashboardLink = driver.findElement(By.linkText("Account Dashboard"));
 		//=driver.findElement(By.id("block-collapsible-nav"))
 		//		.findElement(By.xpath("//*[contains(text(),'Account Dashboard')]"));
 		this.accountInformationLink = driver.findElement(By.linkText("Account Information"));

@@ -1209,4 +1209,204 @@ public abstract class VerticalMenu extends ATopPage {
 	public void clickSchedule() {
 		getSchedule().click();
 	}
+
+	public void clickProductsInCart() {
+		getProductsInCart().click();
+	}
+
+	public void clickSearchTermsReportsMenu() {
+		getSearchTermsMarketingMenu().click();
+	}
+
+	public void clickAbandonedCarts() {
+		getAbandonedCarts().click();
+	}
+
+	public void clickNewsletterProblemReports() {
+		getNewsletterProblemReports().click();
+	}
+
+	public void clickByCustomers() {
+		getByCustomers().click();
+	}
+
+	public void clickByProducts() {
+		getByProducts().click();
+	}
+
+	public void clickOrdersReportsMenu() {
+		getOrdersReportsMenu().click();
+	}
+
+	public void clickTax() {
+		getTax().click();
+	}
+
+	public void clickInvoiced() {
+		getInvoiced().click();
+	}
+
+	public void clickShipping() {
+		getShipping().click();
+	}
+
+	public void clickRefunds() {
+		getRefunds().click();
+	}
+
+	public void clickCoupons() {
+		getCoupons().click();
+	}
+
+	public void clickPayPalSettlement() {
+		getPayPalSettlement().click();
+	}
+
+	public void clickBraintreeSettlement() {
+		getBraintreeSettlement().click();
+	}
+
+	public void clickOrderTotal() {
+		getOrderTotal().click();
+	}
+
+	public void clickOrderCount() {
+		getOrderCount().click();
+	}
+
+	public void clickNew() {
+		getNewOne().click();
+	}
+
+	public void clickViews() {
+		getViews().click();
+	}
+
+	public void clickBestsellers() {
+		getBestsellers().click();
+	}
+
+	public void clickLowStock() {
+		getLowStock().click();
+	}
+
+	public void clickOrdered() {
+		getOrdered().click();
+	}
+
+	public void clickDownloads() {
+		getDownloads().click();
+	}
+
+	public void clickRefreshStatistics() {
+		getRefreshStatistics().click();
+	}
+
+	public void clickAllStores() {
+		getAllStores().click();
+	}
+
+	public void clickConfigurationStoresMenu() {
+		getConfigurationStoresMenu().click();
+	}
+
+	public void clickTermsAndConditions() {
+		getTermsAndConditions().click();
+	}
+
+	public void clickOrderStatus() {
+		getOrderStatus().click();
+	}
+
+	public void clickTaxRules() {
+		getTaxRules().click();
+	}
+
+	public void clickTaxZonesAndRates() {
+		getTaxZonesAndRates().click();
+	}
+
+	public void clickCurrencyRates() {
+		getCurrencyRates().click();
+	}
+
+	public void clickCurrencySymbols() {
+		getCurrencySymbols().click();
+	}
+
+	public void clickProduct() {
+		getProduct().click();
+	}
+
+	public void clickAttributeSet() {
+		getAttributeSet().click();
+	}
+
+	public void clickRating() {
+		getRating().click();
+	}
+
+	public void clickCustomerGroups() {
+		getCustomerGroups().click();
+	}
+
+	public void clickImport() {
+		getImportOne().click();
+	}
+
+	public void clickExport() {
+		getExport().click();
+	}
+
+	public void clickImportExportTaxRates() {
+		getImportExportTaxRates().click();
+	}
+
+	public void clickImportHistory() {
+		getImportHistory().click();
+	}
+
+	public void clickIntegrations() {
+		getIntegrations().click();
+	}
+
+	public void clickCacheManagement() {
+		getCacheManagement().click();
+	}
+
+	public void clickBackups() {
+		getBackups().click();
+	}
+
+	public void clickIndexManagement() {
+		getIndexManagement().click();
+	}
+
+	public void clickWebSetupWizard() {
+		getWebSetupWizard().click();
+	}
+
+	public void clickAllUsers() {
+		getAllUsers().click();
+	}
+
+	public void clickLockedUsers() {
+		getLockedUsers().click();
+	}
+
+	public void clickUserRoles() {
+		getUserRoles().click();
+	}
+
+	public void clickNotifications() {
+		getNotifications().click();
+	}
+
+	public void clickCustomVariables() {
+		getCustomVariables().click();
+	}
+
+	public void clickManageEncryptionKey() {
+		getManageEncryptionKey().click();
+	}
 }

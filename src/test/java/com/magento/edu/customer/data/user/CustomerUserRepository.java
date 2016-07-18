@@ -29,6 +29,8 @@ public class CustomerUserRepository {
         				.setEmail("ya.kharko@nltu.lviv.ua")
         				.setPassword("25263004Ya")
         				.setConfirmPassword("25263004Ya")
+        				.setAssosiateToWebsite("Main Website")
+        				.setGroup("General")
         				.build())
         		.build()
         		.setContactInfo_User(ContactInfo_User.get()
@@ -54,6 +56,8 @@ public class CustomerUserRepository {
 						.setEmail("ggg@mail.com")
 						.setPassword("77777777")
 						.setConfirmPassword("77777777")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup("General")
 						.build())
 				.build();
     }
@@ -69,6 +73,8 @@ public class CustomerUserRepository {
 						.setEmail("yulia.koval@mail.com")
 						.setPassword("11111111yU")
 						.setConfirmPassword("11111111yU")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup("General")
 						.build())
 				.build();
     }

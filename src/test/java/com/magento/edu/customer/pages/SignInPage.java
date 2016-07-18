@@ -6,7 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.magento.edu.customer.components.HeaderPanel;
-import com.magento.edu.customer.data.user.IUser;
+import com.magento.edu.customer.data.user.ICustomerUser;
+
 
 public class SignInPage extends HeaderPanel{
 
@@ -85,25 +86,25 @@ public class SignInPage extends HeaderPanel{
 		return new CreateAccountPage(driver);
 	}
 	// functional sign in
-	public AccountDashboardPage SignIn(IUser user) {
+	public AccountDashboardPage SignIn(ICustomerUser user) {
 		clearTypeEmail(user.getSigninInfo().getEmail());
 		clearTypePassword(user.getSigninInfo().getPassword());
 		clickSignInButton();
 		return new AccountDashboardPage(driver);
 	}
-	public AccountDashboardPage SignIn_Enter(IUser user) {
+	public AccountDashboardPage SignIn_Enter(ICustomerUser user) {
 		clearTypeEmail(user.getSigninInfo().getEmail());
 		clearTypePassword(user.getSigninInfo().getPassword());
 		getPasswordField().sendKeys(Keys.ENTER);
 		return new AccountDashboardPage(driver);
 	}
-	public UnsuccessfulSignInPage unsuccessfulSignIn(IUser invalidUser) {
+	public UnsuccessfulSignInPage unsuccessfulSignIn(ICustomerUser invalidUser) {
 		clearTypeEmail(invalidUser.getSigninInfo().getEmail());
 		clearTypePassword(invalidUser.getSigninInfo().getPassword());
 		clickSignInButton();
 		return new UnsuccessfulSignInPage(driver);
 	}
-	public UnsuccessfulSignInPage unsuccessfulSignIn_Enter(IUser invalidUser) {
+	public UnsuccessfulSignInPage unsuccessfulSignIn_Enter(ICustomerUser invalidUser) {
 		clearTypeEmail(invalidUser.getSigninInfo().getEmail());
 		clearTypePassword(invalidUser.getSigninInfo().getPassword());
 		getPasswordField().sendKeys(Keys.ENTER);

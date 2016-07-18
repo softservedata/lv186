@@ -8,9 +8,11 @@ import org.openqa.selenium.WebElement;
 import com.magento.edu.customer.components.HeaderPanel;
 import com.magento.edu.customer.components.PersonalInfCreateAccount;
 import com.magento.edu.customer.components.SigninInfCreateAccount;
+import com.magento.edu.customer.data.user.ICustomerUser;
 import com.magento.edu.customer.data.user.IPersonalInfo_User;
 import com.magento.edu.customer.data.user.ISigninInfo_User;
-import com.magento.edu.customer.data.user.IUser;
+
+
 
 public class CreateAccountPage extends HeaderPanel{
 	
@@ -43,7 +45,7 @@ public class CreateAccountPage extends HeaderPanel{
 	public void input_SignIn_inform(ISigninInfo_User signinInfo_User) {
 		this.getSigninInf().input_SignIn_inform(signinInfo_User);
 	}
-	public void inputData(IUser user) {
+	public void inputData(ICustomerUser user) {
 		this.input_Personal_inform(user.getPersonalInfo());
 		this.input_SignIn_inform(user.getSigninInfo());
 		
@@ -52,22 +54,22 @@ public class CreateAccountPage extends HeaderPanel{
 		this.getCreateAccountButton().click();
 	}
 //functional
-	public AccountDashboardPage createNewAccount(IUser user) {
+	public AccountDashboardPage createNewAccount(ICustomerUser user) {
 		this.inputData(user);
 		this.clickCreateAccountButton();
 		return new AccountDashboardPage(driver);
 	}
-	public AccountDashboardPage createNewAccount_Enter(IUser user) {
+	public AccountDashboardPage createNewAccount_Enter(ICustomerUser user) {
 		this.inputData(user);
 		this.getSigninInf().getConfirmPasswordField().sendKeys(Keys.ENTER);
 		return new AccountDashboardPage(driver);
 	}
-	public Unsuccessful_CreateAccountPage unsuccessful_createNewAccount(IUser invalidUser) {
+	public Unsuccessful_CreateAccountPage unsuccessful_createNewAccount(ICustomerUser invalidUser) {
 		this.inputData(invalidUser);
 		this.clickCreateAccountButton();
 		return new Unsuccessful_CreateAccountPage(driver);
 	}
-	public Unsuccessful_CreateAccountPage unsuccessful_createNewAccount_Enter(IUser invalidUser) {
+	public Unsuccessful_CreateAccountPage unsuccessful_createNewAccount_Enter(ICustomerUser invalidUser) {
 		this.inputData(invalidUser);
 		this.getSigninInf().getConfirmPasswordField().sendKeys(Keys.ENTER);
 		return new Unsuccessful_CreateAccountPage(driver);

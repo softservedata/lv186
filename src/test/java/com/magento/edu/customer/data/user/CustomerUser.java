@@ -6,15 +6,15 @@ interface IISigninInfo_User {
 	IBuildUser setSigninInfo(ISigninInfo_User signinInfo);
 }
 interface IBuildUser {
-	IUser build();
+	ICustomerUser build();
 }
-public class User implements IIPersonalInfo_User,IISigninInfo_User,IBuildUser,IUser{
+public class CustomerUser implements IIPersonalInfo_User,IISigninInfo_User,IBuildUser,ICustomerUser{
 	private IPersonalInfo_User personalInfo;
 	private ISigninInfo_User signinInfo;
 	
-	private User() {}
+	private CustomerUser() {}
 	public static IIPersonalInfo_User get() {
-        return new  User();
+        return new  CustomerUser();
     }
 //setters
 	public IISigninInfo_User setPersonalInfo(IPersonalInfo_User personalInfo) {
@@ -26,7 +26,7 @@ public class User implements IIPersonalInfo_User,IISigninInfo_User,IBuildUser,IU
 		this.signinInfo = signinInfo;
 		return this;
 	}
-	public IUser build() {
+	public ICustomerUser build() {
         return this;
     }
 //getters

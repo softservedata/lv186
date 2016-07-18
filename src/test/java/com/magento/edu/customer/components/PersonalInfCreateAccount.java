@@ -93,8 +93,8 @@ public class PersonalInfCreateAccount {
 	}
 	//input form personal inform
 	public void input_Personal_inform(IPersonalInfo_User personalInfo_User) {
-		clearTypeFirstName(personalInfo_User.getFirstName());
-		clearTypeLastName(personalInfo_User.getLastName());
+		clearTypeFirstName(personalInfo_User.getFirstname());
+		clearTypeLastName(personalInfo_User.getLastname());
 		if ( personalInfo_User.getSignUpNewsletter() == true ) {
 			clickSignUpNewsletterCheckBox();
 		}

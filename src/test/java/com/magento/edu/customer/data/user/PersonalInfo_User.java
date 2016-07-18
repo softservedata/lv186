@@ -1,10 +1,10 @@
 package com.magento.edu.customer.data.user;
-interface IFirstName {
-	ILastName setFirstName(String firstName);
+interface IFirstname {
+	ILastname setFirstname(String firstname);
 }
 
-interface ILastName {
-	ISignUpNewsletter setLastName(String lastName);
+interface ILastname {
+	ISignUpNewsletter setLastname(String lastname);
 }
 
 interface ISignUpNewsletter {
@@ -14,22 +14,22 @@ interface IBuild_PersonalInfo_User {
 	IPersonalInfo_User build();
 }
 
-public class PersonalInfo_User implements IFirstName,ILastName,ISignUpNewsletter,
+public class PersonalInfo_User implements IFirstname,ILastname,ISignUpNewsletter,
 IBuild_PersonalInfo_User,IPersonalInfo_User{
-	private String firstName;
-	private String lastName;
+	private String firstname;
+	private String lastname;
 	private Boolean signUpNewsletter;
 	private PersonalInfo_User() {}
 	//SETTERS
-	public static IFirstName get() {
+	public static IFirstname get() {
         return new  PersonalInfo_User();
     }
-	public ILastName setFirstName(String firstName) {
-		this.firstName = firstName;
+	public ILastname setFirstname(String firstname) {
+		this.firstname = firstname;
 		return this;
 	}
-	public ISignUpNewsletter setLastName(String lastName) {
-		this.lastName = lastName;
+	public ISignUpNewsletter setLastname(String lastname) {
+		this.lastname = lastname;
 		return this;
 	}
 	public IBuild_PersonalInfo_User setSignUpNewsletter(Boolean signUpNewsletter) {
@@ -40,11 +40,11 @@ IBuild_PersonalInfo_User,IPersonalInfo_User{
         return this;
     }
 	//getters
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 	public Boolean getSignUpNewsletter() {
 		return signUpNewsletter;

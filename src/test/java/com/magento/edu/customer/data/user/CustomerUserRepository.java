@@ -1,28 +1,28 @@
 package com.magento.edu.customer.data.user;
 
-public class UserRepository {
+public class CustomerUserRepository {
 
-    private static volatile UserRepository instance = null;
+    private static volatile CustomerUserRepository instance = null;
 
-    private UserRepository() {
+    private CustomerUserRepository() {
     }
 
-    public static UserRepository get() {
+    public static CustomerUserRepository get() {
         if (instance == null) {
-            synchronized (UserRepository.class) {
+            synchronized (CustomerUserRepository.class) {
                 if (instance == null) {
-                    instance = new UserRepository();
+                    instance = new CustomerUserRepository();
                 }
             }
         }
         return instance;
     }
 
-    public IUser User() {
-        return User.get()
+    public ICustomerUser User() {
+        return CustomerUser.get()
         		.setPersonalInfo(PersonalInfo_User.get()
-        				.setFirstName("Yaryna")
-        				.setLastName("Kharko")
+        				.setFirstname("Yaryna")
+        				.setLastname("Kharko")
         				.setSignUpNewsletter(true)
         				.build())
         		.setSigninInfo(SigninInfo_User.get()
@@ -33,11 +33,11 @@ public class UserRepository {
         		.build();
     }
     
-    public IUser invalidUser() {
-        return User.get().
+    public ICustomerUser invalidUser() {
+        return CustomerUser.get().
 				setPersonalInfo(PersonalInfo_User.get()
-						.setFirstName("ggg")
-						.setLastName("GGG")
+						.setFirstname("ggg")
+						.setLastname("GGG")
 						.setSignUpNewsletter(true)
 						.build())
 				.setSigninInfo(SigninInfo_User.get()
@@ -48,11 +48,11 @@ public class UserRepository {
 				.build();
     }
 
-    public IUser newUser() {
-        return User.get().
+    public ICustomerUser newUser() {
+        return CustomerUser.get().
 				setPersonalInfo(PersonalInfo_User.get()
-						.setFirstName("yulia")
-						.setLastName("koval")
+						.setFirstname("yulia")
+						.setLastname("koval")
 						.setSignUpNewsletter(true)
 						.build())
 				.setSigninInfo(SigninInfo_User.get()

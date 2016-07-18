@@ -8,7 +8,8 @@
 		<classes>
 			<!-- <class name="com.softserve.edu.tests.FourthTest"> <methods> <include 
 				name="testSeleniumIDE" /> </methods> </class> -->
-			<class name="com.softserve.edu.tests.SixthTest" />
+			<!-- <class name="com.softserve.edu.tests.SixthTest" /> -->
+			<class name="com.softserve.edu.AppTest" />
 		</classes>
 	</test> <!-- Test -->
 	<!-- - - - - - - - - - -->

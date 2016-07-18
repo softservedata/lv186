@@ -1,5 +1,7 @@
 package com.magento.edu.customer.data.user;
 
+import com.magento.edu.customer.data.user.SigninInfo_User.Group;
+
 public class CustomerUserRepository {
 
     private static volatile CustomerUserRepository instance = null;
@@ -30,7 +32,7 @@ public class CustomerUserRepository {
         				.setPassword("25263004Ya")
         				.setConfirmPassword("25263004Ya")
         				.setAssosiateToWebsite("Main Website")
-        				.setGroup("General")
+        				.setGroup(Group.GENERAL)
         				.build())
         		.build()
         		.setContactInfo_User(ContactInfo_User.get()
@@ -57,7 +59,7 @@ public class CustomerUserRepository {
 						.setPassword("77777777")
 						.setConfirmPassword("77777777")
 						.setAssosiateToWebsite("Main Website")
-        				.setGroup("General")
+        				.setGroup(Group.GENERAL)
 						.build())
 				.build();
     }
@@ -74,7 +76,7 @@ public class CustomerUserRepository {
 						.setPassword("11111111yU")
 						.setConfirmPassword("11111111yU")
 						.setAssosiateToWebsite("Main Website")
-        				.setGroup("General")
+        				.setGroup(Group.GENERAL)
 						.build())
 				.build();
     }

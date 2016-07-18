@@ -10,6 +10,7 @@ import com.magento.edu.customer.pages.HomePage;
 import com.magento.edu.customer.pages.SignInPage;
 import com.magento.edu.customer.pages.UnsuccessfulSignInPage;
 import com.magento.edu.customer.pages.UnsuccessfulSignInPage.MessageErrorSignIn;
+import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -66,12 +67,20 @@ public class TestCaseSignIn1 {
 	  
 	  Assert.assertEquals(accountDashboardPage.getTitleText(),
 			  Titles.ACCOUNT_DASHBOARD.toString());
+	  
+	  accountDashboardPage.clickDropdown_account_menu_button();
+	  homePage = accountDashboardPage.getAccountMenuDropDown().clickSignOutButton();
+	  
+	  Assert.assertEquals(homePage.getTitleText(),
+			  Titles.YOU_ARE_SIGNED_OUT.toString());
   }
   @Test
   public void testCreateAccount2() {
 	  driver.get("http://192.168.195.210/magento");
 	  HomePage homePage = new HomePage(driver);
 	  CreateAccountPage createAccountPage = homePage.clickCreateAccountLink();
-	  createAccountPage.unsuccessful_createNewAccount(CustomerUserRepository.get().User());
+	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
+			  createAccountPage.unsuccessful_createNewAccount(CustomerUserRepository.get().User());
+	  
   }
 }

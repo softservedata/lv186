@@ -4,6 +4,7 @@ public interface IContactInfo_User {
 	//setters
 		public IContactInfo_User setCompanyName(String companyName);
 	 	public IContactInfo_User setFax(String fax);
+	 	public IContactInfo_User setVatNumber(String vatNumber);
 	//getters
 		public String getPhoneNumber();
 		public String getStreetAddress();
@@ -13,4 +14,5 @@ public interface IContactInfo_User {
 		public String getCountry();
 		public String getCompanyName();
 		public String getFax();
+		public String getVatNumber();
 }

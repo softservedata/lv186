@@ -9,15 +9,15 @@ import com.magento.edu.customer.pages.HomePage;
 
 public abstract class HeaderPanelCustomerAccount extends Header{
 	
-	public WebElement customer_welcome;
-	public WebElement dropdown_account_menu_button;
-	public AccountMenuDropDown accountMenuDropDown;
-	public RightAccountMenu rightAccountMenu;
+	private WebElement customer_welcome;
+	private WebElement dropdown_account_menu_button;
+	private AccountMenuDropDown accountMenuDropDown;
+	private RightAccountMenu rightAccountMenu;
 	//-----------------AccountMenuDropDown-------------------
 	private class AccountMenuDropDown {
-		public WebElement myAccountButton;
-		public WebElement myWishListButton;
-		public WebElement signOutButton;
+		private WebElement myAccountButton;
+		private WebElement myWishListButton;
+		private WebElement signOutButton;
 		
 		public AccountMenuDropDown(WebDriver driver) {
 			this.myAccountButton = driver.findElement(By.linkText("My Account"));
@@ -34,7 +34,7 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		public WebElement getSignOutButton() {
 			return signOutButton;
 		}
-		public AccountDashboardPage clickMyAccountButton() {
+		/*public AccountDashboardPage clickMyAccountButton() {
 			this.getMyAccountButton().click();
 			return new AccountDashboardPage(driver);
 		}
@@ -45,7 +45,7 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 			this.getSignOutButton().click();
 			return new HomePage(driver);
 			
-		}
+		}*/
 	}
 	//--------------------------------
 	protected HeaderPanelCustomerAccount(WebDriver driver) {
@@ -66,9 +66,6 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	public RightAccountMenu getRightAccountMenu() {
 		return rightAccountMenu;
 	}
-	public AccountMenuDropDown getAccountMenuDropDown() {
-		return this.accountMenuDropDown;
-	}
 	//business logic
 	public String getCustomer_welcomeText() {
 		return this.getCustomer_welcome().getText();
@@ -80,6 +77,33 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		this.getDropdown_account_menu_button().click();
 		this.accountMenuDropDown = new AccountMenuDropDown(driver);
 	}
+	public AccountMenuDropDown getAccountMenuDropDown() {
+		clickDropdown_account_menu_button();
+		return this.accountMenuDropDown;
+	}
+	//drop down menu click
+	public WebElement getMyAccountButton() {
+		return this.getAccountMenuDropDown().getMyAccountButton();
+	}
+	public WebElement getMyWishListButton() {
+		return this.getAccountMenuDropDown().getMyWishListButton();
+	}
+	public WebElement getSignOutButton() {
+		return this.getAccountMenuDropDown().getSignOutButton();
+	}
+	public AccountDashboardPage clickMyAccountButton() {
+		this.getMyAccountButton().click();
+		return new AccountDashboardPage(driver);
+	}
+	public void clickMyWishListButton() {
+		this.getMyWishListButton().click();
+	}
+	public HomePage clickSignOutButton() {
+		this.getSignOutButton().click();
+		return new HomePage(driver);
+		
+	}
+	
 	
 	
 }

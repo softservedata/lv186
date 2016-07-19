@@ -31,6 +31,7 @@ ICountry,IBuild_ContactInfo_User,IContactInfo_User{
 	private String country;
 	private String companyName;
 	private String fax;
+	private String vatNumber;
 	
 	private ContactInfo_User() {}
 	//setters
@@ -79,6 +80,10 @@ ICountry,IBuild_ContactInfo_User,IContactInfo_User{
 		this.fax = fax;
 		return this;
 	}
+	public IContactInfo_User setVatNumber(String vatNumber) {
+		this.vatNumber = vatNumber;
+		return this;
+	}
 	//getters
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -103,6 +108,9 @@ ICountry,IBuild_ContactInfo_User,IContactInfo_User{
 	}
 	public String getFax() {
 		return fax;
+	}
+	public String getVatNumber() {
+		return vatNumber;
 	}
 
 	

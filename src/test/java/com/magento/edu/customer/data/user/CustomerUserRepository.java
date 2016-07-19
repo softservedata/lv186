@@ -1,5 +1,7 @@
 package com.magento.edu.customer.data.user;
 
+import com.magento.edu.customer.data.user.Date.Month;
+import com.magento.edu.customer.data.user.PersonalInfo_User.Gender;
 import com.magento.edu.customer.data.user.SigninInfo_User.Group;
 
 public class CustomerUserRepository {
@@ -26,7 +28,14 @@ public class CustomerUserRepository {
         				.setFirstname("Yaryna")
         				.setLastname("Kharko")
         				.setSignUpNewsletter(true)
-        				.build())
+        				.build()
+        				.setGender(Gender.FEMALE)
+        				.setBirthdayDate(Date.get()
+        						.setMonth(Month.MAY)
+        						.setDay("26")
+        						.setYear("1997")
+        						.build())
+        				)
         		.setSigninInfo(SigninInfo_User.get()
         				.setEmail("ya.kharko@nltu.lviv.ua")
         				.setPassword("25263004Ya")
@@ -43,8 +52,10 @@ public class CustomerUserRepository {
         				.setPostalCode("70020")
         				.setCountry("Ukraine")
         				.build()
-        				.setCompanyName("")
-        				.setFax(""));
+        				.setCompanyName("SoftServe")
+        				.setFax("")
+        				.setVatNumber("10009876543")
+        				);
     }
     
     public ICustomerUser invalidUser() {

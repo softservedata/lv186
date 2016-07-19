@@ -10,22 +10,20 @@ import com.magento.edu.customer.data.user.ICustomerUser;
 import com.magento.edu.customer.data.user.IPersonalInfo_User;
 import com.magento.edu.customer.data.user.ISigninInfo_User;
 
-
-
 public class CreateAccountPage extends HeaderPanel{
 	
-	public PersonalInfCreateAccount personalInf;
-	public SigninInfCreateAccount signinInf;
-	public WebElement createAccountButton;
+	private PersonalInfCreateAccount personalInf;
+	private SigninInfCreateAccount signinInf;
+	private WebElement createAccountButton;
 	//------------------PersonalInfCreateAccount----------------------------
 	private class PersonalInfCreateAccount {
 		
-		public WebElement firstnameField;
-		public WebElement labelFirstnameField;
-		public WebElement lastnameField;
-		public WebElement labelLastnameField;
-		public WebElement signUpNewsletterCheckBox;
-		public WebElement labelSignUpNewsletterCheckBox;
+		private WebElement firstnameField;
+		private WebElement labelFirstnameField;
+		private WebElement lastnameField;
+		private WebElement labelLastnameField;
+		private WebElement signUpNewsletterCheckBox;
+		private WebElement labelSignUpNewsletterCheckBox;
 		
 		public PersonalInfCreateAccount() {
 			this.firstnameField = driver.findElement(By.id("firstname"));
@@ -36,39 +34,26 @@ public class CreateAccountPage extends HeaderPanel{
 			this.labelSignUpNewsletterCheckBox = driver.findElement(By.xpath("//label[@for='is_subscribed']"));
 		}
 
-		
 		public WebElement getFirstnameField() {
 			return firstnameField;
 		}
-
-
 		public WebElement getLabelFirstnameField() {
 			return labelFirstnameField;
 		}
-
-
 		public WebElement getLastnameField() {
 			return lastnameField;
 		}
-
-
 		public WebElement getLabelLastnameField() {
 			return labelLastnameField;
 		}
-
-
 		public WebElement getSignUpNewsletterCheckBox() {
 			return signUpNewsletterCheckBox;
 		}
 
-
 		public WebElement getLabelSignUpNewsletterCheckBox() {
 			return labelSignUpNewsletterCheckBox;
 		}
-
-
 		//business logic
-		
 		public String getFirstnameText() {
 			return getFirstnameField().getText();
 		}
@@ -116,9 +101,9 @@ public class CreateAccountPage extends HeaderPanel{
 	//------------------SigninInfCreateAccount-----------------------
 	private class SigninInfCreateAccount {
 		
-		public WebElement emailField;
-		public WebElement passwordField;
-		public WebElement confirmPasswordField;
+		private WebElement emailField;
+		private WebElement passwordField;
+		private WebElement confirmPasswordField;
 		
 		public SigninInfCreateAccount() {
 			this.emailField = driver.findElement(By.id("email_address"));
@@ -206,7 +191,7 @@ public class CreateAccountPage extends HeaderPanel{
 	public WebElement getCreateAccountButton() {
 		return createAccountButton;
 	} 
-//business logic
+//business logic input data 
 	public void input_Personal_inform(IPersonalInfo_User personalInfo_User) {
 		this.getPersonalInf().input_Personal_inform(personalInfo_User);
 	}
@@ -221,7 +206,7 @@ public class CreateAccountPage extends HeaderPanel{
 	public void clickCreateAccountButton() {
 		this.getCreateAccountButton().click();
 	}
-//functional
+//functional createNewAccount
 	public AccountDashboardPage createNewAccount(ICustomerUser user) {
 		this.inputData(user);
 		this.clickCreateAccountButton();

@@ -36,17 +36,17 @@ public abstract class Header {
 	//-----------------------------------------------
 	protected WebDriver driver;
 	 
-	 public WebElement welcomeMessage;
-	 public WebElement searchField;
-	 public WebElement cart;
-	 public WebElement logo;
-	 public WebElement title;
+	private WebElement welcomeMessage;
+	private WebElement searchField;
+	private WebElement cart;
+	private WebElement logo;
+	private WebElement title;
 	 
 	 protected Header(WebDriver driver) {
 		 this.driver = driver;
 		 this.welcomeMessage = driver.findElement(By.cssSelector("li.greet.welcome")); 
 		 this.searchField = driver.findElement(By.id("search"));
-		 //this.cart = driver.findElement(By.className("action showcart"));
+		 this.cart = driver.findElement(By.cssSelector("a.action.showcart"));
 		 this.cart = driver.findElement(By.cssSelector("a.action.showcart"));
 		 this.logo = driver.findElement(By.className("logo"));
 		 this.title = driver.findElement(By.className("base"));

@@ -8,7 +8,7 @@ import com.magento.edu.customer.components.HeaderPanel;
 
 public class HomePage extends HeaderPanel {
  
- public WebElement contentMessage;
+	private WebElement contentMessage;
  
  public HomePage(WebDriver driver) {
 	 super(driver);

@@ -8,14 +8,13 @@ import org.openqa.selenium.WebElement;
 import com.magento.edu.customer.components.HeaderPanel;
 import com.magento.edu.customer.data.user.ICustomerUser;
 
-
 public class SignInPage extends HeaderPanel{
 
-	public WebElement emailField;
-	public WebElement passwordField;
-	public WebElement signInButton;
-	public WebElement forgotPassword;
-	public WebElement createAccountButton;
+	private WebElement emailField;
+	private WebElement passwordField;
+	private WebElement signInButton;
+	private WebElement forgotPassword;
+	private WebElement createAccountButton;
 	
  public SignInPage(WebDriver driver) {
 	 super(driver);

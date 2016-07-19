@@ -21,7 +21,7 @@ public class UnsuccessfulSignInPage extends SignInPage {
 		}
 	}
 	//-----------------------------------------------
-	public WebElement messageError;
+	private WebElement messageError;
 	public UnsuccessfulSignInPage(WebDriver driver) {
 		super(driver);
 		this.messageError = driver.findElement(By.cssSelector("div.message-error.error.message div"));

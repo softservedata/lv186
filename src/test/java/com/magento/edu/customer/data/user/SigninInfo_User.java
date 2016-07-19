@@ -1,5 +1,6 @@
 package com.magento.edu.customer.data.user;
 
+import com.magento.edu.customer.data.user.SigninInfo_User.Group;
 
 interface IEmail {
 	IPassword setEmail(String email);
@@ -10,19 +11,46 @@ interface IPassword {
 }
 
 interface IConfirmPassword {
-	IBuild_SigninInfo_User setConfirmPassword(String confirmPassword);
+	IAssosiateToWebsite setConfirmPassword(String confirmPassword);
+}
+interface IAssosiateToWebsite {
+	IGroup setAssosiateToWebsite(String assosiateToWebsite);
+}
+interface IGroup {
+	IBuild_SigninInfo_User setGroup(Group Group);
 }
 interface IBuild_SigninInfo_User  {
 	ISigninInfo_User build();
 }
 
 
-public class SigninInfo_User implements IEmail,IPassword,IConfirmPassword,
-IBuild_SigninInfo_User,ISigninInfo_User{
+public class SigninInfo_User implements IEmail,IPassword,IConfirmPassword,IAssosiateToWebsite,
+IGroup,IBuild_SigninInfo_User,ISigninInfo_User{
+	public static enum Group {
+		GENERAL("General"),
+		WHOLESALE("Wholesale"),
+		RETAILER("Retailer");
+		//
+		private String field;
+
+		private Group(String field) {
+			this.field = field;
+		}
+
+		@Override
+		public String toString() {
+			return this.field;
+		}
+	}
+	//--------------------------------------
 	private String email;
 	private String password;
 	private String confirmPassword;
+	private String assosiateToWebsite;
+	private String group;
+	
 	private  SigninInfo_User() {}
+	
 	public static IEmail get() {
         return new  SigninInfo_User();
     }
@@ -34,14 +62,22 @@ IBuild_SigninInfo_User,ISigninInfo_User{
 		this.password = password;
 		return this;
 	}
-	public IBuild_SigninInfo_User setConfirmPassword(String confirmPassword) {
+	public IAssosiateToWebsite setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+		return this;
+	}
+	public IGroup setAssosiateToWebsite(String assosiateToWebsite) {
+		this.assosiateToWebsite = assosiateToWebsite;
+		return this;
+	}
+	public IBuild_SigninInfo_User setGroup(Group Group) {
+		this.group = Group.toString();
 		return this;
 	}
 	public ISigninInfo_User build() {
 		return this;
 	}
-	
+		
 	//getters
 	public String getEmail() {
 		return email;
@@ -51,6 +87,12 @@ IBuild_SigninInfo_User,ISigninInfo_User{
 	}
 	public String getConfirmPassword() {
 		return confirmPassword;
+	}
+	public String getAssosiateToWebsite() {
+		return assosiateToWebsite;
+	}
+	public String getGroup() {
+		return group;
 	}
 	
 	

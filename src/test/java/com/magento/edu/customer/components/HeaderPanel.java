@@ -9,8 +9,8 @@ import com.magento.edu.customer.pages.SignInPage;
 
 public abstract class HeaderPanel extends Header{
 	
-	public WebElement signInLink;
-	public WebElement createAccountLink;
+	private WebElement signInLink;
+	private WebElement createAccountLink;
 	
 	protected HeaderPanel(WebDriver driver) {
 		super(driver);

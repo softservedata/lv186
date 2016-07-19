@@ -5,4 +5,6 @@ public interface ISigninInfo_User {
 	public String getEmail() ;
 	public String getPassword();
 	public String getConfirmPassword();
+	public String getAssosiateToWebsite();
+	public String getGroup();
 }

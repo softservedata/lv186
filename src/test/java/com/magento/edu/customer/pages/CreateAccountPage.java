@@ -53,49 +53,6 @@ public class CreateAccountPage extends HeaderPanel{
 		public WebElement getLabelSignUpNewsletterCheckBox() {
 			return labelSignUpNewsletterCheckBox;
 		}
-		//business logic
-		public String getFirstnameText() {
-			return getFirstnameField().getText();
-		}
-		public String getLastnameText() {
-			return getLastnameField().getText();
-		}
-		public void clickLabelSignUpNewsletter() {
-			getLabelSignUpNewsletterCheckBox().click();
-		}
-		public void clickSignUpNewsletterCheckBox() {
-			this.getSignUpNewsletterCheckBox().click();
-		}
-		//clear fields
-		public void clearFirstnameField() {
-			getFirstnameField().clear();
-		}
-		public void clearLastnameField() {
-			getLastnameField().clear();
-		}
-		//input data
-		public void typeFirstname(String firstname) {
-			getFirstnameField().sendKeys(firstname);
-		}
-		public void typeLastname(String lastname) {
-			getLastnameField().sendKeys(lastname);
-		}
-		public void clearTypeFirstname(String firstname) {
-			clearFirstnameField();
-			typeFirstname(firstname);
-		}
-		public void clearTypeLastName(String lastname) {
-			clearLastnameField();
-			typeLastname(lastname);
-		}
-		//input form personal inform
-		public void input_Personal_inform(IPersonalInfo_User personalInfo_User) {
-			clearTypeFirstname(personalInfo_User.getFirstname());
-			clearTypeLastName(personalInfo_User.getLastname());
-			if ( personalInfo_User.getSignUpNewsletter() == true ) {
-				clickSignUpNewsletterCheckBox();
-			}
-		}
 		
 	}
 	//------------------SigninInfCreateAccount-----------------------
@@ -122,54 +79,6 @@ public class CreateAccountPage extends HeaderPanel{
 		public WebElement getConfirmPasswordField() {
 			return confirmPasswordField;
 		}
-		//business logic
-		public String getEmailText() {
-			return getEmailField().getText();
-		}
-		public String getPasswordText() {
-			return getPasswordField().getText();
-		}
-		public String getConfirmPasswordText() {
-			return getConfirmPasswordField().getText();
-		}
-		//clear field
-		public void clearEmailField() {
-			this.getEmailField().clear();
-		}
-		public void clearPasswordField() {
-			this.getPasswordField().clear();
-		}
-		public void clearConfirmPasswordField() {
-			this.getConfirmPasswordField().clear();
-		}
-		//input data
-		public void typeEmail(String email) {
-			this.getEmailField().sendKeys(email);
-		}
-		public void typePassword(String password) {
-			this.getPasswordField().sendKeys(password);;
-		}
-		public void typeConfirmPassword(String confirmPassword) {
-			this.getConfirmPasswordField().sendKeys(confirmPassword);
-		}
-		public void clearTypeEmail(String email) {
-			this.clearEmailField();
-			this.typeEmail(email);
-		}
-		public void clearTypePassword(String password) {
-			this.clearPasswordField();
-			this.typePassword(password);
-		}
-		public void clearTypeConfirmPassword(String confirmPassword) {
-			this.clearConfirmPasswordField();
-			this.typeConfirmPassword(confirmPassword);
-		}
-		//input form sign in inform
-		public void input_SignIn_inform(ISigninInfo_User signinInfo_User) {
-			this.clearTypeEmail(signinInfo_User.getEmail());
-			this.clearTypePassword(signinInfo_User.getPassword());
-			this.clearTypeConfirmPassword(signinInfo_User.getConfirmPassword());
-		}
 	}
 
 	//----------------------------------------------
@@ -191,13 +100,133 @@ public class CreateAccountPage extends HeaderPanel{
 	public WebElement getCreateAccountButton() {
 		return createAccountButton;
 	} 
-//business logic input data 
+//------------------Personal_inform---------------------------
+	public WebElement getFirstnameField() {
+		return this.getPersonalInf().getFirstnameField();
+	}
+	public WebElement getLabelFirstnameField() {
+		return this.getPersonalInf().getLabelFirstnameField();
+	}
+	public WebElement getLastnameField() {
+		return this.getPersonalInf().getLabelFirstnameField();
+	}
+	public WebElement getLabelLastnameField() {
+		return this.getPersonalInf().getLabelLastnameField();
+	}
+	public WebElement getSignUpNewsletterCheckBox() {
+		return this.getPersonalInf().getSignUpNewsletterCheckBox();
+	}
+
+	public WebElement getLabelSignUpNewsletterCheckBox() {
+		return this.getPersonalInf().getLabelSignUpNewsletterCheckBox();
+	}
+	
+	//business logic
+	public String getFirstnameText() {
+		return getFirstnameField().getText();
+	}
+	public String getLastnameText() {
+		return getLastnameField().getText();
+	}
+	public void clickLabelSignUpNewsletter() {
+		getLabelSignUpNewsletterCheckBox().click();
+	}
+	public void clickSignUpNewsletterCheckBox() {
+		this.getSignUpNewsletterCheckBox().click();
+	}
+	//clear fields
+	public void clearFirstnameField() {
+		getFirstnameField().clear();
+	}
+	public void clearLastnameField() {
+		getLastnameField().clear();
+	}
+	//input data
+	public void typeFirstname(String firstname) {
+		getFirstnameField().sendKeys(firstname);
+	}
+	public void typeLastname(String lastname) {
+		getLastnameField().sendKeys(lastname);
+	}
+	public void clearTypeFirstname(String firstname) {
+		clearFirstnameField();
+		typeFirstname(firstname);
+	}
+	public void clearTypeLastName(String lastname) {
+		clearLastnameField();
+		typeLastname(lastname);
+	}
+	//input form personal inform
 	public void input_Personal_inform(IPersonalInfo_User personalInfo_User) {
-		this.getPersonalInf().input_Personal_inform(personalInfo_User);
+		clearTypeFirstname(personalInfo_User.getFirstname());
+		clearTypeLastName(personalInfo_User.getLastname());
+		if ( personalInfo_User.getSignUpNewsletter() == true ) {
+			clickSignUpNewsletterCheckBox();
+		}
 	}
+//--------------------Sign in Information-----------------------------
+	public WebElement getEmailField() {
+		return this.getSigninInf().getEmailField();
+	}
+
+	public WebElement getPasswordField() {
+		return getSigninInf().getPasswordField();
+	}
+
+	public WebElement getConfirmPasswordField() {
+		return getSigninInf().getConfirmPasswordField();
+	}
+	//business logic
+	public String getEmailText() {
+		return getEmailField().getText();
+	}
+	public String getPasswordText() {
+		return getPasswordField().getText();
+	}
+	public String getConfirmPasswordText() {
+		return getConfirmPasswordField().getText();
+	}
+	//clear field
+	public void clearEmailField() {
+		this.getEmailField().clear();
+	}
+	public void clearPasswordField() {
+		this.getPasswordField().clear();
+	}
+	public void clearConfirmPasswordField() {
+		this.getConfirmPasswordField().clear();
+	}
+	//input data
+	public void typeEmail(String email) {
+		this.getEmailField().sendKeys(email);
+	}
+	public void typePassword(String password) {
+		this.getPasswordField().sendKeys(password);;
+	}
+	public void typeConfirmPassword(String confirmPassword) {
+		this.getConfirmPasswordField().sendKeys(confirmPassword);
+	}
+	public void clearTypeEmail(String email) {
+		this.clearEmailField();
+		this.typeEmail(email);
+	}
+	public void clearTypePassword(String password) {
+		this.clearPasswordField();
+		this.typePassword(password);
+	}
+	public void clearTypeConfirmPassword(String confirmPassword) {
+		this.clearConfirmPasswordField();
+		this.typeConfirmPassword(confirmPassword);
+	}
+	//input form sign in inform
 	public void input_SignIn_inform(ISigninInfo_User signinInfo_User) {
-		this.getSigninInf().input_SignIn_inform(signinInfo_User);
+		this.clearTypeEmail(signinInfo_User.getEmail());
+		this.clearTypePassword(signinInfo_User.getPassword());
+		this.clearTypeConfirmPassword(signinInfo_User.getConfirmPassword());
 	}
+
+//------------------------CreateAccountButton------------------------------		
+//business logic input data 
 	public void inputData(ICustomerUser user) {
 		this.input_Personal_inform(user.getPersonalInfo());
 		this.input_SignIn_inform(user.getSigninInfo());

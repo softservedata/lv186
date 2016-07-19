@@ -23,7 +23,7 @@ public abstract class ATopPage {
     // Elements
     private WebElement pageTitle;
     private WebElement searchLabel;
-    //private WebElement searchInput;
+    private WebElement searchInput;
     private WebElement notifications;
     private WebElement menuAccount;
     // Components
@@ -32,7 +32,7 @@ public abstract class ATopPage {
     protected ATopPage(WebDriver driver) {
         this.driver = driver;
         //
-        this.pageTitle = driver.findElement(By.className("h1.page-title"));
+        this.pageTitle = driver.findElement(By.cssSelector("h1.page-title"));
         this.searchLabel = driver.findElement(By.className("search-global-label"));
         //this.searchInput = driver.findElement(By.className("div.autocomplete-results"));
         //this.notifications = driver.findElement(By.className("notifications-action admin__action-dropdown"));
@@ -61,19 +61,28 @@ public abstract class ATopPage {
         return this.menuAccount;
     }
 
-//    public WebElement getAccountSetting() {
-//        return this.menuControls.accountSetting;
-//    }
+    public WebElement getAccountSetting() {
+        clickMenuAccount();
+        return this.menuControls.accountSetting;
+    }
 
-//    public WebElement getCustomerView() {
-//        return this.menuControls.customerView;
-//    }
+    public WebElement getCustomerView() {
+        clickMenuAccount();
+        return this.menuControls.customerView;
+    }
 
-//    public WebElement getSignOut() {
-//        return this.menuControls.signOut;
-//    }
+    public WebElement getSignOut() {
+        clickMenuAccount();
+        return this.menuControls.signOut;
+    }
+
+    public WebElement getSearchInput() {
+        clickSearchLabel();
+        return this.searchInput;
+    }
 
     // get Data Business Logic
+    
     public String getPageTitleText() {
         return getPageTitle().getText();
     }
@@ -97,8 +106,10 @@ public abstract class ATopPage {
     // set Data PageObject
 
     public void clickSearchLabel() {
-        // TODO Create Components
+        getPageTitle().click();
         getSearchLabel().click();
+        searchInput = driver.findElement(By.id("search-global"));
+        // TODO Create Components
     }
 
     public void clickNotifications() {
@@ -111,8 +122,6 @@ public abstract class ATopPage {
         this.menuControls = new MenuControlsComponent();
     }
 
-    //////////////////////////////
-    
     public void clickAccountSetting() {
         getAccountSetting().click();
     }
@@ -125,13 +134,22 @@ public abstract class ATopPage {
         getSignOut().click();
     }
 
-    public void setSearch(String text) {
-        clickSearch();
-        getSearch().sendKeys(text);
+    public void setSearchInput(String text) {
+        clickSearchLabel();
+        getSearchInput().sendKeys(text);
     }
 
     public void clearSearch() {
-        getSearch().clear();
+        clickSearchLabel();
+        getSearchInput().clear();
+    }
+
+    // Business Logic
+    
+    public AdminLoginPage logout() {
+        clickSignOut();
+        // Return a new page object representing the destination.
+        return new AdminLoginPage(driver);
     }
 
 }

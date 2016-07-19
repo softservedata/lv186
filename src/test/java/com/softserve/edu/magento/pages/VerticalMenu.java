@@ -51,6 +51,7 @@ public abstract class VerticalMenu extends ATopPage {
         }
 
     }
+
     // ----------------------------
 
     private class CustomersComponent {
@@ -67,6 +68,7 @@ public abstract class VerticalMenu extends ATopPage {
         }
 
     }
+
     // ----------------------------
 
     private class MarketingComponent {
@@ -110,6 +112,7 @@ public abstract class VerticalMenu extends ATopPage {
         }
 
     }
+ 
     // ----------------------------
 
     private class ContentComponent {
@@ -138,6 +141,7 @@ public abstract class VerticalMenu extends ATopPage {
         }
 
     }
+ 
     // ----------------------------
 
     private class ReportsComponent {
@@ -175,7 +179,6 @@ public abstract class VerticalMenu extends ATopPage {
         public final WebElement close;
 
         public ReportsComponent() {
-
             this.title = driver.findElement(By.xpath("//strong[text()='Reports']"));
             this.groupTitleMarketing = driver.findElement(By.xpath("//strong[text()='Marketing']"));
             this.groupTitleSales = driver.findElement(By.xpath("//span[text()='Sales']"));
@@ -210,6 +213,7 @@ public abstract class VerticalMenu extends ATopPage {
         }
 
     }
+  
     // ----------------------------
 
     private class StoresComponent {
@@ -256,6 +260,7 @@ public abstract class VerticalMenu extends ATopPage {
         }
 
     }
+  
     // ----------------------------
 
     private class SystemComponent {
@@ -308,6 +313,7 @@ public abstract class VerticalMenu extends ATopPage {
         }
 
     }
+ 
     // ----------------------------
 
     // Elements
@@ -322,18 +328,18 @@ public abstract class VerticalMenu extends ATopPage {
     private WebElement reports;
     private WebElement stores;
     private WebElement system;
-    private WebElement partnersAndExtensions;
+    private WebElement findPartners;
 
     // Components
 
-    SalesComponent salesMenu;
-    ProductsComponent productsMenu;
-    CustomersComponent customersMenu;
-    MarketingComponent marketingMenu;
-    ContentComponent contentMenu;
-    ReportsComponent reportsMenu;
-    StoresComponent storesMenu;
-    SystemComponent systemMenu;
+    private SalesComponent salesMenu;
+    private ProductsComponent productsMenu;
+    private CustomersComponent customersMenu;
+    private MarketingComponent marketingMenu;
+    private ContentComponent contentMenu;
+    private ReportsComponent reportsMenu;
+    private StoresComponent storesMenu;
+    private SystemComponent systemMenu;
 
     protected VerticalMenu(WebDriver driver) {
         super(driver);
@@ -347,12 +353,13 @@ public abstract class VerticalMenu extends ATopPage {
         this.reports = driver.findElement(By.xpath("//*[@id='menu-magento-reports-report']/a"));
         this.stores = driver.findElement(By.xpath("//*[@id='menu-magento-backend-stores']/a"));
         this.system = driver.findElement(By.xpath("//*[@id='menu-magento-backend-system']/a"));
-        this.partnersAndExtensions = driver.findElement(By.xpath("//*[@id='menu-magento-marketplace-partners']/a"));
+        this.findPartners = driver.findElement(By.xpath("//*[@id='menu-magento-marketplace-partners']/a"));
 
     }
 
     // Page Object
     // Get Data PageObject
+    
     public WebElement getLogo() {
         return this.logo;
     }
@@ -393,485 +400,611 @@ public abstract class VerticalMenu extends ATopPage {
         return this.system;
     }
 
-    public WebElement getPartnersAndExtensions() {
-        return this.partnersAndExtensions;
+    public WebElement getFindPartners() {
+        return this.findPartners;
     }
 
     // -----------------Sales---------------
+    
     public WebElement getTitleSalesMenu() {
+        clickSales();
         return this.salesMenu.title;
     }
 
     public WebElement getGroupTitleSalesMenu() {
+        clickSales();
         return this.salesMenu.groupTitle;
     }
 
     public WebElement getOrdersSalesMenu() {
+        clickSales();
         return this.salesMenu.orders;
     }
 
     public WebElement getInvoices() {
+        clickSales();
         return this.salesMenu.invoices;
     }
 
     public WebElement getShipments() {
+        clickSales();
         return this.salesMenu.shipments;
     }
 
     public WebElement getCreditMemos() {
+        clickSales();
         return this.salesMenu.creditMemos;
     }
 
     public WebElement getBillingAgreements() {
+        clickSales();
         return this.salesMenu.billingAgreements;
     }
 
     public WebElement getTransactions() {
+        clickSales();
         return this.salesMenu.transactions;
     }
 
     public WebElement getCloseSalesMenu() {
+        clickSales();
         return this.salesMenu.close;
     }
 
     // -----------------Products---------------
+
     public WebElement getTitleProductMenu() {
+        clickProducts();
         return this.productsMenu.title;
     }
 
     public WebElement getGroupTitleProductMenu() {
+        clickProducts();
         return this.productsMenu.groupTitle;
     }
 
     public WebElement getCatalog() {
+        clickProducts();
         return this.productsMenu.catalog;
     }
 
     public WebElement getCategories() {
+        clickProducts();
         return this.productsMenu.categories;
     }
 
     public WebElement getCloseProductMenu() {
+        clickProducts();
         return this.productsMenu.close;
     }
 
     // -----------------Customers---------------
+
     public WebElement getTitleCustomersMenu() {
+        // TODO
         return this.customersMenu.title;
     }
 
     public WebElement getAllCustomers() {
+        // TODO
         return this.customersMenu.allCustomers;
     }
 
     public WebElement getNowOnline() {
+        // TODO
         return this.customersMenu.nowOnline;
     }
 
     public WebElement getCloseCustomersMenu() {
+        // TODO
         return this.customersMenu.close;
     }
 
     // -----------------Marketing---------------
+
     public WebElement getTitleMarketingMenu() {
+        // TODO
         return this.marketingMenu.title;
     }
 
     public WebElement getGroupTitlePromotions() {
+        // TODO
         return this.marketingMenu.groupTitlePromotions;
     }
 
     public WebElement getGroupTitleCommunications() {
+        // TODO
         return this.marketingMenu.groupTitleCommunications;
     }
 
     public WebElement getGroupTitleSEOAndSearch() {
+        // TODO
         return this.marketingMenu.groupTitleSEOAndSearch;
     }
 
     public WebElement getGroupTitleUserContent() {
+        // TODO
         return this.marketingMenu.groupTitleUserContent;
     }
 
     public WebElement getCatalogPriceRule() {
+        // TODO
         return this.marketingMenu.catalogPriceRule;
     }
 
     public WebElement getCartPriceRules() {
+        // TODO
         return this.marketingMenu.cartPriceRules;
     }
 
     public WebElement getEmailTemplates() {
+        // TODO
         return this.marketingMenu.emailTemplates;
     }
 
     public WebElement getNewsletterTemplate() {
+        // TODO
         return this.marketingMenu.newsletterTemplate;
     }
 
     public WebElement getNewsletterQueue() {
+        // TODO
         return this.marketingMenu.newsletterQueue;
     }
 
     public WebElement getNewsletterSubscribers() {
+        // TODO
         return this.marketingMenu.newsletterSubscribers;
     }
 
     public WebElement getURLRewrites() {
+        // TODO
         return this.marketingMenu.URLRewrites;
     }
 
     public WebElement getSearchTermsMarketingMenu() {
+        // TODO
         return this.marketingMenu.searchTerms;
     }
 
     public WebElement getSearchSynonyms() {
+        // TODO
         return this.marketingMenu.searchSynonyms;
     }
 
     public WebElement getSiteMap() {
+        // TODO
         return this.marketingMenu.siteMap;
     }
 
     public WebElement getReviews() {
+        // TODO
         return this.marketingMenu.reviews;
     }
 
     public WebElement getCloseMarketingMenu() {
+        // TODO
         return this.marketingMenu.close;
     }
 
     // -----------------Content---------------
+
     public WebElement getTitleContentMenu() {
+        // TODO
         return this.contentMenu.title;
     }
 
     public WebElement getGroupTitleElements() {
+        // TODO
         return this.contentMenu.groupTitleElements;
     }
 
     public WebElement getGroupTitleDesign() {
+        // TODO
         return this.contentMenu.groupTitleDesign;
     }
 
     public WebElement getPages() {
+        // TODO
         return this.contentMenu.pages;
     }
 
     public WebElement getBlocks() {
+        // TODO
         return this.contentMenu.blocks;
     }
 
     public WebElement getWidgets() {
+        // TODO
         return this.contentMenu.widgets;
     }
 
     public WebElement getConfigurationContentMenu() {
+        // TODO
         return this.contentMenu.configuration;
     }
 
     public WebElement getThemes() {
+        // TODO
         return this.contentMenu.themes;
     }
 
     public WebElement getSchedule() {
+        // TODO
         return this.contentMenu.schedule;
     }
 
     public WebElement getCloseContentMenu() {
+        // TODO
         return this.contentMenu.close;
     }
 
     // -----------------Reports---------------
+
     public WebElement getTitleReportsMenu() {
+        // TODO
         return this.reportsMenu.title;
     }
 
     public WebElement getGroupTitleMarketing() {
+        // TODO
         return this.reportsMenu.groupTitleMarketing;
     }
 
     public WebElement getGroupTitleSales() {
+        // TODO
         return this.reportsMenu.groupTitleSales;
     }
 
     public WebElement getGroupTitleReviews() {
+        // TODO
         return this.reportsMenu.groupTitleReviews;
     }
 
     public WebElement getGroupTitleCustomers() {
+        // TODO
         return this.reportsMenu.groupTitleCustomers;
     }
 
     public WebElement getGroupTitleProducts() {
+        // TODO
         return this.reportsMenu.groupTitleProducts;
     }
 
     public WebElement getGroupTitleStatistics() {
+        // TODO
         return this.reportsMenu.groupTitleStatistics;
     }
 
     public WebElement getProductsInCart() {
+        // TODO
         return this.reportsMenu.productsInCart;
     }
 
     public WebElement getSearchTermsReportsMenu() {
+        // TODO
         return this.reportsMenu.searchTerms;
     }
 
     public WebElement getAbandonedCarts() {
+        // TODO
         return this.reportsMenu.abandonedCarts;
     }
 
     public WebElement getNewsletterProblemReports() {
+        // TODO
         return this.reportsMenu.newsletterProblemReports;
     }
 
     public WebElement getByCustomers() {
+        // TODO
         return this.reportsMenu.byCustomers;
     }
 
     public WebElement getByProducts() {
+        // TODO
         return this.reportsMenu.byProducts;
     }
 
     public WebElement getOrdersReportsMenu() {
+        // TODO
         return this.reportsMenu.orders;
     }
 
     public WebElement getTax() {
+        // TODO
         return this.reportsMenu.tax;
     }
 
     public WebElement getInvoiced() {
+        // TODO
         return this.reportsMenu.invoiced;
     }
 
     public WebElement getShipping() {
+        // TODO
         return this.reportsMenu.shipping;
     }
 
     public WebElement getRefunds() {
+        // TODO
         return this.reportsMenu.refunds;
     }
 
     public WebElement getCoupons() {
+        // TODO
         return this.reportsMenu.coupons;
     }
 
     public WebElement getPayPalSettlement() {
+        // TODO
         return this.reportsMenu.payPalSettlement;
     }
 
     public WebElement getBraintreeSettlement() {
+        // TODO
         return this.reportsMenu.braintreeSettlement;
     }
 
     public WebElement getOrderTotal() {
+        // TODO
         return this.reportsMenu.orderTotal;
     }
 
     public WebElement getOrderCount() {
+        // TODO
         return this.reportsMenu.orderCount;
     }
 
     public WebElement getNewOne() {
+        // TODO
         return this.reportsMenu.newOne;
     }
 
     public WebElement getViews() {
+        // TODO
         return this.reportsMenu.views;
     }
 
     public WebElement getBestsellers() {
+        // TODO
         return this.reportsMenu.bestsellers;
     }
 
     public WebElement getLowStock() {
+        // TODO
         return this.reportsMenu.lowStock;
     }
 
     public WebElement getOrdered() {
+        // TODO
         return this.reportsMenu.ordered;
     }
 
     public WebElement getDownloads() {
+        // TODO
         return this.reportsMenu.downloads;
     }
 
     public WebElement getRefreshStatistics() {
+        // TODO
         return this.reportsMenu.refreshStatistics;
     }
 
     public WebElement getCloseReportsMenu() {
+        // TODO
         return this.reportsMenu.close;
     }
 
     // -----------------Stores---------------
+
     public WebElement getTitleStoresMenu() {
+        // TODO
         return this.storesMenu.title;
     }
 
     public WebElement getGroupTitleSettings() {
+        // TODO
         return this.storesMenu.groupTitleSettings;
     }
 
     public WebElement getGroupTitleAttributes() {
+        // TODO
         return this.storesMenu.groupTitleAttributes;
     }
 
     public WebElement getGroupTitleTaxes() {
+        // TODO
         return this.storesMenu.groupTitleTaxes;
     }
 
     public WebElement getGroupTitleCurrency() {
+        // TODO
         return this.storesMenu.groupTitleCurrency;
     }
 
     public WebElement getGroupTitleOtherSettingsStoresMenu() {
+        // TODO
         return this.storesMenu.groupTitleOtherSettings;
     }
 
     public WebElement getAllStores() {
+        // TODO
         return this.storesMenu.allStores;
     }
 
     public WebElement getConfigurationStoresMenu() {
+        // TODO
         return this.storesMenu.configuration;
     }
 
     public WebElement getTermsAndConditions() {
+        // TODO
         return this.storesMenu.termsAndConditions;
     }
 
     public WebElement getOrderStatus() {
+        // TODO
         return this.storesMenu.orderStatus;
     }
 
     public WebElement getTaxRules() {
+        // TODO
         return this.storesMenu.taxRules;
     }
 
     public WebElement getTaxZonesAndRates() {
+        // TODO
         return this.storesMenu.taxZonesAndRates;
     }
 
     public WebElement getCurrencyRates() {
+        // TODO
         return this.storesMenu.currencyRates;
     }
 
     public WebElement getCurrencySymbols() {
+        // TODO
         return this.storesMenu.currencySymbols;
     }
 
     public WebElement getProduct() {
+        // TODO
         return this.storesMenu.product;
     }
 
     public WebElement getAttributeSet() {
+        // TODO
         return this.storesMenu.attributeSet;
     }
 
     public WebElement getRating() {
+        // TODO
         return this.storesMenu.rating;
     }
 
     public WebElement getCustomerGroups() {
+        // TODO
         return this.storesMenu.customerGroups;
     }
 
     public WebElement getCloseStoresMenu() {
+        // TODO
         return this.storesMenu.close;
     }
 
     // -----------------System---------------
+
     public WebElement getTitleSystemMenu() {
+        // TODO
         return this.systemMenu.title;
     }
 
     public WebElement getGroupTitleDataTransfer() {
+        // TODO
         return this.systemMenu.groupTitleDataTransfer;
     }
 
     public WebElement getGroupTitleExtensions() {
+        // TODO
         return this.systemMenu.groupTitleExtensions;
     }
 
     public WebElement getGroupTitleTools() {
+        // TODO
         return this.systemMenu.groupTitleTools;
     }
 
     public WebElement getGroupTitlePermissions() {
+        // TODO
         return this.systemMenu.groupTitlePermissions;
     }
 
     public WebElement getGroupTitleOtherSettingsSystemMenu() {
+        // TODO
         return this.systemMenu.groupTitleOtherSettings;
     }
 
     public WebElement getImportOne() {
+        // TODO
         return this.systemMenu.importOne;
     }
 
     public WebElement getExport() {
+        // TODO
         return this.systemMenu.export;
     }
 
     public WebElement getImportExportTaxRates() {
+        // TODO
         return this.systemMenu.importExportTaxRates;
     }
 
     public WebElement getImportHistory() {
+        // TODO
         return this.systemMenu.importHistory;
     }
 
     public WebElement getIntegrations() {
+        // TODO
         return this.systemMenu.integrations;
     }
 
     public WebElement getCacheManagement() {
+        // TODO
         return this.systemMenu.cacheManagement;
     }
 
     public WebElement getBackups() {
+        // TODO
         return this.systemMenu.backups;
     }
 
     public WebElement getIndexManagement() {
+        // TODO
         return this.systemMenu.indexManagement;
     }
 
     public WebElement getWebSetupWizard() {
+        // TODO
         return this.systemMenu.webSetupWizard;
     }
 
     public WebElement getAllUsers() {
+        // TODO
         return this.systemMenu.allUsers;
     }
 
     public WebElement getLockedUsers() {
+        // TODO
         return this.systemMenu.lockedUsers;
     }
 
     public WebElement getUserRoles() {
+        // TODO
         return this.systemMenu.userRoles;
     }
 
     public WebElement getNotifications() {
+        // TODO
         return this.systemMenu.notifications;
     }
 
     public WebElement getCustomVariables() {
+        // TODO
         return this.systemMenu.customVariables;
     }
 
     public WebElement getManageEncryptionKey() {
+        // TODO
         return this.systemMenu.manageEncryptionKey;
     }
 
     public WebElement getCloseSystemMenu() {
+        // TODO Create inner class
         return this.systemMenu.close;
     }
+
     // Get Data Business Logic
 
     public String getDashboardText() {
@@ -910,17 +1043,19 @@ public abstract class VerticalMenu extends ATopPage {
         return getSystem().getText();
     }
 
-    public String getPartnersAndExtensionsText() {
-        return getPartnersAndExtensions().getText();
+    public String getFindPartnersText() {
+        return getFindPartners().getText();
     }
 
     // set Data PageObject
 
     public void clickLogo() {
+        // Goto Dashboard Page
         getLogo().click();
     }
 
     public void clickDashboard() {
+        // Goto Dashboard Page
         getDashboard().click();
     }
 
@@ -964,10 +1099,12 @@ public abstract class VerticalMenu extends ATopPage {
         this.systemMenu = new SystemComponent();
     }
 
-    public void clickPartnersAndExtensions() {
-        getPartnersAndExtensions().click();
+    public void clickFindPartners() {
+        getFindPartners().click();
     }
 
+    // -----------------Sales---------------
+    
     public void clickOrdersSalesMenu() {
         getOrdersSalesMenu().click();
     }
@@ -992,6 +1129,8 @@ public abstract class VerticalMenu extends ATopPage {
         getTransactions().click();
     }
 
+    // -----------------Products---------------
+
     public void clickCatalog() {
         getCatalog().click();
     }
@@ -1000,6 +1139,8 @@ public abstract class VerticalMenu extends ATopPage {
         getCategories().click();
     }
 
+    // -----------------Customers---------------
+    
     public void clickAllCustomers() {
         getAllCustomers().click();
     }
@@ -1008,6 +1149,8 @@ public abstract class VerticalMenu extends ATopPage {
         getNowOnline().click();
     }
 
+    // -----------------Marketing---------------
+    
     public void clickCatalogPriceRule() {
         getCatalogPriceRule().click();
     }
@@ -1052,6 +1195,8 @@ public abstract class VerticalMenu extends ATopPage {
         getReviews().click();
     }
 
+    // -----------------Content---------------
+    
     public void clickPages() {
         getPages().click();
     }
@@ -1075,6 +1220,8 @@ public abstract class VerticalMenu extends ATopPage {
     public void clickSchedule() {
         getSchedule().click();
     }
+
+    // -----------------Reports---------------
 
     public void clickProductsInCart() {
         getProductsInCart().click();
@@ -1168,6 +1315,8 @@ public abstract class VerticalMenu extends ATopPage {
         getRefreshStatistics().click();
     }
 
+    // -----------------Stores---------------
+    
     public void clickAllStores() {
         getAllStores().click();
     }
@@ -1215,6 +1364,8 @@ public abstract class VerticalMenu extends ATopPage {
     public void clickCustomerGroups() {
         getCustomerGroups().click();
     }
+
+    // -----------------System---------------
 
     public void clickImport() {
         getImportOne().click();
@@ -1276,4 +1427,44 @@ public abstract class VerticalMenu extends ATopPage {
         getManageEncryptionKey().click();
     }
 
+    // Business Logic
+
+    public DashboardPage gotoHomePage() {
+        clickLogo();
+        // Return a new page object representing the destination.
+        return new DashboardPage(driver);
+    }
+
+    public DashboardPage gotoDashboardPage() {
+        clickDashboard();
+        // Return a new page object representing the destination.
+        return new DashboardPage(driver);
+    }
+
+    // -----------------Sales---------------
+
+    // -----------------Products---------------
+
+    public CatalogPage gotoCatalogPage() {
+        clickCatalog();
+        return new CatalogPage(driver);
+    }
+
+    // -----------------Customers---------------
+
+
+    // -----------------Marketing---------------
+
+
+    // -----------------Content---------------
+
+
+    // -----------------Reports---------------
+
+
+    // -----------------Stores---------------
+
+
+    // -----------------System---------------
+   
 }

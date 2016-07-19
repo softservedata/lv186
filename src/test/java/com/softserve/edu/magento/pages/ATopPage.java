@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 
 public abstract class ATopPage {
 
-    private class MenuControlsComponent {
+    private class ControlsMenuComponent {
         public final WebElement accountSetting;
         public final WebElement customerView;
         public final WebElement signOut;
 
-        public MenuControlsComponent() {
+        public ControlsMenuComponent() {
             this.accountSetting = driver.findElement(By.xpath("//*[@data-ui-id='user-user-account-settings']"));
             this.customerView = driver.findElement(By.className("store-front"));
             this.signOut = driver.findElement(By.className("account-signout"));
@@ -25,9 +25,9 @@ public abstract class ATopPage {
     private WebElement searchLabel;
     private WebElement searchInput;
     private WebElement notifications;
-    private WebElement menuAccount;
+    private WebElement accountMenu;
     // Components
-    private MenuControlsComponent menuControls;
+    private ControlsMenuComponent menuControls;
 
     protected ATopPage(WebDriver driver) {
         this.driver = driver;
@@ -38,7 +38,7 @@ public abstract class ATopPage {
         //this.notifications = driver.findElement(By.className("notifications-action admin__action-dropdown"));
         this.notifications = driver.findElement(By.cssSelector("a.notifications-action.admin__action-dropdown"));
         //this.menuAccount = driver.findElement(By.xpath("//*[@class='admin-user admin__action-dropdown-wrap']/a"));
-        this.menuAccount = driver.findElement(By.cssSelector("span.admin-user-account-text"));
+        this.accountMenu = driver.findElement(By.cssSelector("span.admin-user-account-text"));
     }
 
     // PageObject
@@ -53,26 +53,26 @@ public abstract class ATopPage {
         return this.searchLabel;
     }
 
-    public WebElement getNotifications() {
+    public WebElement getMenuSystemNotifications() {
         return this.notifications;
     }
 
-    public WebElement getMenuAccount() {
-        return this.menuAccount;
+    public WebElement getAccountMenu() {
+        return this.accountMenu;
     }
 
     public WebElement getAccountSetting() {
-        clickMenuAccount();
+        clickAccountMenu();
         return this.menuControls.accountSetting;
     }
 
     public WebElement getCustomerView() {
-        clickMenuAccount();
+        clickAccountMenu();
         return this.menuControls.customerView;
     }
 
     public WebElement getSignOut() {
-        clickMenuAccount();
+        clickAccountMenu();
         return this.menuControls.signOut;
     }
 
@@ -87,8 +87,8 @@ public abstract class ATopPage {
         return getPageTitle().getText();
     }
 
-    public String getMenuAccountText() {
-        return getMenuAccount().getText();
+    public String getAccountMenuText() {
+        return getAccountMenu().getText();
     }
 
 //    public String getAccountSettingText() {
@@ -113,13 +113,13 @@ public abstract class ATopPage {
     }
 
     public void clickNotifications() {
-        getNotifications().click();
+        getMenuSystemNotifications().click();
     }
 
-    public void clickMenuAccount() {
+    public void clickAccountMenu() {
         getPageTitle().click();
-        getMenuAccount().click();
-        this.menuControls = new MenuControlsComponent();
+        getAccountMenu().click();
+        this.menuControls = new ControlsMenuComponent();
     }
 
     public void clickAccountSetting() {

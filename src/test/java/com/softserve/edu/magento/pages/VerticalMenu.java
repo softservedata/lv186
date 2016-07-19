@@ -364,687 +364,687 @@ public abstract class VerticalMenu extends ATopPage {
         return this.logo;
     }
 
-    public WebElement getDashboard() {
+    public WebElement getMenuDashboard() {
         return this.dashboard;
     }
 
-    public WebElement getSales() {
+    public WebElement getMenuSales() {
         return this.sales;
     }
 
-    public WebElement getProducts() {
+    public WebElement getMenuProducts() {
         return this.products;
     }
 
-    public WebElement getCustomers() {
+    public WebElement getMenuCustomers() {
         return this.customers;
     }
 
-    public WebElement getMarketing() {
+    public WebElement getMenuMarketing() {
         return this.marketing;
     }
 
-    public WebElement getContent() {
+    public WebElement getMenuContent() {
         return this.content;
     }
 
-    public WebElement getReports() {
+    public WebElement getMenuReports() {
         return this.reports;
     }
 
-    public WebElement getStores() {
+    public WebElement getMenuStores() {
         return this.stores;
     }
 
-    public WebElement getSystem() {
+    public WebElement getMenuSystem() {
         return this.system;
     }
 
-    public WebElement getFindPartners() {
+    public WebElement getMenuFindPartners() {
         return this.findPartners;
     }
 
     // -----------------Sales---------------
     
-    public WebElement getTitleSalesMenu() {
-        clickSales();
+    public WebElement getMenuSalesTitle() {
+        clickMenuSales();
         return this.salesMenu.title;
     }
 
-    public WebElement getGroupTitleSalesMenu() {
-        clickSales();
+    public WebElement getMenuSalesGroupTitle() {
+        clickMenuSales();
         return this.salesMenu.groupTitle;
     }
 
-    public WebElement getOrdersSalesMenu() {
-        clickSales();
+    public WebElement getMenuSalesOrders() {
+        clickMenuSales();
         return this.salesMenu.orders;
     }
 
-    public WebElement getInvoices() {
-        clickSales();
+    public WebElement getMenuSalesInvoices() {
+        clickMenuSales();
         return this.salesMenu.invoices;
     }
 
-    public WebElement getShipments() {
-        clickSales();
+    public WebElement getMenuSalesShipments() {
+        clickMenuSales();
         return this.salesMenu.shipments;
     }
 
-    public WebElement getCreditMemos() {
-        clickSales();
+    public WebElement getMenuSalesCreditMemos() {
+        clickMenuSales();
         return this.salesMenu.creditMemos;
     }
 
-    public WebElement getBillingAgreements() {
-        clickSales();
+    public WebElement getMenuSalesBillingAgreements() {
+        clickMenuSales();
         return this.salesMenu.billingAgreements;
     }
 
-    public WebElement getTransactions() {
-        clickSales();
+    public WebElement getMenuSalesTransactions() {
+        clickMenuSales();
         return this.salesMenu.transactions;
     }
 
-    public WebElement getCloseSalesMenu() {
-        clickSales();
+    public WebElement getMenuSalesClose() {
+        clickMenuSales();
         return this.salesMenu.close;
     }
 
     // -----------------Products---------------
 
-    public WebElement getTitleProductMenu() {
-        clickProducts();
+    public WebElement getMenuProductsTitle() {
+        clickMenuProducts();
         return this.productsMenu.title;
     }
 
-    public WebElement getGroupTitleProductMenu() {
-        clickProducts();
+    public WebElement getMenuProductsGroupTitle() {
+        clickMenuProducts();
         return this.productsMenu.groupTitle;
     }
 
-    public WebElement getCatalog() {
-        clickProducts();
+    public WebElement getMenuProductsCatalog() {
+        clickMenuProducts();
         return this.productsMenu.catalog;
     }
 
-    public WebElement getCategories() {
-        clickProducts();
+    public WebElement getMenuProductsCategories() {
+        clickMenuProducts();
         return this.productsMenu.categories;
     }
 
-    public WebElement getCloseProductMenu() {
-        clickProducts();
+    public WebElement getMenuProductsCloseProductMenu() {
+        clickMenuProducts();
         return this.productsMenu.close;
     }
 
     // -----------------Customers---------------
 
-    public WebElement getTitleCustomersMenu() {
-        // TODO
+    public WebElement getMenuCustomersTitle() {
+        clickMenuCustomers();
         return this.customersMenu.title;
     }
 
-    public WebElement getAllCustomers() {
-        // TODO
+    public WebElement getMenuCustomersAllCustomers() {
+    	clickMenuCustomers();
         return this.customersMenu.allCustomers;
     }
 
-    public WebElement getNowOnline() {
-        // TODO
+    public WebElement getMenuCustomersNowOnline() {
+    	clickMenuCustomers();
         return this.customersMenu.nowOnline;
     }
 
-    public WebElement getCloseCustomersMenu() {
-        // TODO
+    public WebElement getMenuCustomersClose() {
+    	clickMenuCustomers();
         return this.customersMenu.close;
     }
 
     // -----------------Marketing---------------
 
-    public WebElement getTitleMarketingMenu() {
-        // TODO
+    public WebElement getMenuMarketingTitle() {
+    	clickMenuMarketing();
         return this.marketingMenu.title;
     }
 
-    public WebElement getGroupTitlePromotions() {
-        // TODO
+    public WebElement getMenuMarketingGroupTitlePromotions() {
+    	clickMenuMarketing();
         return this.marketingMenu.groupTitlePromotions;
     }
 
-    public WebElement getGroupTitleCommunications() {
-        // TODO
+    public WebElement getMenuMarketingGroupTitleCommunications() {
+    	clickMenuMarketing();
         return this.marketingMenu.groupTitleCommunications;
     }
 
-    public WebElement getGroupTitleSEOAndSearch() {
-        // TODO
+    public WebElement getMenuMarketingGroupTitleSEOAndSearch() {
+    	clickMenuMarketing();
         return this.marketingMenu.groupTitleSEOAndSearch;
     }
 
-    public WebElement getGroupTitleUserContent() {
-        // TODO
+    public WebElement getMenuMarketingGroupTitleUserContent() {
+    	clickMenuMarketing();
         return this.marketingMenu.groupTitleUserContent;
     }
 
-    public WebElement getCatalogPriceRule() {
-        // TODO
+    public WebElement getMenuMarketingCatalogPriceRule() {
+    	clickMenuMarketing();
         return this.marketingMenu.catalogPriceRule;
     }
 
-    public WebElement getCartPriceRules() {
-        // TODO
+    public WebElement getMenuMarketingCartPriceRules() {
+    	clickMenuMarketing();
         return this.marketingMenu.cartPriceRules;
     }
 
-    public WebElement getEmailTemplates() {
-        // TODO
+    public WebElement getMenuMarketingEmailTemplates() {
+    	clickMenuMarketing();
         return this.marketingMenu.emailTemplates;
     }
 
-    public WebElement getNewsletterTemplate() {
-        // TODO
+    public WebElement getMenuMarketingNewsletterTemplate() {
+    	clickMenuMarketing();
         return this.marketingMenu.newsletterTemplate;
     }
 
-    public WebElement getNewsletterQueue() {
-        // TODO
+    public WebElement getMenuMarketingNewsletterQueue() {
+    	clickMenuMarketing();
         return this.marketingMenu.newsletterQueue;
     }
 
-    public WebElement getNewsletterSubscribers() {
-        // TODO
+    public WebElement getMenuMarketingNewsletterSubscribers() {
+    	clickMenuMarketing();
         return this.marketingMenu.newsletterSubscribers;
     }
 
-    public WebElement getURLRewrites() {
-        // TODO
+    public WebElement getMenuMarketingURLRewrites() {
+    	clickMenuMarketing();
         return this.marketingMenu.URLRewrites;
     }
 
-    public WebElement getSearchTermsMarketingMenu() {
-        // TODO
+    public WebElement getMenuMarketingSearchTerms() {
+    	clickMenuMarketing();
         return this.marketingMenu.searchTerms;
     }
 
-    public WebElement getSearchSynonyms() {
-        // TODO
+    public WebElement getMenuMarketingSearchSynonyms() {
+    	clickMenuMarketing();
         return this.marketingMenu.searchSynonyms;
     }
 
-    public WebElement getSiteMap() {
-        // TODO
+    public WebElement getMenuMarketingSiteMap() {
+    	clickMenuMarketing();
         return this.marketingMenu.siteMap;
     }
 
-    public WebElement getReviews() {
-        // TODO
+    public WebElement getMenuMarketingReviews() {
+    	clickMenuMarketing();
         return this.marketingMenu.reviews;
     }
 
-    public WebElement getCloseMarketingMenu() {
-        // TODO
+    public WebElement getMenuMarketingClose() {
+    	clickMenuMarketing();
         return this.marketingMenu.close;
     }
 
     // -----------------Content---------------
 
-    public WebElement getTitleContentMenu() {
-        // TODO
+    public WebElement getMenuContentTitle() {
+        clickMenuContent();
         return this.contentMenu.title;
     }
 
-    public WebElement getGroupTitleElements() {
-        // TODO
+    public WebElement getMenuContentGroupTitleElements() {
+    	clickMenuContent();
         return this.contentMenu.groupTitleElements;
     }
 
-    public WebElement getGroupTitleDesign() {
-        // TODO
-        return this.contentMenu.groupTitleDesign;
-    }
+	public WebElement getMenuContentGroupTitleDesign() {
+		clickMenuContent();
+		return this.contentMenu.groupTitleDesign;
+	}
 
-    public WebElement getPages() {
-        // TODO
+    public WebElement getMenuContentPages() {
+    	clickMenuContent();
         return this.contentMenu.pages;
     }
 
-    public WebElement getBlocks() {
-        // TODO
+    public WebElement getMenuContentBlocks() {
+    	clickMenuContent();
         return this.contentMenu.blocks;
     }
 
-    public WebElement getWidgets() {
-        // TODO
+    public WebElement getMenuContentWidgets() {
+    	clickMenuContent();
         return this.contentMenu.widgets;
     }
 
-    public WebElement getConfigurationContentMenu() {
-        // TODO
+    public WebElement getMenuContentConfiguration() {
+    	clickMenuContent();
         return this.contentMenu.configuration;
     }
 
-    public WebElement getThemes() {
-        // TODO
+    public WebElement getMenuContentThemes() {
+    	clickMenuContent();
         return this.contentMenu.themes;
     }
 
-    public WebElement getSchedule() {
-        // TODO
+    public WebElement getMenuContentSchedule() {
+    	clickMenuContent();
         return this.contentMenu.schedule;
     }
 
-    public WebElement getCloseContentMenu() {
-        // TODO
+    public WebElement getMenuContentClose() {
+    	clickMenuContent();
         return this.contentMenu.close;
     }
 
     // -----------------Reports---------------
 
-    public WebElement getTitleReportsMenu() {
-        // TODO
+    public WebElement getMenuReportsTitle() {
+        clickMenuReports();
         return this.reportsMenu.title;
     }
 
-    public WebElement getGroupTitleMarketing() {
-        // TODO
+    public WebElement getMenuReportsGroupTitleMarketing() {
+    	clickMenuReports();
         return this.reportsMenu.groupTitleMarketing;
     }
 
-    public WebElement getGroupTitleSales() {
-        // TODO
+    public WebElement getMenuReportsGroupTitleSales() {
+    	clickMenuReports();
         return this.reportsMenu.groupTitleSales;
     }
 
-    public WebElement getGroupTitleReviews() {
-        // TODO
+    public WebElement getMenuReportsGroupTitleReviews() {
+    	clickMenuReports();
         return this.reportsMenu.groupTitleReviews;
     }
 
-    public WebElement getGroupTitleCustomers() {
-        // TODO
+    public WebElement getMenuReportsGroupTitleCustomers() {
+    	clickMenuReports();
         return this.reportsMenu.groupTitleCustomers;
     }
 
-    public WebElement getGroupTitleProducts() {
-        // TODO
+    public WebElement getMenuReportsGroupTitleProducts() {
+    	clickMenuReports();
         return this.reportsMenu.groupTitleProducts;
     }
 
-    public WebElement getGroupTitleStatistics() {
-        // TODO
+    public WebElement getMenuReportsGroupTitleStatistics() {
+    	clickMenuReports();
         return this.reportsMenu.groupTitleStatistics;
     }
 
-    public WebElement getProductsInCart() {
-        // TODO
+    public WebElement getMenuReportsProductsInCart() {
+    	clickMenuReports();
         return this.reportsMenu.productsInCart;
     }
 
-    public WebElement getSearchTermsReportsMenu() {
-        // TODO
+    public WebElement getMenuReportsSearchTerms() {
+    	clickMenuReports();
         return this.reportsMenu.searchTerms;
     }
 
-    public WebElement getAbandonedCarts() {
-        // TODO
+    public WebElement getMenuReportsAbandonedCarts() {
+    	clickMenuReports();
         return this.reportsMenu.abandonedCarts;
     }
 
-    public WebElement getNewsletterProblemReports() {
-        // TODO
+    public WebElement getMenuReportsNewsletterProblemReports() {
+    	clickMenuReports();
         return this.reportsMenu.newsletterProblemReports;
     }
 
-    public WebElement getByCustomers() {
-        // TODO
+    public WebElement getMenuReportsByCustomers() {
+    	clickMenuReports();
         return this.reportsMenu.byCustomers;
     }
 
-    public WebElement getByProducts() {
-        // TODO
+    public WebElement getMenuReportsByProducts() {
+    	clickMenuReports();
         return this.reportsMenu.byProducts;
     }
 
-    public WebElement getOrdersReportsMenu() {
-        // TODO
+    public WebElement getMenuReportsOrdersReportsMenu() {
+    	clickMenuReports();
         return this.reportsMenu.orders;
     }
 
-    public WebElement getTax() {
-        // TODO
+    public WebElement getMenuReportsTax() {
+    	clickMenuReports();
         return this.reportsMenu.tax;
     }
 
-    public WebElement getInvoiced() {
-        // TODO
+    public WebElement getMenuReportsInvoiced() {
+    	clickMenuReports();
         return this.reportsMenu.invoiced;
     }
 
-    public WebElement getShipping() {
-        // TODO
+    public WebElement getMenuReportsShipping() {
+    	clickMenuReports();
         return this.reportsMenu.shipping;
     }
 
-    public WebElement getRefunds() {
-        // TODO
+    public WebElement getMenuReportsRefunds() {
+    	clickMenuReports();
         return this.reportsMenu.refunds;
     }
 
-    public WebElement getCoupons() {
-        // TODO
+    public WebElement getMenuReportsCoupons() {
+    	clickMenuReports();
         return this.reportsMenu.coupons;
     }
 
-    public WebElement getPayPalSettlement() {
-        // TODO
+    public WebElement getMenuReportsPayPalSettlement() {
+    	clickMenuReports();
         return this.reportsMenu.payPalSettlement;
     }
 
-    public WebElement getBraintreeSettlement() {
-        // TODO
+    public WebElement getMenuReportsBraintreeSettlement() {
+    	clickMenuReports();
         return this.reportsMenu.braintreeSettlement;
     }
 
-    public WebElement getOrderTotal() {
-        // TODO
+    public WebElement getMenuReportsOrderTotal() {
+    	clickMenuReports();
         return this.reportsMenu.orderTotal;
     }
 
-    public WebElement getOrderCount() {
-        // TODO
+    public WebElement getMenuReportsOrderCount() {
+    	clickMenuReports();
         return this.reportsMenu.orderCount;
     }
 
-    public WebElement getNewOne() {
-        // TODO
+    public WebElement getMenuReportsNewOne() {
+    	clickMenuReports();
         return this.reportsMenu.newOne;
     }
 
-    public WebElement getViews() {
-        // TODO
+    public WebElement getMenuReportsViews() {
+    	clickMenuReports();
         return this.reportsMenu.views;
     }
 
-    public WebElement getBestsellers() {
-        // TODO
+    public WebElement getMenuReportsBestsellers() {
+    	clickMenuReports();
         return this.reportsMenu.bestsellers;
     }
 
-    public WebElement getLowStock() {
-        // TODO
+    public WebElement getMenuReportsLowStock() {
+    	clickMenuReports();
         return this.reportsMenu.lowStock;
     }
 
-    public WebElement getOrdered() {
-        // TODO
+    public WebElement getMenuReportsOrdered() {
+    	clickMenuReports();
         return this.reportsMenu.ordered;
     }
 
-    public WebElement getDownloads() {
-        // TODO
+    public WebElement getMenuReportsDownloads() {
+    	clickMenuReports();
         return this.reportsMenu.downloads;
     }
 
-    public WebElement getRefreshStatistics() {
-        // TODO
+    public WebElement getMenuReportsRefreshStatistics() {
+    	clickMenuReports();
         return this.reportsMenu.refreshStatistics;
     }
 
-    public WebElement getCloseReportsMenu() {
-        // TODO
+    public WebElement getMenuReportsClose() {
+    	clickMenuReports();
         return this.reportsMenu.close;
     }
 
     // -----------------Stores---------------
 
-    public WebElement getTitleStoresMenu() {
-        // TODO
+    public WebElement getMenuStoresTitle() {
+        clickMenuStores();
         return this.storesMenu.title;
     }
 
-    public WebElement getGroupTitleSettings() {
-        // TODO
+    public WebElement getMenuStoresGroupTitleSettings() {
+    	clickMenuStores();
         return this.storesMenu.groupTitleSettings;
     }
 
-    public WebElement getGroupTitleAttributes() {
-        // TODO
+    public WebElement getMenuStoresGroupTitleAttributes() {
+    	clickMenuStores();
         return this.storesMenu.groupTitleAttributes;
     }
 
-    public WebElement getGroupTitleTaxes() {
-        // TODO
+    public WebElement getMenuStoresGroupTitleTaxes() {
+    	clickMenuStores();
         return this.storesMenu.groupTitleTaxes;
     }
 
-    public WebElement getGroupTitleCurrency() {
-        // TODO
+    public WebElement getMenuStoresGroupTitleCurrency() {
+    	clickMenuStores();
         return this.storesMenu.groupTitleCurrency;
     }
 
-    public WebElement getGroupTitleOtherSettingsStoresMenu() {
-        // TODO
+    public WebElement getMenuStoresGroupTitleOtherSettings() {
+    	clickMenuStores();
         return this.storesMenu.groupTitleOtherSettings;
     }
 
-    public WebElement getAllStores() {
-        // TODO
+    public WebElement getMenuStoresAllStores() {
+    	clickMenuStores();
         return this.storesMenu.allStores;
     }
 
-    public WebElement getConfigurationStoresMenu() {
-        // TODO
+    public WebElement getMenuStoresConfiguration() {
+    	clickMenuStores();
         return this.storesMenu.configuration;
     }
 
-    public WebElement getTermsAndConditions() {
-        // TODO
+    public WebElement getMenuStoresTermsAndConditions() {
+    	clickMenuStores();
         return this.storesMenu.termsAndConditions;
     }
 
-    public WebElement getOrderStatus() {
-        // TODO
+    public WebElement getMenuStoresOrderStatus() {
+    	clickMenuStores();
         return this.storesMenu.orderStatus;
     }
 
-    public WebElement getTaxRules() {
-        // TODO
+    public WebElement getMenuStoresTaxRules() {
+    	clickMenuStores();
         return this.storesMenu.taxRules;
     }
 
-    public WebElement getTaxZonesAndRates() {
-        // TODO
+    public WebElement getMenuStoresTaxZonesAndRates() {
+    	clickMenuStores();
         return this.storesMenu.taxZonesAndRates;
     }
 
-    public WebElement getCurrencyRates() {
-        // TODO
+    public WebElement getMenuStoresCurrencyRates() {
+    	clickMenuStores();
         return this.storesMenu.currencyRates;
     }
 
-    public WebElement getCurrencySymbols() {
-        // TODO
+    public WebElement getMenuStoresCurrencySymbols() {
+    	clickMenuStores();
         return this.storesMenu.currencySymbols;
     }
 
-    public WebElement getProduct() {
-        // TODO
+    public WebElement getMenuStoresProduct() {
+    	clickMenuStores();
         return this.storesMenu.product;
     }
 
-    public WebElement getAttributeSet() {
-        // TODO
+    public WebElement getMenuStoresAttributeSet() {
+    	clickMenuStores();
         return this.storesMenu.attributeSet;
     }
 
-    public WebElement getRating() {
-        // TODO
+    public WebElement getMenuStoresRating() {
+    	clickMenuStores();
         return this.storesMenu.rating;
     }
 
-    public WebElement getCustomerGroups() {
-        // TODO
+    public WebElement getMenuStoresCustomerGroups() {
+    	clickMenuStores();
         return this.storesMenu.customerGroups;
     }
 
-    public WebElement getCloseStoresMenu() {
-        // TODO
+    public WebElement getMenuStoresClose() {
+    	clickMenuStores();
         return this.storesMenu.close;
     }
 
     // -----------------System---------------
 
-    public WebElement getTitleSystemMenu() {
-        // TODO
+    public WebElement getMenuSystemTitle() {
+        clickMenuSystem();
         return this.systemMenu.title;
     }
 
-    public WebElement getGroupTitleDataTransfer() {
-        // TODO
+    public WebElement getMenuSystemGroupTitleDataTransfer() {
+    	clickMenuSystem();
         return this.systemMenu.groupTitleDataTransfer;
     }
 
-    public WebElement getGroupTitleExtensions() {
-        // TODO
+    public WebElement getMenuSystemGroupTitleExtensions() {
+    	clickMenuSystem();
         return this.systemMenu.groupTitleExtensions;
     }
 
-    public WebElement getGroupTitleTools() {
-        // TODO
+    public WebElement getMenuSystemGroupTitleTools() {
+    	clickMenuSystem();
         return this.systemMenu.groupTitleTools;
     }
 
-    public WebElement getGroupTitlePermissions() {
-        // TODO
+    public WebElement getMenuSystemGroupTitlePermissions() {
+    	clickMenuSystem();
         return this.systemMenu.groupTitlePermissions;
     }
 
-    public WebElement getGroupTitleOtherSettingsSystemMenu() {
-        // TODO
+    public WebElement getMenuSystemGroupTitleOtherSettings() {
+    	clickMenuSystem();
         return this.systemMenu.groupTitleOtherSettings;
     }
 
-    public WebElement getImportOne() {
-        // TODO
+    public WebElement getMenuSystemImportOne() {
+    	clickMenuSystem();
         return this.systemMenu.importOne;
     }
 
-    public WebElement getExport() {
-        // TODO
+    public WebElement getMenuSystemExport() {
+    	clickMenuSystem();
         return this.systemMenu.export;
     }
 
-    public WebElement getImportExportTaxRates() {
-        // TODO
+    public WebElement getMenuSystemImportExportTaxRates() {
+    	clickMenuSystem();
         return this.systemMenu.importExportTaxRates;
     }
 
-    public WebElement getImportHistory() {
-        // TODO
+    public WebElement getMenuSystemImportHistory() {
+    	clickMenuSystem();
         return this.systemMenu.importHistory;
     }
 
-    public WebElement getIntegrations() {
-        // TODO
+    public WebElement getMenuSystemIntegrations() {
+    	clickMenuSystem();
         return this.systemMenu.integrations;
     }
 
-    public WebElement getCacheManagement() {
-        // TODO
+    public WebElement getMenuSystemCacheManagement() {
+    	clickMenuSystem();
         return this.systemMenu.cacheManagement;
     }
 
-    public WebElement getBackups() {
-        // TODO
+    public WebElement getMenuSystemBackups() {
+    	clickMenuSystem();
         return this.systemMenu.backups;
     }
 
-    public WebElement getIndexManagement() {
-        // TODO
+    public WebElement getMenuSystemIndexManagement() {
+    	clickMenuSystem();
         return this.systemMenu.indexManagement;
     }
 
-    public WebElement getWebSetupWizard() {
-        // TODO
+    public WebElement getMenuSystemWebSetupWizard() {
+    	clickMenuSystem();
         return this.systemMenu.webSetupWizard;
     }
 
-    public WebElement getAllUsers() {
-        // TODO
-        return this.systemMenu.allUsers;
-    }
+	public WebElement getMenuSystemAllUsers() {
+		clickMenuSystem();
+		return this.systemMenu.allUsers;
+	}
 
-    public WebElement getLockedUsers() {
-        // TODO
-        return this.systemMenu.lockedUsers;
-    }
+	public WebElement getMenuSystemLockedUsers() {
+		clickMenuSystem();
+		return this.systemMenu.lockedUsers;
+	}
 
-    public WebElement getUserRoles() {
-        // TODO
+    public WebElement getMenuSystemUserRoles() {
+    	clickMenuSystem();
         return this.systemMenu.userRoles;
     }
 
-    public WebElement getNotifications() {
-        // TODO
+    public WebElement getMenuSystemNotifications() {
+    	clickMenuSystem();
         return this.systemMenu.notifications;
     }
 
-    public WebElement getCustomVariables() {
-        // TODO
+    public WebElement getMenuSystemCustomVariables() {
+    	clickMenuSystem();
         return this.systemMenu.customVariables;
     }
 
-    public WebElement getManageEncryptionKey() {
-        // TODO
+    public WebElement getMenuSystemManageEncryptionKey() {
+    	clickMenuSystem();
         return this.systemMenu.manageEncryptionKey;
     }
 
-    public WebElement getCloseSystemMenu() {
+    public WebElement getMenuSystemClose() {
         // TODO Create inner class
         return this.systemMenu.close;
     }
 
     // Get Data Business Logic
 
-    public String getDashboardText() {
-        return getDashboard().getText();
+    public String getMenuDashboardText() {
+        return getMenuDashboard().getText();
     }
 
-    public String getSalesText() {
-        return getSales().getText();
+    public String getMenuSalesText() {
+        return getMenuSales().getText();
     }
 
-    public String getProductsText() {
-        return getProducts().getText();
+    public String getMenuProductsText() {
+        return getMenuProducts().getText();
     }
 
-    public String getCustomersText() {
-        return getCustomers().getText();
+    public String getMenuCustomersText() {
+        return getMenuCustomers().getText();
     }
 
-    public String getMarketingText() {
-        return getMarketing().getText();
+    public String getMenuMarketingText() {
+        return getMenuMarketing().getText();
     }
 
-    public String getContentText() {
-        return getContent().getText();
+    public String getMenuContentText() {
+        return getMenuContent().getText();
     }
 
-    public String getReportsText() {
-        return getReports().getText();
+    public String getMenuReportsText() {
+        return getMenuReports().getText();
     }
 
-    public String getStoresText() {
-        return getStores().getText();
+    public String getMenuStoresText() {
+        return getMenuStores().getText();
     }
 
-    public String getSystemText() {
-        return getSystem().getText();
+    public String getMenuSystemText() {
+        return getMenuSystem().getText();
     }
 
-    public String getFindPartnersText() {
-        return getFindPartners().getText();
+    public String getMenuFindPartnersText() {
+        return getMenuFindPartners().getText();
     }
 
     // set Data PageObject
@@ -1054,377 +1054,377 @@ public abstract class VerticalMenu extends ATopPage {
         getLogo().click();
     }
 
-    public void clickDashboard() {
+    public void clickMenuDashboard() {
         // Goto Dashboard Page
-        getDashboard().click();
+        getMenuDashboard().click();
     }
 
-    public void clickSales() {
-        getSales().click();
+    public void clickMenuSales() {
+        getMenuSales().click();
         this.salesMenu = new SalesComponent();
     }
 
-    public void clickProducts() {
-        getProducts().click();
+    public void clickMenuProducts() {
+        getMenuProducts().click();
         this.productsMenu = new ProductsComponent();
     }
 
-    public void clickCustomers() {
-        getCustomers().click();
+    public void clickMenuCustomers() {
+        getMenuCustomers().click();
         this.customersMenu = new CustomersComponent();
     }
 
-    public void clickMarketing() {
-        getMarketing().click();
+    public void clickMenuMarketing() {
+        getMenuMarketing().click();
         this.marketingMenu = new MarketingComponent();
     }
 
-    public void clickContent() {
-        getContent().click();
+    public void clickMenuContent() {
+        getMenuContent().click();
         this.contentMenu = new ContentComponent();
     }
 
-    public void clickReports() {
-        getReports().click();
+    public void clickMenuReports() {
+        getMenuReports().click();
         this.reportsMenu = new ReportsComponent();
     }
 
-    public void clickStores() {
-        getStores().click();
+    public void clickMenuStores() {
+        getMenuStores().click();
         this.storesMenu = new StoresComponent();
     }
 
-    public void clickSystem() {
-        getSystem().click();
+    public void clickMenuSystem() {
+        getMenuSystem().click();
         this.systemMenu = new SystemComponent();
     }
 
-    public void clickFindPartners() {
-        getFindPartners().click();
+    public void clickMenuFindPartners() {
+        getMenuFindPartners().click();
     }
 
     // -----------------Sales---------------
     
-    public void clickOrdersSalesMenu() {
-        getOrdersSalesMenu().click();
+    public void clickMenuSalesOrders() {
+        getMenuSalesOrders().click();
     }
 
-    public void clickInvoices() {
-        getInvoices().click();
+    public void clickMenuSalesInvoices() {
+        getMenuSalesInvoices().click();
     }
 
-    public void clickShipments() {
-        getShipments().click();
+    public void clickMenuSalesShipments() {
+        getMenuSalesShipments().click();
     }
 
-    public void clickCreditMemos() {
-        getCreditMemos().click();
+    public void clickMenuSalesCreditMemos() {
+        getMenuSalesCreditMemos().click();
     }
 
-    public void clickBillingAgreements() {
-        getBillingAgreements().click();
+    public void clickMenuSalesBillingAgreements() {
+        getMenuSalesBillingAgreements().click();
     }
 
-    public void clickTransactions() {
-        getTransactions().click();
+    public void clickMenuSalesTransactions() {
+        getMenuSalesTransactions().click();
     }
 
     // -----------------Products---------------
 
-    public void clickCatalog() {
-        getCatalog().click();
+    public void clickMenuProductsCatalog() {
+        getMenuProductsCatalog().click();
     }
 
-    public void clickCategories() {
-        getCategories().click();
+    public void clickMenuProductsCategories() {
+        getMenuProductsCategories().click();
     }
 
     // -----------------Customers---------------
     
-    public void clickAllCustomers() {
-        getAllCustomers().click();
+    public void clickMenuCustomersAllCustomers() {
+        getMenuCustomersAllCustomers().click();
     }
 
-    public void clickNowOnline() {
-        getNowOnline().click();
+    public void clickMenuCustomersNowOnline() {
+        getMenuCustomersNowOnline().click();
     }
 
     // -----------------Marketing---------------
     
-    public void clickCatalogPriceRule() {
-        getCatalogPriceRule().click();
+    public void clickMenuMarketingCatalogPriceRule() {
+        getMenuMarketingCatalogPriceRule().click();
     }
 
-    public void clickCartPriceRules() {
-        getCartPriceRules().click();
+    public void clickMenuMarketingCartPriceRules() {
+        getMenuMarketingCartPriceRules().click();
     }
 
-    public void clickEmailTemplates() {
-        getEmailTemplates().click();
+    public void clickMenuMarketingEmailTemplates() {
+        getMenuMarketingEmailTemplates().click();
     }
 
-    public void clickNewsletterTemplate() {
-        getNewsletterTemplate().click();
+    public void clickMenuMarketingNewsletterTemplate() {
+        getMenuMarketingNewsletterTemplate().click();
     }
 
-    public void clickNewsletterQueue() {
-        getNewsletterQueue().click();
+    public void clickMenuMarketingNewsletterQueue() {
+        getMenuMarketingNewsletterQueue().click();
     }
 
-    public void clickNewsletterSubcribers() {
-        getNewsletterSubscribers().click();
+    public void clickMenuMarketingNewsletterSubcribers() {
+        getMenuMarketingNewsletterSubscribers().click();
     }
 
-    public void clickURLRewrites() {
-        getURLRewrites().click();
+    public void clickMenuMarketingURLRewrites() {
+        getMenuMarketingURLRewrites().click();
     }
 
-    public void clickSearchTermsMarketingMenu() {
-        getSearchTermsMarketingMenu().click();
+    public void clickMenuMarketingSearchTerms() {
+        getMenuMarketingSearchTerms().click();
     }
 
-    public void clickSearchSynonyms() {
-        getSearchSynonyms().click();
+    public void clickMenuMarketingSearchSynonyms() {
+        getMenuMarketingSearchSynonyms().click();
     }
 
-    public void clickSiteMap() {
-        getSiteMap().click();
-    }
+	public void clickMenuMarketingSiteMap() {
+		getMenuMarketingSiteMap().click();
+	}
 
-    public void clickReviews() {
-        getReviews().click();
-    }
+	public void clickMenuMarketingReviews() {
+		getMenuMarketingReviews().click();
+	}
 
     // -----------------Content---------------
     
-    public void clickPages() {
-        getPages().click();
+    public void clickMenuContentPages() {
+        getMenuContentPages().click();
     }
 
-    public void clickBlocks() {
-        getBlocks().click();
+    public void clickMenuContentBlocks() {
+        getMenuContentBlocks().click();
     }
 
-    public void clickWidgets() {
-        getWidgets().click();
+    public void clickMenuContentWidgets() {
+        getMenuContentWidgets().click();
     }
 
-    public void clickConfigurationContentMenu() {
-        getConfigurationContentMenu().click();
+    public void clickMenuContentConfiguration() {
+        getMenuContentConfiguration().click();
     }
 
-    public void clickThemes() {
-        getThemes().click();
+    public void clickMenuContentThemes() {
+        getMenuContentThemes().click();
     }
 
-    public void clickSchedule() {
-        getSchedule().click();
+    public void clickMenuContentSchedule() {
+        getMenuContentSchedule().click();
     }
 
     // -----------------Reports---------------
 
-    public void clickProductsInCart() {
-        getProductsInCart().click();
+    public void clickMenuReportsProductsInCart() {
+        getMenuReportsProductsInCart().click();
     }
 
-    public void clickSearchTermsReportsMenu() {
-        getSearchTermsMarketingMenu().click();
+    public void clickMenuReportsSearchTerms() {
+        getMenuReportsSearchTerms().click();
     }
 
-    public void clickAbandonedCarts() {
-        getAbandonedCarts().click();
+    public void clickMenuReportsAbandonedCarts() {
+        getMenuReportsAbandonedCarts().click();
     }
 
-    public void clickNewsletterProblemReports() {
-        getNewsletterProblemReports().click();
+    public void clickMenuReportsNewsletterProblemReports() {
+        getMenuReportsNewsletterProblemReports().click();
     }
 
-    public void clickByCustomers() {
-        getByCustomers().click();
+    public void clickMenuReportsByCustomers() {
+        getMenuReportsByCustomers().click();
     }
 
-    public void clickByProducts() {
-        getByProducts().click();
+    public void clickMenuReportsByProducts() {
+        getMenuReportsByProducts().click();
     }
 
-    public void clickOrdersReportsMenu() {
-        getOrdersReportsMenu().click();
+    public void clickMenuReportsOrders() {
+        getMenuReportsOrdersReportsMenu().click();
     }
 
-    public void clickTax() {
-        getTax().click();
+    public void clickMenuReportsTax() {
+        getMenuReportsTax().click();
     }
 
-    public void clickInvoiced() {
-        getInvoiced().click();
+    public void clickMenuReportsInvoiced() {
+        getMenuReportsInvoiced().click();
     }
 
-    public void clickShipping() {
-        getShipping().click();
+    public void clickMenuReportsShipping() {
+        getMenuReportsShipping().click();
     }
 
-    public void clickRefunds() {
-        getRefunds().click();
+    public void clickMenuReportsRefunds() {
+        getMenuReportsRefunds().click();
     }
 
-    public void clickCoupons() {
-        getCoupons().click();
+    public void clickMenuReportsCoupons() {
+        getMenuReportsCoupons().click();
     }
 
-    public void clickPayPalSettlement() {
-        getPayPalSettlement().click();
+    public void clickMenuReportsPayPalSettlement() {
+        getMenuReportsPayPalSettlement().click();
     }
 
-    public void clickBraintreeSettlement() {
-        getBraintreeSettlement().click();
+    public void clickMenuReportsBraintreeSettlement() {
+        getMenuReportsBraintreeSettlement().click();
     }
 
-    public void clickOrderTotal() {
-        getOrderTotal().click();
+    public void clickMenuReportsOrderTotal() {
+        getMenuReportsOrderTotal().click();
     }
 
-    public void clickOrderCount() {
-        getOrderCount().click();
+    public void clickMenuReportsOrderCount() {
+        getMenuReportsOrderCount().click();
     }
 
-    public void clickNew() {
-        getNewOne().click();
+    public void clickMenuReportsNew() {
+        getMenuReportsNewOne().click();
     }
 
-    public void clickViews() {
-        getViews().click();
+    public void clickMenuReportsViews() {
+        getMenuReportsViews().click();
     }
 
-    public void clickBestsellers() {
-        getBestsellers().click();
+    public void clicMenuReportskBestsellers() {
+        getMenuReportsBestsellers().click();
     }
 
-    public void clickLowStock() {
-        getLowStock().click();
+    public void clickMenuReportsLowStock() {
+        getMenuReportsLowStock().click();
     }
 
-    public void clickOrdered() {
-        getOrdered().click();
+    public void clickMenuReportsOrdered() {
+        getMenuReportsOrdered().click();
     }
 
-    public void clickDownloads() {
-        getDownloads().click();
+    public void clickMenuReportsDownloads() {
+        getMenuReportsDownloads().click();
     }
 
-    public void clickRefreshStatistics() {
-        getRefreshStatistics().click();
+    public void clickMenuReportsRefreshStatistics() {
+        getMenuReportsRefreshStatistics().click();
     }
 
     // -----------------Stores---------------
     
-    public void clickAllStores() {
-        getAllStores().click();
+    public void clickMenuStoresAllStores() {
+        getMenuStoresAllStores().click();
     }
 
-    public void clickConfigurationStoresMenu() {
-        getConfigurationStoresMenu().click();
+    public void clickMenuStoresConfiguration() {
+        getMenuStoresConfiguration().click();
     }
 
-    public void clickTermsAndConditions() {
-        getTermsAndConditions().click();
+    public void clickMenuStoresTermsAndConditions() {
+        getMenuStoresTermsAndConditions().click();
     }
 
-    public void clickOrderStatus() {
-        getOrderStatus().click();
+    public void clickMenuStoresOrderStatus() {
+        getMenuStoresOrderStatus().click();
     }
 
-    public void clickTaxRules() {
-        getTaxRules().click();
+    public void clickMenuStoresTaxRules() {
+        getMenuStoresTaxRules().click();
     }
 
-    public void clickTaxZonesAndRates() {
-        getTaxZonesAndRates().click();
+    public void clickMenuStoresTaxZonesAndRates() {
+        getMenuStoresTaxZonesAndRates().click();
     }
 
-    public void clickCurrencyRates() {
-        getCurrencyRates().click();
+    public void clickMenuStoresCurrencyRates() {
+        getMenuStoresCurrencyRates().click();
     }
 
-    public void clickCurrencySymbols() {
-        getCurrencySymbols().click();
+    public void clickMenuStoresCurrencySymbols() {
+        getMenuStoresCurrencySymbols().click();
     }
 
-    public void clickProduct() {
-        getProduct().click();
+    public void clickMenuStoresProduct() {
+        getMenuStoresProduct().click();
     }
 
-    public void clickAttributeSet() {
-        getAttributeSet().click();
+    public void clickMenuStoresAttributeSet() {
+        getMenuStoresAttributeSet().click();
     }
 
-    public void clickRating() {
-        getRating().click();
+    public void clickMenuStoresRating() {
+        getMenuStoresRating().click();
     }
 
-    public void clickCustomerGroups() {
-        getCustomerGroups().click();
+    public void clickMenuStoresCustomerGroups() {
+        getMenuStoresCustomerGroups().click();
     }
 
     // -----------------System---------------
 
-    public void clickImport() {
-        getImportOne().click();
+    public void clickMenuSystemImport() {
+        getMenuSystemImportOne().click();
     }
 
-    public void clickExport() {
-        getExport().click();
+    public void clickMenuSystemExport() {
+        getMenuSystemExport().click();
     }
 
-    public void clickImportExportTaxRates() {
-        getImportExportTaxRates().click();
+    public void clickMenuSystemImportExportTaxRates() {
+        getMenuSystemImportExportTaxRates().click();
     }
 
-    public void clickImportHistory() {
-        getImportHistory().click();
+    public void clickMenuSystemImportHistory() {
+        getMenuSystemImportHistory().click();
     }
 
-    public void clickIntegrations() {
-        getIntegrations().click();
+    public void clickMenuSystemIntegrations() {
+        getMenuSystemIntegrations().click();
     }
 
-    public void clickCacheManagement() {
-        getCacheManagement().click();
+    public void clickMenuSystemCacheManagement() {
+        getMenuSystemCacheManagement().click();
     }
 
-    public void clickBackups() {
-        getBackups().click();
+    public void clickMenuSystemBackups() {
+        getMenuSystemBackups().click();
     }
 
-    public void clickIndexManagement() {
-        getIndexManagement().click();
+    public void clickMenuSystemIndexManagement() {
+        getMenuSystemIndexManagement().click();
     }
 
-    public void clickWebSetupWizard() {
-        getWebSetupWizard().click();
+    public void clickMenuSystemWebSetupWizard() {
+        getMenuSystemWebSetupWizard().click();
     }
 
-    public void clickAllUsers() {
-        getAllUsers().click();
+    public void clickMenuSystemAllUsers() {
+        getMenuSystemAllUsers().click();
     }
 
-    public void clickLockedUsers() {
-        getLockedUsers().click();
+    public void clickMenuSystemLockedUsers() {
+        getMenuSystemLockedUsers().click();
     }
 
-    public void clickUserRoles() {
-        getUserRoles().click();
+    public void clickMenuSystemUserRoles() {
+        getMenuSystemUserRoles().click();
     }
 
-    public void clickNotifications() {
-        getNotifications().click();
+    public void clickMenuSystemNotifications() {
+        getMenuSystemNotifications().click();
     }
 
-    public void clickCustomVariables() {
-        getCustomVariables().click();
+    public void clickMenuSystemCustomVariables() {
+        getMenuSystemCustomVariables().click();
     }
 
-    public void clickManageEncryptionKey() {
-        getManageEncryptionKey().click();
+    public void clickMenuSystemManageEncryptionKey() {
+        getMenuSystemManageEncryptionKey().click();
     }
 
     // Business Logic
@@ -1436,17 +1436,40 @@ public abstract class VerticalMenu extends ATopPage {
     }
 
     public DashboardPage gotoDashboardPage() {
-        clickDashboard();
+        clickMenuDashboard();
         // Return a new page object representing the destination.
         return new DashboardPage(driver);
     }
 
     // -----------------Sales---------------
-
+	/*public OrdersPage gotoOrdersPage() {
+		clickMenuSalesOrders();
+		return new OrdersPage(driver);
+	}
+	public InvoicesPage gotoInvoicesPage() {
+		clickMenuSalesInvoices();
+		return new InvoicesPage(driver);
+	}
+	public ShipmentsPage gotoShipmentsPage() {
+		clickMenuSalesShipments();
+		return new ShipmentsPage(driver);
+	}
+	public CreditMemosPage gotoCreditMemosPage() {
+		clickMenuSalesCreditMemos();
+		return new CreditMemosPage(driver);
+	}
+	public BillingAgreementsPage gotoBillingAgreementsPage() {
+		clickMenuSalesBillingAgreements();
+		return new BillingAgreementsPage(driver);
+	}
+	public TransactionsPage gotoTransactionsPage() {
+		clickMenuSalesTransactions();
+		return new TransactionsPage(driver);
+	}*/
     // -----------------Products---------------
 
     public CatalogPage gotoCatalogPage() {
-        clickCatalog();
+        clickMenuProductsCatalog();
         return new CatalogPage(driver);
     }
 

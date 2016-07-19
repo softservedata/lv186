@@ -69,7 +69,7 @@ public class TestCaseSignIn1 {
 			  Titles.ACCOUNT_DASHBOARD.toString());
 	  
 	  accountDashboardPage.clickDropdown_account_menu_button();
-	  homePage = accountDashboardPage.getAccountMenuDropDown().clickSignOutButton();
+	  homePage = accountDashboardPage.clickSignOutButton();
 	  
 	  Assert.assertEquals(homePage.getTitleText(),
 			  Titles.YOU_ARE_SIGNED_OUT.toString());

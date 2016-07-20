@@ -9,7 +9,7 @@ import com.magento.edu.customer.pages.CreateAccountPage;
 import com.magento.edu.customer.pages.HomePage;
 import com.magento.edu.customer.pages.SignInPage;
 import com.magento.edu.customer.pages.UnsuccessfulSignInPage;
-import com.magento.edu.customer.pages.UnsuccessfulSignInPage.MessageErrorSignIn;
+import com.magento.edu.customer.pages.UnsuccessfulSignInPage.ErrorMessageSignIn;
 import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage;
 import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage.ErrorMessage;
 
@@ -27,7 +27,7 @@ public class TestCaseSignIn1 {
   @BeforeMethod
   public void beforeMethod() {
 	  driver = new FirefoxDriver();
-	  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
   }
 
   @AfterMethod
@@ -54,6 +54,24 @@ public class TestCaseSignIn1 {
 	  homePage = accountDashboardPage.clickSignOutButton();
   }
   @Test
+  public void testSignIn1_1() {
+	  driver.get("http://192.168.195.210/magento");
+	  HomePage homePage = new HomePage(driver);
+	  
+	  Assert.assertEquals(homePage.getTitleText(), Titles.HOME_PAGE.toString());
+	  
+	  SignInPage signInPage = homePage.clickSignInLink();
+	  
+	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
+	  
+	  AccountDashboardPage accountDashboardPage = signInPage.SignIn_Enter(CustomerUserRepository.get().User());  
+	  
+	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
+			  Titles.ACCOUNT_DASHBOARD.toString());
+	  
+	  homePage = accountDashboardPage.clickSignOutButton();
+  }
+  @Test
   public void testSignIn2() {
 	  driver.get("http://192.168.195.210/magento");
 	  HomePage homePage = new HomePage(driver);
@@ -62,8 +80,8 @@ public class TestCaseSignIn1 {
 			  unsuccessfulSignIn(CustomerUserRepository.get().invalidUser());  
 	  Assert.assertEquals(unsuccessfulSignInPage.getTitleText(), 
 			  Titles.CUSTOMER_LOGIN.toString());
-	  Assert.assertEquals(unsuccessfulSignInPage.getMessageErrorText(),
-			  MessageErrorSignIn.INVALID_SIGNIN.toString());
+	  Assert.assertEquals(unsuccessfulSignInPage.getErrorMessageText(),
+			  ErrorMessageSignIn.INVALID_SIGNIN.toString());
   }
   @Test
   public void testCreateAccount1() {

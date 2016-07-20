@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.menu.products.CatalogPage;
+
 public abstract class VerticalMenu extends ATopPage {
 
     // ----------------------------
@@ -1442,7 +1445,8 @@ public abstract class VerticalMenu extends ATopPage {
     }
 
     // -----------------Sales---------------
-	/*public OrdersPage gotoOrdersPage() {
+	
+    /*public OrdersPage gotoOrdersPage() {
 		clickMenuSalesOrders();
 		return new OrdersPage(driver);
 	}
@@ -1472,15 +1476,125 @@ public abstract class VerticalMenu extends ATopPage {
         clickMenuProductsCatalog();
         return new CatalogPage(driver);
     }
+    
+    /*public CategoriesPage gotoCategoriesPage() {
+        clickMenuProductsCategories();
+        return new CategoriesPage(driver);
+    }*/
 
     // -----------------Customers---------------
+	
+    /*public AllCustomersPage gotoAllCustomersPage() {
+		clickMenuCustomersAllCustomers();
+		return new AllCustomersPage(driver);
+	}*/
 
+    /*public NowOnlinePage gotoNowOnlinePage() {
+		clickMenuCustomersNowOnline();
+		return new NowOnlinePage(driver);
+	}*/
 
     // -----------------Marketing---------------
 
+   /* public CartPriceRulesPage gotoCartPriceRulesPage() {
+        clickMenuMarketingCartPriceRules();
+        // Return a new page object representing the destination.
+        return new CartPriceRulesPage(driver);
+    }*/
+
+    /*public CatalogPriceRulePage gotoCatalogPriceRulePage() {
+        clickMenuMarketingCatalogPriceRule();
+        // Return a new page object representing the destination.
+        return new CatalogPriceRulePage(driver);
+    }*/
+
+    /*public EmailTemplatesPage gotoEmailTemplatesPage() {
+        clickMenuMarketingEmailTemplates();
+        // Return a new page object representing the destination.
+        return new EmailTemplatesPage(driver);
+    }*/
+
+    /*public NewsletterQueuePage gotoNewsletterQueuePage() {
+        clickMenuMarketingNewsletterQueue();
+        // Return a new page object representing the destination.
+        return new NewsletterQueuePage(driver);
+    }*/
+
+    /*public NewsletterSubcribersPage gotoNewsletterSubcribersPage() {
+        clickMenuMarketingNewsletterSubcribers();
+        // Return a new page object representing the destination.
+        return new NewsletterSubcribersPage(driver);
+    }*/
+
+    /*public NewsletterTemplatePage gotoNewsletterTemplatePage() {
+        clickMenuMarketingNewsletterTemplate();
+        // Return a new page object representing the destination.
+        return new NewsletterTemplatePage(driver);
+    }*/
+
+   /* public ReviewsPage gotoReviewsPage() {
+        clickMenuMarketingReviews();
+        // Return a new page object representing the destination.
+        return new ReviewsPage(driver);
+    }*/
+
+   /* public SearchSynonymsPage gotoSearchSynonymsPage() {
+        clickMenuMarketingSearchSynonyms();
+        // Return a new page object representing the destination.
+        return new SearchSynonymsPage(driver);
+    }*/
+
+    /*public SearchTermsPage gotoSearchTermsPage() {
+        clickMenuMarketingSearchTerms();
+        // Return a new page object representing the destination.
+        return new SearchTermsPage(driver);
+    }*/
+
+    /*public SiteMapPage gotoSiteMapPage() {
+       clickMenuMarketingSiteMap();
+        // Return a new page object representing the destination.
+        return new SiteMapPage(driver);
+    }*/
+
+   /* public URLRewritesPage gotoURLRewritesPage() {
+        clickMenuMarketingURLRewrites();
+        // Return a new page object representing the destination.
+        return new URLRewritesPage(driver);
+    }*/
+
 
     // -----------------Content---------------
-
+    
+    /*public BlocksPage gotoBlocksPage() {
+        clickMenuContentBlocks();
+        return new BlocksPage(driver);
+    }*/
+    
+    /*public ConfigurationPage gotoConfigurationPage() {
+        clickMenuContentConfiguration();
+        return new ConfigurationPage(driver);
+    }*/
+    
+    /*public PagesPage gotoPagesPage() {
+        clickMenuContentPages();
+        return new PagesPage(driver);
+    }*/
+    
+    /*public SchedulePage gotoSchedulePage() {
+        clickMenuContentSchedule();
+        return new SchedulePage(driver);
+    }*/
+    
+    /*public ThemesPage gotoThemesPage() {
+        clickMenuContentThemes();
+        return new ThemesPage(driver);
+    }*/
+    
+    /*public WidgetsPage gotoWidgetsPage() {
+        clickMenuContentWidgets();
+        return new WidgetsPage(driver);
+    }*/
+    
 
     // -----------------Reports---------------
 

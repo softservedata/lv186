@@ -1,8 +1,10 @@
-package com.softserve.edu.magento.pages;
+package com.softserve.edu.magento.pages.menu.dashboard;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.pages.VerticalMenu;
 
 public class DashboardPage extends VerticalMenu {
     
@@ -18,7 +20,7 @@ public class DashboardPage extends VerticalMenu {
     private WebElement lastOrders;
     // private StoreViewComponent storeView;
 
-    protected DashboardPage(WebDriver driver) {
+    public DashboardPage(WebDriver driver) {
         super(driver);
         lifeTimeSalesValue = driver.findElement(By.xpath("//div[contains(text(),'Lifetime Sales')]/following-sibling::div//span[@class='price']"));
     }

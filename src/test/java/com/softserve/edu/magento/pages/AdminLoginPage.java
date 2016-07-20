@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 
 public class AdminLoginPage {
 

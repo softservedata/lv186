@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.pages.AdminLoginPage;
-import com.softserve.edu.magento.pages.CatalogPage;
-import com.softserve.edu.magento.pages.DashboardPage;
+import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.menu.products.CatalogPage;
 
 public class PreSmokeTest {
     

@@ -108,7 +108,7 @@ public class CreateAccountPage extends HeaderPanel{
 		return this.getPersonalInf().getLabelFirstnameField();
 	}
 	public WebElement getLastnameField() {
-		return this.getPersonalInf().getLabelFirstnameField();
+		return this.getPersonalInf().getLastnameField();
 	}
 	public WebElement getLabelLastnameField() {
 		return this.getPersonalInf().getLabelLastnameField();

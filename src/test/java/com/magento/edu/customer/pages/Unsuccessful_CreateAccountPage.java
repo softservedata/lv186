@@ -6,11 +6,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.magento.edu.customer.components.ErrorSinginCreateAccountComponents;
+import com.magento.edu.customer.pages.UnsuccessfulSignInPage.ErrorValidatorName;
+
 public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 	public static enum ErrorMessage {
 		ALREADY_EXIST_ACCOUNT("There is already an account with this email address."+
 	" If you are sure that it is your email address, click here to get your password"+
-				" and access your account.");
+				" and access your account."),
+		PASSWORDS_IS_NOT_THE_SAME("Please enter the same value again."),
+		ERROR_PASSWORD_FORMAT("Minimum of different classes of characters"+
+		" in password is 3. Classes of characters: Lower Case, Upper Case,"+
+				" Digits, Special Characters."),
+		FIELD_IS_REQUIRED("This is a required field.");
 		//
 		private String field;
 
@@ -42,7 +50,21 @@ public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 			return this.field;
 		}
 	}
-	 
+	private ErrorSinginCreateAccountComponents errorCreateAccountComponents;
+	public Unsuccessful_CreateAccountPage(WebDriver driver) {
+		super(driver);
+		this.errorCreateAccountComponents = new ErrorSinginCreateAccountComponents(driver);
+	}
+	public ErrorSinginCreateAccountComponents getErrorCreateAccountComponents() {
+		return errorCreateAccountComponents;
+	}
+	public String getErrorMessageText() {
+		return this.getErrorCreateAccountComponents().getErrorMessageText();
+	}
+	public String getErrorValidatorText(ErrorValidatorName ErrorValidatorName) {
+		return this.getErrorCreateAccountComponents().getErrorValidatorText(ErrorValidatorName.toString());
+	}
+	 /*
 	private List<WebElement> errorMessage;
 	private List<WebElement> errorValidators;
 	public Unsuccessful_CreateAccountPage(WebDriver driver) {
@@ -79,6 +101,6 @@ public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 		} else {
 			return null;
 		}
-	}
+	}*/
 	
 }

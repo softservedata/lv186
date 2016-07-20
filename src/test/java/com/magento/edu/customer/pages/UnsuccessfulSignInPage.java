@@ -4,14 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.magento.edu.customer.components.ErrorSinginCreateAccountComponents;
+import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage.ErrorValidatorName;
+
 public class UnsuccessfulSignInPage extends SignInPage {
 	
-	public static enum MessageErrorSignIn {
-		INVALID_SIGNIN("Invalid login or password.");
+	public static enum ErrorValidatorName {
+		EMAIL("email"),
+		PASSWORD("pass");
+		;
 		//
 		private String field;
 
-		private MessageErrorSignIn(String field) {
+		private ErrorValidatorName(String field) {
 			this.field = field;
 		}
 
@@ -20,6 +25,30 @@ public class UnsuccessfulSignInPage extends SignInPage {
 			return this.field;
 		}
 	}
+	
+	public static enum ErrorMessageSignIn {
+		INVALID_SIGNIN("Invalid login or password."),
+		FIELD_IS_REQUIRED("This is a required field."),
+		ERROR_EMAIL_FORMATT("Please enter a valid email address (Ex: johndoe@domain.com).");
+		//
+		private String field;
+
+		private ErrorMessageSignIn(String field) {
+			this.field = field;
+		}
+
+		@Override
+		public String toString() {
+			return this.field;
+		}
+	}
+	private ErrorSinginCreateAccountComponents  errorSinginComponents;
+	public UnsuccessfulSignInPage(WebDriver driver) {
+		super(driver);
+		this.errorSinginComponents = new ErrorSinginCreateAccountComponents(driver);
+	}
+	
+	/*
 	//-----------------------------------------------
 	private WebElement messageError;
 	public UnsuccessfulSignInPage(WebDriver driver) {
@@ -35,5 +64,14 @@ public class UnsuccessfulSignInPage extends SignInPage {
 	//business logic 
 	public String getMessageErrorText() {
 		return this.getMessageError().getText();
+	}*/
+	public ErrorSinginCreateAccountComponents getErrorSinginComponents() {
+		return errorSinginComponents;
+	}
+	public String getErrorMessageText() {
+		return this.getErrorSinginComponents().getErrorMessageText();
+	}
+	public String getErrorValidatorText(ErrorValidatorName ErrorValidatorName) {
+		return this.getErrorSinginComponents().getErrorValidatorText(ErrorValidatorName.toString());
 	}
 }

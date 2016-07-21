@@ -1,9 +1,15 @@
 
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.magento.edu.customer.components.Header.Titles;
-import com.magento.edu.customer.data.user.CustomerUserRepository;
 import com.magento.edu.customer.pages.AccountDashboardPage;
 import com.magento.edu.customer.pages.CreateAccountPage;
 import com.magento.edu.customer.pages.HomePageLogout;
@@ -12,15 +18,7 @@ import com.magento.edu.customer.pages.UnsuccessfulSignInPage;
 import com.magento.edu.customer.pages.UnsuccessfulSignInPage.ErrorMessageSignIn;
 import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage;
 import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage.ErrorMessage;
-
-import org.testng.annotations.BeforeMethod;
-
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
+import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 
 public class TestCaseSignIn1 {
 	WebDriver driver;

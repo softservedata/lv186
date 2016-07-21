@@ -1,6 +1,6 @@
-package com.magento.edu.customer.data.user;
+package com.softserve.edu.magento.data.customer.user;
 
-import com.magento.edu.customer.data.user.SigninInfo_User.Group;
+import com.softserve.edu.magento.data.customer.user.SigninInfo_User.Group;
 
 interface IEmail {
 	IPassword setEmail(String email);

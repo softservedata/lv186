@@ -1,4 +1,4 @@
-package com.magento.edu.customer.data.user;
+package com.softserve.edu.magento.data.customer.user;
 interface IIPersonalInfo_User {
 	IISigninInfo_User setPersonalInfo(IPersonalInfo_User personalInfo);
 }

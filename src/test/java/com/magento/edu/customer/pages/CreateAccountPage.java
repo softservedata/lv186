@@ -6,9 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.magento.edu.customer.components.HeaderPanelLogout;
-import com.magento.edu.customer.data.user.ICustomerUser;
-import com.magento.edu.customer.data.user.IPersonalInfo_User;
-import com.magento.edu.customer.data.user.ISigninInfo_User;
+import com.softserve.edu.magento.data.customer.user.ICustomerUser;
+import com.softserve.edu.magento.data.customer.user.IPersonalInfo_User;
+import com.softserve.edu.magento.data.customer.user.ISigninInfo_User;
+
 
 public class CreateAccountPage extends HeaderPanelLogout{
 	

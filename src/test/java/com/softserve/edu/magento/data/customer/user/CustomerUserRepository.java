@@ -1,8 +1,8 @@
-package com.magento.edu.customer.data.user;
+package com.softserve.edu.magento.data.customer.user;
 
-import com.magento.edu.customer.data.user.Date.Month;
-import com.magento.edu.customer.data.user.PersonalInfo_User.Gender;
-import com.magento.edu.customer.data.user.SigninInfo_User.Group;
+import com.softserve.edu.magento.data.customer.user.Date.Month;
+import com.softserve.edu.magento.data.customer.user.PersonalInfo_User.Gender;
+import com.softserve.edu.magento.data.customer.user.SigninInfo_User.Group;
 
 public class CustomerUserRepository {
 

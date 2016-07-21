@@ -6,7 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.magento.edu.customer.components.HeaderPanelLogout;
-import com.magento.edu.customer.data.user.ICustomerUser;
+import com.softserve.edu.magento.data.customer.user.ICustomerUser;
+
 
 public class SignInPage extends HeaderPanelLogout{
 

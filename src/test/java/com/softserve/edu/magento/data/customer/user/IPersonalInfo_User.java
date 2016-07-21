@@ -1,6 +1,6 @@
-package com.magento.edu.customer.data.user;
+package com.softserve.edu.magento.data.customer.user;
 
-import com.magento.edu.customer.data.user.PersonalInfo_User.Gender;
+import com.softserve.edu.magento.data.customer.user.PersonalInfo_User.Gender;
 
 public interface IPersonalInfo_User {
 	//setters

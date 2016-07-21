@@ -1,4 +1,5 @@
-package com.magento.edu.customer.data.user;
+package com.softserve.edu.magento.data.customer.user;
+
 interface IPhoneNumber {
 	IStreetAddress setPhoneNumber(String phoneNumber);
 }

@@ -1,6 +1,6 @@
-package com.magento.edu.customer.data.user;
+package com.softserve.edu.magento.data.customer.user;
 
-import com.magento.edu.customer.data.user.Date.Month;
+import com.softserve.edu.magento.data.customer.user.Date.Month;
 
 interface IMonth {
 	IDay setMonth(Month Month);

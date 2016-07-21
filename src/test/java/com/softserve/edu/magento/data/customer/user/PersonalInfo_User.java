@@ -1,4 +1,4 @@
-package com.magento.edu.customer.data.user;
+package com.softserve.edu.magento.data.customer.user;
 interface IFirstname {
 	ILastname setFirstname(String firstname);
 }

@@ -35,6 +35,10 @@ public class AdminUser implements IAdminFirstname, IAdminLastname, IAdminUsernam
 
     private AdminUser() {
     }
+    
+    public IAdminUser build() {
+    	return this;
+    }
 
     public static IAdminUsername get() {
         return new AdminUser();
@@ -65,9 +69,6 @@ public class AdminUser implements IAdminFirstname, IAdminLastname, IAdminUsernam
         return this;
     }
 
-    public IAdminUser build() {
-        return this;
-    }
 
     // getters
 

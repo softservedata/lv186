@@ -52,12 +52,12 @@ public class SignInPage extends HeaderPanel{
 	public void clearEmailField() {
 		getEmailField().clear();
 	}
-	public void typeEmail(String email) {
+	public void SendKeysEmail(String email) {
 		getEmailField().sendKeys(email);
 	}
-	public void clearTypeEmail(String email) {
+	public void clearSendKeysEmail(String email) {
 		clearEmailField();
-		typeEmail(email);
+		SendKeysEmail(email);
 	}
 	//password field
 	public String getPasswordFieldText() {
@@ -66,12 +66,12 @@ public class SignInPage extends HeaderPanel{
 	public void clearPasswordField() {
 		getPasswordField().clear();
 	}
-	public void typePassword(String password) {
+	public void SendKeysPassword(String password) {
 		getPasswordField().sendKeys(password);
 	}
-	public void clearTypePassword(String password) {
+	public void clearSendKeysPassword(String password) {
 		clearPasswordField();
-		typePassword(password);
+		SendKeysPassword(password);
 	}
 	// button click
 	public void clickSignInButton() {
@@ -86,26 +86,26 @@ public class SignInPage extends HeaderPanel{
 	}
 	// functional sign in
 	public AccountDashboardPage SignIn(ICustomerUser user) {
-		clearTypeEmail(user.getSigninInfo().getEmail());
-		clearTypePassword(user.getSigninInfo().getPassword());
+		clearSendKeysEmail(user.getSigninInfo().getEmail());
+		clearSendKeysPassword(user.getSigninInfo().getPassword());
 		clickSignInButton();
 		return new AccountDashboardPage(driver);
 	}
 	public AccountDashboardPage SignIn_Enter(ICustomerUser user) {
-		clearTypeEmail(user.getSigninInfo().getEmail());
-		clearTypePassword(user.getSigninInfo().getPassword());
+		clearSendKeysEmail(user.getSigninInfo().getEmail());
+		clearSendKeysPassword(user.getSigninInfo().getPassword());
 		getPasswordField().sendKeys(Keys.ENTER);
 		return new AccountDashboardPage(driver);
 	}
 	public UnsuccessfulSignInPage unsuccessfulSignIn(ICustomerUser invalidUser) {
-		clearTypeEmail(invalidUser.getSigninInfo().getEmail());
-		clearTypePassword(invalidUser.getSigninInfo().getPassword());
+		clearSendKeysEmail(invalidUser.getSigninInfo().getEmail());
+		clearSendKeysPassword(invalidUser.getSigninInfo().getPassword());
 		clickSignInButton();
 		return new UnsuccessfulSignInPage(driver);
 	}
 	public UnsuccessfulSignInPage unsuccessfulSignIn_Enter(ICustomerUser invalidUser) {
-		clearTypeEmail(invalidUser.getSigninInfo().getEmail());
-		clearTypePassword(invalidUser.getSigninInfo().getPassword());
+		clearSendKeysEmail(invalidUser.getSigninInfo().getEmail());
+		clearSendKeysPassword(invalidUser.getSigninInfo().getPassword());
 		getPasswordField().sendKeys(Keys.ENTER);
 		return new UnsuccessfulSignInPage(driver);
 	}

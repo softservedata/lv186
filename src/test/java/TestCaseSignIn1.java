@@ -52,6 +52,7 @@ public class TestCaseSignIn1 {
 			  Titles.ACCOUNT_DASHBOARD.toString());
 	  
 	  homePage = accountDashboardPage.clickSignOutButton();
+	  
   }
   @Test
   public void testSignIn1_1() {
@@ -85,6 +86,7 @@ public class TestCaseSignIn1 {
   }
   @Test
   public void testCreateAccount1() {
+	  
 	  driver.get("http://192.168.195.210/magento");
 	  HomePage homePage = new HomePage(driver);
 	  SignInPage signInPage = homePage.clickSignInLink();
@@ -96,7 +98,6 @@ public class TestCaseSignIn1 {
 	  Assert.assertEquals(accountDashboardPage.getTitleText(),
 			  Titles.ACCOUNT_DASHBOARD.toString());
 	  
-	  //accountDashboardPage.clickDropdown_account_menu_button();
 	  homePage = accountDashboardPage.clickSignOutButton();
 	  
 	  Assert.assertEquals(homePage.getTitleText(),
@@ -106,9 +107,9 @@ public class TestCaseSignIn1 {
   public void testCreateAccount2() {
 	  driver.get("http://192.168.195.210/magento");
 	  HomePage homePage = new HomePage(driver);
-	  CreateAccountPage createAccountPage = homePage.clickCreateAccountLink();
+	  //CreateAccountPage createAccountPage = homePage.clickCreateAccountLink();
 	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
-			  createAccountPage.unsuccessful_createNewAccount(CustomerUserRepository.get().User());
+			  homePage.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());
 	  
 	  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorMessageText(),
 			  ErrorMessage.ALREADY_EXIST_ACCOUNT.toString());

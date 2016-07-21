@@ -142,24 +142,24 @@ public class CreateAccountPage extends HeaderPanel{
 		getLastnameField().clear();
 	}
 	//input data
-	public void typeFirstname(String firstname) {
+	public void SendKeysFirstname(String firstname) {
 		getFirstnameField().sendKeys(firstname);
 	}
-	public void typeLastname(String lastname) {
+	public void SendKeysLastname(String lastname) {
 		getLastnameField().sendKeys(lastname);
 	}
-	public void clearTypeFirstname(String firstname) {
+	public void clearSendKeysFirstname(String firstname) {
 		clearFirstnameField();
-		typeFirstname(firstname);
+		SendKeysFirstname(firstname);
 	}
-	public void clearTypeLastName(String lastname) {
+	public void clearSendKeysLastName(String lastname) {
 		clearLastnameField();
-		typeLastname(lastname);
+		SendKeysLastname(lastname);
 	}
 	//input form personal inform
 	public void input_Personal_inform(IPersonalInfo_User personalInfo_User) {
-		clearTypeFirstname(personalInfo_User.getFirstname());
-		clearTypeLastName(personalInfo_User.getLastname());
+		clearSendKeysFirstname(personalInfo_User.getFirstname());
+		clearSendKeysLastName(personalInfo_User.getLastname());
 		if ( personalInfo_User.getSignUpNewsletter() == true ) {
 			clickSignUpNewsletterCheckBox();
 		}
@@ -197,32 +197,32 @@ public class CreateAccountPage extends HeaderPanel{
 		this.getConfirmPasswordField().clear();
 	}
 	//input data
-	public void typeEmail(String email) {
+	public void SendKeysEmail(String email) {
 		this.getEmailField().sendKeys(email);
 	}
-	public void typePassword(String password) {
+	public void SendKeysPassword(String password) {
 		this.getPasswordField().sendKeys(password);;
 	}
-	public void typeConfirmPassword(String confirmPassword) {
+	public void SendKeysConfirmPassword(String confirmPassword) {
 		this.getConfirmPasswordField().sendKeys(confirmPassword);
 	}
-	public void clearTypeEmail(String email) {
+	public void clearSendKeysEmail(String email) {
 		this.clearEmailField();
-		this.typeEmail(email);
+		this.SendKeysEmail(email);
 	}
-	public void clearTypePassword(String password) {
+	public void clearSendKeysPassword(String password) {
 		this.clearPasswordField();
-		this.typePassword(password);
+		this.SendKeysPassword(password);
 	}
-	public void clearTypeConfirmPassword(String confirmPassword) {
+	public void clearSendKeysConfirmPassword(String confirmPassword) {
 		this.clearConfirmPasswordField();
-		this.typeConfirmPassword(confirmPassword);
+		this.SendKeysConfirmPassword(confirmPassword);
 	}
 	//input form sign in inform
 	public void input_SignIn_inform(ISigninInfo_User signinInfo_User) {
-		this.clearTypeEmail(signinInfo_User.getEmail());
-		this.clearTypePassword(signinInfo_User.getPassword());
-		this.clearTypeConfirmPassword(signinInfo_User.getConfirmPassword());
+		this.clearSendKeysEmail(signinInfo_User.getEmail());
+		this.clearSendKeysPassword(signinInfo_User.getPassword());
+		this.clearSendKeysConfirmPassword(signinInfo_User.getConfirmPassword());
 	}
 
 //------------------------CreateAccountButton------------------------------		

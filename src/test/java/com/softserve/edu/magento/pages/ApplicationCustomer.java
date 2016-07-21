@@ -2,10 +2,11 @@ package com.softserve.edu.magento.pages;
 
 import org.openqa.selenium.WebDriver;
 
+import com.magento.edu.customer.pages.HomePageLogout;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.tools.Application;
 
-public class ApplicationCustomer extends Application<AdminLoginPage> {
+public class ApplicationCustomer extends Application<HomePageLogout> {
 
     protected ApplicationCustomer(ApplicationSources applicationSources) {
         super(applicationSources);
@@ -17,8 +18,8 @@ public class ApplicationCustomer extends Application<AdminLoginPage> {
     }
 
     // TODO
-    protected AdminLoginPage getStartPage(WebDriver driver) {
-        return new AdminLoginPage(driver);
+    protected HomePageLogout getStartPage(WebDriver driver) {
+        return new HomePageLogout(driver);
     }
 
 }

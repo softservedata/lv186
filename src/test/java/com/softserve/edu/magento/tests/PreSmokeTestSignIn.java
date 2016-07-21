@@ -1,12 +1,15 @@
-
+package com.softserve.edu.magento.tests;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.magento.edu.customer.components.Header.Titles;
@@ -18,25 +21,48 @@ import com.magento.edu.customer.pages.UnsuccessfulSignInPage;
 import com.magento.edu.customer.pages.UnsuccessfulSignInPage.ErrorMessageSignIn;
 import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage;
 import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage.ErrorMessage;
+import com.softserve.edu.magento.data.AdminUserRepository;
+import com.softserve.edu.magento.data.ApplicationSources;
+import com.softserve.edu.magento.data.ApplicationSourcesRepository;
+import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
+import com.softserve.edu.magento.pages.ApplicationAdmin;
+import com.softserve.edu.magento.pages.ApplicationCustomer;
+import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.tools.ListUtils;
+import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class TestCaseSignIn1 {
+public class PreSmokeTestSignIn {
 	WebDriver driver;
   @BeforeMethod
   public void beforeMethod() {
-	  driver = new FirefoxDriver();
-	  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	  //driver = new FirefoxDriver();
+	  //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
   }
 
   @AfterMethod
   public void afterMethod() {
-	  driver.quit();
+	  //driver.quit();
+  }
+  @AfterClass
+  void tearDown() throws Exception {
+	  ApplicationCustomer.quitAll();
+  }
+  @DataProvider //(parallel = true)
+  public Object[][] smokeParameters(ITestContext context) {
+      return ListUtils.get().toMultiArray(
+              ParameterUtils.get().updateParametersAll(
+                      ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context));
   }
 
-  @Test
-  public void testSignIn1() {
-	  driver.get("http://192.168.195.210/magento");
-	  HomePageLogout homePageLogout = new HomePageLogout(driver);
+  @Test(dataProvider = "smokeParameters")
+  public void testSignIn1(ApplicationSources applicationSources) {
+	  
+	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
+	  HomePageLogout homePageLogout = applicationCustomer.load();
+	  
+	  //driver.get("http://192.168.195.210/magento");
+	  //HomePageLogout homePageLogout = new HomePageLogout(driver);
 	  
 	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
 	  
@@ -52,7 +78,7 @@ public class TestCaseSignIn1 {
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
 	  
   }
-  @Test
+  //@Test
   public void testSignIn1_1() {
 	  driver.get("http://192.168.195.210/magento");
 	  HomePageLogout homePageLogout = new HomePageLogout(driver);
@@ -70,7 +96,7 @@ public class TestCaseSignIn1 {
 	  
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
   }
-  @Test
+  //@Test
   public void testSignIn2() {
 	  driver.get("http://192.168.195.210/magento");
 	  HomePageLogout homePageLogout = new HomePageLogout(driver);
@@ -82,7 +108,7 @@ public class TestCaseSignIn1 {
 	  Assert.assertEquals(unsuccessfulSignInPage.getErrorMessageText(),
 			  ErrorMessageSignIn.INVALID_SIGNIN.toString());
   }
-  @Test
+  //@Test
   public void testCreateAccount1() {
 	  
 	  driver.get("http://192.168.195.210/magento");
@@ -101,7 +127,7 @@ public class TestCaseSignIn1 {
 	  Assert.assertEquals(homePageLogout.getTitleText(),
 			  Titles.YOU_ARE_SIGNED_OUT.toString());
   }
-  @Test
+  //@Test
   public void testCreateAccount2() {
 	  driver.get("http://192.168.195.210/magento");
 	  HomePageLogout homePageLogout = new HomePageLogout(driver);

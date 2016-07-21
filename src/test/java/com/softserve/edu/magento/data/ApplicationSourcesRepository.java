@@ -35,5 +35,10 @@ public final class ApplicationSourcesRepository {
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
+    public static List<ApplicationSources> getListBrowsersLocalhostCustomer() {
+        List<ApplicationSources> result = new ArrayList<ApplicationSources>();
+        result.add(getFirefoxLocalhostCustomer());
+        return result; 
+    }
 
 }

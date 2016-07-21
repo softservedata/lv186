@@ -27,10 +27,10 @@ public class ApplicationSources {
         }
     }
  
-    static class LoginUrl implements IUpdateApplicationSources {
+    static class LoadUrl implements IUpdateApplicationSources {
         public void setProperty(ApplicationSources applicationSources, String propertyText) {
             //ApplicationSources.this.setBrowserName(propertyText);
-            applicationSources.setLoginUrl(propertyText);
+            applicationSources.setLoadUrl(propertyText);
         }
     }
 
@@ -45,7 +45,7 @@ public class ApplicationSources {
         BROWSER_NAME(new BrowserName(), "browserName"),
         DRIVER_PATH(new DriverPath(), "driverPath"),
         IMPLICIT_TIMEOUT(new ImplicitTimeOut(), "implicitTimeOut"),
-        LOGIN_URL(new LoginUrl(), "loginUrl"),
+        LOAD_URL(new LoadUrl(), "loadUrl"),
         LOGOUT_URL(new LogoutUrl(), "logoutUrl");
         private IUpdateApplicationSources updateApplicationSources;
         private String propertyName;
@@ -86,7 +86,7 @@ public class ApplicationSources {
     // private String loggerStrategy;
     //
     // URLs
-    private String loginUrl;
+    private String loadUrl;
     private String logoutUrl;
     //
     // private String serverUrl;
@@ -97,11 +97,11 @@ public class ApplicationSources {
     
     // Constructor
     public ApplicationSources(String browserName, String driverPath,
-            long implicitTimeOut, String loginUrl, String logoutUrl) {
+            long implicitTimeOut, String loadUrl, String logoutUrl) {
         this.browserName = browserName;
         this.driverPath = driverPath;
         this.implicitTimeOut = implicitTimeOut;
-        this.loginUrl = loginUrl;
+        this.loadUrl = loadUrl;
         this.logoutUrl = logoutUrl;
     }
 
@@ -121,8 +121,8 @@ public class ApplicationSources {
         return implicitTimeOut;
     }
 
-    public String getLoginUrl() {
-        return loginUrl;
+    public String getLoadUrl() {
+        return loadUrl;
     }
 
     public String getLogoutUrl() {
@@ -143,8 +143,8 @@ public class ApplicationSources {
         this.implicitTimeOut = implicitTimeOut;
     }
 
-    public void setLoginUrl(String loginUrl) {
-        this.loginUrl = loginUrl;
+    public void setLoadUrl(String loadUrl) {
+        this.loadUrl = loadUrl;
     }
 
     public void setLogoutUrl(String logoutUrl) {

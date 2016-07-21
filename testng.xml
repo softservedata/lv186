@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<parameter name="firstBrowser" value="Firefox" />
-	<parameter name="secondBrowser" value="Chrome" />
+	<parameter name="browserName" value="Firefox" />
 	<!-- <parameter name="thirdBrowser" value="HTMLUnit" /> -->
 	<test name="Test1">
 		<classes>

@@ -13,6 +13,8 @@ public class ParameterUtils {
 	private static final String SUREFIRE_WEBDRIVER_NAME = "surefire.webdriver.name";
     private static final String DEFAULT_POM_FROM = "from";
     private static final String DEFAULT_POM_CODE = "code";
+    //
+    private boolean isCIRunnig = false;
 
 	private ParameterUtils() {
 	}
@@ -25,6 +27,7 @@ public class ParameterUtils {
 				}
 			}
 		}
+		instance.isCIRunnig = false;
 		return instance;
 	}
 
@@ -33,6 +36,7 @@ public class ParameterUtils {
                 && (!System.getProperty(SUREFIRE_WEBDRIVER_NAME).toLowerCase().contains(DEFAULT_POM_FROM))
                 && (!System.getProperty(SUREFIRE_WEBDRIVER_NAME).toLowerCase().contains(DEFAULT_POM_CODE))) {
             applicationSources.setBrowserName(System.getProperty(SUREFIRE_WEBDRIVER_NAME));
+            isCIRunnig = true;
         }
         return applicationSources;
     }
@@ -49,34 +53,27 @@ public class ParameterUtils {
                     break;
                 }
             }
-            browser = getBrowserByString(allParameters.get(key));
-            if (browser != null) {
-                browsers.add(browser);
-            }
         }
         return applicationSources;
     }
+
+    // TODO and add clone in ApplicationSources
+    //public List<ApplicationSources> updateBrowsersFromTestNGxml(ApplicationSources applicationSources, ITestContext context) {}
+    //
+//    public List<ApplicationSources> updateParametersFromTestNGxml(List<ApplicationSources> applicationSources, ITestContext context) {
+//        return null;
+//    }
+
+    public ApplicationSources updateParametersAll(ApplicationSources applicationSources, ITestContext context) {
+        applicationSources = updateParametersFromPOM(applicationSources);
+        if (!isCIRunnig) {
+            applicationSources = updateParametersFromTestNGxml(applicationSources, context);
+        }
+      return applicationSources;  
+    }
     
-	public ApplicationSources updateApplicationSources(ApplicationSources applicationSources, ITestContext context) {
-		if (context != null) {
-	        HashMap<String, String> testParameters = new HashMap<String, String>(context.getCurrentXmlTest().getAllParameters());
-	        for (String key : testParameters.keySet()) {
-	        	System.out.println("Test parameter: key=" + key + " value=" + testParameters.get(key));
-	        	if (key.toLowerCase().equals("browsername")) {
-	        		applicationSources.setBrowserName(testParameters.get(key));
-	        		continue;
-	        	} else if (key.toLowerCase().equals("driverpath")) {
-	        		applicationSources.setDriverPath(testParameters.get(key));
-	        		continue;
-	        	} else if (key.toLowerCase().equals("loginurl")) {
-	        		applicationSources.setLoginUrl(testParameters.get(key));
-	        		continue;
-	        	} else if (key.toLowerCase().equals("logouturl")) {
-	        		applicationSources.setLogoutUrl(testParameters.get(key));
-	        		continue;
-	        	}
-	        }
-		}
-		return applicationSources;
-	}
+//    public List<ApplicationSources> updateParameters(List<ApplicationSources> applicationSources, ITestContext context) {
+//        return null;  
+//     }
+
 }

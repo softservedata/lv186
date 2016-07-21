@@ -1,8 +1,10 @@
-package com.softserve.edu.magento.pages;
+package com.softserve.edu.magento.pages.menu.products;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.pages.VerticalMenu;
 
 public class CatalogPage extends VerticalMenu {
 
@@ -14,7 +16,7 @@ public class CatalogPage extends VerticalMenu {
 
     // Components
 
-    protected CatalogPage(WebDriver driver) {
+    public CatalogPage(WebDriver driver) {
         super(driver);
         firstProductName = driver.findElement(By.xpath("//tbody/tr[1]/td[4]"));
     }

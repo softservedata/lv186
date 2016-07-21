@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.menu.products.CatalogPage;
 
@@ -1484,10 +1485,10 @@ public abstract class VerticalMenu extends ATopPage {
 
     // -----------------Customers---------------
 	
-    /*public AllCustomersPage gotoAllCustomersPage() {
+    public AllCustomersPage gotoAllCustomersPage() {
 		clickMenuCustomersAllCustomers();
 		return new AllCustomersPage(driver);
-	}*/
+	}
 
     /*public NowOnlinePage gotoNowOnlinePage() {
 		clickMenuCustomersNowOnline();

@@ -21,6 +21,46 @@ public class CustomerUserRepository {
         }
         return instance;
     }
+    public ICustomerUser NewCustomerRegistrationFromAdminSide(){
+    	return CustomerUser.get()
+    			.setPersonalInfo(PersonalInfo_User.get()
+    					.setFirstname("Vasyl")
+    					.setLastname("Vasyltsiv")
+    					.setSignUpNewsletter(true)
+    					.build()
+    					.setGender(Gender.MALE)
+    					.setMiddlename("Ivanov")
+    					.setPrefix("Pre")
+    					.setSuffix("Iva")
+    					.setBirthdayDate(Date.get()
+    							.setMonth(Month.AUGUST)
+    							.setDay("12")
+    							.setYear("1988")
+    							.build())
+    						)
+    			.setSigninInfo(SigninInfo_User.get()
+        				.setEmail("vasyltsiv@ukr.net")
+        				.setPassword("789")
+        				.setConfirmPassword("789")
+        				.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+        				.build())
+        		.build()
+        		.setContactInfo_User(ContactInfo_User.get()
+        				.setPhoneNumber("0938791256")
+        				.setStreetAddress("Kulparkivska")
+        				.setCity("Lviv")
+        				.setState("Lviv")
+        				.setPostalCode("79040")
+        				.setCountry("Ukraine")
+        				.build()
+        				.setCompanyName("SoftServe")
+        				.setFax("0938791256")
+        				.setVatNumber("998745412")
+        				);
+    }
+    				
+    
 
     public ICustomerUser User() {
         return CustomerUser.get()

@@ -27,5 +27,14 @@ public class AdminUserRepository {
                 .setPassword("qwerty-1")
                 .build();
     }
+   public IAdminUser adminMykhaylo() {
+	   return AdminUser.get()
+			   .setUsername("mholovatc")
+			   .setFirstname("Mykhaylo")
+			   .setLastname("Holovanov")
+			   .setMail("mholovanov@gmail.com")
+			   .setPassword("qwerty-1")
+			   .build();
+   }
     
 }

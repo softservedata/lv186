@@ -1,17 +1,25 @@
-package com.softserve.edu.magento.pages;
+package com.softserve.edu.magento.pages.menu.customers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CustomersMenuPage extends VerticalMenu {
+import com.softserve.edu.magento.pages.VerticalMenu;
 
+public class AllCustomersPage extends VerticalMenu {
+	public final static String PAGE_TITLE = "Customers";
 	// protected WebDriver driver;
 
 	private ColumnsMenuDropdown columnsmenudropdown;
 	private ActionsDropDownMenu actionsdropdownmenu;
 	private DefaultViewDropdownMenu defaultdropdownmenu;
 	private FiltersDropDownMenu filtersdropdownmenu;
+	private GroupsButton groupsButton;
+//	private CountryButton countryButton;
+//	private WebsiteButton webSiteButton;
+//	private GenderButton genderButton;
+	
+	
 	private WebElement customersLabel;
 	private WebElement addNewCustomerButton;
 	private WebElement searchField;
@@ -161,9 +169,27 @@ public class CustomersMenuPage extends VerticalMenu {
 		}
 		
 	}
+	// -----------------Groups class-----------------------
+	private class GroupsButton{
+		private WebElement general;
+		private WebElement wholesale;
+		private WebElement retailer;
+		public GroupsButton(WebElement general, WebElement wholesale) {
+			super();
+			this.general = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[2]"));
+			this.wholesale = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[3]"));
+			this.retailer = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[4]"));
+		}
+	}
+	
+	// -----------------Country class-----------------------
+	
+	// -----------------Website class-----------------------
+	
+	// -----------------Gender class-----------------------
 
 	// main page constructor
-	public CustomersMenuPage(WebDriver driver) {
+	public AllCustomersPage(WebDriver driver) {
 		super(driver);
 		this.customersLabel = driver.findElement(By.xpath(".//*[@class='page-title-wrapper']"));
 		this.addNewCustomerButton = driver.findElement(By.id("add"));
@@ -633,6 +659,10 @@ public class CustomersMenuPage extends VerticalMenu {
 
 	// functional
 
+	public RegistrationNewCustomerPage goToRegistrationNewCustomerPage(){
+		getAddNewCustomerButton().click();
+		return new RegistrationNewCustomerPage(driver);
+	}
 	public ColumnsMenuDropdown goToColumnsMenuDropdown() {
 		getColumnsButton().click();
 		return new ColumnsMenuDropdown(driver);

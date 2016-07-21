@@ -16,6 +16,7 @@ import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
+import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.menu.products.CatalogPage;
 import com.softserve.edu.magento.tools.ListUtils;
@@ -62,7 +63,7 @@ public class PreSmokeTest {
                 AdminUserRepository.get().adminBohdan());
     }
 
-    @Test(dataProvider = "smokeParameters")
+   // @Test(dataProvider = "smokeParameters")
     public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         // Precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -89,6 +90,27 @@ public class PreSmokeTest {
         Thread.sleep(2000);
         applicationAdmin.quit();
     }
+    @Test(dataProvider = "smokeParameters")
+	public void goToCustomerPage(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+		// Precondition
+		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+		Thread.sleep(1000);
+		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		Thread.sleep(1000);
+		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
+		dashboardPage.clickMenuCustomers();
+		dashboardPage.clickMenuCustomersAllCustomers();
+		
+		Thread.sleep(1000);
+		//Assert.assertEquals(acp.getPageTitle(), acp.PAGE_TITLE);
+		//Assert.assertEquals(rncp.getPageTitleText(), rncp.PAGE_TITLE);
+
+		Thread.sleep(1000);
+		Thread.sleep(2000);
+		applicationAdmin.quit();
+	}
+
+	
 
     @AfterClass
     void tearDown() throws Exception {

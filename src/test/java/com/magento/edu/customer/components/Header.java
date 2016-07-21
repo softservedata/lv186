@@ -36,7 +36,7 @@ public abstract class Header {
 	//-----------------------------------------------
 	protected WebDriver driver;
 	 
-	private WebElement welcomeMessage;
+	//private WebElement welcomeMessage;
 	private WebElement searchField;
 	private WebElement cart;
 	private WebElement logo;
@@ -44,7 +44,7 @@ public abstract class Header {
 	 
 	 protected Header(WebDriver driver) {
 		 this.driver = driver;
-		 this.welcomeMessage = driver.findElement(By.cssSelector("li.greet.welcome")); 
+		 //this.welcomeMessage = driver.findElement(By.cssSelector("li.greet.welcome")); 
 		 this.searchField = driver.findElement(By.id("search"));
 		 this.cart = driver.findElement(By.cssSelector("a.action.showcart"));
 		 this.cart = driver.findElement(By.cssSelector("a.action.showcart"));

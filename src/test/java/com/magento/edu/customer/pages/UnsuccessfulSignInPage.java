@@ -1,11 +1,9 @@
 package com.magento.edu.customer.pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.magento.edu.customer.components.ErrorSinginCreateAccountComponents;
-import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage.ErrorValidatorName;
 
 public class UnsuccessfulSignInPage extends SignInPage {
 	

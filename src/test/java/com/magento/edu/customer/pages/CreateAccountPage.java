@@ -5,12 +5,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.magento.edu.customer.components.HeaderPanel;
+import com.magento.edu.customer.components.HeaderPanelLogout;
 import com.magento.edu.customer.data.user.ICustomerUser;
 import com.magento.edu.customer.data.user.IPersonalInfo_User;
 import com.magento.edu.customer.data.user.ISigninInfo_User;
 
-public class CreateAccountPage extends HeaderPanel{
+public class CreateAccountPage extends HeaderPanelLogout{
 	
 	private PersonalInfCreateAccount personalInf;
 	private SigninInfCreateAccount signinInf;

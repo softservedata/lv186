@@ -1,13 +1,8 @@
 package com.magento.edu.customer.pages;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.magento.edu.customer.components.ErrorSinginCreateAccountComponents;
-import com.magento.edu.customer.pages.UnsuccessfulSignInPage.ErrorValidatorName;
 
 public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 	public static enum ErrorMessage {
@@ -32,8 +27,6 @@ public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 		}
 	}
 	public static enum ErrorValidatorName {
-		FIRSTNAME("firstname"),
-		LASTNAME("lastname"),
 		EMAIL("email_address"),
 		PASSWORD("password"),
 		CONFIRMPASSWORD("password-confirmation"),

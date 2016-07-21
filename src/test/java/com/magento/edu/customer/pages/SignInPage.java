@@ -5,10 +5,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.magento.edu.customer.components.HeaderPanel;
+import com.magento.edu.customer.components.HeaderPanelLogout;
 import com.magento.edu.customer.data.user.ICustomerUser;
 
-public class SignInPage extends HeaderPanel{
+public class SignInPage extends HeaderPanelLogout{
 
 	private WebElement emailField;
 	private WebElement passwordField;

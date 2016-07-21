@@ -52,25 +52,7 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 		public WebElement getEditLink_Newsletters() {
 			return editLink_Newsletters;
 		}
-		/*
-	//business logic
-	//get text	
-		public String getNameEmaiText() {
-			return this.getNameEmail_contactInf().getText();
-		}
-		public String getInform_NewslettersText() {
-			return this.getInform_Newsletters().getText();
-		}
-	//click links
-		public void clickEditLink_contactInf() {
-			this.getEditLink_contactInf().click();
-		}
-		public void clickChangePass_contactInf() {
-			this.getChangePass_contactInf().click();
-		}
-		public void clickEditLink_Newsletters() {
-			this.getChangePass_contactInf().click();
-		}*/
+
 	}
 	//-------------------AddressBookDashboardForm------------------------------------
 	private class AddressBookDashboardForm {
@@ -113,24 +95,7 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 		public WebElement getEditLink_shippingAddress() {
 			return editLink_shippingAddress;
 		}
-		/*
-	//get business logic
-		public String getBillingAddressText() {
-			return this.getInform_billingAddress().getText();
-		}
-		public String getShippingAddressText() {
-			return this.getInform_shippingAddress().getText();
-		}
-	//click edit link
-		public void clickManageAddressLink() {
-			this.getManageAddressLink().click();
-		}
-		public void clickEditLink_billingAddress() {
-			this.getEditLink_billingAddress().click();
-		}
-		public void clickEditLink_shippingAddress() {
-			this.getEditLink_shippingAddress().click();
-		}*/
+
 	}
 	//-------------------------------------------------------
 	public AccountDashboardPage(WebDriver driver) {
@@ -146,39 +111,77 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 		return addressBookDashboardForm;
 	}
 	//business logic ContactInformationForm
+	//getters
+			public WebElement getNameEmail_contactInf() {
+				return this.getContactInformationForm().getNameEmail_contactInf();
+			}
+
+			public WebElement getEditLink_contactInf() {
+				return getContactInformationForm().getEditLink_contactInf();
+			}
+
+			public WebElement getChangePass_contactInf() {
+				return getContactInformationForm().getChangePass_contactInf();
+			}
+
+			public WebElement getInform_Newsletters() {
+				return getContactInformationForm().getInform_Newsletters();
+			}
+
+			public WebElement getEditLink_Newsletters() {
+				return getContactInformationForm().getEditLink_Newsletters();
+			}
 		//get text	
 		public String getNameEmaiText() {
-			return this.getContactInformationForm().getNameEmail_contactInf().getText();
+			return getNameEmail_contactInf().getText();
 		}
 		public String getInform_NewslettersText() {
-			return this.getContactInformationForm().getInform_Newsletters().getText();
+			return getInform_Newsletters().getText();
 		}
 	//click linksContactInformationForm
 		public void clickEditLink_contactInf() {
-			this.getContactInformationForm().getEditLink_contactInf().click();
+			getEditLink_contactInf().click();
 		}
 		public void clickChangePass_contactInf() {
-			this.getContactInformationForm().getChangePass_contactInf().click();
+			getChangePass_contactInf().click();
 		}
 		public void clickEditLink_Newsletters() {
-			this.getContactInformationForm().getChangePass_contactInf().click();
+			getEditLink_Newsletters().click();
+		}
+		//-----------getAddressBookDashboardForm----------
+		//getters
+		public WebElement getManageAddressLink() {
+			return this.getAddressBookDashboardForm().getManageAddressLink();
+		}
+
+		public WebElement getInform_billingAddress() {
+			return getAddressBookDashboardForm().getInform_billingAddress();
+		}
+		public WebElement getEditLink_billingAddress() {
+			return getAddressBookDashboardForm().getEditLink_billingAddress();
+		}
+		public WebElement getInform_shippingAddress() {
+			return getAddressBookDashboardForm().getInform_shippingAddress();
+		}
+		public WebElement getEditLink_shippingAddress() {
+			return getAddressBookDashboardForm().getEditLink_shippingAddress();
 		}
 	//get business logic AddressBookDashboardForm
 		public String getBillingAddressText() {
-			return this.getAddressBookDashboardForm().getInform_billingAddress().getText();
+			return getInform_billingAddress().getText();
 		}
 		public String getShippingAddressText() {
-			return this.getAddressBookDashboardForm().getInform_shippingAddress().getText();
+			return getInform_shippingAddress().getText();
 		}
 		//click edit link AddressBookDashboardForm
 		public void clickManageAddressLink() {
-			this.getAddressBookDashboardForm().getManageAddressLink().click();
+			getManageAddressLink().click();
 		}
 		public void clickEditLink_billingAddress() {
-			this.getAddressBookDashboardForm().getEditLink_billingAddress().click();
+			getEditLink_billingAddress().click();
 		}
 		public void clickEditLink_shippingAddress() {
-			this.getAddressBookDashboardForm().getEditLink_shippingAddress().click();
+			getEditLink_shippingAddress().click();
 		}
 	
 }

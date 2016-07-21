@@ -6,7 +6,7 @@ import com.magento.edu.customer.components.Header.Titles;
 import com.magento.edu.customer.data.user.CustomerUserRepository;
 import com.magento.edu.customer.pages.AccountDashboardPage;
 import com.magento.edu.customer.pages.CreateAccountPage;
-import com.magento.edu.customer.pages.HomePage;
+import com.magento.edu.customer.pages.HomePageLogout;
 import com.magento.edu.customer.pages.SignInPage;
 import com.magento.edu.customer.pages.UnsuccessfulSignInPage;
 import com.magento.edu.customer.pages.UnsuccessfulSignInPage.ErrorMessageSignIn;
@@ -38,11 +38,11 @@ public class TestCaseSignIn1 {
   @Test
   public void testSignIn1() {
 	  driver.get("http://192.168.195.210/magento");
-	  HomePage homePage = new HomePage(driver);
+	  HomePageLogout homePageLogout = new HomePageLogout(driver);
 	  
-	  Assert.assertEquals(homePage.getTitleText(), Titles.HOME_PAGE.toString());
+	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
 	  
-	  SignInPage signInPage = homePage.clickSignInLink();
+	  SignInPage signInPage = homePageLogout.clickSignInLink();
 	  
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
 	  
@@ -51,17 +51,17 @@ public class TestCaseSignIn1 {
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
 	  
-	  homePage = accountDashboardPage.clickSignOutButton();
+	  homePageLogout = accountDashboardPage.clickSignOutButton();
 	  
   }
   @Test
   public void testSignIn1_1() {
 	  driver.get("http://192.168.195.210/magento");
-	  HomePage homePage = new HomePage(driver);
+	  HomePageLogout homePageLogout = new HomePageLogout(driver);
 	  
-	  Assert.assertEquals(homePage.getTitleText(), Titles.HOME_PAGE.toString());
+	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
 	  
-	  SignInPage signInPage = homePage.clickSignInLink();
+	  SignInPage signInPage = homePageLogout.clickSignInLink();
 	  
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
 	  
@@ -70,13 +70,13 @@ public class TestCaseSignIn1 {
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
 	  
-	  homePage = accountDashboardPage.clickSignOutButton();
+	  homePageLogout = accountDashboardPage.clickSignOutButton();
   }
   @Test
   public void testSignIn2() {
 	  driver.get("http://192.168.195.210/magento");
-	  HomePage homePage = new HomePage(driver);
-	  SignInPage signInPage = homePage.clickSignInLink();
+	  HomePageLogout homePageLogout = new HomePageLogout(driver);
+	  SignInPage signInPage = homePageLogout.clickSignInLink();
 	  UnsuccessfulSignInPage unsuccessfulSignInPage = signInPage.
 			  unsuccessfulSignIn(CustomerUserRepository.get().invalidUser());  
 	  Assert.assertEquals(unsuccessfulSignInPage.getTitleText(), 
@@ -88,8 +88,8 @@ public class TestCaseSignIn1 {
   public void testCreateAccount1() {
 	  
 	  driver.get("http://192.168.195.210/magento");
-	  HomePage homePage = new HomePage(driver);
-	  SignInPage signInPage = homePage.clickSignInLink();
+	  HomePageLogout homePageLogout = new HomePageLogout(driver);
+	  SignInPage signInPage = homePageLogout.clickSignInLink();
 	  CreateAccountPage createAccountPage = signInPage.clickCreateAccountButton();
 	  
 	  AccountDashboardPage accountDashboardPage = createAccountPage.createNewAccount
@@ -98,18 +98,18 @@ public class TestCaseSignIn1 {
 	  Assert.assertEquals(accountDashboardPage.getTitleText(),
 			  Titles.ACCOUNT_DASHBOARD.toString());
 	  
-	  homePage = accountDashboardPage.clickSignOutButton();
+	  homePageLogout = accountDashboardPage.clickSignOutButton();
 	  
-	  Assert.assertEquals(homePage.getTitleText(),
+	  Assert.assertEquals(homePageLogout.getTitleText(),
 			  Titles.YOU_ARE_SIGNED_OUT.toString());
   }
   @Test
   public void testCreateAccount2() {
 	  driver.get("http://192.168.195.210/magento");
-	  HomePage homePage = new HomePage(driver);
+	  HomePageLogout homePageLogout = new HomePageLogout(driver);
 	  //CreateAccountPage createAccountPage = homePage.clickCreateAccountLink();
 	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
-			  homePage.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());
+			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());
 	  
 	  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorMessageText(),
 			  ErrorMessage.ALREADY_EXIST_ACCOUNT.toString());

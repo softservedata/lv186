@@ -5,21 +5,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.magento.edu.customer.pages.AccountDashboardPage;
-import com.magento.edu.customer.pages.HomePage;
+import com.magento.edu.customer.pages.HomePageCustomer;
+import com.magento.edu.customer.pages.HomePageLogout;
 
 public abstract class HeaderPanelCustomerAccount extends Header{
 	
 	private WebElement customer_welcome;
 	private WebElement dropdown_account_menu_button;
 	private AccountMenuDropDown accountMenuDropDown;
-	private RightAccountMenu rightAccountMenu;
+	private VerticalAccountMenu verticalAccountMenu;
 	//-----------------AccountMenuDropDown-------------------
 	private class AccountMenuDropDown {
 		private WebElement myAccountButton;
 		private WebElement myWishListButton;
 		private WebElement signOutButton;
 		
-		public AccountMenuDropDown(WebDriver driver) {
+		public AccountMenuDropDown() {
 			this.myAccountButton = driver.findElement(By.linkText("My Account"));
 			this.myWishListButton = driver.findElement(By.cssSelector("li.link.wishlist")).
 					findElement(By.partialLinkText("My Wish List"));
@@ -34,26 +35,87 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		public WebElement getSignOutButton() {
 			return signOutButton;
 		}
-		/*public AccountDashboardPage clickMyAccountButton() {
-			this.getMyAccountButton().click();
-			return new AccountDashboardPage(driver);
-		}
-		public void clickMyWishListButton() {
-			this.getMyWishListButton().click();
-		}
-		public HomePage clickSignOutButton() {
-			this.getSignOutButton().click();
-			return new HomePage(driver);
-			
-		}*/
 	}
-	//--------------------------------
+	//--------------VerticalAccountMenu------------------
+	private class VerticalAccountMenu {
+
+		public WebElement accountDashboardLink;
+		public WebElement accountInformationLink;
+		public WebElement adressBookLink;
+		public WebElement myDownloadableProductsLink;
+		public WebElement myOrderLink;
+		public WebElement newsletterSubscriptionsLink;
+		public WebElement myCreditCardsLink;
+		public WebElement myProductReviewsLink;
+		public WebElement billingAgreementsLink;
+		public WebElement myWishListLink;
+		
+		public VerticalAccountMenu() {
+			WebElement verticalBlock = driver.findElement(By.id("block-collapsible-nav"));
+			//this.accountDashboardLink = driver.findElement(By.linkText("Account Dashboard"));
+			
+			this.accountDashboardLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Account Dashboard')]"));
+			this.accountInformationLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Account Information')]"));
+			this.adressBookLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Address Book')]"));
+			this.myDownloadableProductsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Downloadable Products')]"));
+			this.myOrderLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Orders')]"));
+			this.newsletterSubscriptionsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Newsletter Subscriptions')]"));
+			this.myCreditCardsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Credit Cards')]"));
+			this.myProductReviewsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Product Reviews')]"));
+			this.billingAgreementsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Billing Agreements')]"));
+			this.myWishListLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Wish List')]"));
+					
+		}
+
+		public WebElement getAccountDashboardLink() {
+			return accountDashboardLink;
+		}
+
+		public WebElement getAccountInformationLink() {
+			return accountInformationLink;
+		}
+
+		public WebElement getAdressBookLink() {
+			return adressBookLink;
+		}
+
+		public WebElement getMyDownloadableProductsLink() {
+			return myDownloadableProductsLink;
+		}
+
+		public WebElement getMyOrderLink() {
+			return myOrderLink;
+		}
+
+		public WebElement getNewsletterSubscriptionsLink() {
+			return newsletterSubscriptionsLink;
+		}
+
+		public WebElement getMyCreditCardsLink() {
+			return myCreditCardsLink;
+		}
+
+		public WebElement getMyProductReviewsLink() {
+			return myProductReviewsLink;
+		}
+
+		public WebElement getBillingAgreementsLink() {
+			return billingAgreementsLink;
+		}
+
+		public WebElement getMyWishListLink() {
+			return myWishListLink;
+		}
+
+		
+	}
+
+	//---------------------------------
 	protected HeaderPanelCustomerAccount(WebDriver driver) {
 		super(driver);
 		this.customer_welcome = driver.findElement(By.className("customer-welcome")); 
 		this.dropdown_account_menu_button = driver.findElement(By.cssSelector("button.action.switch"));
-		
-		this.rightAccountMenu = new RightAccountMenu(driver);
+		this.verticalAccountMenu = new VerticalAccountMenu();
 	}
 	//getters
 	public WebElement getCustomer_welcome() {
@@ -63,8 +125,8 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		return dropdown_account_menu_button;
 	}
 	
-	public RightAccountMenu getRightAccountMenu() {
-		return rightAccountMenu;
+	public VerticalAccountMenu getVerticalAccountMenu() {
+		return verticalAccountMenu;
 	}
 	//business logic
 	public String getCustomer_welcomeText() {
@@ -75,11 +137,16 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	}
 	public void clickDropdown_account_menu_button() {
 		this.getDropdown_account_menu_button().click();
-		this.accountMenuDropDown = new AccountMenuDropDown(driver);
+		this.accountMenuDropDown = new AccountMenuDropDown();
 	}
 	public AccountMenuDropDown getAccountMenuDropDown() {
 		clickDropdown_account_menu_button();
 		return this.accountMenuDropDown;
+	}
+	//logo click
+	public HomePageCustomer clickLogo() {
+		this.getLogo().click();
+		return new HomePageCustomer(driver);
 	}
 	//drop down menu click
 	public WebElement getMyAccountButton() {
@@ -98,12 +165,83 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	public void clickMyWishListButton() {
 		this.getMyWishListButton().click();
 	}
-	public HomePage clickSignOutButton() {
+	public HomePageLogout clickSignOutButton() {
 		this.getSignOutButton().click();
-		return new HomePage(driver);
+		return new HomePageLogout(driver);
 		
 	}
-	
+//------------------------VerticalAccountMenu---------------------------
+	public WebElement getAccountDashboardLink() {
+		return getVerticalAccountMenu().getAccountDashboardLink();
+	}
+
+	public WebElement getAccountInformationLink() {
+		return getVerticalAccountMenu().getAccountInformationLink();
+	}
+
+	public WebElement getAdressBookLink() {
+		return getVerticalAccountMenu().getAdressBookLink();
+	}
+
+	public WebElement getMyDownloadableProductsLink() {
+		return getVerticalAccountMenu().getMyDownloadableProductsLink();
+	}
+
+	public WebElement getMyOrderLink() {
+		return getVerticalAccountMenu().getMyOrderLink();
+	}
+
+	public WebElement getNewsletterSubscriptionsLink() {
+		return getVerticalAccountMenu().getNewsletterSubscriptionsLink();
+	}
+
+	public WebElement getMyCreditCardsLink() {
+		return getVerticalAccountMenu().getMyCreditCardsLink();
+	}
+
+	public WebElement getMyProductReviewsLink() {
+		return getVerticalAccountMenu().getMyProductReviewsLink();
+	}
+
+	public WebElement getBillingAgreementsLink() {
+		return getVerticalAccountMenu().getBillingAgreementsLink();
+	}
+
+	public WebElement getMyWishListLink() {
+		return getVerticalAccountMenu().getMyWishListLink();
+	}
+	//click links
+	public AccountDashboardPage clickAccountDashboardLink() {
+		this.getAccountDashboardLink().click();
+		return new AccountDashboardPage(driver);
+	}
+	public void clickAccountInformationLink() {
+		this.getAccountInformationLink().click();
+	}
+	public void clickAdressBookLink() {
+		this.getAdressBookLink().click();
+	}
+	public void clickMyDownloadableProductsLink() {
+		this.getMyDownloadableProductsLink().click();
+	}
+	public void clickMyOrderLink() {
+		this.getMyOrderLink().click();
+	}
+	public void clickNewsletterSubscriptionsLink() {
+		this.getNewsletterSubscriptionsLink().click();
+	}
+	public void clickMyCreditCardsLink() {
+		this.getMyCreditCardsLink().click();
+	}
+	public void clickMyProductReviewsLink() {
+		this.getMyProductReviewsLink().click();
+	}
+	public void clickBillingAgreementsLink() {
+		this.getBillingAgreementsLink().click();
+	}
+	public void clickMyWishListLink() {
+		this.getMyWishListLink().click();
+	}
 	
 	
 }

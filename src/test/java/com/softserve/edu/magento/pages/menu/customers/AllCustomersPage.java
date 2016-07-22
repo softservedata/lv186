@@ -194,7 +194,7 @@ public class AllCustomersPage extends VerticalMenu {
 		this.customersLabel = driver.findElement(By.xpath(".//*[@class='page-title-wrapper']"));
 		this.addNewCustomerButton = driver.findElement(By.id("add"));
 		this.searchField = driver.findElement(By.xpath("(.//*[@id='fulltext'])[1]"));
-		this.filtersButton = driver.findElement(By.xpath(""));
+	//	this.filtersButton = driver.findElement(By.xpath(""));
 		this.defaultViewButton = driver.findElement(By.xpath("(//span[text()='Default View'])[1]"));
 		this.columnsButton = driver.findElement(By.xpath("(//span[text()='Columns'])[1]"));
 		this.exportButton = driver.findElement(By.xpath("(//span[text()='Export'])[2]"));
@@ -205,7 +205,7 @@ public class AllCustomersPage extends VerticalMenu {
 		this.howManyCustomersInListArePresentedField = driver.findElement(By.xpath("(//span[text()='records found'])[1]"));
 		this.selectAllButton = driver.findElement(By.xpath("//*[@for='60']"));
 		this.selectAllCustomersInListButton = driver.findElement(By.xpath("//*[@for='60']"));
-		this.selectFirstCustomer = driver.findElement(By.xpath(".//*[@id='idscheck20']")); //////////////////////////////////////////////////////////////////// CHANGE!!!!!!!!
+	//	this.selectFirstCustomer = driver.findElement(By.xpath(".//*[@id='idscheck20']")); //////////////////////////////////////////////////////////////////// CHANGE!!!!!!!!
 		this.howManyPagesAreInList = driver.findElement(By.id("29"));
 		this.idFielsInList = driver.findElement(By.xpath("(//span[text()='ID'])[2]"));
 		this.nameFieldInList = driver.findElement(By.xpath("(//span[text()='Name'])[2]"));

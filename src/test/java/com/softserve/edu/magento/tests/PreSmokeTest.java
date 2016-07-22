@@ -15,11 +15,17 @@ import com.magento.edu.customer.pages.HomePageLogout;
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
+import com.softserve.edu.magento.data.CustomerNewRepository;
 import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.ICustomerNewRegistration;
+import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
+import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
 import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
+import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
+import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage.Addresses;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.menu.products.CatalogPage;
 import com.softserve.edu.magento.tools.ListUtils;
@@ -60,21 +66,21 @@ public class PreSmokeTest {
 
     @DataProvider(parallel = true)
     public Object[][] smokeParameters(ITestContext context) {
-        return new Object[][] {
-            { ParameterUtils.get().updateParametersAll(
-                    ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
-                AdminUserRepository.get().adminBohdan() },
-            { ParameterUtils.get().updateParametersAll(
-                    ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
-                AdminUserRepository.get().adminBohdan() }
-                };
-//        return ListUtils.get().toMultiArray(
-//                ParameterUtils.get().updateParametersAll(
-//                        ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
-//                AdminUserRepository.get().adminBohdan());
+//        return new Object[][] {
+//            { ParameterUtils.get().updateParametersAll(
+//                    ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
+//                AdminUserRepository.get().adminMykhaylo() },
+//            { ParameterUtils.get().updateParametersAll(
+//                    ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+//                AdminUserRepository.get().adminMykhaylo() }
+//                };
+        return ListUtils.get().toMultiArray(
+                ParameterUtils.get().updateParametersAll(
+                        ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+                AdminUserRepository.get().adminMykhaylo());
     }
 
-    @Test(dataProvider = "smokeParameters")
+    //@Test(dataProvider = "smokeParameters")
     public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         // Precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -108,23 +114,20 @@ public class PreSmokeTest {
         //applicationAdmin.quit();
     }
     
-    //@Test(dataProvider = "smokeParameters")
+    @Test(dataProvider = "smokeParameters")
 	public void goToCustomerPage(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		Thread.sleep(1000);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		Thread.sleep(1000);
-		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
-		dashboardPage.clickMenuCustomers();
-		dashboardPage.clickMenuCustomersAllCustomers();
-		
+		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();		
 		Thread.sleep(1000);
-		//Assert.assertEquals(acp.getPageTitle(), acp.PAGE_TITLE);
-		//Assert.assertEquals(rncp.getPageTitleText(), rncp.PAGE_TITLE);
-
-		Thread.sleep(1000);
-		Thread.sleep(2000);
+		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
+		RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
+		Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
+		regNewCust.setCustomerDataInLoginForm(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
+		Thread.sleep(5000);
 		applicationAdmin.quit();
 	}
 

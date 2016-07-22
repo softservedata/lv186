@@ -35,31 +35,35 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	private WebElement dateOfBirfthInput;
 	private WebElement taxVatInput;
 	private WebElement genderButton;
+	private WebElement addNewAddressesButton;
 
 	public RegistrationNewCustomerPage(WebDriver driver) {
 		super(driver);
-		this.validLabelAboutSavedUser = driver.findElement(By.xpath("//div[text()='You saved the customer.']"));
-		this.newCustomerLabel = driver.findElement(By.id(".//header/div[1]/div/h1"));
+		// this.validLabelAboutSavedUser =
+		// driver.findElement(By.xpath("//div[text()='You saved the
+		// customer.']"));
+		this.newCustomerLabel = driver.findElement(By.cssSelector(".page-title"));
 		this.accountInformationButton = driver.findElement(By.id("tab_customer"));
 		this.addressesButton = driver.findElement(By.id("tab_address"));
 		this.backButton = driver.findElement(By.id("back"));
 		this.resetButton = driver.findElement(By.id("reset"));
 		this.saveAndContinueButton = driver.findElement(By.id("save_and_continue"));
 		this.saveCustomerButton = driver.findElement(By.id("save"));
-		this.groupSelectField = driver.findElement(By.id("TWR23U9"));
-		this.groupChangeBasedOnVatCheck = driver.findElement(By.id("ILI2GN1"));
-		this.prefixInput = driver.findElement(By.id("ADF8UIK"));
-		this.firstnameInput = driver.findElement(By.id("QDPN37B"));
-		this.middlenameInput = driver.findElement(By.id("BW710O7"));
-		this.lastnameInput = driver.findElement(By.id("U5SLE3W"));
-		this.sufixInput = driver.findElement(By.id("RWVQ34M"));
-		this.emailInput = driver.findElement(By.id("F9CYV8D"));
-		this.dateOfBirfthInput = driver.findElement(By.id("dp1468928262763"));
-		this.taxVatInput = driver.findElement(By.id("FM83BFQ"));
-		this.genderButton = driver.findElement(By.id("VNVFMC2"));
+		this.groupSelectField = driver.findElement(By.cssSelector("[name='customer[group_id]']"));
+		this.groupChangeBasedOnVatCheck = driver
+				.findElement(By.cssSelector("[name='customer[disable_auto_group_change]']"));
+		this.prefixInput = driver.findElement(By.cssSelector("[name='customer[prefix]']"));
+		this.firstnameInput = driver.findElement(By.cssSelector("[name='customer[firstname]']"));
+		this.middlenameInput = driver.findElement(By.cssSelector("[name='customer[middlename]']"));
+		this.lastnameInput = driver.findElement(By.cssSelector("[name='customer[lastname]']"));
+		this.sufixInput = driver.findElement(By.cssSelector("[name='customer[suffix]']"));
+		this.emailInput = driver.findElement(By.cssSelector("[name='customer[email]']"));
+		this.dateOfBirfthInput = driver.findElement(By.cssSelector("[name='customer[dob]']"));
+		this.taxVatInput = driver.findElement(By.cssSelector("[name='customer[taxvat]']"));
+		this.genderButton = driver.findElement(By.cssSelector("[name='customer[gender]']"));
 	}
 
-	private class Addresses {
+	public class Addresses {
 		private WebElement defaultBillingAddressCheckAddresses;
 		private WebElement defaultdShippingAddressCheckAddresses;
 		private WebElement stateInputAddresses;
@@ -95,6 +99,19 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 			this.vatNumberInputAddresses = driver.findElement(By.id("K8LDS6P"));
 			this.addNewAddressesButton = driver.findElement(By.xpath("//span[text()='Add New Addresses']"));
 		}
+
+	}
+
+	
+
+	private class AddNewAddress {
+		private WebElement addNewAddressesButton;
+
+		public AddNewAddress(WebDriver driver) {
+			super();
+			this.addNewAddressesButton = driver.findElement(By.xpath("//span[text()='Add New Addresses']"));
+		}
+
 	}
 
 	private class Countries {
@@ -482,16 +499,21 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		getAddNewAddressesButton().click();
 	}
 
+	public void addNewAddressButtonClick() {
+		addNewAddressesButton.click();
+
+	}
+
 	// functional createNewCustomer
 
-	public void setCustomerDataInLoginForm(ICustomerUser customer){
+	public void setCustomerDataInLoginForm(ICustomerUser customer) {
 		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
 		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
 		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
 		setDataInLastnameField(customer.getPersonalInfo().getLastname());
 		setDataInSufixField(customer.getPersonalInfo().getSuffix());
 		setDataInEmailField(customer.getSigninInfo().getEmail());
-	//	setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
 		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		saveCustomerButtonClick();
 	}
@@ -519,6 +541,17 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	public Countries countriesFieldAddressesClick() {
 		getCountry().click();
 		return new Countries(driver);
+	}
+
+	public AddNewAddress goToaddNewAddressesButton() {
+		getAddressesButton().click();
+		return new AddNewAddress(driver);
+	}
+
+	public Addresses goToAddressesPage() {
+		addressesButtonClick();
+		addNewAddressesButtonClick();
+		return new Addresses(driver);
 	}
 
 }

@@ -61,9 +61,6 @@ public class PreSmokeTestSignIn {
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
 	  
-	  //driver.get("http://192.168.195.210/magento");
-	  //HomePageLogout homePageLogout = new HomePageLogout(driver);
-	  
 	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
 	  
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
@@ -76,12 +73,14 @@ public class PreSmokeTestSignIn {
 			  Titles.ACCOUNT_DASHBOARD.toString());
 	  
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
+	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+	  applicationAdmin.load().successAdminLogin(AdminUserRepository.get().adminYaryna());
 	  
   }
   //@Test
-  public void testSignIn1_1() {
-	  driver.get("http://192.168.195.210/magento");
-	  HomePageLogout homePageLogout = new HomePageLogout(driver);
+  public void testSignIn1_1(ApplicationSources applicationSources) {
+	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
+	  HomePageLogout homePageLogout = applicationCustomer.load();
 	  
 	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
 	  
@@ -97,9 +96,9 @@ public class PreSmokeTestSignIn {
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
   }
   //@Test
-  public void testSignIn2() {
-	  driver.get("http://192.168.195.210/magento");
-	  HomePageLogout homePageLogout = new HomePageLogout(driver);
+  public void testSignIn2(ApplicationSources applicationSources) {
+	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
+	  HomePageLogout homePageLogout = applicationCustomer.load();
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
 	  UnsuccessfulSignInPage unsuccessfulSignInPage = signInPage.
 			  unsuccessfulSignIn(CustomerUserRepository.get().invalidUser());  
@@ -109,10 +108,10 @@ public class PreSmokeTestSignIn {
 			  ErrorMessageSignIn.INVALID_SIGNIN.toString());
   }
   //@Test
-  public void testCreateAccount1() {
+  public void testCreateAccount1(ApplicationSources applicationSources) {
 	  
-	  driver.get("http://192.168.195.210/magento");
-	  HomePageLogout homePageLogout = new HomePageLogout(driver);
+	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
+	  HomePageLogout homePageLogout = applicationCustomer.load();
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
 	  CreateAccountPage createAccountPage = signInPage.clickCreateAccountButton();
 	  
@@ -128,9 +127,9 @@ public class PreSmokeTestSignIn {
 			  Titles.YOU_ARE_SIGNED_OUT.toString());
   }
   //@Test
-  public void testCreateAccount2() {
-	  driver.get("http://192.168.195.210/magento");
-	  HomePageLogout homePageLogout = new HomePageLogout(driver);
+  public void testCreateAccount2(ApplicationSources applicationSources) {
+	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
+	  HomePageLogout homePageLogout = applicationCustomer.load();
 	  //CreateAccountPage createAccountPage = homePage.clickCreateAccountLink();
 	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
 			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());

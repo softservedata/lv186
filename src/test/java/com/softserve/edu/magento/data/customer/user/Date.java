@@ -83,6 +83,9 @@ public class Date implements IMonth,IDay,IYear,IBuild_Date,IDate{
 	public String getYear() {
 		return year;
 	}
+	public String getDateValue() {
+		return new String(this.getMonth()+"/"+this.getDay()+"/"+this.getYear());
+	}
 		
 }
 

@@ -109,7 +109,7 @@ public class AllCustomersPage extends VerticalMenu {
 		private WebElement edit;
 
 		public ActionsDropDownMenu(WebDriver driver) {
-			this.delete = driver.findElement(By.xpath("(//span[text()='Delete'])[3]"));
+			this.delete = driver.findElement(By.xpath("//span[text()='Delete']"));
 			this.subscribe = driver.findElement(By.xpath("(//span[text()='Subscribe to Newsletter'])[2]"));
 			this.unSubscribe = driver.findElement(By.xpath("(//span[text()='Unsubscribe from Newsletter'])[2]"));
 			this.assignCustomerGroup = driver.findElement(By.xpath("(//span[text()='Assign a Customer Group'])[2]"));
@@ -682,7 +682,7 @@ public class AllCustomersPage extends VerticalMenu {
 		getDefaultViewButton().click();
 		return new DefaultViewDropdownMenu(driver);
 	}
-	//--------------------------------------------
+	//------------------Yaryna Kharko update 23.07.2016--------------------------
 		public List<RowCustomerUser> getTableCustomerUser() {
 			List<WebElement> rows = driver.findElements(By.className("data-row"));
 			List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
@@ -723,6 +723,10 @@ public class AllCustomersPage extends VerticalMenu {
 			this.getSearchField().sendKeys(Keys.ENTER);
 			return new  AllCustomersPage(driver);
 		}
+		public void clickDeleteActions() {
+			goToActionsDropDownMenu().delete.click();
+		}
+		
 		public void deleteCustomerUser (ICustomerUser customerUser) throws InterruptedException {	
 			AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
 			
@@ -730,8 +734,8 @@ public class AllCustomersPage extends VerticalMenu {
 					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
 			checkCustomerUser(foundCustomerUsersByName);
 				Thread.sleep(3000);
-			CustomersPage.getActionsButton().click();
-			CustomersPage.getDelete().click();
+			//CustomersPage.getActionsButton().click();
+			CustomersPage.clickDeleteActions();
 			System.out.println("DELETE USER");
 		}
 		private class RowCustomerUser{

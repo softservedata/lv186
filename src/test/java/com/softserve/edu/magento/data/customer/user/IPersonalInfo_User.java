@@ -18,4 +18,5 @@ public interface IPersonalInfo_User {
 	public String getSuffix();
 	public IDate getBirthdayDate();
 	public String getGender();
+	public String getFullName();
 }

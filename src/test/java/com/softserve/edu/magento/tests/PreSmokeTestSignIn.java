@@ -25,24 +25,19 @@ import com.softserve.edu.magento.pages.customer.UnsuccessfulSignInPage.ErrorMess
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage.ErrorMessage;
 import com.softserve.edu.magento.pages.customer.components.Header.Titles;
+import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
 public class PreSmokeTestSignIn {
-	WebDriver driver;
-  @BeforeMethod
-  public void beforeMethod() {
-	  //driver = new FirefoxDriver();
-	  //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-  }
 
   @AfterMethod
   public void afterMethod() {
-	  //driver.quit();
+	  ApplicationCustomer.quitAll();
   }
   @AfterClass
   void tearDown() throws Exception {
-	  ApplicationCustomer.quitAll();
+	  //ApplicationCustomer.quitAll();
   }
   @DataProvider //(parallel = true)
   public Object[][] smokeParameters(ITestContext context) {
@@ -53,24 +48,24 @@ public class PreSmokeTestSignIn {
 
   @Test(dataProvider = "smokeParameters")
   public void testSignIn1(ApplicationSources applicationSources) {
-	  
+	  //prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
-	  
+	  //confirm that home page is opened 
 	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
-	  
+	  //go to the signIn page 
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
-	  
+	  //confirm that signIn page is opened
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
-	  
+	  //succsess log in user
+	  //go to the AccountDashboard Page
 	  AccountDashboardPage accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().User());  
-	  
+	  //confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
-	  
+	  // Sign Out user
+	  //go to the home page
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
-	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
-	  applicationAdmin.load().successAdminLogin(AdminUserRepository.get().adminYaryna());
 	  
   }
   //@Test
@@ -121,6 +116,13 @@ public class PreSmokeTestSignIn {
 	  
 	  Assert.assertEquals(homePageLogout.getTitleText(),
 			  Titles.YOU_ARE_SIGNED_OUT.toString());
+	  
+	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+	  
+	  AllCustomersPage allCustomersPage = applicationAdmin.load()
+			  .successAdminLogin(AdminUserRepository.get().adminYaryna())
+			  .gotoAllCustomersPage();
+	  
   }
   //@Test
   public void testCreateAccount2(ApplicationSources applicationSources) {

@@ -683,88 +683,90 @@ public class AllCustomersPage extends VerticalMenu {
 		return new DefaultViewDropdownMenu(driver);
 	}
 	//--------------------------------------------
-	public List<RowCustomerUser> getTableCustomerUser() {
-		List<WebElement> rows = driver.findElements(By.className("data-row"));
-		List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
-		for(int i=0;i<rows.size();i++) {
-		rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
+		public List<RowCustomerUser> getTableCustomerUser() {
+			List<WebElement> rows = driver.findElements(By.className("data-row"));
+			List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
+			for(int i=0;i<rows.size();i++) {
+			rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
+			}
+			return rowsCustomerUserTable;
 		}
-		return rowsCustomerUserTable;
-	}
-	public void checkCustomerUser (RowCustomerUser rowCustomerUser) {
-		rowCustomerUser.getName().click();
-		System.out.println("checked USER"+ rowCustomerUser.getNameText());
-	}
-	public void checkCustomerUser (List<RowCustomerUser> rowsCustomerUser) {
-		for(int i=0;i<rowsCustomerUser.size();i++) {
-			checkCustomerUser(rowsCustomerUser.get(i));			
+		public void checkCustomerUser (RowCustomerUser rowCustomerUser) {
+			rowCustomerUser.getName().click();
+			System.out.println("checked USER"+ rowCustomerUser.getNameText());
 		}
-	}
-	public List<RowCustomerUser> findCustomerUsersByName(List<RowCustomerUser> rowsCustomerUser,ICustomerUser customerUser) {
-		List<RowCustomerUser> foundRowCustomerUser = new ArrayList<RowCustomerUser>();
-		String username = customerUser.getPersonalInfo().getFullName();
-		for(int i=0;i<rowsCustomerUser.size();i++) {
-			if(rowsCustomerUser.get(i).getNameText().equals(username)) {
-				foundRowCustomerUser.add(rowsCustomerUser.get(i));
-			}	
+		public void checkCustomerUser (List<RowCustomerUser> rowsCustomerUser) {
+			for(int i=0;i<rowsCustomerUser.size();i++) {
+				checkCustomerUser(rowsCustomerUser.get(i));			
+			}
 		}
-		return foundRowCustomerUser;
-		
-	}
-	public void sendKeysSearchCustomerField(String search) {
-		this.getSearchField().sendKeys(search);	
-	}
-	public void clearSendKeysSearchCustomerField(String search) {
-		this.getSearchField().clear();
-		this.sendKeysSearchCustomerField(search);
-	}
-	public AllCustomersPage doCustomerSearch(String search) {
-		this.clearSendKeysSearchCustomerField(search);
-		this.getSearchField().sendKeys(Keys.ENTER);
-		return new  AllCustomersPage(driver);
-	}
-	public void deleteCustomerUser (ICustomerUser customerUser) throws InterruptedException {	
-		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
-		
-		List<RowCustomerUser> foundCustomerUsersByName = 
-				findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
-		checkCustomerUser(foundCustomerUsersByName);
-			Thread.sleep(3000);
-		CustomersPage.getActionsButton().click();
-		CustomersPage.getDelete().click();
-		System.out.println("DELETE USER");
-	}
-	private class RowCustomerUser{
-		//private static final String data_grid_cell_content = "By.className('data-grid-cell-content')";
-		WebElement check;
-		WebElement name;
-		WebElement email;
-		RowCustomerUser(WebElement row) {
-			this.check = row.findElement(By.className("data-grid-checkbox-cell"));
-			this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
-			this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
+		public List<RowCustomerUser> findCustomerUsersByName(List<RowCustomerUser> rowsCustomerUser,ICustomerUser customerUser) {
+			List<RowCustomerUser> foundRowCustomerUser = new ArrayList<RowCustomerUser>();
+			String username = customerUser.getPersonalInfo().getFullName();
+			for(int i=0;i<rowsCustomerUser.size();i++) {
+				if(rowsCustomerUser.get(i).getNameText().equals(username)) {
+					foundRowCustomerUser.add(rowsCustomerUser.get(i));
+				}	
+			}
+			return foundRowCustomerUser;
+			
 		}
-		
-		public WebElement getCheck() {
-			return check;
+		public void sendKeysSearchCustomerField(String search) {
+			this.getSearchField().sendKeys(search);	
+		}
+		public void clearSendKeysSearchCustomerField(String search) {
+			this.getSearchField().clear();
+			this.sendKeysSearchCustomerField(search);
+		}
+		public AllCustomersPage doCustomerSearch(String search) {
+			this.clearSendKeysSearchCustomerField(search);
+			this.getSearchField().sendKeys(Keys.ENTER);
+			return new  AllCustomersPage(driver);
+		}
+		public void deleteCustomerUser (ICustomerUser customerUser) throws InterruptedException {	
+			AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+			
+			List<RowCustomerUser> foundCustomerUsersByName = 
+					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
+			checkCustomerUser(foundCustomerUsersByName);
+				Thread.sleep(3000);
+			CustomersPage.getActionsButton().click();
+			CustomersPage.getDelete().click();
+			System.out.println("DELETE USER");
+		}
+		private class RowCustomerUser{
+			//private static final String data_grid_cell_content = "By.className('data-grid-cell-content')";
+			WebElement check;
+			WebElement name;
+			WebElement email;
+			RowCustomerUser(WebElement row) {
+				this.check = row.findElement(By.className("data-grid-checkbox-cell"));
+				this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
+				this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
+			}
+			
+			public WebElement getCheck() {
+				return check;
+			}
+
+			public WebElement getName() {
+				return name;
+			}
+
+			public WebElement getEmail() {
+				return email;
+			}
+
+			public String getNameText() {
+				String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
+				return nameText;
+			}
+			public String getEmailText() {
+				String emailText = getName().findElement(By.className("data-grid-cell-content")).getText();
+				return emailText;
+			}
 		}
 
-		public WebElement getName() {
-			return name;
-		}
-
-		public WebElement getEmail() {
-			return email;
-		}
-
-		public String getNameText() {
-			String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
-			return nameText;
-		}
-		public String getEmailText() {
-			String emailText = getName().findElement(By.className("data-grid-cell-content")).getText();
-			return emailText;
-		}
-	}
+	
 
 }

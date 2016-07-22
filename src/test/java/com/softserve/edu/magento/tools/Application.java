@@ -26,22 +26,24 @@ public abstract class Application<TStartPage> {
     protected abstract TStartPage getStartPage(WebDriver driver);
 
     private void startBrowser(){
-        WebDriver driver = null;
-        for (BrowsersList browser : BrowsersList.values()) {
-            if (browser.toString().toLowerCase()
-                    .contains(applicationSources.getBrowserName().toLowerCase())) {
-                driver = browser.getWebDriver(applicationSources.getDriverPath());
-                break;
+        if (getWebDriver() == null) {
+            WebDriver driver = null;
+            for (BrowsersList browser : BrowsersList.values()) {
+                if (browser.toString().toLowerCase()
+                        .contains(applicationSources.getBrowserName().toLowerCase())) {
+                    driver = browser.getWebDriver(applicationSources.getDriverPath());
+                    break;
+                }
             }
+            if (driver == null) {
+                driver = BrowsersList.FIREFOX_DEFAULT.getWebDriver(null);
+            }
+            driver.manage().timeouts().implicitlyWait(applicationSources.getImplicitTimeOut(), TimeUnit.SECONDS);
+            // TODO setup waits
+            //driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
+            //driver.manage().timeouts().setScriptTimeout(30L, TimeUnit.SECONDS);
+            drivers.put(Thread.currentThread().getId(), driver);
         }
-        if (driver == null) {
-            driver = BrowsersList.FIREFOX_DEFAULT.getWebDriver(null);
-        }
-        driver.manage().timeouts().implicitlyWait(applicationSources.getImplicitTimeOut(), TimeUnit.SECONDS);
-        // TODO setup waits
-        //driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
-        //driver.manage().timeouts().setScriptTimeout(30L, TimeUnit.SECONDS);
-        drivers.put(Thread.currentThread().getId(), driver);
     }
     
     protected WebDriver getWebDriver() {
@@ -53,13 +55,20 @@ public abstract class Application<TStartPage> {
     }
 
     public TStartPage load() {
+        //System.out.println("+++applicationSources.getLoadUrl() = "+applicationSources.getLoadUrl());
         getWebDriver().get(applicationSources.getLoadUrl());
         return getStartPage(getWebDriver());
     }
 
     public TStartPage logout() {
-        getWebDriver().get(applicationSources.getLogoutUrl());
-        return getStartPage(getWebDriver());
+        TStartPage result = null;
+        if ((getWebDriver() != null) 
+                && (applicationSources.getLogoutUrl() != null)
+                && (!applicationSources.getLogoutUrl().isEmpty())) {
+            getWebDriver().get(applicationSources.getLogoutUrl());
+            result = getStartPage(getWebDriver());
+        }
+        return result;
     }
 
     public void close() {

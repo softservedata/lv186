@@ -17,7 +17,7 @@ public class ApplicationCustomer extends Application<HomePageLogout> {
         return instance;
     }
 
-    // TODO
+    @Override
     protected HomePageLogout getStartPage(WebDriver driver) {
         return new HomePageLogout(driver);
     }

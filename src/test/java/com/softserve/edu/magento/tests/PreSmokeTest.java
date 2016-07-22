@@ -7,15 +7,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.magento.edu.customer.pages.HomePageLogout;
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
+import com.softserve.edu.magento.pages.ApplicationCustomer;
 import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.menu.products.CatalogPage;
@@ -55,15 +58,23 @@ public class PreSmokeTest {
         driver.quit();
     }
 
-    @DataProvider //(parallel = true)
+    @DataProvider(parallel = true)
     public Object[][] smokeParameters(ITestContext context) {
-        return ListUtils.get().toMultiArray(
-                ParameterUtils.get().updateParametersAll(
-                        ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
-                AdminUserRepository.get().adminBohdan());
+        return new Object[][] {
+            { ParameterUtils.get().updateParametersAll(
+                    ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
+                AdminUserRepository.get().adminBohdan() },
+            { ParameterUtils.get().updateParametersAll(
+                    ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+                AdminUserRepository.get().adminBohdan() }
+                };
+//        return ListUtils.get().toMultiArray(
+//                ParameterUtils.get().updateParametersAll(
+//                        ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+//                AdminUserRepository.get().adminBohdan());
     }
 
-   // @Test(dataProvider = "smokeParameters")
+    @Test(dataProvider = "smokeParameters")
     public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         // Precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -77,7 +88,7 @@ public class PreSmokeTest {
         Thread.sleep(1000);
         // Check
         Assert.assertEquals(dashboardPage.getPageTitleText(), DashboardPage.PAGE_TITLE);
-        Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$0.00");
+        Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
         //
         // Test Steps
         CatalogPage catalogPage = dashboardPage.gotoCatalogPage();
@@ -86,11 +97,18 @@ public class PreSmokeTest {
         Assert.assertEquals(catalogPage.getPageTitleText(), CatalogPage.PAGE_TITLE);
         Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read name from ProductRepository
         // Return to Previous State
+        //System.out.println("Logout URL1 = " + ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl());
         catalogPage.logout();
+        //applicationAdmin.logout();
+        //System.out.println("Logout URL2 = " + ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl());
         Thread.sleep(2000);
-        applicationAdmin.quit();
+        ApplicationCustomer applicationCustomer = ApplicationCustomer.get(ApplicationSourcesRepository.getFirefoxLocalhostCustomer());
+        HomePageLogout homePageLogout = applicationCustomer.load();
+        Thread.sleep(2000);
+        //applicationAdmin.quit();
     }
-    @Test(dataProvider = "smokeParameters")
+    
+    //@Test(dataProvider = "smokeParameters")
 	public void goToCustomerPage(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -110,7 +128,11 @@ public class PreSmokeTest {
 		applicationAdmin.quit();
 	}
 
-	
+    @AfterMethod
+    public void afterMethod() {
+        ApplicationAdmin.signout();
+        //ApplicationAdmin.quitAll();
+    }
 
     @AfterClass
     void tearDown() throws Exception {

@@ -148,8 +148,15 @@ public abstract class ATopPage {
     
     public AdminLoginPage logout() {
         clickSignOut();
+        clearLogoutUrl();
         // Return a new page object representing the destination.
         return new AdminLoginPage(driver);
+    }
+
+    private void clearLogoutUrl() {
+        if (ApplicationAdmin.getCurrentApplicationSources() != null) { 
+            ApplicationAdmin.getCurrentApplicationSources().setLogoutUrl(new String());
+        }
     }
 
 }

@@ -2,8 +2,8 @@ package com.softserve.edu.magento.pages;
 
 import org.openqa.selenium.WebDriver;
 
-import com.magento.edu.customer.pages.HomePageLogout;
 import com.softserve.edu.magento.data.ApplicationSources;
+import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.tools.Application;
 
 public class ApplicationCustomer extends Application<HomePageLogout> {

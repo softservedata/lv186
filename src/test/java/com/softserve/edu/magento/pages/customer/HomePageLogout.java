@@ -1,8 +1,8 @@
-package com.magento.edu.customer.pages;
+package com.softserve.edu.magento.pages.customer;
 
 import org.openqa.selenium.WebDriver;
 
-import com.magento.edu.customer.components.HeaderPanelLogout;
+import com.softserve.edu.magento.pages.customer.components.HeaderPanelLogout;
 
 public class HomePageLogout extends HeaderPanelLogout{
 	public HomePage homePage;

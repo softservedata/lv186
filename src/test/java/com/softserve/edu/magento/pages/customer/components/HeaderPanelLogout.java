@@ -1,12 +1,13 @@
-package com.magento.edu.customer.components;
+package com.softserve.edu.magento.pages.customer.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.magento.edu.customer.pages.CreateAccountPage;
-import com.magento.edu.customer.pages.HomePageLogout;
-import com.magento.edu.customer.pages.SignInPage;
+import com.softserve.edu.magento.pages.customer.CreateAccountPage;
+import com.softserve.edu.magento.pages.customer.HomePageLogout;
+import com.softserve.edu.magento.pages.customer.SignInPage;
+
 
 public abstract class HeaderPanelLogout extends Header{
 	

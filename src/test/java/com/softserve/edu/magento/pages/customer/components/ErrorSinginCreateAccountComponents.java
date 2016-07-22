@@ -1,4 +1,5 @@
-package com.magento.edu.customer.components;
+
+package com.softserve.edu.magento.pages.customer.components;
 
 import java.util.List;
 

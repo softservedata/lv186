@@ -1,9 +1,7 @@
 package com.softserve.edu.magento.tests;
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -12,23 +10,21 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.magento.edu.customer.components.Header.Titles;
-import com.magento.edu.customer.pages.AccountDashboardPage;
-import com.magento.edu.customer.pages.CreateAccountPage;
-import com.magento.edu.customer.pages.HomePageLogout;
-import com.magento.edu.customer.pages.SignInPage;
-import com.magento.edu.customer.pages.UnsuccessfulSignInPage;
-import com.magento.edu.customer.pages.UnsuccessfulSignInPage.ErrorMessageSignIn;
-import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage;
-import com.magento.edu.customer.pages.Unsuccessful_CreateAccountPage.ErrorMessage;
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
-import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
-import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.customer.AccountDashboardPage;
+import com.softserve.edu.magento.pages.customer.CreateAccountPage;
+import com.softserve.edu.magento.pages.customer.HomePageLogout;
+import com.softserve.edu.magento.pages.customer.SignInPage;
+import com.softserve.edu.magento.pages.customer.UnsuccessfulSignInPage;
+import com.softserve.edu.magento.pages.customer.UnsuccessfulSignInPage.ErrorMessageSignIn;
+import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage;
+import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage.ErrorMessage;
+import com.softserve.edu.magento.pages.customer.components.Header.Titles;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 

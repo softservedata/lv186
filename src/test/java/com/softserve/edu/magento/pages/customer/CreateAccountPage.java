@@ -1,14 +1,14 @@
-package com.magento.edu.customer.pages;
+package com.softserve.edu.magento.pages.customer;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.magento.edu.customer.components.HeaderPanelLogout;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.data.customer.user.IPersonalInfo_User;
 import com.softserve.edu.magento.data.customer.user.ISigninInfo_User;
+import com.softserve.edu.magento.pages.customer.components.HeaderPanelLogout;
 
 
 public class CreateAccountPage extends HeaderPanelLogout{

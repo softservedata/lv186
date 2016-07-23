@@ -3,10 +3,13 @@ package com.softserve.edu.magento.pages.menu.customers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.VerticalMenu;
@@ -684,6 +687,7 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 	//------------------Yaryna Kharko update 23.07.2016--------------------------
 		public List<RowCustomerUser> getTableCustomerUser() {
+			//TODO when there are more that 1 pagetable
 			List<WebElement> rows = driver.findElements(By.className("data-row"));
 			List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
 			for(int i=0;i<rows.size();i++) {
@@ -703,8 +707,10 @@ public class AllCustomersPage extends VerticalMenu {
 		public List<RowCustomerUser> findCustomerUsersByName(List<RowCustomerUser> rowsCustomerUser,ICustomerUser customerUser) {
 			List<RowCustomerUser> foundRowCustomerUser = new ArrayList<RowCustomerUser>();
 			String username = customerUser.getPersonalInfo().getFullName();
+			String email = customerUser.getSigninInfo().getEmail();
 			for(int i=0;i<rowsCustomerUser.size();i++) {
-				if(rowsCustomerUser.get(i).getNameText().equals(username)) {
+				if(rowsCustomerUser.get(i).getNameText().equals(username) && 
+						rowsCustomerUser.get(i).getEmailText().equals(email)) {
 					foundRowCustomerUser.add(rowsCustomerUser.get(i));
 				}	
 			}
@@ -732,14 +738,77 @@ public class AllCustomersPage extends VerticalMenu {
 			
 			List<RowCustomerUser> foundCustomerUsersByName = 
 					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
+			if(foundCustomerUsersByName.size()>0) {
 			checkCustomerUser(foundCustomerUsersByName);
-				Thread.sleep(3000);
-			//CustomersPage.getActionsButton().click();
 			CustomersPage.clickDeleteActions();
-			System.out.println("DELETE USER");
+			 
+			this.getConfirmDeleteWindow().clickButtonOk();
+			
+			}
 		}
+		
+		public List<RowCustomerUser> findCustomersUser(ICustomerUser customerUser) {
+			AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+			List<RowCustomerUser> foundCustomerUsersByName = 
+					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
+			return foundCustomerUsersByName;
+		}
+		public Boolean confirmCustomerUserIsCreated(ICustomerUser customerUser) {
+			if ( this.findCustomersUser(customerUser).size() > 0 ) {
+				return true;
+			} else 
+				return false;
+		}
+		public Boolean confirmAlreadyExistCustomerUserIsCreated(ICustomerUser customerUser) {
+			if ( this.findCustomersUser(customerUser).size() >= 2 ) {
+				return true;
+			} else 
+				return false;
+		}
+		public ConfirmDeleteWindow getConfirmDeleteWindow() {
+			return new ConfirmDeleteWindow();
+		}
+		//--------------------ConfirmDeleteWindow----------------------------
+		private class ConfirmDeleteWindow {
+			private WebElement window;
+			private WebElement buttonCancel;
+			private WebElement buttonOk;
+			private WebElement exit;
+			public ConfirmDeleteWindow() {
+				WebDriverWait wait = new WebDriverWait(driver, 10);
+				this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
+				
+				this.buttonOk = driver.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
+				this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
+				this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
+			}
+			public WebElement getWindow() {
+				return window;
+			}
+			public WebElement getButtonCancel() {
+				return buttonCancel;
+			}
+			public WebElement getButtonOk() {
+				return buttonOk;
+			}
+			public WebElement getExit() {
+				return exit;
+			}
+			//click 
+			public void clickButtonCancel() {
+				this.getButtonCancel().click();
+			}
+			public AllCustomersPage clickButtonOk() {
+				this.getButtonOk().click();
+				return new AllCustomersPage(driver);
+			}
+			public void clickExit() {
+				this.getExit().click();
+			}
+			
+		}
+		//--------------------RowCustomerUser----------------------------
 		private class RowCustomerUser{
-			//private static final String data_grid_cell_content = "By.className('data-grid-cell-content')";
 			WebElement check;
 			WebElement name;
 			WebElement email;
@@ -766,7 +835,7 @@ public class AllCustomersPage extends VerticalMenu {
 				return nameText;
 			}
 			public String getEmailText() {
-				String emailText = getName().findElement(By.className("data-grid-cell-content")).getText();
+				String emailText = getEmail().findElement(By.className("data-grid-cell-content")).getText();
 				return emailText;
 			}
 		}

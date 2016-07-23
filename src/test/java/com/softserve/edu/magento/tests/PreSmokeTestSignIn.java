@@ -46,7 +46,7 @@ public class PreSmokeTestSignIn {
                       ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context));
   }
 
-  @Test(dataProvider = "smokeParameters")
+  //@Test(dataProvider = "smokeParameters")
   public void testSignIn1(ApplicationSources applicationSources) {
 	  //prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
@@ -98,8 +98,8 @@ public class PreSmokeTestSignIn {
 	  Assert.assertEquals(unsuccessfulSignInPage.getErrorMessageText(),
 			  ErrorMessageSignIn.INVALID_SIGNIN.toString());
   }
-  //@Test
-  public void testCreateAccount1(ApplicationSources applicationSources) {
+  @Test(dataProvider = "smokeParameters")
+  public void testCreateAccount1(ApplicationSources applicationSources) throws InterruptedException {
 	  
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
@@ -122,9 +122,10 @@ public class PreSmokeTestSignIn {
 	  AllCustomersPage allCustomersPage = applicationAdmin.load()
 			  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 			  .gotoAllCustomersPage();
+	  allCustomersPage.deleteCustomerUser(CustomerUserRepository.get().newUser());
 	  
   }
-  //@Test
+  @Test(dataProvider = "smokeParameters")
   public void testCreateAccount2(ApplicationSources applicationSources) {
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
@@ -134,6 +135,15 @@ public class PreSmokeTestSignIn {
 	  
 	  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorMessageText(),
 			  ErrorMessage.ALREADY_EXIST_ACCOUNT.toString());
+	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+	  
+	  
+	  AllCustomersPage allCustomersPage = applicationAdmin.load()
+			  .successAdminLogin(AdminUserRepository.get().adminYaryna())
+			  .gotoAllCustomersPage();
+	  
+	  Assert.assertFalse(allCustomersPage
+			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().User()));
 	  
   }
 }

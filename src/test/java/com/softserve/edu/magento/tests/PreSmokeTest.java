@@ -19,7 +19,7 @@ import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
-import com.softserve.edu.magento.pages.ProductCatalogPage;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;

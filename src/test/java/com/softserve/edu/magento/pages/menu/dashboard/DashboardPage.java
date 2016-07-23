@@ -110,11 +110,11 @@ public class DashboardPage extends VerticalMenu {
         this.shipping = driver.findElement(By.
         		xpath("//span[contains(text(),'Shipping')]"));
         this.shippingValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Shipping')]/following-sibling::strong[@class='price']"));
+        		xpath("//span[contains(text(),'Shipping')]/following-sibling::strong//span[@class='price']"));
         this.quantity = driver.findElement(By.
         		xpath("//span[contains(text(),'Quantity')]"));
         this.quantityValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Quantity')]/following-sibling::strong//span[@class='price']"));
+        		xpath("//span[contains(text(),'Quantity')]/following-sibling::strong[@class='price']"));
         this.reloadData = driver.findElement(By.
         		cssSelector("button.action-primary"));
         this.bestsellersTab = driver.findElement(By.
@@ -360,4 +360,7 @@ public class DashboardPage extends VerticalMenu {
 	public void clickReloadData() {
 		getReloadData().click();
 	}
+	
+	// Functional Business Logic
+
 }

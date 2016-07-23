@@ -693,7 +693,16 @@ public class AllCustomersPage extends VerticalMenu {
 			for(int i=0;i<rows.size();i++) {
 			rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
 			}
-			return rowsCustomerUserTable;
+			return rowsCustomerUserTable;	
+		}
+		public List<String> getNameColumn() {
+			List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
+			List<String> usernames = new ArrayList<String>();
+			for(int i=0;i<rowsCustomerUserTable.size();i++) {
+				usernames.add(rowsCustomerUserTable.get(i).getNameText());
+				System.out.println(rowsCustomerUserTable.get(i).getNameText());
+				}
+			return usernames;
 		}
 		public void checkCustomerUser (RowCustomerUser rowCustomerUser) {
 			rowCustomerUser.getName().click();

@@ -110,7 +110,7 @@ public class DashboardPage extends VerticalMenu {
         this.shipping = driver.findElement(By.
         		xpath("//span[contains(text(),'Shipping')]"));
         this.shippingValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Shipping')]/following-sibling::strong//span[@class='price']"));
+        		xpath("//span[contains(text(),'Shipping')]/following-sibling::strong[@class='price']"));
         this.quantity = driver.findElement(By.
         		xpath("//span[contains(text(),'Quantity')]"));
         this.quantityValue = driver.findElement(By.

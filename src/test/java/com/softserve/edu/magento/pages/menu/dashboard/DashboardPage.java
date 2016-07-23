@@ -280,33 +280,57 @@ public class DashboardPage extends VerticalMenu {
 	}
 
 	public WebElement getReloadMessage() {
-		clickReloadData();
-		this.reloadMessage = driver.findElement(By.
-				cssSelector(".message.message-success.success"));
-		return this.reloadMessage;
+		DashboardPage page = refreshPage();
+		return page.reloadMessage;
 	}
     
     
     // get Data Business Logic
     
-    public String getLifeTimeSalesValueText() {
-        return getLifeTimeSalesValue().getText();
-    }
-    public String getAverageOrderValueText() {
-        return getAverageOrderValue().getText();
-    }
-    public String getRevenueValueText() {
-        return getRevenueValue().getText();
-    }
-    public String getTaxValueText() {
-        return getTaxValue().getText();
-    }
-    public String getShippingValueText() {
-        return getShippingValue().getText();
-    }
-    public String getQuantityValueText() {
-        return getQuantityValue().getText();
-    }
+
+	public List<WebElement> getBestsellersRecords() {
+		clickBestsellersTab();
+		return bestsellersRecords;
+	}
+
+	public List<WebElement> getMostViewedProductsRecords() {
+		clickMostViewedProductsTab();
+		return mostViewedProductsRecords;
+	}
+
+	public List<WebElement> getNewCustomersRecords() {
+		clickNewCustomersTab();
+		return newCustomersRecords;
+	}
+
+	public List<WebElement> getCustomersRecords() {
+		clickCustomersTab();
+		return customersRecords;
+	}
+
+	public String getLifeTimeSalesValueText() {
+		return getLifeTimeSalesValue().getText();
+	}
+
+	public String getAverageOrderValueText() {
+		return getAverageOrderValue().getText();
+	}
+
+	public String getRevenueValueText() {
+		return getRevenueValue().getText();
+	}
+
+	public String getTaxValueText() {
+		return getTaxValue().getText();
+	}
+
+	public String getShippingValueText() {
+		return getShippingValue().getText();
+	}
+
+	public String getQuantityValueText() {
+		return getQuantityValue().getText();
+	}
     
     
     // set Data PageObject
@@ -361,6 +385,12 @@ public class DashboardPage extends VerticalMenu {
 		getReloadData().click();
 	}
 	
-	// Functional Business Logic
-
+	//  Business Logic
+	public DashboardPage refreshPage() {
+		clickReloadData();
+		DashboardPage page = new DashboardPage(driver);
+		page.reloadMessage = driver.findElement(By
+				.cssSelector(".message.message-success.success"));
+		return page;
+	}
 }

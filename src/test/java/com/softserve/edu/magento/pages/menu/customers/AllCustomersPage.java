@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.VerticalMenu;
+import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 public class AllCustomersPage extends VerticalMenu {
 	public final static String PAGE_TITLE = "Customers";
 	private boolean isWebElementFound = false;
@@ -61,6 +62,7 @@ public class AllCustomersPage extends VerticalMenu {
 	private WebElement dateOfBirdthFieldInList;
 	private WebElement taxVatNumberFieldInList;
 	private WebElement genderFieldInList;
+	private WebElement clearAll;
 	// written by Andrii
 	private List<WebElement> editList;
 
@@ -443,6 +445,10 @@ public class AllCustomersPage extends VerticalMenu {
 	// Data PageObject
 
 
+	public WebElement getClearAllButton() {
+		return this.clearAll;
+	}
+	
 	public WebElement getCustomersLabel() {
 		return this.customersLabel;
 	}
@@ -701,6 +707,10 @@ public class AllCustomersPage extends VerticalMenu {
 
 
 	// click for main class
+	
+	public void clearAllButtonClick(){
+		getClearAllButton().click();
+	}
 
 	public void allCustomersLabelClick() {
 		getCustomersLabel().click();
@@ -718,7 +728,9 @@ public class AllCustomersPage extends VerticalMenu {
 
 	public void enterDataInSearchField(String text) {
 		searchField.clear();
-		searchField.sendKeys(text);
+		searchField.sendKeys(text, Keys.ENTER);
+		refreshAllCustomersPage();
+		clearAllButtonClick();
 	}
 
 	// functional
@@ -741,6 +753,14 @@ public class AllCustomersPage extends VerticalMenu {
 	public DefaultViewDropdownMenu goToDefaultViewDropdownMenu() {
 		getDefaultViewButton().click();
 		return new DefaultViewDropdownMenu(driver);
+	}
+	
+//  Business Logic
+	public AllCustomersPage refreshAllCustomersPage() {
+		AllCustomersPage page = new AllCustomersPage(driver);
+		page.clearAll = driver.findElement(By
+				.xpath("//button[contains(text(), 'Clear all')]"));
+		return page;
 	}
 	
 

@@ -37,6 +37,16 @@ public class CustomerSmokeTests {
 						AdminUserRepository.get().adminMykhaylo());
 	}
 
+	//@Test(dataProvider = "smokeParameters")
+	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+		// Precondition
+		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);		
+		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);	
+		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();		
+		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
+		Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
+		applicationAdmin.quit();
+	}
 	// @Test(dataProvider = "smokeParameters")
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
@@ -64,31 +74,14 @@ public class CustomerSmokeTests {
 	public void searchCustomerInTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-		Thread.sleep(1000);
-		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		Thread.sleep(1000);
+		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);	
 		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
-		Thread.sleep(1000);
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		Assert.assertTrue(acp
 				.findCustomerInTheListAfterSearch(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide()));
-		Thread.sleep(5000);
 		applicationAdmin.quit();
 	}
 
-	 @Test(dataProvider = "smokeParameters")
-	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-		// Precondition
-		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-		Thread.sleep(1000);
-		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		Thread.sleep(1000);
-		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
-		Thread.sleep(1000);
-		Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
-		Thread.sleep(5000);
-		applicationAdmin.quit();
-	}
 
 
 	  // @Test(dataProvider = "smokeParameters")
@@ -98,7 +91,8 @@ public class CustomerSmokeTests {
 			Thread.sleep(1000);
 			DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 			Thread.sleep(1000);
-			AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();		
+			AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();	
+			Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 			Thread.sleep(1000);
 			acp.goToColumnsMenuDropdown();
 			Thread.sleep(5000);

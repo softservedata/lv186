@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.magento.data.ICustomerNewRegistration;
+
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.VerticalMenu;
 
@@ -506,7 +506,7 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 
 	// functional createNewCustomer
 
-	public void setCustomerDataInLoginForm(ICustomerUser customer) {
+	public AllCustomersPageAfterSuccesRegistration setCustomerDataInLoginForm(ICustomerUser customer) {
 		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
 		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
 		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
@@ -516,6 +516,7 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
 		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		saveCustomerButtonClick();
+		return new AllCustomersPageAfterSuccesRegistration(driver);
 	}
 
 	public void setCustomerDataInAddressesForm(ICustomerUser customer) {
@@ -533,10 +534,9 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		setDataInVatNumberInputAddresses(customer.getContactInfo().getVatNumber());
 	}
 
-	public AllCustomersPage goToAllCustomersPageAfterSavingUser() {
-		getSaveCustomerButton().click();
-		return new AllCustomersPage(driver);
-	}
+
+	
+
 
 	public Countries countriesFieldAddressesClick() {
 		getCountry().click();

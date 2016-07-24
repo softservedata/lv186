@@ -1,9 +1,18 @@
 package com.softserve.edu.magento.pages.menu.customers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.softserve.edu.magento.data.customer.user.ICustomerUser;
+import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.VerticalMenu;
 
 public class AllCustomersPage extends VerticalMenu {
@@ -51,6 +60,8 @@ public class AllCustomersPage extends VerticalMenu {
 	private WebElement dateOfBirdthFieldInList;
 	private WebElement taxVatNumberFieldInList;
 	private WebElement genderFieldInList;
+	// written by Andrii
+	private List<WebElement> editList;
 
 	// -----------------ColumnsMenuDropdown-------------------
 	private class ColumnsMenuDropdown {
@@ -104,7 +115,7 @@ public class AllCustomersPage extends VerticalMenu {
 		private WebElement edit;
 
 		public ActionsDropDownMenu(WebDriver driver) {
-			this.delete = driver.findElement(By.xpath("(//span[text()='Delete'])[3]"));
+			this.delete = driver.findElement(By.xpath("//span[text()='Delete']"));
 			this.subscribe = driver.findElement(By.xpath("(//span[text()='Subscribe to Newsletter'])[2]"));
 			this.unSubscribe = driver.findElement(By.xpath("(//span[text()='Unsubscribe from Newsletter'])[2]"));
 			this.assignCustomerGroup = driver.findElement(By.xpath("(//span[text()='Assign a Customer Group'])[2]"));
@@ -222,6 +233,8 @@ public class AllCustomersPage extends VerticalMenu {
 		this.dateOfBirdthFieldInList = driver.findElement(By.xpath("(//span[text()='Date of Birth'])[2]"));
 		this.taxVatNumberFieldInList = driver.findElement(By.xpath("(//span[text()='Tax VAT Number'])[2]"));
 		this.genderFieldInList = driver.findElement(By.xpath("(//span[text()='Gender'])[2]"));
+		//written by Andrii
+		this.editList = driver.findElements(By.cssSelector("a[data-repeat-index='0'"));
 	}
 
 	//// getters to DefaultViewDropdownMenu
@@ -515,6 +528,17 @@ public class AllCustomersPage extends VerticalMenu {
 	public WebElement getGenderFieldInList() {
 		return this.genderFieldInList;
 	}
+	
+	//written by Andrii
+	public WebElement getEditLink (int index) {
+		return editList.get(index);
+	}
+	
+	//written by Andrii
+	public EditCustomerPage getEditCustomerPage () {
+		getEditLink(2).click();
+		return new EditCustomerPage(driver);
+	}
 
 	// get Data Business Logic
 
@@ -677,5 +701,170 @@ public class AllCustomersPage extends VerticalMenu {
 		getDefaultViewButton().click();
 		return new DefaultViewDropdownMenu(driver);
 	}
+	//------------------Yaryna Kharko update 23.07.2016--------------------------
+		public List<RowCustomerUser> getTableCustomerUser() {
+			//TODO when there are more that 1 pagetable
+			List<WebElement> rows = driver.findElements(By.className("data-row"));
+			List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
+			for(int i=0;i<rows.size();i++) {
+			rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
+			}
+			return rowsCustomerUserTable;	
+		}
+		public List<String> getNameColumn() {
+			List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
+			List<String> usernames = new ArrayList<String>();
+			for(int i=0;i<rowsCustomerUserTable.size();i++) {
+				usernames.add(rowsCustomerUserTable.get(i).getNameText());
+				System.out.println(rowsCustomerUserTable.get(i).getNameText());
+				}
+			return usernames;
+		}
+		public void checkCustomerUser (RowCustomerUser rowCustomerUser) {
+			rowCustomerUser.getName().click();
+			System.out.println("checked USER"+ rowCustomerUser.getNameText());
+		}
+		public void checkCustomerUser (List<RowCustomerUser> rowsCustomerUser) {
+			for(int i=0;i<rowsCustomerUser.size();i++) {
+				checkCustomerUser(rowsCustomerUser.get(i));			
+			}
+		}
+		public List<RowCustomerUser> findCustomerUsersByName(List<RowCustomerUser> rowsCustomerUser,ICustomerUser customerUser) {
+			List<RowCustomerUser> foundRowCustomerUser = new ArrayList<RowCustomerUser>();
+			String username = customerUser.getPersonalInfo().getFullName();
+			String email = customerUser.getSigninInfo().getEmail();
+			for(int i=0;i<rowsCustomerUser.size();i++) {
+				if(rowsCustomerUser.get(i).getNameText().equals(username) && 
+						rowsCustomerUser.get(i).getEmailText().equals(email)) {
+					foundRowCustomerUser.add(rowsCustomerUser.get(i));
+				}	
+			}
+			return foundRowCustomerUser;
+			
+		}
+		public void sendKeysSearchCustomerField(String search) {
+			this.getSearchField().sendKeys(search);	
+		}
+		public void clearSendKeysSearchCustomerField(String search) {
+			this.getSearchField().clear();
+			this.sendKeysSearchCustomerField(search);
+		}
+		public AllCustomersPage doCustomerSearch(String search) {
+			this.clearSendKeysSearchCustomerField(search);
+			this.getSearchField().sendKeys(Keys.ENTER);
+			return new  AllCustomersPage(driver);
+		}
+		public void clickDeleteActions() {
+			goToActionsDropDownMenu().delete.click();
+		}
+		
+		public void deleteCustomerUser (ICustomerUser customerUser) throws InterruptedException {	
+			AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+			
+			List<RowCustomerUser> foundCustomerUsersByName = 
+					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
+			if(foundCustomerUsersByName.size()>0) {
+			checkCustomerUser(foundCustomerUsersByName);
+			CustomersPage.clickDeleteActions();
+			 
+			this.getConfirmDeleteWindow().clickButtonOk();
+			
+			}
+		}
+		
+		public List<RowCustomerUser> findCustomersUser(ICustomerUser customerUser) {
+			AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+			List<RowCustomerUser> foundCustomerUsersByName = 
+					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
+			return foundCustomerUsersByName;
+		}
+		public Boolean confirmCustomerUserIsCreated(ICustomerUser customerUser) {
+			if ( this.findCustomersUser(customerUser).size() > 0 ) {
+				return true;
+			} else 
+				return false;
+		}
+		public Boolean confirmAlreadyExistCustomerUserIsCreated(ICustomerUser customerUser) {
+			if ( this.findCustomersUser(customerUser).size() >= 2 ) {
+				return true;
+			} else 
+				return false;
+		}
+		public ConfirmDeleteWindow getConfirmDeleteWindow() {
+			return new ConfirmDeleteWindow();
+		}
+		//--------------------ConfirmDeleteWindow----------------------------
+		private class ConfirmDeleteWindow {
+			private WebElement window;
+			private WebElement buttonCancel;
+			private WebElement buttonOk;
+			private WebElement exit;
+			public ConfirmDeleteWindow() {
+				WebDriverWait wait = new WebDriverWait(driver, 10);
+				this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
+				
+				this.buttonOk = driver.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
+				this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
+				this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
+			}
+			public WebElement getWindow() {
+				return window;
+			}
+			public WebElement getButtonCancel() {
+				return buttonCancel;
+			}
+			public WebElement getButtonOk() {
+				return buttonOk;
+			}
+			public WebElement getExit() {
+				return exit;
+			}
+			//click 
+			public void clickButtonCancel() {
+				this.getButtonCancel().click();
+			}
+			public AllCustomersPage clickButtonOk() {
+				this.getButtonOk().click();
+				return new AllCustomersPage(driver);
+			}
+			public void clickExit() {
+				this.getExit().click();
+			}
+			
+		}
+		//--------------------RowCustomerUser----------------------------
+		private class RowCustomerUser{
+			WebElement check;
+			WebElement name;
+			WebElement email;
+			RowCustomerUser(WebElement row) {
+				this.check = row.findElement(By.className("data-grid-checkbox-cell"));
+				this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
+				this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
+			}
+			
+			public WebElement getCheck() {
+				return check;
+			}
+
+			public WebElement getName() {
+				return name;
+			}
+
+			public WebElement getEmail() {
+				return email;
+			}
+
+			public String getNameText() {
+				String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
+				return nameText;
+			}
+			public String getEmailText() {
+				String emailText = getEmail().findElement(By.className("data-grid-cell-content")).getText();
+				return emailText;
+			}
+		}
+
+	
 
 }

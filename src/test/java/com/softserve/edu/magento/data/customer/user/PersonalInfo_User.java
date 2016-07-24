@@ -108,6 +108,21 @@ IBuild_PersonalInfo_User,IPersonalInfo_User{
 	public String getGender() {
 		return gender;
 	}
+	public String getFullName() {
+		StringBuffer fullName = new StringBuffer();
+		if( getPrefix() != null && getPrefix() != " " ) {
+			fullName.append(getPrefix()+" ");
+		}
+		fullName.append(getFirstname()+" ");
+		if( getMiddlename() != null && getMiddlename() != " " ) {
+			fullName.append(getMiddlename()+" ");
+		}
+		fullName.append(getLastname());
+		if( getSuffix() != null && getSuffix() != " " ) {
+			fullName.append(" "+getSuffix());
+		}
+		return new String(fullName);
+	}
 	
 	
 	

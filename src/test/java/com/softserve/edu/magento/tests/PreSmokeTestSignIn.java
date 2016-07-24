@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
+import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
@@ -25,56 +26,58 @@ import com.softserve.edu.magento.pages.customer.UnsuccessfulSignInPage.ErrorMess
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage.ErrorMessage;
 import com.softserve.edu.magento.pages.customer.components.Header.Titles;
+import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
 public class PreSmokeTestSignIn {
-	WebDriver driver;
-  @BeforeMethod
-  public void beforeMethod() {
-	  //driver = new FirefoxDriver();
-	  //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-  }
 
   @AfterMethod
   public void afterMethod() {
-	  //driver.quit();
+	  ApplicationCustomer.quitAll();
   }
   @AfterClass
   void tearDown() throws Exception {
-	  ApplicationCustomer.quitAll();
+	  //ApplicationCustomer.quitAll();
   }
   @DataProvider //(parallel = true)
   public Object[][] smokeParameters(ITestContext context) {
       return ListUtils.get().toMultiArray(
               ParameterUtils.get().updateParametersAll(
-                      ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context));
+                      ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
+				AdminUserRepository.get().adminYaryna());
+	/* return new Object[][] {
+			 { ParameterUtils.get().updateParametersAll(
+			 ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context)},
+			 { ParameterUtils.get().updateParametersAll(
+			 ApplicationSourcesRepository.getChromeLocalhostCustomer(), context)}
+			 };*/
   }
 
-  @Test(dataProvider = "smokeParameters")
-  public void testSignIn1(ApplicationSources applicationSources) {
-	  
+  //@Test(dataProvider = "smokeParameters")
+  public void testSignIn1(ApplicationSources applicationSources, IAdminUser adminUser) {
+	  //prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
-	  
+	  //confirm that home page is opened 
 	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
-	  
+	  //go to the signIn page 
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
-	  
+	  //confirm that signIn page is opened
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
-	  
+	  //succsess log in user
+	  //go to the AccountDashboard Page
 	  AccountDashboardPage accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().User());  
-	  
+	  //confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
-	  
+	  // Sign Out user
+	  //go to the home page
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
-	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
-	  applicationAdmin.load().successAdminLogin(AdminUserRepository.get().adminYaryna());
 	  
   }
-  //@Test
-  public void testSignIn1_1(ApplicationSources applicationSources) {
+  //@Test(dataProvider = "smokeParameters")
+  public void testSignIn1_1(ApplicationSources applicationSources, IAdminUser adminUser) {
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
 	  
@@ -91,8 +94,8 @@ public class PreSmokeTestSignIn {
 	  
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
   }
-  //@Test
-  public void testSignIn2(ApplicationSources applicationSources) {
+  //@Test(dataProvider = "smokeParameters")
+  public void testSignIn2(ApplicationSources applicationSources, IAdminUser adminUser) {
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
@@ -103,8 +106,8 @@ public class PreSmokeTestSignIn {
 	  Assert.assertEquals(unsuccessfulSignInPage.getErrorMessageText(),
 			  ErrorMessageSignIn.INVALID_SIGNIN.toString());
   }
-  //@Test
-  public void testCreateAccount1(ApplicationSources applicationSources) {
+ // @Test(dataProvider = "smokeParameters")
+  public void testCreateAccount1(ApplicationSources applicationSources, IAdminUser adminUser) throws InterruptedException {
 	  
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
@@ -121,17 +124,51 @@ public class PreSmokeTestSignIn {
 	  
 	  Assert.assertEquals(homePageLogout.getTitleText(),
 			  Titles.YOU_ARE_SIGNED_OUT.toString());
+	  
+	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+	  
+	  AllCustomersPage allCustomersPage = applicationAdmin.load()
+			  .successAdminLogin(adminUser)
+			  .gotoAllCustomersPage();
+	  allCustomersPage.deleteCustomerUser(CustomerUserRepository.get().newUser());
+	  
   }
-  //@Test
-  public void testCreateAccount2(ApplicationSources applicationSources) {
+  @Test(dataProvider = "smokeParameters")
+  public void testCreateAccount2(ApplicationSources applicationSources, IAdminUser adminUser) {
+	//prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
-	  //CreateAccountPage createAccountPage = homePage.clickCreateAccountLink();
+	  //test steps
+	  //1.Unsuccessful create account
 	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
 			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());
-	  
+	  //2.Confirm that error message 
 	  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorMessageText(),
 			  ErrorMessage.ALREADY_EXIST_ACCOUNT.toString());
+	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+	  
+	  
+	  AllCustomersPage allCustomersPage = applicationAdmin.load()
+			  .successAdminLogin(adminUser)
+			  .gotoAllCustomersPage();
+	  Assert.assertFalse(allCustomersPage
+			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().User()));
+	  
+  }
+  //@Test(dataProvider = "smokeParameters")
+  public void testMysha(ApplicationSources applicationSources, IAdminUser adminUser) {
+	//prepare our application
+	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
+	  HomePageLogout homePageLogout = applicationCustomer.load();
+	  
+	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+	  
+	  
+	  AllCustomersPage allCustomersPage = applicationAdmin.load()
+			  .successAdminLogin(adminUser)
+			  .gotoAllCustomersPage();
+	  allCustomersPage.doCustomerSearch("");
+	  allCustomersPage.getNameColumn();
 	  
   }
 }

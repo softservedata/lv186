@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 
 public class AdminLoginPage {
@@ -127,6 +128,11 @@ public class AdminLoginPage {
         setLoginData(admin);
         // Return a new page object representing the destination.
         return new DashboardPage(driver);
+    }
+    public EditCustomerPage successEditCustomer(IAdminUser admin) {
+        setLoginData(admin);
+        // Return a new page object representing the destination.
+        return new EditCustomerPage(driver);
     }
 
     public AdminLoginValidatorPage unsuccessfulLogin(IAdminUser invalidUser) {

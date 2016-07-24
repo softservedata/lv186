@@ -56,5 +56,16 @@ public class AdminUserRepository {
 			   .setPassword("qwerty-1")
 			   .build();
    }
+   
+   public IAdminUser adminAndrii() {
+	   return AdminUser.get()
+			   .setUsername("ayaremctc")
+			   .setFirstname("Andrii")
+			   .setLastname("Yaremchuk")
+			   .setMail("yaremchyck@gmail.com")
+			   .setPassword("qwerty=1")
+			   .build();
+   }
+   
 
 }

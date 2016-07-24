@@ -3,6 +3,7 @@ package com.softserve.edu.magento.tests;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -103,6 +104,7 @@ public class PreSmokeTest {
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
+		
 																				// name
 																				// from
 																				// ProductRepository
@@ -150,7 +152,11 @@ public class PreSmokeTest {
 		System.out.println("luck editcustomer");
 		Thread.sleep(1000);
 		ecp.navToAccountInfo();
-		ecp.compareFields(ecp.getCustomerAllData().get(5));
+		for (WebElement e : ecp.getCustomerAllData()){
+		System.out.println(e.toString());
+		}
+		ecp.compareFields(ecp.getCustomerAllData().get(8));
+	
 		//Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		//RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
 		//Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);

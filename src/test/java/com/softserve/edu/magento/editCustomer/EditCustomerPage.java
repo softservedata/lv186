@@ -17,7 +17,6 @@ import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
  */
 public class EditCustomerPage extends ACustomPageSideMenu {
 
-	private WebDriver driver;
 	private CustommerView custommerViewAjax;
 	private AccountInformation accountInformationAjax;
 	private Adresses adressesAjax;
@@ -61,6 +60,9 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	 */
 	public EditCustomerPage(WebDriver driver) {
 		super(driver);
+		accountInformationAjax = navToAccountInfo();
+		adressesAjax = navToadresses();
+		ordersAjax = navToorders();
 	}
 
 	/**
@@ -99,6 +101,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	}
 
 	private class AccountInformation {
+		//private WebDriver driver;
 		private Select associateToWebsite;
 		private Select group;
 		private WebElement chekboxForGroup;
@@ -108,7 +111,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		private WebElement lastname;
 		private WebElement suffix;
 		private WebElement email;
-		private Select dateOfBirth;
+		private WebElement dateOfBirth;
 		private WebElement tax;
 		private Select gender;
 		private Select sendWelcomeEmailFrom;
@@ -118,7 +121,8 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		/**
 		 * Constructor
 		 */
-		public AccountInformation() {
+		private AccountInformation() {
+			//this.driver = EditCustomerPage.this.driver;
 			this.associateToWebsite = new Select(
 					driver.findElement(By.cssSelector("select[name='customer[website_id]']")));
 			this.group = new Select(driver.findElement(By.cssSelector("select[name='customer[group_id]']")));
@@ -129,7 +133,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 			this.lastname = driver.findElement(By.cssSelector("input[name='customer[lastname]']"));
 			this.suffix = driver.findElement(By.cssSelector("input[name='customer[suffix]']"));
 			this.email = driver.findElement(By.cssSelector("input[name='customer[email]']"));
-			this.dateOfBirth = new Select(driver.findElement(By.cssSelector("input[name='customer[dob]']")));
+			this.dateOfBirth = driver.findElement(By.cssSelector("input[name='customer[dob]']"));
 			this.tax = driver.findElement(By.cssSelector("input[name='customer[taxvat]']"));
 			this.gender = new Select(driver.findElement(By.cssSelector("select[name='customer[gender]']")));
 			this.sendWelcomeEmailFrom = new Select(
@@ -137,119 +141,119 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 		
 
-		public Select getAssociateToWebsite() {
+		private Select getAssociateToWebsite() {
 			return associateToWebsite;
 		}
 
 
-		public Select getGroup() {
+		private Select getGroup() {
 			return group;
 		}
 
 
-		public WebElement getChekboxForGroup() {
+		private WebElement getChekboxForGroup() {
 			return chekboxForGroup;
 		}
 
 
-		public WebElement getLastname() {
+		private WebElement getLastname() {
 			return lastname;
 		}
 
 
-		public boolean isAreChangesMade() {
+		private boolean isAreChangesMade() {
 			return areChangesMade;
 		}
 
 
-		public WebElement getSelectedWebsite() {
+		private WebElement getSelectedWebsite() {
 			return this.associateToWebsite.getFirstSelectedOption();
 		}
 
-		public WebElement getSelectGroup() {
+		private WebElement getSelectGroup() {
 			return this.group.getFirstSelectedOption();
 		}
 
-		public boolean isGroupcheckboxchecked() {
+		private boolean isGroupcheckboxchecked() {
 			return this.chekboxForGroup.isSelected();
 		}
 
-		public void checkGroupcheckbox() {
+		private void checkGroupcheckbox() {
 			this.chekboxForGroup.click();
 			areChangesMade = true;
 		}
 
-		public WebElement getPrefix() {
+		private WebElement getPrefix() {
 			return this.prefix;
 		}
 
-		public void setPrefix(String value) {
+		private void setPrefix(String value) {
 			this.prefix.sendKeys(value);
 			areChangesMade = true;
 		}
 
-		public WebElement getFirstname() {
+		private WebElement getFirstname() {
 			return this.firstname;
 		}
 		
-		public void setFirstname(String value) {
+		private void setFirstname(String value) {
 			this.firstname.sendKeys(value);
 			areChangesMade = true;
 		}
 
-		public WebElement getMiddlename() {
+		private WebElement getMiddlename() {
 			return this.middlename;
 		}
 
-		public void setMiddlename(String value) {
+		private void setMiddlename(String value) {
 			this.middlename.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		public WebElement geLastname() {
+		private WebElement geLastname() {
 			return this.middlename;
 		}
 
-		public void setLastname(String value) {
+		private void setLastname(String value) {
 			this.middlename.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		public WebElement getSuffix() {
+		private WebElement getSuffix() {
 			return this.suffix;
 		}
 
-		public void setSuffix(String value) {
+		private void setSuffix(String value) {
 			this.suffix.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		public WebElement getEmail() {
+		private WebElement getEmail() {
 			return this.email;
 		}
 
-		public void setEmail(String value) {
+		private void setEmail(String value) {
 			this.email.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		public WebElement getDateOfBirth() {
+	/*	public WebElement getDateOfBirth() {
 			return this.dateOfBirth.getFirstSelectedOption();
 		}
-
-		public WebElement getGender() {
+	*/
+		private WebElement getGender() {
 			return this.gender.getFirstSelectedOption();
 		}
 		
-		public WebElement getSendWelcomeEmailFrom() {
+		private WebElement getSendWelcomeEmailFrom() {
 			return this.sendWelcomeEmailFrom.getFirstSelectedOption();
 		}
 		
-		public WebElement getTax() {
+		private WebElement getTax() {
 			return this.tax;
 		}
 
-		public void setTax(String value) {
+		private void setTax(String value) {
 			this.tax.sendKeys(value);
 			areChangesMade = true;
 		}
@@ -282,25 +286,49 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		 * Constructor
 		 */
 		private Adresses() {
-			this.addNewAddresses = driver.findElement(By.xpath("//span[contains(text(),'Add New Addresses')]"));
+			this.addNewAddresses = driver.findElement(By.xpath("//span[contains(text(),'Add New Addresses')]/parent::button"));
+			
+			if(!driver.findElement(By.cssSelector("address")).isDisplayed()){
+				clickAddNewAddresses();
+			}
+		}
+		
+		private void clickAddNewAddresses () {
+			addNewAddresses.click();
 			this.address = driver.findElement(By.cssSelector("address"));
 			this.deleteButton = driver.findElement(By.cssSelector(".action-delete"));
-			this.defaultBillingCHK = driver.findElement(By.cssSelector("input[name='address[3][default_billing]']"));
-			this.defaultShippingCHK = driver.findElement(By.cssSelector("input[name='address[3][default_shipping]']"));
-			this.prefix = driver.findElement(By.cssSelector("input[name='address[3][prefix]']"));
-			this.firstname = driver.findElement(By.cssSelector("input[name='address[3][firstname]']"));
-			this.middlename = driver.findElement(By.cssSelector("input[name='address[3][middlename]']"));
-			this.lastname = driver.findElement(By.cssSelector("input[name='address[3][lastname]']"));
-			this.suffix = driver.findElement(By.cssSelector("input[name='address[3][suffix]']"));
-			this.company = driver.findElement(By.cssSelector("input[name='address[3][company]']"));
-			this.streetAdressFirst = driver.findElement(By.cssSelector("input[name='address[3][street][0]']"));
-			this.streetAdressSecond = driver.findElement(By.cssSelector("input[name='address[3][street][1]']"));
-			this.city = driver.findElement(By.cssSelector("input[name='address[3][city]']"));
-			this.country = new Select(driver.findElement(By.cssSelector("input[name='address[3][country_id]']")));
-			this.state = driver.findElement(By.cssSelector("input[name='address[3][region]']"));
-			this.zip = driver.findElement(By.cssSelector("input[name='address[3][postcode]']"));
-			this.phone = driver.findElement(By.cssSelector("input[name='address[3][telephone]']"));
-			this.vat = driver.findElement(By.cssSelector("input[name='address[3][vat_id]']"));
+			this.defaultBillingCHK = driver.findElement(By
+					.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]"));
+			this.defaultShippingCHK = driver.findElement(By
+					.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]"));
+			this.prefix = driver.findElement(By
+					.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]"));
+			this.firstname = driver.findElement(By
+					.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]"));
+			this.middlename = driver.findElement(By
+					.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]"));
+			this.lastname = driver.findElement(By
+					.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]"));
+			this.suffix = driver.findElement(By
+					.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]"));
+			this.company = driver.findElement(By
+					.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input"));
+			this.streetAdressFirst = driver.findElement(By
+					.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input"));
+			this.streetAdressSecond = driver.findElement(By
+					.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]"));
+			this.city = driver.findElement(By
+					.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input"));
+			this.country = new Select(driver.findElement(By
+					.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select")));
+			this.state = driver.findElement(By
+					.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select"));
+			this.zip = driver.findElement(By
+					.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input"));
+			this.phone = driver.findElement(By
+					.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input"));
+			this.vat = driver.findElement(By
+					.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input"));
 		}
 	}
 
@@ -429,25 +457,28 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		return new AllCustomersPage(getDriver());
 	}
 
-	public void navToAccountInfo() {
+	public EditCustomerPage.AccountInformation navToAccountInfo() {
 		accountInfo.click();
 		if (this.accountInformationAjax == null) {
-			this.accountInformationAjax = new AccountInformation();
+			return this.accountInformationAjax = new AccountInformation();
 		}
+		return accountInformationAjax;
 	}
 
-	public void navToadresses() {
+	public EditCustomerPage.Adresses navToadresses() {
 		adresses.click();
 		if (this.adressesAjax == null) {
 			this.adressesAjax = new Adresses();
 		}
+		return adressesAjax;
 	}
 
-	public void navToorders() {
+	public EditCustomerPage.Orders navToorders() {
 		orders.click();
 		if (this.ordersAjax == null) {
 			this.ordersAjax = new Orders();
 		}
+		return ordersAjax;
 	}
 
 	// ---------------------Bussiness Logick-------------------------
@@ -476,11 +507,11 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		accountInformationAjax.gender.selectByValue(gender.toString());
 	}
 	
-	public void setDateOfBirth(DateOfBirth dateOfBirth) {
+/*	public void setDateOfBirth(DateOfBirth dateOfBirth) {
 		navToAccountInfo();
 		accountInformationAjax.dateOfBirth.selectByValue(dateOfBirth.toString());
 	}
-	
+*/	
 	public void setSendWelcomeEmailFrom (AssosieteWebsites website) {
 		navToAccountInfo();
 		accountInformationAjax.sendWelcomeEmailFrom.selectByValue(website.toString());
@@ -489,7 +520,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	public List<WebElement> getCustomerAllData () {
 		navToAccountInfo();
 		List <WebElement> result = null;
-		result = driver.findElements(By.cssSelector("div[data-index='customer']"));
+		result = driver.findElements(By.cssSelector("div[data-index='customer'] input"));
 		return result;
 	}
 	
@@ -500,10 +531,10 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 			temp =  getCustomerAllData().get(index);
 			temp.sendKeys("blah-blah-blah");
 		}
-		WebElement changed = saveCustomer().getEditCustomerPage()
-				.getCustomerAllData().get(index);
-		
-		return temp == changed;
+		AllCustomersPage custPage = saveCustomer();
+		custPage.getEditCustomerPage().navToAccountInfo();
+		WebElement changed = getCustomerAllData().get(index);
+		return temp == changed;	
 	}
 	
 	public void checkGroupcheckbox() {

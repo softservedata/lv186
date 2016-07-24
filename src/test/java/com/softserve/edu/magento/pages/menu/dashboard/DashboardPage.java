@@ -114,7 +114,7 @@ public class DashboardPage extends VerticalMenu {
         this.quantity = driver.findElement(By.
         		xpath("//span[contains(text(),'Quantity')]"));
         this.quantityValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Quantity')]/following-sibling::strong[@class='price']"));
+        		xpath("//span[contains(text(),'Quantity')]/following-sibling::strong[@class='dashboard-totals-value']"));
         this.reloadData = driver.findElement(By.
         		cssSelector("button.action-primary"));
         this.bestsellersTab = driver.findElement(By.

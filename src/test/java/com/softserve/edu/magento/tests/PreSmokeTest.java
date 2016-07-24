@@ -20,6 +20,7 @@ import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
@@ -77,7 +78,7 @@ public class PreSmokeTest {
 		return ListUtils.get()
 				.toMultiArray(ParameterUtils.get()
 						.updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
-						AdminUserRepository.get().adminMykhaylo());
+						AdminUserRepository.get().adminAndrii());
 	}
 
 	// @Test(dataProvider = "smokeParameters")
@@ -143,11 +144,13 @@ public class PreSmokeTest {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		Thread.sleep(1000);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		System.out.println("luck dashboard");
 		Thread.sleep(1000);
-		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
+		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+		System.out.println("luck editcustomer");
 		Thread.sleep(1000);
-		EditCustomerPage ecp = acp.getEditCustomerPage();
-		ecp.checkGroupcheckbox();
+		ecp.navToAccountInfo();
+		ecp.compareFields(ecp.getCustomerAllData().get(5));
 		//Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		//RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
 		//Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);

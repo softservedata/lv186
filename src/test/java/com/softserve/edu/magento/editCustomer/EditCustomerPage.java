@@ -1,10 +1,13 @@
 package com.softserve.edu.magento.editCustomer;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.Select;
+
+import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 
 /**
  * Class that represents the EditCustomerPage with all the AJAX components in
@@ -39,6 +42,14 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	}
 
 	private enum Groups {
+		// TODO
+	}
+	
+	private enum Gender {
+		// TODO
+	}
+	
+	private enum DateOfBirth {
 		// TODO
 	}
 
@@ -124,79 +135,124 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 			this.sendWelcomeEmailFrom = new Select(
 					driver.findElement(By.cssSelector("select[name='customer[sendemail_store_id]']")));
 		}
+		
 
-		private WebElement getSelectedWebsite() {
+		public Select getAssociateToWebsite() {
+			return associateToWebsite;
+		}
+
+
+		public Select getGroup() {
+			return group;
+		}
+
+
+		public WebElement getChekboxForGroup() {
+			return chekboxForGroup;
+		}
+
+
+		public WebElement getLastname() {
+			return lastname;
+		}
+
+
+		public boolean isAreChangesMade() {
+			return areChangesMade;
+		}
+
+
+		public WebElement getSelectedWebsite() {
 			return this.associateToWebsite.getFirstSelectedOption();
 		}
 
-		private WebElement getSelectGroup() {
+		public WebElement getSelectGroup() {
 			return this.group.getFirstSelectedOption();
 		}
 
-		private boolean isGroupcheckboxchecked() {
+		public boolean isGroupcheckboxchecked() {
 			return this.chekboxForGroup.isSelected();
 		}
 
-		private void checkGroupcheckbox() {
+		public void checkGroupcheckbox() {
 			this.chekboxForGroup.click();
 			areChangesMade = true;
 		}
 
-		private WebElement getPrefix() {
+		public WebElement getPrefix() {
 			return this.prefix;
 		}
 
-		private void setPrefix(String value) {
+		public void setPrefix(String value) {
 			this.prefix.sendKeys(value);
 			areChangesMade = true;
 		}
 
-		private WebElement getFirstname() {
+		public WebElement getFirstname() {
 			return this.firstname;
 		}
 		
-		private void setFirstname(String value) {
+		public void setFirstname(String value) {
 			this.firstname.sendKeys(value);
 			areChangesMade = true;
 		}
 
-		private WebElement getMiddlename(String value) {
+		public WebElement getMiddlename() {
 			return this.middlename;
 		}
 
-		private void setMiddlename(String value) {
+		public void setMiddlename(String value) {
 			this.middlename.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		private WebElement geLastname(String value) {
+		public WebElement geLastname() {
 			return this.middlename;
 		}
 
-		private void setLastname(String value) {
+		public void setLastname(String value) {
 			this.middlename.sendKeys(value);
 			areChangesMade = true;
 		}
-		private WebElement getSuffix() {
+		
+		public WebElement getSuffix() {
 			return this.suffix;
 		}
 
-		private void setSuffix(String value) {
+		public void setSuffix(String value) {
 			this.suffix.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		private WebElement getEmail(String value) {
+		public WebElement getEmail() {
 			return this.email;
 		}
 
-		private void setEmail(String value) {
+		public void setEmail(String value) {
 			this.email.sendKeys(value);
 			areChangesMade = true;
 		}
 		
+		public WebElement getDateOfBirth() {
+			return this.dateOfBirth.getFirstSelectedOption();
+		}
+
+		public WebElement getGender() {
+			return this.gender.getFirstSelectedOption();
+		}
 		
+		public WebElement getSendWelcomeEmailFrom() {
+			return this.sendWelcomeEmailFrom.getFirstSelectedOption();
+		}
 		
+		public WebElement getTax() {
+			return this.tax;
+		}
+
+		public void setTax(String value) {
+			this.tax.sendKeys(value);
+			areChangesMade = true;
+		}
 		
 	}
 
@@ -221,7 +277,10 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		private WebElement zip;
 		private WebElement phone;
 		private WebElement vat;
-
+		
+		/*
+		 * Constructor
+		 */
 		private Adresses() {
 			this.addNewAddresses = driver.findElement(By.xpath("//span[contains(text(),'Add New Addresses')]"));
 			this.address = driver.findElement(By.cssSelector("address"));
@@ -332,58 +391,59 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 
 	// ---------------------System Logick-------------------------
 	// TODO Customer PAge
-	private void back() {
+	public void back() {
 		back.click();
 		// return
 	}
 
-	private void deleteCustomer() {
+	public void deleteCustomer() {
 		// TODO stub
 	}
 
-	private void reset() {
+	public void reset() {
 		reset.click();
 		changesMade = null;
 		new EditCustomerPage(driver).accountInfo.click();
 	}
 
 	// TODO CreateOrder PAge
-	private void createOrder() {
+	public void createOrder() {
 		// stub
 	}
 
-	private void resetPassword() {
+	public void resetPassword() {
 		resetPassword.click();
 		// stub
 	}
 
-	private void forceSignIn() {
+	public void forceSignIn() {
 		forceSignIn.click();
 	}
 
-	private void saveAndContinueEdit() {
+	public void saveAndContinueEdit() {
 		saveAndContinueEdit.click();
 	}
 
-	private void saveCustomer() {
+	public AllCustomersPage saveCustomer() {
 		saveCustomer.click();
+		return new AllCustomersPage(getDriver());
 	}
 
-	private void navToAccountInfo() {
+	public void navToAccountInfo() {
 		accountInfo.click();
 		if (this.accountInformationAjax == null) {
 			this.accountInformationAjax = new AccountInformation();
 		}
 	}
 
-	private void navToadresses() {
+	public void navToadresses() {
 		adresses.click();
 		if (this.adressesAjax == null) {
 			this.adressesAjax = new Adresses();
 		}
 	}
 
-	private void navToorders() {
+	public void navToorders() {
 		orders.click();
 		if (this.ordersAjax == null) {
 			this.ordersAjax = new Orders();
@@ -410,7 +470,42 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		navToAccountInfo();
 		accountInformationAjax.group.selectByValue(group.toString());
 	}
+	
+	public void setGender(Gender gender) {
+		navToAccountInfo();
+		accountInformationAjax.gender.selectByValue(gender.toString());
+	}
+	
+	public void setDateOfBirth(DateOfBirth dateOfBirth) {
+		navToAccountInfo();
+		accountInformationAjax.dateOfBirth.selectByValue(dateOfBirth.toString());
+	}
+	
+	public void setSendWelcomeEmailFrom (AssosieteWebsites website) {
+		navToAccountInfo();
+		accountInformationAjax.sendWelcomeEmailFrom.selectByValue(website.toString());
+	}
 
+	public List<WebElement> getCustomerAllData () {
+		navToAccountInfo();
+		List <WebElement> result = null;
+		result = driver.findElements(By.cssSelector("div[data-index='customer']"));
+		return result;
+	}
+	
+	public boolean compareFields (WebElement customerCurrentField) {
+		Integer index = getCustomerAllData().indexOf(customerCurrentField);
+		WebElement temp = null;
+		if(index != null) {
+			temp =  getCustomerAllData().get(index);
+			temp.sendKeys("blah-blah-blah");
+		}
+		WebElement changed = saveCustomer().getEditCustomerPage()
+				.getCustomerAllData().get(index);
+		
+		return temp == changed;
+	}
+	
 	public void checkGroupcheckbox() {
 		navToAccountInfo();
 		accountInformationAjax.checkGroupcheckbox();

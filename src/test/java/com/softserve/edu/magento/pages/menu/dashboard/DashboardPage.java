@@ -131,10 +131,10 @@ public class DashboardPage extends VerticalMenu {
         		id("diagram_tab_orders"));
         this.amountTab = driver.findElement(By.
         		id("diagram_tab_amounts"));
-        this.ordersPeriod = (Select) driver.findElement(By.
-        		id("order_orders_period"));
-        this.amountPeriod = (Select) driver.findElement(By.
-        		id("order_amounts_period"));
+        this.ordersPeriod = new Select(driver.findElement(By.
+        		id("order_orders_period")));
+        this.amountPeriod = new Select(driver.findElement(By.
+        		id("order_amounts_period")));
         //
         saveLogoutUrl();
     }
@@ -283,11 +283,7 @@ public class DashboardPage extends VerticalMenu {
 		DashboardPage page = refreshPage();
 		return page.reloadMessage;
 	}
-    
-    
-    // get Data Business Logic
-    
-
+   
 	public List<WebElement> getBestsellersRecords() {
 		clickBestsellersTab();
 		return bestsellersRecords;
@@ -307,7 +303,11 @@ public class DashboardPage extends VerticalMenu {
 		clickCustomersTab();
 		return customersRecords;
 	}
-
+	
+	
+	// get Data Business Logic
+	
+	
 	public String getLifeTimeSalesValueText() {
 		return getLifeTimeSalesValue().getText();
 	}

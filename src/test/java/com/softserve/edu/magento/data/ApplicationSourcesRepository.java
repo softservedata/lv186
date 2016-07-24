@@ -37,7 +37,7 @@ public final class ApplicationSourcesRepository {
     }
     public static ApplicationSources getChromeLocalhostCustomer() {
         return new ApplicationSources("ChromeDriverTemporary",
-        		"/Applications/Google Chrome.app/Contents/chromedriver", 5L,
+        		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L,
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }

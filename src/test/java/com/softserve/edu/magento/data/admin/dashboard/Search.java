@@ -33,7 +33,7 @@ public class Search implements ISearchField, ISearchBuild, ISearch {
 
 	// getters
 
-	public List<String> getSearchField() {
+	public List<String> getSearchFields() {
 		return listOfTerms;
 	}
 

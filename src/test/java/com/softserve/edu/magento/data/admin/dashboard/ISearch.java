@@ -6,6 +6,6 @@ public interface ISearch {
 	public ISearchBuild setSearchField(String text);
 	// getters
 
-	List<String> getSearchField();
+	List<String> getSearchFields();
 
 }

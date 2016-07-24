@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
+import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.VerticalMenu;
 
 public class AllCustomersPage extends VerticalMenu {
@@ -59,6 +60,8 @@ public class AllCustomersPage extends VerticalMenu {
 	private WebElement dateOfBirdthFieldInList;
 	private WebElement taxVatNumberFieldInList;
 	private WebElement genderFieldInList;
+	// written by Andrii
+	private List<WebElement> editList;
 
 	// -----------------ColumnsMenuDropdown-------------------
 	private class ColumnsMenuDropdown {
@@ -230,6 +233,8 @@ public class AllCustomersPage extends VerticalMenu {
 		this.dateOfBirdthFieldInList = driver.findElement(By.xpath("(//span[text()='Date of Birth'])[2]"));
 		this.taxVatNumberFieldInList = driver.findElement(By.xpath("(//span[text()='Tax VAT Number'])[2]"));
 		this.genderFieldInList = driver.findElement(By.xpath("(//span[text()='Gender'])[2]"));
+		//written by Andrii
+		this.editList = driver.findElements(By.cssSelector("a[data-repeat-index='0'"));
 	}
 
 	//// getters to DefaultViewDropdownMenu
@@ -522,6 +527,17 @@ public class AllCustomersPage extends VerticalMenu {
 
 	public WebElement getGenderFieldInList() {
 		return this.genderFieldInList;
+	}
+	
+	//written by Andrii
+	public WebElement getEditLink (int index) {
+		return editList.get(index);
+	}
+	
+	//written by Andrii
+	public EditCustomerPage getEditCustomerPage () {
+		getEditLink(2).click();
+		return new EditCustomerPage(driver);
 	}
 
 	// get Data Business Logic

@@ -155,7 +155,9 @@ public class PreSmokeTest {
 		for (WebElement e : ecp.getCustomerAllData()){
 		System.out.println(e.toString());
 		}
-		ecp.compareFields(ecp.getCustomerAllData().get(8));
+		System.out.println(ecp.getCustomerAllData().get(8));
+		
+		Assert.assertTrue(ecp.compareFields(ecp.getCustomerAllData().get(8)));
 	
 		//Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		//RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();

@@ -17,6 +17,7 @@ import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.VerticalMenu;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+
 public class AllCustomersPage extends VerticalMenu {
 	public final static String PAGE_TITLE = "Customers";
 	private boolean isWebElementFound = false;
@@ -27,10 +28,8 @@ public class AllCustomersPage extends VerticalMenu {
 	private DefaultViewDropdownMenu defaultdropdownmenu;
 	private FiltersDropDownMenu filtersdropdownmenu;
 	private GroupsButton groupsButton;
-	// private CountryButton countryButton;
-	// private WebsiteButton webSiteButton;
-	// private GenderButton genderButton;
 
+	// Elements
 	private WebElement customersLabel;
 	private WebElement addNewCustomerButton;
 	private WebElement searchField;
@@ -371,11 +370,6 @@ public class AllCustomersPage extends VerticalMenu {
 		}
 	}
 
-	// -----------------Country class-----------------------
-
-	// -----------------Website class-----------------------
-
-	// -----------------Gender class-----------------------
 
 	// main page constructor
 	public AllCustomersPage(WebDriver driver) {
@@ -399,8 +393,6 @@ public class AllCustomersPage extends VerticalMenu {
 		this.howManyPagesAreInList = driver.findElement(By.id("29"));
 		this.idFielsInList = driver.findElement(By.xpath("(//span[text()='ID'])[2]"));
 		this.nameFieldInList = driver.findElement(By.xpath("(//span[text()='Name'])[3]"));
-		// this.nameFieldInList =
-		// driver.findElement(By.xpath(".//*[@id='container']/div/div[5]/table/thead/tr/th[3]"));
 		this.emailFieldInList = driver.findElement(By.xpath("(//span[text()='Email'])[2]"));
 		this.groupFieldInList = driver.findElement(By.xpath("(//span[text()='Group'])[2]"));
 		this.phoneFieldInList = driver.findElement(By.xpath("(//span[text()='Phone'])[2]"));
@@ -442,13 +434,12 @@ public class AllCustomersPage extends VerticalMenu {
 
 	// getters to main class
 	// ///////////////////////////////////////////////////////////
-	// Data PageObject
-
+	// get Data PageObject
 
 	public WebElement getClearAllButton() {
 		return this.clearAll;
 	}
-	
+
 	public WebElement getCustomersLabel() {
 		return this.customersLabel;
 	}
@@ -613,7 +604,7 @@ public class AllCustomersPage extends VerticalMenu {
 	public void defaultdropdownmenuMyNewViewSaveViewAs() {
 		getDefaultViewDropdownMenu().getSaveViewAs().click();
 	}
-
+// set Data
 	// click for ActionsDropDownMenu class
 
 	public void actionsdropdownmenuDeleteClick() {
@@ -635,7 +626,7 @@ public class AllCustomersPage extends VerticalMenu {
 	public void actionsdropdownmenuEditClick() {
 		getActionsDropDownMenu().getEdit().click();
 	}
-
+// set Data
 	// click for ColumnsMenuDropdown class
 	public void columnsmenudropdownIdClick() {
 		getColumnsMenuDropdown().getIdCheck().click();
@@ -704,11 +695,10 @@ public class AllCustomersPage extends VerticalMenu {
 	public void columnsmenudropdownResetButtonClick() {
 		getColumnsMenuDropdown().getResetButton().click();
 	}
-
-
+// setData
 	// click for main class
-	
-	public void clearAllButtonClick(){
+
+	public void clearAllButtonClick() {
 		getClearAllButton().click();
 	}
 
@@ -722,8 +712,7 @@ public class AllCustomersPage extends VerticalMenu {
 		actions.moveToElement(nameFieldInList).click().perform();
 		// getNameFieldInList().click();
 	}
-	
-	
+
 	// input data
 
 	public void enterDataInSearchField(String text) {
@@ -733,7 +722,7 @@ public class AllCustomersPage extends VerticalMenu {
 		clearAllButtonClick();
 	}
 
-	// functional
+	// functional Business Logic
 
 	public RegistrationNewCustomerPage goToRegistrationNewCustomerPage() {
 		getAddNewCustomerButton().click();
@@ -754,15 +743,13 @@ public class AllCustomersPage extends VerticalMenu {
 		getDefaultViewButton().click();
 		return new DefaultViewDropdownMenu(driver);
 	}
-	
-//  Business Logic
+
+	// Business Logic
 	public AllCustomersPage refreshAllCustomersPage() {
 		AllCustomersPage page = new AllCustomersPage(driver);
-		page.clearAll = driver.findElement(By
-				.xpath("//button[contains(text(), 'Clear all')]"));
+		page.clearAll = driver.findElement(By.xpath("//button[contains(text(), 'Clear all')]"));
 		return page;
 	}
-	
 
 	// ------------------Mykhaylo Holovanov update--------------------------
 
@@ -868,11 +855,9 @@ public class AllCustomersPage extends VerticalMenu {
 			nameFieldInListClick();
 			isNameFieldSorted = true;
 		}
-	
+
 		return isNameFieldSorted;
 	}
-	
-	
 
 	// ------------------Yaryna Kharko update
 	// 23.07.2016--------------------------

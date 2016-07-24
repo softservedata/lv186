@@ -2,9 +2,12 @@ package com.softserve.edu.magento.pages.menu.products;
 
 import java.util.List;
 
+import org.apache.http.util.TextUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.softserve.edu.magento.data.IProduct;
 import com.softserve.edu.magento.pages.VerticalMenu;
@@ -20,7 +23,6 @@ public class AddProductPage extends VerticalMenu {
 	private WebElement saveAndCloseButton;
 	private WebElement backButton;
 	private WebElement addAttributeButton;
-
 	private WebElement enableProductButton;
 	private WebElement attributeSetInput;
 	private WebElement productNameInput;
@@ -164,6 +166,7 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public void clickSaveDropdownToggle() {
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(getSaveDropdownToggle()));
 		getSaveDropdownToggle().click();
 	}
 
@@ -190,8 +193,6 @@ public class AddProductPage extends VerticalMenu {
 		getAddAttributeButton().click();
 	}
 
-	// set Data Business Logic
-
 	public void setProductNameInputWithClear(String productName) {
 		clearProductNameInput();
 		setProductName(productName);
@@ -213,7 +214,9 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public void setProductData(IProduct productData) {
-		setAttributeSet(productData.getAttributeSet());
+		if(!TextUtils.isEmpty(productData.getAttributeSet())){
+			setAttributeSet(productData.getAttributeSet());
+		}
 		setProductName(productData.getProductName());
 		setSku(productData.getSku());
 		setPrice(productData.getPrice());
@@ -234,9 +237,26 @@ public class AddProductPage extends VerticalMenu {
 		}
 	}
 
+	// Functional 
+	
 	public ProductCatalogPage returnToProductPage() {
 		clickBackButton();
 		return new ProductCatalogPage(driver);
+	}
+	
+	public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
+		clickSaveButton();
+		return new SuccessProductSavePage(driver);
+	}
+	
+	public SuccessProductSavePage gotoSuccessProductSavePageAfterSaveAndNew() {
+		clickSaveAndNewButton();
+		return new SuccessProductSavePage(driver);
+	}
+	
+	public SuccessProductSaveAndDuplicatePage gotoSuccessProductSaveAndDuplicatePage() {
+		clickSaveButton();
+		return new SuccessProductSaveAndDuplicatePage(driver);
 	}
 
 	public ProductCatalogPage gotoProductCatalogPage() {
@@ -244,23 +264,43 @@ public class AddProductPage extends VerticalMenu {
 		return new ProductCatalogPage(driver);
 	}
 
-	public SuccessProductSavePage gotoSuccessProductSavePage() {
-		clickSaveButton();
-		return new SuccessProductSavePage(driver);
-	}
-
-	public SuccessProductSaveAndDuplicatePage gotoSuccessProductSaveAndDuplicatePage() {
-		clickSaveButton();
-		return new SuccessProductSaveAndDuplicatePage(driver);
-	}
-
-	public ProductExistsPage gotoProductExistsPage() {
+	public ProductExistsPage gotoProductExistsPageAfterSave() {
 		clickSaveButton();
 		return new ProductExistsPage(driver);
 	}
-
-	public ProductValidatorPage gotoProductValidatorPage() {
+	
+	public ProductExistsPage gotoProductExistsPageAfterSaveAndNew() {
+		clickSaveAndNewButton();
+		return new ProductExistsPage(driver);
+	}
+	
+	public ProductExistsPage gotoProductExistsPageAfterSaveAndDuplicate() {
+		clickSaveAndDuplicateButton();
+		return new ProductExistsPage(driver);
+	}
+	
+	public ProductExistsPage gotoProductExistsPageAfterSaveAndClose() {
+		clickSaveAndCloseButton();
+		return new ProductExistsPage(driver);
+	}
+	
+	public ProductValidatorPage gotoProductValidatorPageAfterSave() {
 		clickSaveButton();
+		return new ProductValidatorPage(driver);
+	}
+	
+	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndNew() {
+		clickSaveAndNewButton();
+		return new ProductValidatorPage(driver);
+	}
+	
+	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndDuplicate() {
+		clickSaveAndDuplicateButton();
+		return new ProductValidatorPage(driver);
+	}
+
+	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndClose() {
+		clickSaveAndCloseButton();
 		return new ProductValidatorPage(driver);
 	}
 

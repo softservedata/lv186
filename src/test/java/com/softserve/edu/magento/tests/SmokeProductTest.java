@@ -22,6 +22,8 @@ import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.menu.products.AddProductPage;
 import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage.DeleteConfirmationPopup;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage.Filter;
 import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage.ProductRow;
 import com.softserve.edu.magento.pages.menu.products.ProductValidatorPage;
 import com.softserve.edu.magento.pages.menu.products.SuccessProductSavePage;
@@ -33,17 +35,19 @@ public class SmokeProductTest {
 	public Object[][] parameters(ITestContext context) {
 		return new Object[][] {
 				{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
-						context), AdminUserRepository.get().adminMykhaylo() },
-				{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(),
 						context), AdminUserRepository.get().adminYulia() } };
+		// {
+		// ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(),
+		// context), AdminUserRepository.get().adminYulia() } };
 
 	}
 
-	@Test(dataProvider = "parameters")
+	//@Test(dataProvider = "parameters")
 	public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+
 		ProductCatalogPage productCatalogPage = dashboardPage.gotoProductCatalogPage();
 
 		AddProductPage addProductPage = productCatalogPage.gotoAddProductPage();
@@ -52,9 +56,9 @@ public class SmokeProductTest {
 
 		addProductPage.setAttributeSet(product.getAttributeSet());
 		addProductPage.setProductName(product.getProductName());
-		addProductPage.setSku(product.getSku());
+		addProductPage.setSkuInputWithClear(product.getSku());
 		addProductPage.setPrice(product.getPrice());
-		SuccessProductSavePage savePage = addProductPage.gotoSuccessProductSavePage();
+		SuccessProductSavePage savePage = addProductPage.gotoSuccessProductSavePageAfterSave();
 
 		/* Check if message appeared and data are present in the fields */
 		Assert.assertEquals(product.getAttributeSet(), ProductRepository.ATTRIBUTE_SET);
@@ -79,14 +83,19 @@ public class SmokeProductTest {
 		Assert.assertNotNull(row);
 		Assert.assertEquals(row.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
 		Assert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
-		Assert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE);
+		Assert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
+
+		/* Delete saved product */
+		row.selectProduct();
+		DeleteConfirmationPopup popup = catalogPage.clickDeleteProductAction();
+		catalogPage = popup.clickDeleteConfirmationButton();
 
 		/* Logout */
-		productCatalogPage.logout();
+		catalogPage.logout();
 
 	}
 
-	@Test(dataProvider = "parameters")
+	// @Test(dataProvider = "parameters")
 	public void checkProductSaveValidation(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -99,9 +108,8 @@ public class SmokeProductTest {
 		/* Enter invalid data into the fields */
 		IProduct product = ProductRepository.get().getNewProductWithEmptyInvalidData();
 		addProductPage.setProductData(product);
-		addProductPage.clickSaveAndCloseButton();
 
-		ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPage();
+		ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSaveAndClose();
 
 		// Assert.assertTrue(productValidatorPage.doesProductNameValidatorExist());
 		// Assert.assertTrue(productValidatorPage.doesSkuValidatorExist());
@@ -113,20 +121,20 @@ public class SmokeProductTest {
 		Assert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.INVALID_PRICE_FIELD_MESSAGE);
 
 		/* Logout */
-		productCatalogPage.logout();
+		productValidatorPage.logout();
 	}
 
-	@Test(dataProvider = "parameters")
+	// @Test(dataProvider = "parameters")
 	public void filterTest(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		ProductCatalogPage productCatalogPage = dashboardPage.gotoProductCatalogPage();
 
+		Filter filterPage = productCatalogPage.clickFilterButton();
 		FilterRepository filters = new FilterRepository();
-
 		FilterData nameFilter = filters.getExistingName();
-		productCatalogPage.getFilter().setFilterData(nameFilter);
-		productCatalogPage = productCatalogPage.getFilter().applyFilters();
+		filterPage.setFilterData(nameFilter);
+		productCatalogPage = filterPage.applyFilters();
 
 		List<ProductRow> filteredProducts = productCatalogPage.getProducts();
 
@@ -134,17 +142,44 @@ public class SmokeProductTest {
 			Assert.assertTrue(row.getProductNameText().contains(nameFilter.getName()));
 		}
 
-		// Assert.assertNotNull(page.getRowWithProductName(nameFilter.getFilterName()));
-
 		/* Logout */
 		productCatalogPage.logout();
 
 	}
+	
+	 @Test(dataProvider = "parameters")
+		public void test(ApplicationSources applicationSources, IAdminUser adminUser)
+				throws Exception {
+			ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+			DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+			ProductCatalogPage productCatalogPage = dashboardPage.gotoProductCatalogPage();
+
+			/* Go to page to create a new product */
+			AddProductPage addProductPage = productCatalogPage.gotoAddProductPage();
+
+			/* Enter invalid data into the fields */
+			IProduct product = ProductRepository.get().getNewProductWithInvalidPrice();
+			addProductPage.setProductData(product);
+
+			ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSaveAndClose();
+
+			// Assert.assertTrue(productValidatorPage.doesProductNameValidatorExist());
+			// Assert.assertTrue(productValidatorPage.doesSkuValidatorExist());
+			// Assert.assertTrue(productValidatorPage.doesPriceValidatorExist());
+
+			/* Check if error messages appeared */
+			Assert.assertEquals(productValidatorPage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
+			Assert.assertEquals(productValidatorPage.getSkuInputText(), ProductRepository.VALID_SKU);
+			Assert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.INVALID_PRICE_FIELD_MESSAGE);
+
+			/* Logout */
+			productValidatorPage.logout();
+		}
 
 	@AfterMethod
 	public void afterMethod() {
 		ApplicationAdmin.signout();
-		// ApplicationAdmin.quitAll();
+		ApplicationAdmin.quitAll();
 	}
 
 	@AfterClass

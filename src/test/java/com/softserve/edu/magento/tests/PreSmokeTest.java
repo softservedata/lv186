@@ -14,16 +14,18 @@ import org.testng.annotations.Test;
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
+import com.softserve.edu.magento.data.Constants;
 import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.ProductRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
-import com.softserve.edu.magento.pages.ProductCatalogPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
@@ -53,11 +55,8 @@ public class PreSmokeTest {
 		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
 		// Check
-		Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
-		Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
-																				// name
-																				// from
-																				// ProductRepository
+		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
+		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME); 
 		// Return to Previous State
 		catalogPage.logout();
 		Thread.sleep(2000);
@@ -100,11 +99,8 @@ public class PreSmokeTest {
 		ProductCatalogPage catalogPage = dashboardPage.gotoCatalogPage();
 		Thread.sleep(1000);
 		// Check
-		Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
-		Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
-																				// name
-																				// from
-																				// ProductRepository
+		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
+		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
 		// Return to Previous State
 		// System.out.println("Logout URL1 = " +
 		// ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl());

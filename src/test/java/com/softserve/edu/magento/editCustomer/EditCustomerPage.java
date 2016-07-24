@@ -60,9 +60,10 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	 */
 	public EditCustomerPage(WebDriver driver) {
 		super(driver);
-		accountInformationAjax = navToAccountInfo();
+	/*	accountInformationAjax = navToAccountInfo();
 		adressesAjax = navToadresses();
 		ordersAjax = navToorders();
+	*/	this.custommerViewAjax = new CustommerView();	
 	}
 
 	/**
@@ -101,7 +102,6 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	}
 
 	private class AccountInformation {
-		//private WebDriver driver;
 		private Select associateToWebsite;
 		private Select group;
 		private WebElement chekboxForGroup;
@@ -122,7 +122,6 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		 * Constructor
 		 */
 		private AccountInformation() {
-			//this.driver = EditCustomerPage.this.driver;
 			this.associateToWebsite = new Select(
 					driver.findElement(By.cssSelector("select[name='customer[website_id]']")));
 			this.group = new Select(driver.findElement(By.cssSelector("select[name='customer[group_id]']")));
@@ -287,7 +286,6 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		 */
 		private Adresses() {
 			this.addNewAddresses = driver.findElement(By.xpath("//span[contains(text(),'Add New Addresses')]/parent::button"));
-			
 			if(!driver.findElement(By.cssSelector("address")).isDisplayed()){
 				clickAddNewAddresses();
 			}
@@ -518,23 +516,24 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	}
 
 	public List<WebElement> getCustomerAllData () {
-		navToAccountInfo();
-		List <WebElement> result = null;
-		result = driver.findElements(By.cssSelector("div[data-index='customer'] input"));
-		return result;
+		if (this.accountInformationAjax == null){
+			navToAccountInfo();
+		}
+		return driver.findElements(By.cssSelector("div[data-index='customer'] input"));
 	}
 	
 	public boolean compareFields (WebElement customerCurrentField) {
 		Integer index = getCustomerAllData().indexOf(customerCurrentField);
-		WebElement temp = null;
+		String changed = null;
 		if(index != null) {
-			temp =  getCustomerAllData().get(index);
+			WebElement temp = getCustomerAllData().get(index);
 			temp.sendKeys("blah-blah-blah");
+			changed = temp.getText();
 		}
 		AllCustomersPage custPage = saveCustomer();
 		custPage.getEditCustomerPage().navToAccountInfo();
-		WebElement changed = getCustomerAllData().get(index);
-		return temp == changed;	
+		String saved = getCustomerAllData().get(index).getText();
+		return saved.equals(changed);	
 	}
 	
 	public void checkGroupcheckbox() {

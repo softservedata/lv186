@@ -18,15 +18,19 @@ import com.softserve.edu.magento.data.FilterRepository;
 import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.data.IProduct;
 import com.softserve.edu.magento.data.ProductRepository;
-import com.softserve.edu.magento.pages.AddProductPage;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
+/*import com.softserve.edu.magento.pages.AddProductPage;
 import com.softserve.edu.magento.pages.ProductCatalogPage;
 import com.softserve.edu.magento.pages.ProductCatalogPage.ProductRow;
 import com.softserve.edu.magento.pages.ProductValidatorPage;
-import com.softserve.edu.magento.pages.SuccessProductSavePage;
+import com.softserve.edu.magento.pages.SuccessProductSavePage;*/
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.menu.products.AddProductPage;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage.ProductRow;
+import com.softserve.edu.magento.pages.menu.products.ProductValidatorPage;
+import com.softserve.edu.magento.pages.menu.products.SuccessProductSavePage;
 import com.softserve.edu.magento.tools.ParameterUtils;
-
+import com.softserve.edu.magento.pages.ApplicationAdmin;
 public class SmokeProductTest {
 
 	@DataProvider(parallel = true)

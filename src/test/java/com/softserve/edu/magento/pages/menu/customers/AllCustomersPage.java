@@ -884,7 +884,6 @@ public class AllCustomersPage extends VerticalMenu {
 
 	public void checkCustomerUser(RowCustomerUser rowCustomerUser) {
 		rowCustomerUser.getName().click();
-		System.out.println("checked USER" + rowCustomerUser.getNameText());
 	}
 
 	public void checkCustomerUser(List<RowCustomerUser> rowsCustomerUser) {
@@ -927,7 +926,7 @@ public class AllCustomersPage extends VerticalMenu {
 		goToActionsDropDownMenu().delete.click();
 	}
 
-	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) throws InterruptedException {
+	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser){
 		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
 
 		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),

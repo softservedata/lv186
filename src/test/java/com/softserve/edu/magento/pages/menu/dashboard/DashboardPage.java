@@ -287,8 +287,7 @@ public class DashboardPage extends VerticalMenu {
 	}
 
 	public WebElement getReloadMessage() {
-		DashboardPage page = refreshPage();
-		return page.reloadMessage;
+		return refreshPage().reloadMessage;
 	}
    
 	public List<WebElement> getBestsellersRecords() {

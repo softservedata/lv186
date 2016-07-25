@@ -837,7 +837,7 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	public Boolean sortedNameField() {
-		boolean isNameFieldSorted = false;
+		boolean isNameFieldSorted = true;
 		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
 		List<String> usernames = new ArrayList<String>();
 		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
@@ -847,15 +847,16 @@ public class AllCustomersPage extends VerticalMenu {
 		List<String> sortedNames = new ArrayList<>(usernames);
 		Collections.sort(sortedNames);
 
-		for (int i = 0; i < sortedNames.size(); i++) {
-			if (!sortedNames.get(i).equals(usernames.get(i))) {
+		for (int i = 0; i < usernames.size(); i++) {
+			if (!usernames.get(i).equals(sortedNames.get(i))) {
 				isNameFieldSorted = false;
 				break;
 			}
-			if (isNameFieldSorted == false) {
-				nameFieldInListClick();
-				isNameFieldSorted = true;
-			}
+
+		}
+		if (isNameFieldSorted == false) {
+			nameFieldInListClick();
+			isNameFieldSorted = true;
 		}
 		return isNameFieldSorted;
 	}

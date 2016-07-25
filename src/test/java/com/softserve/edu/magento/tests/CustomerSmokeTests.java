@@ -37,78 +37,48 @@ public class CustomerSmokeTests {
 						AdminUserRepository.get().adminMykhaylo());
 	}
 
-	 @Test(dataProvider = "smokeParameters")
+	 @Test(dataProvider = "smokeParameters", priority = 1)
+	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+		// Precondition
+		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
+		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
+		Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
+		applicationAdmin.quit();
+	}
+	 @Test(dataProvider = "smokeParameters", priority = 2)
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-		Thread.sleep(1000);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		Thread.sleep(1000);
 		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
-		Thread.sleep(1000);
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
 		Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
-		AllCustomersPageAfterSuccesRegistration asdfgh = regNewCust
+		AllCustomersPageAfterSuccesRegistration allCustAfter = regNewCust
 				.setCustomerDataInLoginForm(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
 		Assert.assertTrue(
-				asdfgh.findCustomerInTheList(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide()));
-		Assert.assertEquals(asdfgh.getRegisteredNewCustomerLabelgetText(), asdfgh.REGISTERED_CUSTOMER_TITLE);
-		asdfgh.deleteCustomerUser(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
-		Thread.sleep(5000);
+				allCustAfter.findCustomerInTheList(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide()));
+		Assert.assertEquals(allCustAfter.getRegisteredNewCustomerLabelgetText(), allCustAfter.REGISTERED_CUSTOMER_TITLE);
+		allCustAfter.deleteCustomerUser(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
 		applicationAdmin.quit();
 	}
 
-	 //@Test(dataProvider = "smokeParameters")
+	 @Test(dataProvider = "smokeParameters", priority = 3)
 	public void searchCustomerInTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-		Thread.sleep(1000);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		Thread.sleep(1000);
 		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
-		Thread.sleep(1000);
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		Assert.assertTrue(acp
-				.findCustomerInTheListAfterSearch(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide()));
-		Thread.sleep(5000);
+				.findCustomerInTheListAfterSearch(CustomerUserRepository.get().SteveRinger()));
 		applicationAdmin.quit();
 	}
 
-	// @Test(dataProvider = "smokeParameters")
-	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-		// Precondition
-		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-		Thread.sleep(1000);
-		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		Thread.sleep(1000);
-		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
-		Thread.sleep(1000);
-		Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
-		Thread.sleep(5000);
-		applicationAdmin.quit();
-	}
-
-
-	  // @Test(dataProvider = "smokeParameters")
-		public void tryToFindDeletedColumn(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-			// Precondition
-			ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-			Thread.sleep(1000);
-			DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-			Thread.sleep(1000);
-			AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();		
-			Thread.sleep(1000);
-			acp.goToColumnsMenuDropdown();
-			Thread.sleep(5000);
-			acp.columnsmenudropdownNameClick();
-			Thread.sleep(5000);
-			acp.allCustomersLabelClick();
-			Assert.assertTrue(acp.findDeletedColumn());
-			Thread.sleep(5000);
-			applicationAdmin.quit();
-		}
+	 
 
 	@AfterMethod
 	public void afterMethod() {

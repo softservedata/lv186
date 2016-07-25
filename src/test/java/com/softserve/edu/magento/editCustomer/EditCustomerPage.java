@@ -142,6 +142,69 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		this.successMessage = driver.findElement(By
 				.xpath("//div[contains(text(), 'You saved the customer.')]"));
 	}
+	
+	/**
+	 * Navigates to AllCustomerPage.
+	 * @return
+	 * 		new AllCustomerPage.
+	 */
+	public AllCustomersPage back() {
+		back.click();
+		return new AllCustomersPage(getDriver());
+	}
+
+	public void deleteCustomer() {
+		// TODO stub
+	}
+	
+	/**
+	 * resets all the changes made 
+	 * to Customer data.
+	 * @return
+	 * 		new EditCustomerPage
+	 */
+	public EditCustomerPage reset() {
+		reset.click();
+		areChangesMade = false;
+		return new EditCustomerPage(driver);
+	}
+
+	// TODO CreateOrder PAge
+	public void createOrder() {
+		// stub
+	}
+	
+	public void resetPassword() {
+		resetPassword.click();
+		// TODO
+	}
+
+	public void forceSignIn() {
+		forceSignIn.click();
+		// TODO
+	}
+	
+	/**
+	 * Saves all changes made to Customer
+	 * data.
+	 * @return
+	 * 		new EditCustomerPage.
+	 */
+	public EditCustomerPage saveAndContinueEdit() {
+		saveAndContinueEdit.click();
+		return new EditCustomerPage(driver);
+	}
+	
+	/**
+	 * Saves Customer and goes bacl to 
+	 * AllCustomersPage.
+	 * @return
+	 * 		new AllCustomersPage.
+	 */
+	public AllCustomersPage saveCustomer() {
+		saveCustomer.click();
+		return new AllCustomersPage(getDriver());
+	}
 
 	/**
 	 * Component for CustommerView.
@@ -396,7 +459,6 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		private WebElement zip;
 		private WebElement phone;
 		private WebElement vat;
-		private List<WebElement> messageIcon;
 
 		/*
 		 * Constructor
@@ -735,47 +797,6 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 	}
 	
-	
-	// ---------------------System Logick-------------------------
-	public AllCustomersPage back() {
-		back.click();
-		return new AllCustomersPage(getDriver());
-	}
-
-	public void deleteCustomer() {
-		// TODO stub
-	}
-
-	public EditCustomerPage reset() {
-		reset.click();
-		areChangesMade = false;
-		return new EditCustomerPage(driver);
-	}
-
-	// TODO CreateOrder PAge
-	public void createOrder() {
-		// stub
-	}
-
-	public void resetPassword() {
-		resetPassword.click();
-		// stub
-	}
-
-	public void forceSignIn() {
-		forceSignIn.click();
-	}
-
-	public EditCustomerPage saveAndContinueEdit() {
-		saveAndContinueEdit.click();
-		return new EditCustomerPage(driver);
-	}
-
-	public AllCustomersPage saveCustomer() {
-		saveCustomer.click();
-		return new AllCustomersPage(getDriver());
-	}
-
 	public EditCustomerPage.AccountInformation navToAccountInfo() {
 		accountInfo.click();
 		if (this.accountInformationAjax == null) {
@@ -799,16 +820,6 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 		return ordersAjax;
 	}
-
-	public List<WebElement> getMessageIcon() {
-		return changesMade;
-	}
-
-	public void setMessageIcon(List<WebElement> messageIcon) {
-		changesMade = messageIcon;
-	}
-
-	// ---------------------Bussiness Logick-------------------------
 
 	public boolean compareChangesMadetoCity() {
 		String pre = this.adressesAjax.getCity().getText();
@@ -870,15 +881,6 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		custPage.getEditCustomerPage().navToAccountInfo();
 		String saved = getCustomerAllData().get(index).getText();
 		return saved.equals(changed);
-	}
-
-	public void checkGroupcheckbox() {
-		navToAccountInfo();
-		accountInformationAjax.checkGroupcheckbox();
-	}
-
-	public boolean isGroupcheckboxchecked() {
-		return accountInformationAjax.isGroupcheckboxchecked();
 	}
 
 }

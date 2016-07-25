@@ -1,5 +1,3 @@
-
-
 package com.softserve.edu.magento.tests;
 
 import org.testng.Assert;
@@ -23,7 +21,7 @@ import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
 public class CustomerSmokeTests {
-	@DataProvider(parallel = true)
+	@DataProvider
 	public Object[][] smokeParameters(ITestContext context) {
 		// return new Object[][] {
 		// { ParameterUtils.get().updateParametersAll(
@@ -39,7 +37,7 @@ public class CustomerSmokeTests {
 						AdminUserRepository.get().adminMykhaylo());
 	}
 
-	// @Test(dataProvider = "smokeParameters")
+	 @Test(dataProvider = "smokeParameters")
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		// Precondition
@@ -62,7 +60,7 @@ public class CustomerSmokeTests {
 		applicationAdmin.quit();
 	}
 
-	 @Test(dataProvider = "smokeParameters")
+	 //@Test(dataProvider = "smokeParameters")
 	public void searchCustomerInTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);

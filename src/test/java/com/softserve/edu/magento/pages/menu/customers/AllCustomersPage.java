@@ -1,11 +1,9 @@
-
 package com.softserve.edu.magento.pages.menu.customers;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.VerticalMenu;
-import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 
 public class AllCustomersPage extends VerticalMenu {
 	public final static String PAGE_TITLE = "Customers";
@@ -719,8 +716,8 @@ public class AllCustomersPage extends VerticalMenu {
 	public void enterDataInSearchField(String text) {
 		searchField.clear();
 		searchField.sendKeys(text, Keys.ENTER);
-		refreshAllCustomersPage();
-		clearAllButtonClick();
+	//	refreshAllCustomersPage();
+	//	clearAllButtonClick();
 	}
 
 	// functional Business Logic

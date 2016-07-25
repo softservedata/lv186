@@ -39,9 +39,6 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 
 	public RegistrationNewCustomerPage(WebDriver driver) {
 		super(driver);
-		// this.validLabelAboutSavedUser =
-		// driver.findElement(By.xpath("//div[text()='You saved the
-		// customer.']"));
 		this.newCustomerLabel = driver.findElement(By.cssSelector(".page-title"));
 		this.accountInformationButton = driver.findElement(By.id("tab_customer"));
 		this.addressesButton = driver.findElement(By.id("tab_address"));

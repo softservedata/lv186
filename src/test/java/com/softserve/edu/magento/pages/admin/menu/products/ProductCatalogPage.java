@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.magento.data.admin.products.FilterData;
+import com.softserve.edu.magento.data.Filter;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 
 public class ProductCatalogPage extends VerticalMenu {
@@ -172,14 +172,12 @@ public class ProductCatalogPage extends VerticalMenu {
 		getUpdateProductAttributesAction().click();
 	}
 
-	public Filter clickFilterButton() {
+	public FilterObject clickFilterButton() {
 		getFilterButton().click();
-		return new Filter();
+		return new FilterObject();
 	}
 
 	// Functional Business Logic
-	// I have several buttons that lead to AddProductPage, how should I create
-	// methods?
 	public AddProductPage gotoAddProductPage() {
 		clickAddProductButton();
 		return new AddProductPage(driver);
@@ -241,8 +239,6 @@ public class ProductCatalogPage extends VerticalMenu {
 			productStatus = row.findElement(By.cssSelector("td:nth-child(11)"));
 			productWebsites = row.findElement(By.cssSelector("td:nth-child(12)"));
 			productActions = row.findElement(By.cssSelector("td:nth-child(13)"));
-			// noProductFound =
-			// row.findElement(By.className("data-grid-tr-no-data"));
 		}
 
 		// Getters
@@ -313,9 +309,9 @@ public class ProductCatalogPage extends VerticalMenu {
 		}
 	}
 
-	// -------- FilterInnerClass ---------//
+	// -------- FilterObjectInnerClass ---------//
 
-	public class Filter {
+	public class FilterObject {
 		private WebElement filterIdFromInput;
 		private WebElement filterIdToInput;
 		private WebElement filterPriceFromInput;
@@ -327,7 +323,7 @@ public class ProductCatalogPage extends VerticalMenu {
 		private WebElement applyFiltersButton;
 		private WebElement cancelFiltersButton;
 
-		private Filter() {
+		private FilterObject() {
 			filterIdFromInput = driver.findElement(By.cssSelector("input[name='entity_id[from]']"));
 			filterIdToInput = driver.findElement(By.cssSelector("input[name='entity_id[to]']"));
 			filterPriceFromInput = driver.findElement(By.cssSelector("input[name='price[from]']"));
@@ -489,15 +485,15 @@ public class ProductCatalogPage extends VerticalMenu {
 
 		// Functional
 
-		public void setFilterData(FilterData filterData) {
-			setFilterIdFromInputClear(filterData.getIdFrom());
-			setFilterIdToInputClear(filterData.getIdTo());
-			setFilterPriceFromInputClear(filterData.getPriceFrom());
-			setFilterPriceToInputClear(filterData.getPriceTo());
-			setFilterQuantityFromInputClear(filterData.getQuantityFrom());
-			setFilterQuantityToInputClear(filterData.getQuantityTo());
-			setFilterNameInputClear(filterData.getName());
-			setFilterSkuInputClear(filterData.getSku());
+		public void setFilter(Filter filter) {
+			setFilterIdFromInputClear(filter.getIdFrom());
+			setFilterIdToInputClear(filter.getIdTo());
+			setFilterPriceFromInputClear(filter.getPriceFrom());
+			setFilterPriceToInputClear(filter.getPriceTo());
+			setFilterQuantityFromInputClear(filter.getQuantityFrom());
+			setFilterQuantityToInputClear(filter.getQuantityTo());
+			setFilterNameInputClear(filter.getName());
+			setFilterSkuInputClear(filter.getSku());
 		}
 	}
 
@@ -542,5 +538,4 @@ public class ProductCatalogPage extends VerticalMenu {
 			getCloseDeletePopupButton().click();
 		}
 	}
-
 }

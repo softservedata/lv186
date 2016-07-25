@@ -9,20 +9,11 @@ public class ProductRepository {
 	public final static String VALID_PRICE_FOR_CHECK = "$700.00";
 	public final static String INVALID_PRICE = "Big Price";
 
-	private static volatile ProductRepository instance = null;
-
 	private ProductRepository() {
 	}
 
 	public static ProductRepository get() {
-		if (instance == null) {
-			synchronized (ProductRepository.class) {
-				if (instance == null) {
-					instance = new ProductRepository();
-				}
-			}
-		}
-		return instance;
+		return new ProductRepository();
 	}
 
 	public IProduct getNewValidProduct() {
@@ -43,5 +34,4 @@ public class ProductRepository {
 		IProduct product = Product.get().setProductName("").setSku("").setPrice(INVALID_PRICE).build();
 		return product;
 	}
-
 }

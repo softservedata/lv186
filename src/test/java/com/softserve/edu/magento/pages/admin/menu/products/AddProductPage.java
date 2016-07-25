@@ -214,12 +214,12 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public void setProductData(IProduct productData) {
-		if(!TextUtils.isEmpty(productData.getAttributeSet())){
+		if (!TextUtils.isEmpty(productData.getAttributeSet())) {
 			setAttributeSet(productData.getAttributeSet());
 		}
-		setProductName(productData.getProductName());
-		setSku(productData.getSku());
-		setPrice(productData.getPrice());
+		setProductNameInputWithClear(productData.getProductName());
+		setSkuInputWithClear(productData.getSku());
+		setPriceInputWithClear(productData.getPrice());
 	}
 
 	public void setAttributeSet(String attributeSet) {
@@ -237,23 +237,23 @@ public class AddProductPage extends VerticalMenu {
 		}
 	}
 
-	// Functional 
-	
+	// Functional
+
 	public ProductCatalogPage returnToProductPage() {
 		clickBackButton();
 		return new ProductCatalogPage(driver);
 	}
-	
+
 	public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
 		clickSaveButton();
 		return new SuccessProductSavePage(driver);
 	}
-	
+
 	public SuccessProductSavePage gotoSuccessProductSavePageAfterSaveAndNew() {
 		clickSaveAndNewButton();
 		return new SuccessProductSavePage(driver);
 	}
-	
+
 	public SuccessProductSaveAndDuplicatePage gotoSuccessProductSaveAndDuplicatePage() {
 		clickSaveButton();
 		return new SuccessProductSaveAndDuplicatePage(driver);
@@ -268,32 +268,32 @@ public class AddProductPage extends VerticalMenu {
 		clickSaveButton();
 		return new ProductExistsPage(driver);
 	}
-	
+
 	public ProductExistsPage gotoProductExistsPageAfterSaveAndNew() {
 		clickSaveAndNewButton();
 		return new ProductExistsPage(driver);
 	}
-	
+
 	public ProductExistsPage gotoProductExistsPageAfterSaveAndDuplicate() {
 		clickSaveAndDuplicateButton();
 		return new ProductExistsPage(driver);
 	}
-	
+
 	public ProductExistsPage gotoProductExistsPageAfterSaveAndClose() {
 		clickSaveAndCloseButton();
 		return new ProductExistsPage(driver);
 	}
-	
+
 	public ProductValidatorPage gotoProductValidatorPageAfterSave() {
 		clickSaveButton();
 		return new ProductValidatorPage(driver);
 	}
-	
+
 	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndNew() {
 		clickSaveAndNewButton();
 		return new ProductValidatorPage(driver);
 	}
-	
+
 	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndDuplicate() {
 		clickSaveAndDuplicateButton();
 		return new ProductValidatorPage(driver);
@@ -303,5 +303,4 @@ public class AddProductPage extends VerticalMenu {
 		clickSaveAndCloseButton();
 		return new ProductValidatorPage(driver);
 	}
-
 }

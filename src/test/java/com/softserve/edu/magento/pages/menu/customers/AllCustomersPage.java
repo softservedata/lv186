@@ -703,6 +703,10 @@ public class AllCustomersPage extends VerticalMenu {
 	public void allCustomersLabelClick() {
 		getCustomersLabel().click();
 	}
+	
+	public void searchFieldClear(){
+		getSearchField().clear();
+	}
 
 	public void nameFieldInListClick() {
 		Actions actions = new Actions(driver);

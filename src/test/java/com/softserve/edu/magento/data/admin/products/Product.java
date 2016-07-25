@@ -52,7 +52,7 @@ public class Product implements IProductName, ISku, IPrice, IBuild, IProduct {
 		this.attributeSet = attributeSet;
 	}
 
-	// getters
+	// Getters
 
 	public String getProductName() {
 		return productName;

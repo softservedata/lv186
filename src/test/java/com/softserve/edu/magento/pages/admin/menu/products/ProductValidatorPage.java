@@ -18,13 +18,6 @@ public class ProductValidatorPage extends AddProductPage {
 
 	public ProductValidatorPage(WebDriver driver) {
 		super(driver);
-		// productNameValidator =
-		// driver.findElement(By.xpath("(//label[@class='admin__field-error'])[1]"));
-		// skuValidator =
-		// driver.findElement(By.xpath("(//label[@class='admin__field-error'])[2]"));
-		// priceValidator =
-		// driver.findElement(By.xpath("(//label[@class='admin__field-error'])[3]"));
-
 		productNameValidators = driver.findElements(By.xpath("(//label[@class='admin__field-error'])[1]"));
 		skuValidators = driver.findElements(By.xpath("(//label[@class='admin__field-error'])[2]"));
 		priceValidators = driver.findElements(By.xpath("(//label[@class='admin__field-error'])[3]"));
@@ -79,5 +72,4 @@ public class ProductValidatorPage extends AddProductPage {
 	public boolean isPriceValidatorPresent() {
 		return priceValidator != null;
 	}
-
 }

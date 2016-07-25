@@ -37,7 +37,7 @@ public class EditCustomerTest {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	// @Test(dataProvider = "smokeParameters")
+	 @Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -49,16 +49,17 @@ public class EditCustomerTest {
 		applicationAdmin.quit();
 	}
 
-	// @Test(dataProvider = "smokeParameters")
+	 @Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void resetMadeChanges(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
 		ecp.navToadresses();
 		Assert.assertTrue(ecp.compareChangesMadetoCity());
+		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters")
+	@Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveAndContinue(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -68,6 +69,7 @@ public class EditCustomerTest {
 		nuecp.navToAccountInfo();
 		nuecp.setSuccessMessage();
 		Assert.assertTrue(nuecp.getSuccessMessage().isDisplayed());
+		applicationAdmin.quit();
 	}
 
 	@AfterMethod

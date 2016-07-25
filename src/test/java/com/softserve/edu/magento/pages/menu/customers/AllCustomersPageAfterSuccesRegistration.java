@@ -911,4 +911,4 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 
 }
->>>>>>> branch 'development' of https://github.com/softservedata/lv186.git
+

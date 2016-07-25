@@ -16,10 +16,10 @@ import com.softserve.edu.magento.data.admin.dashboard.ISearch;
 import com.softserve.edu.magento.data.admin.dashboard.SearchRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
-import com.softserve.edu.magento.pages.ApplicationCustomer;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
-import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
 public class SmokeTestsDashboard {

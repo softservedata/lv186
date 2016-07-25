@@ -18,15 +18,15 @@ import com.softserve.edu.magento.data.FilterRepository;
 import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.data.IProduct;
 import com.softserve.edu.magento.data.ProductRepository;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
-import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
-import com.softserve.edu.magento.pages.menu.products.AddProductPage;
-import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
-import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage.DeleteConfirmationPopup;
-import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage.Filter;
-import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage.ProductRow;
-import com.softserve.edu.magento.pages.menu.products.ProductValidatorPage;
-import com.softserve.edu.magento.pages.menu.products.SuccessProductSavePage;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.admin.menu.products.AddProductPage;
+import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage;
+import com.softserve.edu.magento.pages.admin.menu.products.ProductValidatorPage;
+import com.softserve.edu.magento.pages.admin.menu.products.SuccessProductSavePage;
+import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage.DeleteConfirmationPopup;
+import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage.Filter;
+import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage.ProductRow;
 import com.softserve.edu.magento.tools.ParameterUtils;
 public class SmokeProductTest {
 

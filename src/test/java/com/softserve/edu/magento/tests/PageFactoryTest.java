@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.IAdminUser;
-import com.softserve.edu.magento.pages.AdminLogPage;
+import com.softserve.edu.magento.pages.admin.AdminLogPage;
 
 public class PageFactoryTest {
 

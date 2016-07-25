@@ -12,11 +12,11 @@ import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.IAdminUser;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
-import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.pages.menu.customers.AllCustomersPageAfterSuccesRegistration;
-import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
-import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPageAfterSuccesRegistration;
+import com.softserve.edu.magento.pages.admin.menu.customers.RegistrationNewCustomerPage;
+import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 

@@ -49,7 +49,7 @@ public class Product implements IProductName, ISku, IPrice, IBuild, IProduct {
 	}
 
 	public void setAttributeSet(String attributeSet) {
-
+		this.attributeSet = attributeSet;
 	}
 
 	// getters

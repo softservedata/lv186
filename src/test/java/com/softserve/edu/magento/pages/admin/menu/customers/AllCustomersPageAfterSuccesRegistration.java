@@ -229,10 +229,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			super();
 			this.defaultView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[1]"));
 			this.myNewView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[2]"));
-			// this.myNewViewEdit =
-			// driver.findElement(By.xpath("//*[@class='action-edit']"));
-			// this.saveViewAs =
-			// driver.findElement(By.xpath(".//*[@id='container']//div[1]/div[1]/ul/li[3]/a"));
 		}
 
 		public WebElement getDefaultView() {

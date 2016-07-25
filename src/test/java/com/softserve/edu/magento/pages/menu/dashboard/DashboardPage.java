@@ -1,4 +1,6 @@
+
 package com.softserve.edu.magento.pages.menu.dashboard;
+
 
 import java.util.List;
 
@@ -453,3 +455,4 @@ public class DashboardPage extends VerticalMenu {
 		return page;
 	}
 }
+

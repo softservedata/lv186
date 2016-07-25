@@ -1,3 +1,5 @@
+
+
 package com.softserve.edu.magento.tests;
 
 import org.testng.Assert;
@@ -122,3 +124,4 @@ public class CustomerSmokeTests {
 	}
 
 }
+

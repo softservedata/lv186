@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-abstract class ACustomerPageHead {
+import com.softserve.edu.magento.pages.VerticalMenu;
+
+abstract class ACustomerPageHead extends VerticalMenu {
 	protected WebDriver driver;
 	protected UIMapperForAbstracts find;
 	
@@ -18,11 +20,11 @@ abstract class ACustomerPageHead {
 	protected WebElement saveCustomer;
 	
 	protected ACustomerPageHead(WebDriver driver){
-		find = new UIMapperForAbstracts(driver);
+		super(driver);
 		this.driver = driver;
-		this.back = find.getAbstractLocators().get("back");
-		this.deleteCustomer = find.getAbstractLocators().get("deleteCustomer");
-		this.reset = find.getAbstractLocators().get("reset");
+		this.back = driver.findElement(By.id("back"));
+		this.deleteCustomer = driver.findElement(By.id("customer-edit-delete-button"));
+		this.reset = driver.findElement(By.id("reset"));
 		this.createOrder = driver.findElement((By.id("order")));
 		this.resetPassword = driver.findElement((By.id("resetPassword")));
 		this.forceSignIn = driver.findElement((By.id("invalidateToken")));

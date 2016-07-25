@@ -1,5 +1,7 @@
 package com.softserve.edu.magento.editCustomer;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +15,8 @@ abstract class ACustomPageSideMenu extends ACustomerPageHead {
 	protected WebElement newsletter;
 	protected WebElement productReviews;
 	protected WebElement wishlist; 
-	protected WebElement changesMade;
+	protected List<WebElement> changesMade;
+	protected boolean areChangesMade = false;
 	
 	protected ACustomPageSideMenu(WebDriver driver){
 		super(driver);

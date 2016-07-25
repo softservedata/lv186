@@ -16,16 +16,17 @@ import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.ProductRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
-import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
@@ -52,10 +53,11 @@ public class PreSmokeTest {
 		Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$0.00");
 		//
 		// Test Steps
-		//ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
+		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
+		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME); 
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
 																				// name
 																				// from
@@ -99,10 +101,11 @@ public class PreSmokeTest {
 		Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
 		//
 		// Test Steps
-		//ProductCatalogPage catalogPage = dashboardPage.gotoCatalogPage();
+		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
+		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
 		
 																				// name

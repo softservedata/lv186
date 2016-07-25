@@ -41,7 +41,7 @@ public class EditCustomerTest {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	@Test(dataProvider = "smokeParameters") 
+	// @Test(dataProvider = "smokeParameters")
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -52,15 +52,28 @@ public class EditCustomerTest {
 				.get(new Random().nextInt(ecp.getCustomerAllData().size()))));
 		applicationAdmin.quit();
 	}
-	
-	@Test(dataProvider = "smokeParameters") 
-	public void resetMadeChanges (ApplicationSources applicationSources, IAdminUser adminUser) {
+
+	// @Test(dataProvider = "smokeParameters")
+	public void resetMadeChanges(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		ecp.navToAccountInfo().setFirstname("Dirty Jhonny");
-		ecp.navToadresses().setCity("London");
-		ecp.reset();
+		ecp.navToadresses();
+		Assert.assertTrue(ecp.compareChangesMadetoCity());
+	}
+
+	@Test(dataProvider = "smokeParameters")
+	public void saveAndContinue(ApplicationSources applicationSources, IAdminUser adminUser) {
+		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+	//	System.out.println(ecp.navToAccountInfo().geLastname().getText());
+		ecp.navToAccountInfo().setLastname(" Dirty Johnny");
+		EditCustomerPage nuecp = ecp.saveAndContinueEdit();
+		nuecp.navToAccountInfo();
+		nuecp.setSuccessMessage();
+	//	System.out.println(nuecp.getAccountInformationAjax().geLastname().getText());
+		Assert.assertTrue(nuecp.getSuccessMessage().isDisplayed());
 	}
 
 	@AfterMethod

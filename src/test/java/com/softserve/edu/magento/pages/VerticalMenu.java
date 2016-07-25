@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.pages;
 
+import com.softserve.edu.magento.pages.menu.products.Categories.CategoriesPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -1467,10 +1468,12 @@ public abstract class VerticalMenu extends ATopPage {
 		return new ProductCatalogPage(driver);
 	}
 
-	/*
-	 * public CategoriesPage gotoCategoriesPage() {
-	 * clickMenuProductsCategories(); return new CategoriesPage(driver); }
-	 */
+
+	 public CategoriesPage gotoCategoriesPage() {
+		 clickMenuProductsCategories();
+		 return new CategoriesPage(driver);
+	 }
+
 
 	// -----------------Customers---------------
 

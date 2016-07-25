@@ -173,6 +173,7 @@ public class PreSmokeTest {
 		Thread.sleep(5000);
 		applicationAdmin.quit();
 	}
+
 	@AfterMethod
 	public void afterMethod() {
 		ApplicationAdmin.signout();

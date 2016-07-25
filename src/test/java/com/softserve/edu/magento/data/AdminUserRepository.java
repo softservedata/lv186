@@ -47,7 +47,6 @@ public class AdminUserRepository {
 			   .setPassword("qwerty-1")
 			   .build();
    }
-
    public IAdminUser adminYaryna() {
 	   return AdminUser.get()
 			   .setUsername("ykhartc")
@@ -85,6 +84,16 @@ public class AdminUserRepository {
                .setLastname("invalid")
                .setMail("invalid@gmail.com")
                .setPassword("invalid")
+               .build();
+   }
+
+   public IAdminUser adminOlya() {
+       return AdminUser.get()
+               .setUsername("olutsitc")
+               .setFirstname("Olya")
+               .setLastname("Lutsiv")
+               .setMail("olya.lutsiv@gmail.com")
+               .setPassword("qwerty-1")
                .build();
    }
 

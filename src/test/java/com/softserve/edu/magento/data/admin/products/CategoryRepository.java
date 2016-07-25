@@ -6,6 +6,7 @@ package com.softserve.edu.magento.data.admin.products;
 public class CategoryRepository {
 
     private static volatile CategoryRepository instance = null;
+    public static final String CATEGORY_NAME = "Name";
 
     private CategoryRepository() {
     }
@@ -39,5 +40,9 @@ public class CategoryRepository {
                 .setIncludeInMenu(true)
                 .build();
 
+    }
+
+    public String getValues (){
+        return CATEGORY_NAME;
     }
 }

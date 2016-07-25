@@ -11,7 +11,6 @@ import com.softserve.edu.magento.pages.admin.VerticalMenu;
 
 public class CategoriesPage extends VerticalMenu{
 
-    public String PAGE_TITLE = "Default Category";
 
     //------------ Privates Classes --------------
 
@@ -49,7 +48,7 @@ public class CategoriesPage extends VerticalMenu{
         }
 
         private boolean checkCategoryByName(String name){
-            String path = "//li[@class='x-tree-node']//*[contains( text(),'" + name + "')])";
+            String path = "//li[@class='x-tree-node']//*[contains( text(),'" + name + "')]";
             if(!driver.findElements(By.xpath(path)).isEmpty()){
                 return true;
             }
@@ -57,7 +56,7 @@ public class CategoriesPage extends VerticalMenu{
         }
 
         public WebElement findCategoryByName(String name){
-            String path = "//li[@class='x-tree-node']//*[contains( text(),'" + name + "')])";
+            String path = "//li[@class='x-tree-node']//*[contains( text(),'" + name + "')]";
             if(checkCategoryByName(name)){
                 return driver.findElement(By.xpath(path));
             }
@@ -357,9 +356,16 @@ public class CategoriesPage extends VerticalMenu{
 
     public WebElement findCategoryByName (String name){
         if (checkCategoryByName(name)){
-            return findCategoryByName(name);
+            return treeComponent.findCategoryByName(name);
         }
         return null;
+    }
+    public void selectCategory (String name){
+        if (checkCategoryByName(name)){
+            treeComponent.findCategoryByName(name).click();
+            this.delete = driver.findElement(By.id("delete"));
+        }
+
     }
 
     public AdminLoginPage logout(){

@@ -58,7 +58,6 @@ public class CategoryPageSmokeTest {
 
     }
 
-
     @AfterClass
     void tearDown() throws Exception {
         ApplicationAdmin.quitAll();

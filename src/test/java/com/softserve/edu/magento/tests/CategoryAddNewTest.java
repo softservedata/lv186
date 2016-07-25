@@ -40,7 +40,6 @@ public class CategoryAddNewTest {
         page.setCategoryName(CategoryRepository.CATEGORY_NAME);
         page.clickContent();
         page.saveCategory();
-        System.out.println("k");
         page.checkCategoryByName(CategoryRepository.CATEGORY_NAME);
 
     }
@@ -56,7 +55,6 @@ public class CategoryAddNewTest {
         page.setCategoryName(CategoryRepository.CATEGORY_NAME);
         page.clickContent();
         page.saveCategory();
-        System.out.println("k");
         page.checkCategoryByName(CategoryRepository.CATEGORY_NAME);
     }
 

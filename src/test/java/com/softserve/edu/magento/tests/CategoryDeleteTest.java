@@ -11,6 +11,7 @@ import com.softserve.edu.magento.pages.admin.menu.products.categories.Categories
 import com.softserve.edu.magento.tools.ParameterUtils;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -37,8 +38,15 @@ public class CategoryDeleteTest {
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
         page.selectCategory(CategoryRepository.CATEGORY_NAME);
+        page = page.refresh();
         page.clickDelete();
+        page.clickOkButton();
         Assert.assertEquals(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME), false);
 
+    }
+
+    @AfterClass
+    void tearDown() throws Exception {
+        ApplicationAdmin.quitAll();
     }
 }

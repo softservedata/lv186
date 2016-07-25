@@ -301,7 +301,12 @@ public class CategoriesPage extends VerticalMenu{
     }
 
     public void clickDelete() {
-        getDelete().click();
+        driver.findElement(By.id("delete")).click();
+        //getDelete().click();
+    }
+
+    public void clickOkButton(){
+        driver.findElement(By.xpath("//button[@class='action-primary action-accept']")).click();
     }
 
 

@@ -4,6 +4,7 @@ import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.admin.AdminUserRepository;
 import com.softserve.edu.magento.data.admin.IAdminUser;
+import com.softserve.edu.magento.data.admin.products.CategoryRepository;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.admin.menu.products.categories.CategoriesPage;
@@ -29,33 +30,28 @@ public class CategoryAddNewTest {
     @Test(dataProvider = "parameters")
     public void addRootCategory(ApplicationSources applicationSources, IAdminUser adminUser){
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
-        final String IMAGE_PATH = "C:\\Users\\Olia\\Pictures\\1.jpeg";
-        final String CATEGORY_NAME = "Name";
+
 
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
         page.clickAddRootCategory();
-        page.setCategoryName(CATEGORY_NAME);
+        page.setCategoryName(CategoryRepository.CATEGORY_NAME);
         page.clickContent();
-        page.selectImageFile(IMAGE_PATH);
         page.saveCategory();
-        page.checkCategoryByName(CATEGORY_NAME);
+        page.checkCategoryByName(CategoryRepository.CATEGORY_NAME);
 
     }
 
     @Test (dataProvider = "parameters")
     public void addSubCategory(ApplicationSources applicationSources, IAdminUser adminUser) {
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
-        final String IMAGE_PATH = "C:\\Users\\Olia\\Pictures\\1.jpeg";
-        final String CATEGORY_NAME = "Name";
 
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
         page.clickAddSubcategory();
-        page.setCategoryName(CATEGORY_NAME);
+        page.setCategoryName(CategoryRepository.CATEGORY_NAME);
         page.clickContent();
-        page.selectImageFile(IMAGE_PATH);
         page.saveCategory();
-        page.checkCategoryByName(CATEGORY_NAME);
+        page.checkCategoryByName(CategoryRepository.CATEGORY_NAME);
     }
 }

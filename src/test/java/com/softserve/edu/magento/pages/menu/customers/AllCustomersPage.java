@@ -849,13 +849,17 @@ public class AllCustomersPage extends VerticalMenu {
 		for (String str : sortedNames) {
 			System.out.println(str);
 		}
-		if (sortedNames.equals(usernames)) {
-			return isNameFieldSorted = true;
-		} else {
+		for (int i = 0; i < usernames.size(); i++) {
+			if (!usernames.get(i).equals(sortedNames.get(i))) {
+				isNameFieldSorted = false;
+				break;
+			}
+
+		}
+		if (isNameFieldSorted == false) {
 			nameFieldInListClick();
 			isNameFieldSorted = true;
 		}
-
 		return isNameFieldSorted;
 	}
 

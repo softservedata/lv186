@@ -5,6 +5,10 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+/**
+ * Represents the filter info header 
+ * and provides pagination.
+ */
 abstract class ACustomerEditFilter {
 	protected WebElement search;
 	protected WebElement resetFilter;

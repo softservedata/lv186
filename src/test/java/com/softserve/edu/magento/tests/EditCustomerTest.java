@@ -67,12 +67,10 @@ public class EditCustomerTest {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-	//	System.out.println(ecp.navToAccountInfo().geLastname().getText());
 		ecp.navToAccountInfo().setLastname(" Dirty Johnny");
 		EditCustomerPage nuecp = ecp.saveAndContinueEdit();
 		nuecp.navToAccountInfo();
 		nuecp.setSuccessMessage();
-	//	System.out.println(nuecp.getAccountInformationAjax().geLastname().getText());
 		Assert.assertTrue(nuecp.getSuccessMessage().isDisplayed());
 	}
 

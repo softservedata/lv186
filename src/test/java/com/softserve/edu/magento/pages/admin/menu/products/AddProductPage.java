@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.softserve.edu.magento.data.IProduct;
+import com.softserve.edu.magento.data.admin.products.IProduct;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 
 public class AddProductPage extends VerticalMenu {

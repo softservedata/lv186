@@ -7,8 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-import com.softserve.edu.magento.data.AdminUserRepository;
-import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.admin.AdminUserRepository;
+import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.pages.admin.AdminLogPage;
 
 public class PageFactoryTest {

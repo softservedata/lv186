@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 

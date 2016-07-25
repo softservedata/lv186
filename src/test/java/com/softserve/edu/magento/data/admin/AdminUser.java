@@ -1,4 +1,4 @@
-package com.softserve.edu.magento.data;
+package com.softserve.edu.magento.data.admin;
 
 interface IAdminUsername {
     IAdminFirstname setUsername(String username);

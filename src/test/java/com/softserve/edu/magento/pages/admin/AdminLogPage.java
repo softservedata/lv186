@@ -6,7 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 

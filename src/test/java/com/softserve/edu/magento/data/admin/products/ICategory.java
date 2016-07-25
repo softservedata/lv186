@@ -1,4 +1,4 @@
-package com.softserve.edu.magento.data;
+package com.softserve.edu.magento.data.admin.products;
 
 /**
  * Created by Olia on 22.07.2016.

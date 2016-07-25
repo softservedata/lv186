@@ -1,4 +1,4 @@
-package com.softserve.edu.magento.data;
+package com.softserve.edu.magento.data.customer.user;
 
 interface ICustomerPrefix {
 	ICustomerFirstname setPrefix(String prefix);

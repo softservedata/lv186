@@ -1,4 +1,6 @@
-package com.softserve.edu.magento.data;
+package com.softserve.edu.magento.data.customer.user;
+
+import com.softserve.edu.magento.data.admin.AdminUserRepository;
 
 public class CustomerNewRepository {
 	 private static volatile CustomerNewRepository instance = null;

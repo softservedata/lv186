@@ -8,10 +8,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import com.softserve.edu.magento.data.AdminUserRepository;
+
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
-import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.admin.AdminUserRepository;
+import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.admin.dashboard.ISearch;
 import com.softserve.edu.magento.data.admin.dashboard.SearchRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;

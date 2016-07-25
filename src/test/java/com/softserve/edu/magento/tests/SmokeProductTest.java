@@ -13,7 +13,7 @@ import com.softserve.edu.magento.data.admin.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.admin.products.Constants;
-import com.softserve.edu.magento.data.Filter;
+import com.softserve.edu.magento.data.admin.products.Filter;
 import com.softserve.edu.magento.data.admin.products.FilterRepository;
 import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.admin.products.IProduct;

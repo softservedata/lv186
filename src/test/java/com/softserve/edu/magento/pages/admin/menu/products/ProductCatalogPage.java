@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.magento.data.Filter;
+import com.softserve.edu.magento.data.admin.products.Filter;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 
 public class ProductCatalogPage extends VerticalMenu {

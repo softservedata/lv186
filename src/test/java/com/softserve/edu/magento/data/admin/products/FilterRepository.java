@@ -1,7 +1,5 @@
 package com.softserve.edu.magento.data.admin.products;
 
-import com.softserve.edu.magento.data.Filter;
-
 public class FilterRepository {
 
 	public FilterRepository() {

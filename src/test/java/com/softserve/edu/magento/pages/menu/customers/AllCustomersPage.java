@@ -412,7 +412,7 @@ public class AllCustomersPage extends VerticalMenu {
 		this.filtersdropdownmenu = new FiltersDropDownMenu(driver);
 	}
 
-	// ----------------------------------------------------------------//
+	// ------------System logic get page components--------------------//
 
 	public ColumnsMenuDropdown getColumnsMenuDropdown() {
 		return columnsmenudropdown;
@@ -431,7 +431,6 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	// getters to main class
-	// ///////////////////////////////////////////////////////////
 	// get Data PageObject
 
 	public WebElement getClearAllButton() {
@@ -602,7 +601,7 @@ public class AllCustomersPage extends VerticalMenu {
 	public void defaultdropdownmenuMyNewViewSaveViewAs() {
 		getDefaultViewDropdownMenu().getSaveViewAs().click();
 	}
-// set Data
+	
 	// click for ActionsDropDownMenu class
 
 	public void actionsdropdownmenuDeleteClick() {
@@ -624,13 +623,13 @@ public class AllCustomersPage extends VerticalMenu {
 	public void actionsdropdownmenuEditClick() {
 		getActionsDropDownMenu().getEdit().click();
 	}
-// set Data
+
 	// click for ColumnsMenuDropdown class
 	public void columnsmenudropdownIdClick() {
 		getColumnsMenuDropdown().getIdCheck().click();
 	}
 
-	public void columnsmenudropdownNameClick() { /////////////////////////////////////////////////////
+	public void columnsmenudropdownNameClick() {
 		getColumnsMenuDropdown().getNameCheck().click();
 	}
 
@@ -693,7 +692,7 @@ public class AllCustomersPage extends VerticalMenu {
 	public void columnsmenudropdownResetButtonClick() {
 		getColumnsMenuDropdown().getResetButton().click();
 	}
-// setData
+
 	// click for main class
 
 	public void clearAllButtonClick() {
@@ -861,8 +860,10 @@ public class AllCustomersPage extends VerticalMenu {
 		return isNameFieldSorted;
 	}
 
-	// ------------------Yaryna Kharko update--------------------------
+	// ------------------Yaryna Kharko update
+	// 23.07.2016--------------------------
 	public List<RowCustomerUser> getTableCustomerUser() {
+		// TODO when there are more that 1 pagetable
 		List<WebElement> rows = driver.findElements(By.className("data-row"));
 		List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
 		for (int i = 0; i < rows.size(); i++) {
@@ -883,6 +884,7 @@ public class AllCustomersPage extends VerticalMenu {
 
 	public void checkCustomerUser(RowCustomerUser rowCustomerUser) {
 		rowCustomerUser.getName().click();
+		System.out.println("checked USER" + rowCustomerUser.getNameText());
 	}
 
 	public void checkCustomerUser(List<RowCustomerUser> rowsCustomerUser) {
@@ -925,7 +927,7 @@ public class AllCustomersPage extends VerticalMenu {
 		goToActionsDropDownMenu().delete.click();
 	}
 
-	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) {
+	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) throws InterruptedException {
 		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
 
 		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),

@@ -373,6 +373,90 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		}
 	}
 
+	// --------------------ConfirmDeleteWindow----------------------------
+	private class ConfirmDeleteWindow {
+		private WebElement window;
+		private WebElement buttonCancel;
+		private WebElement buttonOk;
+		private WebElement exit;
+
+		public ConfirmDeleteWindow() {
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
+
+			this.buttonOk = driver
+					.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
+			this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
+			this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
+		}
+
+		public WebElement getWindow() {
+			return window;
+		}
+
+		public WebElement getButtonCancel() {
+			return buttonCancel;
+		}
+
+		public WebElement getButtonOk() {
+			return buttonOk;
+		}
+
+		public WebElement getExit() {
+			return exit;
+		}
+
+		// click
+		public void clickButtonCancel() {
+			this.getButtonCancel().click();
+		}
+
+		public AllCustomersPage clickButtonOk() {
+			this.getButtonOk().click();
+			return new AllCustomersPage(driver);
+		}
+
+		public void clickExit() {
+			this.getExit().click();
+		}
+
+	}
+
+	// --------------------RowCustomerUser----------------------------
+	private class RowCustomerUser {
+		WebElement check;
+		WebElement name;
+		WebElement email;
+
+		RowCustomerUser(WebElement row) {
+			this.check = row.findElement(By.className("data-grid-checkbox-cell"));
+			this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
+			this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
+		}
+
+		public WebElement getCheck() {
+			return check;
+		}
+
+		public WebElement getName() {
+			return name;
+		}
+
+		public WebElement getEmail() {
+			return email;
+		}
+
+		public String getNameText() {
+			String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
+			return nameText;
+		}
+
+		public String getEmailText() {
+			String emailText = getEmail().findElement(By.className("data-grid-cell-content")).getText();
+			return emailText;
+		}
+	}
+
 	// main page constructor
 	public AllCustomersPageAfterSuccesRegistration(WebDriver driver) {
 		super(driver);
@@ -380,7 +464,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		this.registeredNewCustomerLabel = driver.findElement(By.cssSelector(".message-success > div:nth-child(1)"));
 		this.addNewCustomerButton = driver.findElement(By.id("add"));
 		this.searchField = driver.findElement(By.xpath("(.//*[@id='fulltext'])[1]"));
-		// this.filtersButton = driver.findElement(By.xpath(""));
 		this.defaultViewButton = driver.findElement(By.xpath("(//span[text()='Default View'])[1]"));
 		this.columnsButton = driver.findElement(By.xpath("(//span[text()='Columns'])[1]"));
 		this.exportButton = driver.findElement(By.xpath("(//span[text()='Export'])[2]"));
@@ -411,13 +494,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		this.genderFieldInList = driver.findElement(By.xpath("(//span[text()='Gender'])[2]"));
 		// written by Andrii
 		this.editList = driver.findElements(By.cssSelector("a[data-repeat-index='0'"));
-		this.columnsmenudropdown = new ColumnsMenuDropdown(driver);
-	//	this.actionsdropdownmenu = new ActionsDropDownMenu(driver);
-		this.defaultdropdownmenu = new DefaultViewDropdownMenu(driver);
-		this.filtersdropdownmenu = new FiltersDropDownMenu(driver);
 	}
 
-	// ----------------------------------------------------------------//
+	// ----------------System logic get page components----------------------//
 
 	public ColumnsMenuDropdown getColumnsMenuDropdown() {
 		return columnsmenudropdown;
@@ -436,7 +515,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	}
 
 	// getters to main class
-	// ///////////////////////////////////////////////////////////
 	// get Data PageObject
 
 	public WebElement getClearAllButton() {
@@ -446,8 +524,8 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	public WebElement getCustomersLabel() {
 		return this.customersLabel;
 	}
-	
-	public WebElement getRegisteredNewCustomerLabel(){
+
+	public WebElement getRegisteredNewCustomerLabel() {
 		return this.registeredNewCustomerLabel;
 	}
 
@@ -574,12 +652,12 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return new EditCustomerPage(driver);
 	}
 
-	// get Data Business Logic
+	// get Data Business Logic 
 
-	public String getRegisteredNewCustomerLabelgetText(){
+	public String getRegisteredNewCustomerLabelgetText() {
 		return getRegisteredNewCustomerLabel().getText().trim();
 	}
-	
+
 	public String getCustomersLabelText() {
 		return customersLabel.getText().trim();
 	}
@@ -615,7 +693,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	public void defaultdropdownmenuMyNewViewSaveViewAs() {
 		getDefaultViewDropdownMenu().getSaveViewAs().click();
 	}
-	// set Data
+	
 	// click for ActionsDropDownMenu class
 
 	public void actionsdropdownmenuDeleteClick() {
@@ -638,13 +716,13 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		getActionsDropDownMenu().getEdit().click();
 	}
 
-	// set Data
 	// click for ColumnsMenuDropdown class
+	
 	public void columnsmenudropdownIdClick() {
 		getColumnsMenuDropdown().getIdCheck().click();
 	}
 
-	public void columnsmenudropdownNameClick() { /////////////////////////////////////////////////////
+	public void columnsmenudropdownNameClick() {
 		getColumnsMenuDropdown().getNameCheck().click();
 	}
 
@@ -707,7 +785,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	public void columnsmenudropdownResetButtonClick() {
 		getColumnsMenuDropdown().getResetButton().click();
 	}
-	// setData
+
 	// click for main class
 
 	public void clearAllButtonClick() {
@@ -720,9 +798,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	public void nameFieldInListClick() {
 		Actions actions = new Actions(driver);
-
 		actions.moveToElement(nameFieldInList).click().perform();
-		// getNameFieldInList().click();
 	}
 
 	// input data
@@ -730,8 +806,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	public void enterDataInSearchField(String text) {
 		searchField.clear();
 		searchField.sendKeys(text, Keys.ENTER);
-		// refreshAllCustomersPage();
-		// clearAllButtonClick();
 	}
 
 	// functional Business Logic
@@ -765,35 +839,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return page;
 	}
 
-	// ------------------Mykhaylo Holovanov update--------------------------
-
-	// public boolean findCustomerInTheList(ICustomerUser customerUser) {
-	// String userName = customerUser.getPersonalInfo().getPrefix() + " "
-	// + customerUser.getPersonalInfo().getFirstname() + " " +
-	// customerUser.getPersonalInfo().getMiddlename()
-	// + " " + customerUser.getPersonalInfo().getLastname() + " " +
-	// customerUser.getPersonalInfo().getSuffix();
-	// List<WebElement> customers = null;
-	// WebElement customer = null;
-	// while (!isWebElementFound) {
-	// customers = driver.findElements(By.xpath("//div[contains(text(),'" +
-	// userName + "')]"));
-	// if (customers.size() > 0) {
-	// isWebElementFound = true;
-	// customer = customers.get(0);
-	// System.out.println("++++++++++ FOUNDED !!!!!!!!");
-	// } else {
-	// List<WebElement> next =
-	// driver.findElements(By.xpath(".//*[@class='action-next'][1]"));
-	// if (next.size() > 0) {
-	// next.get(0).click();
-	// } else {
-	// break;
-	// }
-	// }
-	// }
-	// return isWebElementFound;
-	// }
+	// --------------Mykhaylo Holovanov update Methods--------------------------
 
 	public boolean findCustomerInTheListAfterSearch(ICustomerUser customerUser) {
 		String userName = customerUser.getPersonalInfo().getPrefix() + " "
@@ -901,8 +947,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return isWebElementFound;
 	}
 
-	// ------------------Yaryna Kharko update
-	// 23.07.2016--------------------------
 	public List<RowCustomerUser> getTableCustomerUser() {
 		// TODO when there are more that 1 pagetable
 		List<WebElement> rows = driver.findElements(By.className("data-row"));
@@ -965,7 +1009,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	}
 
 	public void clickDeleteActions() {
-		//Actions build = new Actions(driver);
+		// Actions build = new Actions(driver);
 		// build.moveToElement(getDelete()).build().perform();
 		goToActionsDropDownMenu().getDelete().click();
 	}
@@ -1009,90 +1053,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	public ConfirmDeleteWindow getConfirmDeleteWindow() {
 		return new ConfirmDeleteWindow();
-	}
-
-	// --------------------ConfirmDeleteWindow----------------------------
-	private class ConfirmDeleteWindow {
-		private WebElement window;
-		private WebElement buttonCancel;
-		private WebElement buttonOk;
-		private WebElement exit;
-
-		public ConfirmDeleteWindow() {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
-			this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
-
-			this.buttonOk = driver
-					.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
-			this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
-			this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
-		}
-
-		public WebElement getWindow() {
-			return window;
-		}
-
-		public WebElement getButtonCancel() {
-			return buttonCancel;
-		}
-
-		public WebElement getButtonOk() {
-			return buttonOk;
-		}
-
-		public WebElement getExit() {
-			return exit;
-		}
-
-		// click
-		public void clickButtonCancel() {
-			this.getButtonCancel().click();
-		}
-
-		public AllCustomersPage clickButtonOk() {
-			this.getButtonOk().click();
-			return new AllCustomersPage(driver);
-		}
-
-		public void clickExit() {
-			this.getExit().click();
-		}
-
-	}
-
-	// --------------------RowCustomerUser----------------------------
-	private class RowCustomerUser {
-		WebElement check;
-		WebElement name;
-		WebElement email;
-
-		RowCustomerUser(WebElement row) {
-			this.check = row.findElement(By.className("data-grid-checkbox-cell"));
-			this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
-			this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
-		}
-
-		public WebElement getCheck() {
-			return check;
-		}
-
-		public WebElement getName() {
-			return name;
-		}
-
-		public WebElement getEmail() {
-			return email;
-		}
-
-		public String getNameText() {
-			String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
-			return nameText;
-		}
-
-		public String getEmailText() {
-			String emailText = getEmail().findElement(By.className("data-grid-cell-content")).getText();
-			return emailText;
-		}
 	}
 
 }

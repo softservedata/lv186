@@ -58,8 +58,9 @@ public class EditCustomerTest {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		ecp.navToAccountInfo();
-		
+		ecp.navToAccountInfo().setFirstname("Dirty Jhonny");
+		ecp.navToadresses().setCity("London");
+		ecp.reset();
 	}
 
 	@AfterMethod

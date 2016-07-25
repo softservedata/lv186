@@ -51,6 +51,10 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	private enum DateOfBirth {
 		// TODO
 	}
+	
+	private enum Country {
+		// TODO
+	}
 
 	/**
 	 * Constructor
@@ -101,7 +105,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 	}
 
-	private class AccountInformation {
+	public class AccountInformation {
 		private Select associateToWebsite;
 		private Select group;
 		private WebElement chekboxForGroup;
@@ -139,99 +143,93 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 					driver.findElement(By.cssSelector("select[name='customer[sendemail_store_id]']")));
 		}
 		
-
-		private Select getAssociateToWebsite() {
+		public Select getAssociateToWebsite() {
 			return associateToWebsite;
 		}
 
-
-		private Select getGroup() {
+		public Select getGroup() {
 			return group;
 		}
 
-
-		private WebElement getChekboxForGroup() {
+		public WebElement getChekboxForGroup() {
 			return chekboxForGroup;
 		}
 
-
-		private WebElement getLastname() {
+		public WebElement getLastname() {
 			return lastname;
 		}
 
-
-		private boolean isAreChangesMade() {
+		public boolean isAreChangesMade() {
 			return areChangesMade;
 		}
 
-
-		private WebElement getSelectedWebsite() {
+		public WebElement getSelectedWebsite() {
 			return this.associateToWebsite.getFirstSelectedOption();
 		}
 
-		private WebElement getSelectGroup() {
+		public WebElement getSelectGroup() {
 			return this.group.getFirstSelectedOption();
 		}
 
-		private boolean isGroupcheckboxchecked() {
+		public boolean isGroupcheckboxchecked() {
 			return this.chekboxForGroup.isSelected();
 		}
 
-		private void checkGroupcheckbox() {
+		public void checkGroupcheckbox() {
 			this.chekboxForGroup.click();
 			areChangesMade = true;
 		}
 
-		private WebElement getPrefix() {
+		public WebElement getPrefix() {
 			return this.prefix;
 		}
 
-		private void setPrefix(String value) {
+		public void setPrefix(String value) {
 			this.prefix.sendKeys(value);
 			areChangesMade = true;
 		}
 
-		private WebElement getFirstname() {
+		public WebElement getFirstname() {
 			return this.firstname;
 		}
 		
-		private void setFirstname(String value) {
-			this.firstname.sendKeys(value);
+		public void setFirstname(String value) {
+			EditCustomerPage.this.accountInformationAjax.firstname.sendKeys(value);
 			areChangesMade = true;
 		}
 
-		private WebElement getMiddlename() {
+		public WebElement getMiddlename() {
 			return this.middlename;
 		}
 
-		private void setMiddlename(String value) {
+		public void setMiddlename(String value) {
 			this.middlename.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		private WebElement geLastname() {
+		public WebElement geLastname() {
 			return this.middlename;
 		}
 
-		private void setLastname(String value) {
+		public void setLastname(String value) {
 			this.middlename.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		private WebElement getSuffix() {
+		public WebElement getSuffix() {
 			return this.suffix;
 		}
 
-		private void setSuffix(String value) {
+		public void setSuffix(String value) {
 			this.suffix.sendKeys(value);
 			areChangesMade = true;
 		}
 		
-		private WebElement getEmail() {
+		public WebElement getEmail() {
 			return this.email;
 		}
 
-		private void setEmail(String value) {
+		public void setEmail(String value) {
 			this.email.sendKeys(value);
 			areChangesMade = true;
 		}
@@ -240,26 +238,26 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 			return this.dateOfBirth.getFirstSelectedOption();
 		}
 	*/
-		private WebElement getGender() {
+		public WebElement getGender() {
 			return this.gender.getFirstSelectedOption();
 		}
 		
-		private WebElement getSendWelcomeEmailFrom() {
+		public WebElement getSendWelcomeEmailFrom() {
 			return this.sendWelcomeEmailFrom.getFirstSelectedOption();
 		}
 		
-		private WebElement getTax() {
+		public WebElement getTax() {
 			return this.tax;
 		}
 
-		private void setTax(String value) {
+		public void setTax(String value) {
 			this.tax.sendKeys(value);
 			areChangesMade = true;
 		}
 		
 	}
 
-	private class Adresses {
+	public class Adresses {
 
 		private WebElement addNewAddresses;
 		private WebElement address;
@@ -328,6 +326,162 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 			this.vat = driver.findElement(By
 					.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input"));
 		}
+
+		public WebElement getAddNewAddresses() {
+			return addNewAddresses;
+		}
+
+		public void setAddNewAddresses(String addNewAddresses) {
+			this.addNewAddresses.sendKeys("addNewAddresses");
+		}
+
+		public WebElement getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address.sendKeys("address");
+		}
+
+		public WebElement getDeleteButton() {
+			return deleteButton;
+		}
+
+		public void setDeleteButton(String deleteButton) {
+			this.deleteButton.sendKeys("deleteButton");
+		}
+
+		public WebElement getDefaultBillingCHK() {
+			return defaultBillingCHK;
+		}
+
+		public void setDefaultBillingCHK() {
+			this.defaultBillingCHK.click();
+		}
+
+		public WebElement getDefaultShippingCHK() {
+			return defaultShippingCHK;
+		}
+
+		public void setDefaultShippingCHK() {
+			this.defaultShippingCHK.click();
+		}
+
+		public WebElement getPrefix() {
+			return prefix;
+		}
+
+		public void setPrefix(String prefix) {
+			this.prefix.sendKeys("prefix");
+		}
+
+		public WebElement getFirstname() {
+			return firstname;
+		}
+
+		public void setFirstname(String firstname) {
+			this.firstname.sendKeys("firstname");
+		}
+
+		public WebElement getMiddlename() {
+			return middlename;
+		}
+
+		public void setMiddlename(String middlename) {
+			this.middlename.sendKeys("middlename");
+		}
+
+		public WebElement getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname.sendKeys("lastname");
+		}
+
+		public WebElement getSuffix() {
+			return suffix;
+		}
+
+		public void setSuffix(String suffix) {
+			this.suffix.sendKeys("suffix");
+		}
+
+		public WebElement getCompany() {
+			return company;
+		}
+
+		public void setCompany(String company) {
+			this.company.sendKeys("company");
+		}
+
+		public WebElement getStreetAdressFirst() {
+			return streetAdressFirst;
+		}
+
+		public void setStreetAdressFirst(String streetAdressFirst) {
+			this.streetAdressFirst.sendKeys("streetAdressFirst");
+			changesMade =  driver.findElement(By.cssSelector("span.admin__page-nav-item-message-icon"));
+			
+		}
+
+		public WebElement getStreetAdressSecond() {
+			return streetAdressSecond;
+		}
+
+		public void setStreetAdressSecond(String streetAdressSecond) {
+			this.streetAdressSecond.sendKeys("streetAdressSecond");
+		}
+
+		public WebElement getCity() {
+			return city;
+		}
+
+		public void setCity(String city) {
+			this.city.sendKeys("city");
+		}
+
+		public Select getCountry() {
+			return country;
+		}
+
+		public void setCountry(Country country) {
+			this.country.selectByValue(country.toString());
+		}
+
+		public WebElement getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state.sendKeys("state");
+		}
+
+		public WebElement getZip() {
+			return zip;
+		}
+
+		public void setZip(String zip) {
+			this.zip.sendKeys("zip");
+		}
+
+		public WebElement getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone.sendKeys("phone");
+		}
+
+		public WebElement getVat() {
+			return vat;
+		}
+
+		public void setVat(String vat) {
+			this.vat.sendKeys("vat");
+		}
+		
+		
 	}
 
 	private class Orders extends ACustomerEditFilter {
@@ -429,7 +583,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	public void reset() {
 		reset.click();
 		changesMade = null;
-		new EditCustomerPage(driver).accountInfo.click();
+		new EditCustomerPage(driver);
 	}
 
 	// TODO CreateOrder PAge

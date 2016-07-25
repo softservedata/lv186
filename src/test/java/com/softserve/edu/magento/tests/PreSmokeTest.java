@@ -141,29 +141,17 @@ public class PreSmokeTest {
 	}
 	
 	@Test(dataProvider = "smokeParameters") 
-	public void goToEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-		// Precondition
+	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-		Thread.sleep(1000);
+
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		System.out.println("luck dashboard");
-		Thread.sleep(1000);
+	
 		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
 		System.out.println("luck editcustomer");
-		Thread.sleep(1000);
+
 		ecp.navToAccountInfo();
-		for (WebElement e : ecp.getCustomerAllData()){
-		System.out.println(e.toString());
-		}
-		System.out.println(ecp.getCustomerAllData().get(8));
-		
 		Assert.assertTrue(ecp.compareFields(ecp.getCustomerAllData().get(8)));
-	
-		//Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
-		//RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
-		//Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
-		//regNewCust.setCustomerDataInLoginForm(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
-		Thread.sleep(5000);
 		applicationAdmin.quit();
 	}
 	@AfterMethod

@@ -52,10 +52,10 @@ public class CategoryAddNewTest {
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
         page.clickAddSubcategory();
         page = page.refresh();
-        page.setCategoryName(CategoryRepository.CATEGORY_NAME);
+        page.setCategoryName(CategoryRepository.SUBCATEGORY_NAME);
         page.clickContent();
         page.saveCategory();
-        page.checkCategoryByName(CategoryRepository.CATEGORY_NAME);
+        page.checkCategoryByName(CategoryRepository.SUBCATEGORY_NAME);
     }
 
     @AfterClass

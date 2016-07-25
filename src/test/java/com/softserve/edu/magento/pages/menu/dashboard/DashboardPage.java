@@ -1,4 +1,6 @@
+
 package com.softserve.edu.magento.pages.menu.dashboard;
+
 
 import java.util.List;
 
@@ -287,7 +289,8 @@ public class DashboardPage extends VerticalMenu {
 	}
 
 	public WebElement getReloadMessage() {
-		return refreshPage().reloadMessage;
+		DashboardPage page = refreshPage();
+		return page.reloadMessage;
 	}
    
 	public List<WebElement> getBestsellersRecords() {
@@ -452,3 +455,4 @@ public class DashboardPage extends VerticalMenu {
 		return page;
 	}
 }
+

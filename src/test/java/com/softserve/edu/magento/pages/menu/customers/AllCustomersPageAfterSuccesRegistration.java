@@ -1,3 +1,4 @@
+
 package com.softserve.edu.magento.pages.menu.customers;
 
 import java.util.ArrayList;
@@ -910,3 +911,4 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 
 }
+

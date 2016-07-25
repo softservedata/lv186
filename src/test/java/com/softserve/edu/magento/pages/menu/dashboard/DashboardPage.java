@@ -1,4 +1,6 @@
+
 package com.softserve.edu.magento.pages.menu.dashboard;
+
 
 import java.util.List;
 
@@ -7,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import com.softserve.edu.magento.data.admin.dashboard.SearchFromRecords;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.VerticalMenu;
 
@@ -34,6 +37,13 @@ public class DashboardPage extends VerticalMenu {
     // Fields
     public final static String PAGE_TITLE = "Dashboard";
     public final static String HREF_ATTRIBUTE = "href";
+    public final static String CUSTOMERS_LOCATOR = "td.col-customer";
+    public final static String ITEMS_LOCATOR = "td.col-items.col-number";
+    public final static String TOTAL_LOCATOR = "td.col-total.a-right.last";
+    public final static String SEARCH_TERMS_LOCATOR = "td.col-search-query.col-search_query";
+    public final static String RESULTS_LOCATOR = "td.col-num_results.col-number";
+    public final static String USES_LOCATOR = "td.col-popularity.col-number.last";
+    public final static String RELOAD_MESSAGE = "We updated lifetime statistic.";
     //
     
    
@@ -142,7 +152,6 @@ public class DashboardPage extends VerticalMenu {
         if ((ApplicationAdmin.getCurrentApplicationSources() != null) 
                 && ((ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl() == null)
                         || (ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl().isEmpty()))) {
-            System.out.println("+++saveLogoutUrl() DONE");
             ApplicationAdmin.getCurrentApplicationSources()
                 .setLogoutUrl(getSignOut().getAttribute(HREF_ATTRIBUTE));
             getPageTitle().click();
@@ -332,7 +341,55 @@ public class DashboardPage extends VerticalMenu {
 		return getQuantityValue().getText();
 	}
     
-    
+	public String getReloadMessageText() {
+		return getReloadMessage().getText();
+	}
+	
+    public List<String> getCustomersFromLastOrdersRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getLastOrdersRecords(), CUSTOMERS_LOCATOR));
+    }
+    public List<String> getItemsFromLastOrdersRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getLastOrdersRecords(), ITEMS_LOCATOR));
+    }
+    public List<String> getTotalFromLastOrdersRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getLastOrdersRecords(), TOTAL_LOCATOR));
+    }
+    public List<String> getSearchTermsFromLastSearchTermsRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getLastSearchTermsRecords(), SEARCH_TERMS_LOCATOR));
+    }
+    public List<String> getResultsFromLastSearchTermsRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getLastSearchTermsRecords(), RESULTS_LOCATOR));
+    }
+    public List<String> getUsesFromLastSearchTermsRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getLastSearchTermsRecords(), USES_LOCATOR));
+    }
+    public List<String> getSearchTermsFromTopSearchTermsRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getTopSearchTermsRecords(), SEARCH_TERMS_LOCATOR));
+    }
+    public List<String> getResultsFromTopSearchTermsRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getTopSearchTermsRecords(), RESULTS_LOCATOR));
+    }
+    public List<String> getUsesFromTopSearchTermsRecords(){
+    	return SearchFromRecords.
+    			getElementsText(SearchFromRecords.
+    					getElements(getTopSearchTermsRecords(), USES_LOCATOR));
+    }
     // set Data PageObject
     
 	public void clickStoreView() {
@@ -350,7 +407,8 @@ public class DashboardPage extends VerticalMenu {
 
 	public void clickBestsellersTab() {
 		getBestsellersTab().click();
-		this.bestsellersRecords = driver.findElements(By.cssSelector("#productsOrderedGrid_table tbody tr"));
+		this.bestsellersRecords = driver.findElements(By
+				.cssSelector("#productsOrderedGrid_table tbody tr"));
 		this.mostViewedProductsRecords = null;
 		this.newCustomersRecords = null;
 		this.customersRecords = null;
@@ -359,7 +417,8 @@ public class DashboardPage extends VerticalMenu {
 	public void clickMostViewedProductsTab() {
 		getMostViewedProductsTab().click();
 		this.bestsellersRecords = null;
-		this.mostViewedProductsRecords = driver.findElements(By.cssSelector("#productsReviewedGrid_table tbody tr"));
+		this.mostViewedProductsRecords = driver.findElements(By
+				.cssSelector("#productsReviewedGrid_table tbody tr"));
 		this.newCustomersRecords = null;
 		this.customersRecords = null;
 
@@ -369,7 +428,8 @@ public class DashboardPage extends VerticalMenu {
 		getNewCustomersTab().click();
 		this.bestsellersRecords = null;
 		this.mostViewedProductsRecords = null;
-		this.newCustomersRecords = driver.findElements(By.cssSelector("#customersNewestGrid_table tbody tr"));
+		this.newCustomersRecords = driver.findElements(By
+				.cssSelector("#customersNewestGrid_table tbody tr"));
 		this.customersRecords = null;
 	}
 
@@ -378,7 +438,8 @@ public class DashboardPage extends VerticalMenu {
 		this.bestsellersRecords = null;
 		this.mostViewedProductsRecords = null;
 		this.newCustomersRecords = null;
-		this.customersRecords = driver.findElements(By.cssSelector("#customersMostGrid_table tbody tr"));
+		this.customersRecords = driver.findElements(By
+				.cssSelector("#customersMostGrid_table tbody tr"));
 	}
 
 	public void clickReloadData() {
@@ -394,3 +455,4 @@ public class DashboardPage extends VerticalMenu {
 		return page;
 	}
 }
+

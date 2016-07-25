@@ -11,21 +11,23 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.ProductRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.AdminLoginPage;
 import com.softserve.edu.magento.pages.ApplicationAdmin;
 import com.softserve.edu.magento.pages.ApplicationCustomer;
-import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
 import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
@@ -52,10 +54,11 @@ public class PreSmokeTest {
 		Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$0.00");
 		//
 		// Test Steps
-		//ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
+		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
+		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME); 
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
 																				// name
 																				// from
@@ -66,7 +69,7 @@ public class PreSmokeTest {
 		driver.quit();
 	}
 
-	@DataProvider(parallel = true)
+	@DataProvider//(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		// return new Object[][] {
 		// { ParameterUtils.get().updateParametersAll(
@@ -82,9 +85,10 @@ public class PreSmokeTest {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	// @Test(dataProvider = "smokeParameters")
+	@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
+	    SoftAssert softAssert = new SoftAssert(); 
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		Thread.sleep(1000);
 		//
@@ -95,14 +99,15 @@ public class PreSmokeTest {
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		Thread.sleep(1000);
 		// Check
-		Assert.assertEquals(dashboardPage.getPageTitleText(), DashboardPage.PAGE_TITLE);
-		Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
+		softAssert.assertEquals(dashboardPage.getPageTitleText(), DashboardPage.PAGE_TITLE);
+		softAssert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
 		//
 		// Test Steps
-		//ProductCatalogPage catalogPage = dashboardPage.gotoCatalogPage();
+		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
+		softAssert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
 		
 																				// name
@@ -121,6 +126,8 @@ public class PreSmokeTest {
 		HomePageLogout homePageLogout = applicationCustomer.load();
 		Thread.sleep(2000);
 		// applicationAdmin.quit();
+        System.out.println("+++Test Done");
+		softAssert.assertAll();
 	}
 
 	//@Test(dataProvider = "smokeParameters")
@@ -140,8 +147,14 @@ public class PreSmokeTest {
 		applicationAdmin.quit();
 	}
 	
+<<<<<<< HEAD
 	@Test(dataProvider = "smokeParameters") 
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
+=======
+	//@Test(dataProvider = "smokeParameters") 
+	public void goToEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+		// Precondition
+>>>>>>> branch 'development' of https://github.com/softservedata/lv186.git
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -154,6 +167,7 @@ public class PreSmokeTest {
 		Assert.assertTrue(ecp.compareFields(ecp.getCustomerAllData().get(8)));
 		applicationAdmin.quit();
 	}
+
 	@AfterMethod
 	public void afterMethod() {
 		ApplicationAdmin.signout();

@@ -114,7 +114,7 @@ public abstract class Header {
 	public void clearSearchText() {
 		getSearchField().clear();
 	}
-	public void Search(String text) {
+	public void search(String text) {
 		clearSearchText();
 		typeSearchText(text);
 		getSearchField().submit();

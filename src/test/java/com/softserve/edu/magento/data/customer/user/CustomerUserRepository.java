@@ -131,6 +131,23 @@ public class CustomerUserRepository {
 						.build())
 				.build();
     }
+    public ICustomerUser getTeodorDrayzer(){
+    	return CustomerUser.get().
+    			setPersonalInfo(PersonalInfo_User.get()
+    					.setFirstname("Teodor")
+    					.setLastname("Drayzer")
+    					.setSignUpNewsletter(true)
+    					.build())
+    			.setSigninInfo(SigninInfo_User.get()
+    					.setEmail("teo@gmail.com")
+    					.setPassword("qwerty-1")
+    					.setConfirmPassword("qwerty-1")
+    					.setAssosiateToWebsite("Main Website")
+    					.setGroup(Group.GENERAL)
+    					.build())
+    			.build();
+    			
+    }
     }
 
 //    public List<IUser> getExistUsersCVS() {

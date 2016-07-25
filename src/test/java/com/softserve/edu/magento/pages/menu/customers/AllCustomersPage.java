@@ -1,13 +1,14 @@
 package com.softserve.edu.magento.pages.menu.customers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,18 +18,16 @@ import com.softserve.edu.magento.pages.VerticalMenu;
 
 public class AllCustomersPage extends VerticalMenu {
 	public final static String PAGE_TITLE = "Customers";
-	// protected WebDriver driver;
+	private boolean isWebElementFound = false;
 
+	// components
 	private ColumnsMenuDropdown columnsmenudropdown;
 	private ActionsDropDownMenu actionsdropdownmenu;
 	private DefaultViewDropdownMenu defaultdropdownmenu;
 	private FiltersDropDownMenu filtersdropdownmenu;
 	private GroupsButton groupsButton;
-//	private CountryButton countryButton;
-//	private WebsiteButton webSiteButton;
-//	private GenderButton genderButton;
-	
-	
+
+	// Elements
 	private WebElement customersLabel;
 	private WebElement addNewCustomerButton;
 	private WebElement searchField;
@@ -60,6 +59,7 @@ public class AllCustomersPage extends VerticalMenu {
 	private WebElement dateOfBirdthFieldInList;
 	private WebElement taxVatNumberFieldInList;
 	private WebElement genderFieldInList;
+	private WebElement clearAll;
 	// written by Andrii
 	private List<WebElement> editList;
 
@@ -85,24 +85,94 @@ public class AllCustomersPage extends VerticalMenu {
 
 		public ColumnsMenuDropdown(WebDriver driver) {
 			super();
-			this.idCheck = driver.findElement(By.id("1"));
-			this.nameCheck = driver.findElement(By.id("2"));
-			this.emailCheck = driver.findElement(By.id("3"));
-			this.groupCheck = driver.findElement(By.id("4"));
-			this.phoneCheck = driver.findElement(By.id("5"));
-			this.zipCheck = driver.findElement(By.id("6"));
-			this.countryCheck = driver.findElement(By.id("7"));
-			this.stateCheck = driver.findElement(By.id("8"));
-			this.customerSinceCheck = driver.findElement(By.id("9"));
-			this.websiteCheck = driver.findElement(By.id("10"));
-			this.confirmedEmailCheck = driver.findElement(By.id("11"));
-			this.accauntCreatedInCheck = driver.findElement(By.id("12"));
-			this.dateOfBirdthCheck = driver.findElement(By.id("15"));
-			this.taxVatNumberCheck = driver.findElement(By.id("16"));
-			this.genderCheck = driver.findElement(By.id("17"));
-			this.cityCheck = driver.findElement(By.id("19"));
-			this.resetButton = driver.findElement(By.id("(.//*[@class='action-tertiary'])[1]"));
+			this.idCheck = driver.findElement(By.cssSelector("input[id='1']"));
+			this.nameCheck = driver.findElement(By.cssSelector("input[id='2']"));
+			this.emailCheck = driver.findElement(By.cssSelector("input[id='3']"));
+			this.groupCheck = driver.findElement(By.cssSelector("input[id='4']"));
+			this.phoneCheck = driver.findElement(By.cssSelector("input[id='5']"));
+			this.zipCheck = driver.findElement(By.cssSelector("input[id='6']"));
+			this.countryCheck = driver.findElement(By.cssSelector("input[id='7']"));
+			this.stateCheck = driver.findElement(By.cssSelector("input[id='8']"));
+			this.customerSinceCheck = driver.findElement(By.cssSelector("input[id='9']"));
+			this.websiteCheck = driver.findElement(By.cssSelector("input[id='10']"));
+			this.confirmedEmailCheck = driver.findElement(By.cssSelector("input[id='11']"));
+			this.accauntCreatedInCheck = driver.findElement(By.cssSelector("input[id='12']"));
+			this.dateOfBirdthCheck = driver.findElement(By.cssSelector("input[id='15']"));
+			this.taxVatNumberCheck = driver.findElement(By.cssSelector("input[id='16']"));
+			this.genderCheck = driver.findElement(By.cssSelector("input[id='17']"));
+			this.cityCheck = driver.findElement(By.cssSelector("input[id='19']"));
+			this.resetButton = driver.findElement(By.xpath("(.//*[@class='action-tertiary'])[1]"));
 		}
+
+		// getters to ColumnsMenuPage
+		public WebElement getIdCheck() {
+			return idCheck;
+		}
+
+		public WebElement getNameCheck() {
+			return nameCheck;
+		}
+
+		public WebElement getEmailCheck() {
+			return emailCheck;
+		}
+
+		public WebElement getGroupCheck() {
+			return groupCheck;
+		}
+
+		public WebElement getPhoneCheck() {
+			return phoneCheck;
+		}
+
+		public WebElement getZipCheck() {
+			return zipCheck;
+		}
+
+		public WebElement getCountryCheck() {
+			return countryCheck;
+		}
+
+		public WebElement getStateCheck() {
+			return stateCheck;
+		}
+
+		public WebElement getCustomerSinceCheck() {
+			return customerSinceCheck;
+		}
+
+		public WebElement getWebsiteCheck() {
+			return websiteCheck;
+		}
+
+		public WebElement getConfirmedEmailCheck() {
+			return confirmedEmailCheck;
+		}
+
+		public WebElement getAccauntCreatedInCheck() {
+			return accauntCreatedInCheck;
+		}
+
+		public WebElement getDateOfBirdthCheck() {
+			return dateOfBirdthCheck;
+		}
+
+		public WebElement getTaxVatNumberCheck() {
+			return taxVatNumberCheck;
+		}
+
+		public WebElement getGenderCheck() {
+			return genderCheck;
+		}
+
+		public WebElement getCityCheck() {
+			return cityCheck;
+		}
+
+		public WebElement getResetButton() {
+			return resetButton;
+		}
+
 	}
 
 	// -----------------ActionsDropDownMenu-------------------
@@ -121,6 +191,28 @@ public class AllCustomersPage extends VerticalMenu {
 			this.assignCustomerGroup = driver.findElement(By.xpath("(//span[text()='Assign a Customer Group'])[2]"));
 			this.edit = driver.findElement(By.xpath("(//span[text()='Edit'])[2]"));
 		}
+
+		// getters to ActionsDropDownMenu
+		public WebElement getDelete() {
+			return delete;
+		}
+
+		public WebElement getSubscribe() {
+			return subscribe;
+		}
+
+		public WebElement getUnSubscribe() {
+			return unSubscribe;
+		}
+
+		public WebElement getAssignCustomerGroup() {
+			return assignCustomerGroup;
+		}
+
+		public WebElement getEdit() {
+			return edit;
+		}
+
 	}
 
 	// -----------------DefaultViewDropdownMenu-------------------
@@ -134,8 +226,24 @@ public class AllCustomersPage extends VerticalMenu {
 			super();
 			this.defaultView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[1]"));
 			this.myNewView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[2]"));
-			this.myNewViewEdit = driver.findElement(By.xpath("(.//*[@class='action-edit'])[1]"));
-			this.saveViewAs = driver.findElement(By.xpath(".//*[@id='container']//div[1]/div[1]/ul/li[3]/a"));
+			//this.myNewViewEdit = driver.findElement(By.xpath("//*[@class='action-edit']"));
+			//this.saveViewAs = driver.findElement(By.xpath(".//*[@id='container']//div[1]/div[1]/ul/li[3]/a"));
+		}
+
+		public WebElement getDefaultView() {
+			return defaultView;
+		}
+
+		public WebElement getMyNewView() {
+			return myNewView;
+		}
+
+		public WebElement getMyNewViewEdit() {
+			return myNewViewEdit;
+		}
+
+		public WebElement getSaveViewAs() {
+			return saveViewAs;
 		}
 
 	}
@@ -160,31 +268,98 @@ public class AllCustomersPage extends VerticalMenu {
 		private WebElement filtersGender;
 
 		public FiltersDropDownMenu(WebDriver driver) {
-			this.filtersIdFrom = driver.findElement(By.id("LFLEVPX"));
-			this.filtersIdTo = driver.findElement(By.id("PMYVOQ9"));
-			this.filtersCustomerSinceFrom = driver.findElement(By.id("dp1469101028421"));
-			this.filtersCustomerSinceTo = driver.findElement(By.id("dp1469101028422"));
-			this.filtersDateOfBirthFrom = driver.findElement(By.id("dp1469101028423"));
-			this.filtersDateOfBirthTo = driver.findElement(By.id("dp1469101028424"));
-			this.filtersName = driver.findElement(By.id("WTB30AT"));
-			this.filtersEmail = driver.findElement(By.id("XQQRSNG"));
-			this.filtersGroup = driver.findElement(By.id("USWLJ0M"));
-			this.filtersPhone = driver.findElement(By.id("PP9FDT4"));
-			this.filtersZip = driver.findElement(By.id("PC3ANRA"));
-			this.filtersCountry = driver.findElement(By.id("R3WE272"));
-			this.filtersProvince = driver.findElement(By.id("PBLR8MK"));
-			this.filtersWebSite = driver.findElement(By.id("LSX9L81"));
-			this.filtersTaxVat = driver.findElement(By.id("NENVWND"));
-			this.filtersGender = driver.findElement(By.id("BK2MJ87"));
+			this.filtersIdFrom = driver.findElement(By.cssSelector("input[name='entity_id[from]']"));
+			this.filtersIdTo = driver.findElement(By.cssSelector("input[name='entity_id[to]']"));
+			this.filtersCustomerSinceFrom = driver.findElement(By.cssSelector("input[name='created_at[from]']"));
+			this.filtersCustomerSinceTo = driver.findElement(By.cssSelector("input[name='created_at[to]']"));
+			this.filtersDateOfBirthFrom = driver.findElement(By.cssSelector("input[name='dob[from]']"));
+			this.filtersDateOfBirthTo = driver.findElement(By.cssSelector("input[name='dob[to]']"));
+			this.filtersName = driver.findElement(By.cssSelector("input[name='name']"));
+			this.filtersEmail = driver.findElement(By.cssSelector("input[name='email']"));
+			this.filtersGroup = driver.findElement(By.cssSelector("select[name='group_id']"));
+			this.filtersPhone = driver.findElement(By.cssSelector("input[name='billing_telephone']"));
+			this.filtersZip = driver.findElement(By.cssSelector("input[name='billing_postcode']"));
+			this.filtersCountry = driver.findElement(By.cssSelector("select[name='billing_country_id']"));
+			this.filtersProvince = driver.findElement(By.cssSelector("input[name='billing_region']"));
+			this.filtersWebSite = driver.findElement(By.cssSelector("select[name='website_id']"));
+			this.filtersTaxVat = driver.findElement(By.cssSelector("input[name='taxvat']"));
+			this.filtersGender = driver.findElement(By.cssSelector("select[name='gender']"));
 
 		}
-		
+		// getters to FiltersDropDownMenu
+
+		public WebElement getFiltersIdFrom() {
+			return filtersIdFrom;
+		}
+
+		public WebElement getFiltersIdTo() {
+			return filtersIdTo;
+		}
+
+		public WebElement getFiltersCustomerSinceFrom() {
+			return filtersCustomerSinceFrom;
+		}
+
+		public WebElement getFiltersCustomerSinceTo() {
+			return filtersCustomerSinceTo;
+		}
+
+		public WebElement getFiltersDateOfBirthFrom() {
+			return filtersDateOfBirthFrom;
+		}
+
+		public WebElement getFiltersDateOfBirthTo() {
+			return filtersDateOfBirthTo;
+		}
+
+		public WebElement getFiltersName() {
+			return filtersName;
+		}
+
+		public WebElement getFiltersEmail() {
+			return filtersEmail;
+		}
+
+		public WebElement getFiltersGroup() {
+			return filtersGroup;
+		}
+
+		public WebElement getFiltersPhone() {
+			return filtersPhone;
+		}
+
+		public WebElement getFiltersZip() {
+			return filtersZip;
+		}
+
+		public WebElement getFiltersCountry() {
+			return filtersCountry;
+		}
+
+		public WebElement getFiltersProvince() {
+			return filtersProvince;
+		}
+
+		public WebElement getFiltersWebSite() {
+			return filtersWebSite;
+		}
+
+		public WebElement getFiltersTaxVat() {
+			return filtersTaxVat;
+		}
+
+		public WebElement getFiltersGender() {
+			return filtersGender;
+		}
+
 	}
+
 	// -----------------Groups class-----------------------
-	private class GroupsButton{
+	private class GroupsButton {
 		private WebElement general;
 		private WebElement wholesale;
 		private WebElement retailer;
+
 		public GroupsButton(WebElement general, WebElement wholesale) {
 			super();
 			this.general = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[2]"));
@@ -192,12 +367,7 @@ public class AllCustomersPage extends VerticalMenu {
 			this.retailer = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[4]"));
 		}
 	}
-	
-	// -----------------Country class-----------------------
-	
-	// -----------------Website class-----------------------
-	
-	// -----------------Gender class-----------------------
+
 
 	// main page constructor
 	public AllCustomersPage(WebDriver driver) {
@@ -205,21 +375,22 @@ public class AllCustomersPage extends VerticalMenu {
 		this.customersLabel = driver.findElement(By.xpath(".//*[@class='page-title-wrapper']"));
 		this.addNewCustomerButton = driver.findElement(By.id("add"));
 		this.searchField = driver.findElement(By.xpath("(.//*[@id='fulltext'])[1]"));
-	//	this.filtersButton = driver.findElement(By.xpath(""));
+		// this.filtersButton = driver.findElement(By.xpath(""));
 		this.defaultViewButton = driver.findElement(By.xpath("(//span[text()='Default View'])[1]"));
 		this.columnsButton = driver.findElement(By.xpath("(//span[text()='Columns'])[1]"));
 		this.exportButton = driver.findElement(By.xpath("(//span[text()='Export'])[2]"));
 		this.actionsButton = driver.findElement(By.xpath("(//span[text()='Actions'])[1]"));
-		this.perPageButton = driver.findElement(By.xpath("(.//*[@id='customer_listing.customer_listing.listing_top.listing_paging_sizes'])[1]"));
+		this.perPageButton = driver.findElement(
+				By.xpath("(.//*[@id='customer_listing.customer_listing.listing_top.listing_paging_sizes'])[1]"));
 		this.goToPageLeftButton = driver.findElement(By.xpath("(.//*[@class='action-previous'])[1]"));
 		this.goToPageRightButton = driver.findElement(By.xpath(".//*[@class='action-next'][1]"));
-		this.howManyCustomersInListArePresentedField = driver.findElement(By.xpath("(//span[text()='records found'])[1]"));
+		this.howManyCustomersInListArePresentedField = driver
+				.findElement(By.xpath("(//span[text()='records found'])[1]"));
 		this.selectAllButton = driver.findElement(By.xpath("//*[@for='60']"));
 		this.selectAllCustomersInListButton = driver.findElement(By.xpath("//*[@for='60']"));
-	//	this.selectFirstCustomer = driver.findElement(By.xpath(".//*[@id='idscheck20']")); //////////////////////////////////////////////////////////////////// CHANGE!!!!!!!!
 		this.howManyPagesAreInList = driver.findElement(By.id("29"));
 		this.idFielsInList = driver.findElement(By.xpath("(//span[text()='ID'])[2]"));
-		this.nameFieldInList = driver.findElement(By.xpath("(//span[text()='Name'])[2]"));
+		this.nameFieldInList = driver.findElement(By.xpath("(//span[text()='Name'])[3]"));
 		this.emailFieldInList = driver.findElement(By.xpath("(//span[text()='Email'])[2]"));
 		this.groupFieldInList = driver.findElement(By.xpath("(//span[text()='Group'])[2]"));
 		this.phoneFieldInList = driver.findElement(By.xpath("(//span[text()='Phone'])[2]"));
@@ -233,185 +404,39 @@ public class AllCustomersPage extends VerticalMenu {
 		this.dateOfBirdthFieldInList = driver.findElement(By.xpath("(//span[text()='Date of Birth'])[2]"));
 		this.taxVatNumberFieldInList = driver.findElement(By.xpath("(//span[text()='Tax VAT Number'])[2]"));
 		this.genderFieldInList = driver.findElement(By.xpath("(//span[text()='Gender'])[2]"));
-		//written by Andrii
+		// written by Andrii
 		this.editList = driver.findElements(By.cssSelector("a[data-repeat-index='0'"));
+		this.columnsmenudropdown = new ColumnsMenuDropdown(driver);
+		this.actionsdropdownmenu = new ActionsDropDownMenu(driver);
+		this.defaultdropdownmenu = new DefaultViewDropdownMenu(driver);
+		this.filtersdropdownmenu = new FiltersDropDownMenu(driver);
 	}
 
-	//// getters to DefaultViewDropdownMenu
-	public WebElement getDefaultView() {
-		return defaultdropdownmenu.defaultView;
+	// ----------------------------------------------------------------//
+
+	public ColumnsMenuDropdown getColumnsMenuDropdown() {
+		return columnsmenudropdown;
 	}
 
-	public WebElement getMyNewView() {
-		return defaultdropdownmenu.myNewView;
+	public ActionsDropDownMenu getActionsDropDownMenu() {
+		return actionsdropdownmenu;
 	}
 
-	public WebElement getMyNewViewEdit() {
-		return defaultdropdownmenu.myNewViewEdit;
+	public FiltersDropDownMenu getFiltersDropDownMenu() {
+		return filtersdropdownmenu;
 	}
 
-	public WebElement getSaveViewAs() {
-		return defaultdropdownmenu.saveViewAs;
-	}
-
-	// getters to ActionsDropDownMenu
-	public WebElement getDelete() {
-		return actionsdropdownmenu.delete;
-	}
-
-	public WebElement getSubscribe() {
-		return actionsdropdownmenu.subscribe;
-	}
-
-	public WebElement getUnSubscribe() {
-		return actionsdropdownmenu.unSubscribe;
-	}
-
-	public WebElement getAssignCustomerGroup() {
-		return actionsdropdownmenu.assignCustomerGroup;
-	}
-
-	public WebElement getEdit() {
-		return actionsdropdownmenu.edit;
-	}
-
-	// getters to CustomersMenuPage
-	public WebElement getIdCheck() {
-		return columnsmenudropdown.idCheck;
-	}
-
-	public WebElement getNameCheck() {
-		return columnsmenudropdown.nameCheck;
-	}
-
-	public WebElement getEmailCheck() {
-		return columnsmenudropdown.emailCheck;
-	}
-
-	public WebElement getGroupCheck() {
-		return columnsmenudropdown.groupCheck;
-	}
-
-	public WebElement getPhoneCheck() {
-		return columnsmenudropdown.phoneCheck;
-	}
-
-	public WebElement getZipCheck() {
-		return columnsmenudropdown.zipCheck;
-	}
-
-	public WebElement getCountryCheck() {
-		return columnsmenudropdown.countryCheck;
-	}
-
-	public WebElement getStateCheck() {
-		return columnsmenudropdown.stateCheck;
-	}
-
-	public WebElement getCustomerSinceCheck() {
-		return columnsmenudropdown.customerSinceCheck;
-	}
-
-	public WebElement getWebsiteCheck() {
-		return columnsmenudropdown.websiteCheck;
-	}
-
-	public WebElement getConfirmedEmailCheck() {
-		return columnsmenudropdown.confirmedEmailCheck;
-	}
-
-	public WebElement getAccauntCreatedInCheck() {
-		return columnsmenudropdown.accauntCreatedInCheck;
-	}
-
-	public WebElement getDateOfBirdthCheck() {
-		return columnsmenudropdown.dateOfBirdthCheck;
-	}
-
-	public WebElement getTaxVatNumberCheck() {
-		return columnsmenudropdown.taxVatNumberCheck;
-	}
-
-	public WebElement getGenderCheck() {
-		return columnsmenudropdown.genderCheck;
-	}
-
-	public WebElement getCityCheck() {
-		return columnsmenudropdown.cityCheck;
-	}
-
-	public WebElement getResetButton() {
-		return columnsmenudropdown.resetButton;
-	}
-
-	// getters to FiltersDropDownMenu
-	
-	public WebElement getFiltersIdFrom() {
-		return filtersdropdownmenu.filtersIdFrom;
-	}
-
-	public WebElement getFiltersIdTo() {
-		return filtersdropdownmenu.filtersIdTo;
-	}
-
-	public WebElement getFiltersCustomerSinceFrom() {
-		return filtersdropdownmenu.filtersCustomerSinceFrom;
-	}
-
-	public WebElement getFiltersCustomerSinceTo() {
-		return filtersdropdownmenu.filtersCustomerSinceTo;
-	}
-
-	public WebElement getFiltersDateOfBirthFrom() {
-		return filtersdropdownmenu.filtersDateOfBirthFrom;
-	}
-
-	public WebElement getFiltersDateOfBirthTo() {
-		return filtersdropdownmenu.filtersDateOfBirthTo;
-	}
-
-	public WebElement getFiltersName() {
-		return filtersdropdownmenu.filtersName;
-	}
-
-	public WebElement getFiltersEmail() {
-		return filtersdropdownmenu.filtersEmail;
-	}
-
-	public WebElement getFiltersGroup() {
-		return filtersdropdownmenu.filtersGroup;
-	}
-
-	public WebElement getFiltersPhone() {
-		return filtersdropdownmenu.filtersPhone;
-	}
-
-	public WebElement getFiltersZip() {
-		return filtersdropdownmenu.filtersZip;
-	}
-
-	public WebElement getFiltersCountry() {
-		return filtersdropdownmenu.filtersCountry;
-	}
-
-	public WebElement getFiltersProvince() {
-		return filtersdropdownmenu.filtersProvince;
-	}
-
-	public WebElement getFiltersWebSite() {
-		return filtersdropdownmenu.filtersWebSite;
-	}
-
-	public WebElement getFiltersTaxVat() {
-		return filtersdropdownmenu.filtersTaxVat;
-	}
-
-	public WebElement getFiltersGender() {
-		return filtersdropdownmenu.filtersGender;
+	public DefaultViewDropdownMenu getDefaultViewDropdownMenu() {
+		return defaultdropdownmenu;
 	}
 
 	// getters to main class
-	// Data PageObject
+	// ///////////////////////////////////////////////////////////
+	// get Data PageObject
+
+	public WebElement getClearAllButton() {
+		return this.clearAll;
+	}
 
 	public WebElement getCustomersLabel() {
 		return this.customersLabel;
@@ -528,14 +553,14 @@ public class AllCustomersPage extends VerticalMenu {
 	public WebElement getGenderFieldInList() {
 		return this.genderFieldInList;
 	}
-	
-	//written by Andrii
-	public WebElement getEditLink (int index) {
+
+	// written by Andrii
+	public WebElement getEditLink(int index) {
 		return editList.get(index);
 	}
-	
-	//written by Andrii
-	public EditCustomerPage getEditCustomerPage () {
+
+	// written by Andrii
+	public EditCustomerPage getEditCustomerPage() {
 		getEditLink(3).click();
 		return new EditCustomerPage(driver);
 	}
@@ -553,140 +578,159 @@ public class AllCustomersPage extends VerticalMenu {
 	public String getsearchFieldText() {
 		return searchField.getText().trim();
 	}
-	
+
 	// click for FiltersDropDownMenu
-	
-	public void filtersdropdownmenuIdGroupClick(){
+
+	public void filtersdropdownmenuIdGroupClick() {
 		filtersdropdownmenu.filtersGroup.click();
 	}
-	
-	
-	
-	// click for DefaultViewDropdownMenu 
-	
+
+	// click for DefaultViewDropdownMenu
 
 	public void defaultdropdownmenuDefaultViewClick() {
-		defaultdropdownmenu.defaultView.click();
+		getDefaultViewDropdownMenu().getDefaultView().click();
 	}
 
 	public void defaultdropdownmenuMyNewView() {
-		defaultdropdownmenu.myNewView.click();
+		getDefaultViewDropdownMenu().getMyNewView().click();
 	}
 
 	public void defaultdropdownmenuMyNewViewEdit() {
-		defaultdropdownmenu.myNewViewEdit.click();
+		getDefaultViewDropdownMenu().getMyNewViewEdit().click();
 	}
 
 	public void defaultdropdownmenuMyNewViewSaveViewAs() {
-		defaultdropdownmenu.saveViewAs.click();
+		getDefaultViewDropdownMenu().getSaveViewAs().click();
 	}
-
+// set Data
 	// click for ActionsDropDownMenu class
 
 	public void actionsdropdownmenuDeleteClick() {
-		actionsdropdownmenu.delete.click();
+		getActionsDropDownMenu().getDelete().click();
 	}
 
 	public void actionsdropdownmenusubscribeClick() {
-		actionsdropdownmenu.subscribe.click();
+		getActionsDropDownMenu().getSubscribe().click();
 	}
 
 	public void actionsdropdownmenuUnSubscribeClick() {
-		actionsdropdownmenu.unSubscribe.click();
+		getActionsDropDownMenu().getUnSubscribe().click();
 	}
 
 	public void actionsdropdownmenuasSignCustomerGroupClick() {
-		actionsdropdownmenu.assignCustomerGroup.click();
+		getActionsDropDownMenu().getAssignCustomerGroup().click();
 	}
 
 	public void actionsdropdownmenuEditClick() {
-		actionsdropdownmenu.edit.click();
+		getActionsDropDownMenu().getEdit().click();
 	}
-
+// set Data
 	// click for ColumnsMenuDropdown class
 	public void columnsmenudropdownIdClick() {
-		columnsmenudropdown.idCheck.click();
+		getColumnsMenuDropdown().getIdCheck().click();
 	}
 
-	public void columnsmenudropdownNameClick() {
-		columnsmenudropdown.nameCheck.click();
+	public void columnsmenudropdownNameClick() { /////////////////////////////////////////////////////
+		getColumnsMenuDropdown().getNameCheck().click();
 	}
 
 	public void columnsmenudropdownEmailClick() {
-		columnsmenudropdown.emailCheck.click();
+		getColumnsMenuDropdown().getEmailCheck().click();
 	}
 
 	public void columnsmenudropdownGoupClick() {
-		columnsmenudropdown.groupCheck.click();
+		getColumnsMenuDropdown().getGroupCheck().click();
 	}
 
 	public void columnsmenudropdownPhoneClick() {
-		columnsmenudropdown.phoneCheck.click();
+		getColumnsMenuDropdown().getPhoneCheck().click();
 	}
 
 	public void columnsmenudropdownZipClick() {
-		columnsmenudropdown.zipCheck.click();
+		getColumnsMenuDropdown().getZipCheck().click();
 	}
 
 	public void columnsmenudropdownCountryClick() {
-		columnsmenudropdown.countryCheck.click();
+		getColumnsMenuDropdown().getCountryCheck().click();
 	}
 
 	public void columnsmenudropdownStateClick() {
-		columnsmenudropdown.stateCheck.click();
+		getColumnsMenuDropdown().getStateCheck().click();
 	}
 
 	public void columnsmenudropdownCustomerSinceClick() {
-		columnsmenudropdown.customerSinceCheck.click();
+		getColumnsMenuDropdown().getCustomerSinceCheck().click();
 	}
 
 	public void columnsmenudropdownWebSiteClick() {
-		columnsmenudropdown.websiteCheck.click();
+		getColumnsMenuDropdown().getWebsiteCheck().click();
 	}
 
 	public void columnsmenudropdownConfirmedEmailClick() {
-		columnsmenudropdown.confirmedEmailCheck.click();
+		getColumnsMenuDropdown().getConfirmedEmailCheck().click();
 	}
 
 	public void columnsmenudropdownAccountCreatedClick() {
-		columnsmenudropdown.accauntCreatedInCheck.click();
+		getColumnsMenuDropdown().getAccauntCreatedInCheck().click();
 	}
 
 	public void columnsmenudropdownDateOfBirdthClick() {
-		columnsmenudropdown.dateOfBirdthCheck.click();
+		getColumnsMenuDropdown().getDateOfBirdthCheck().click();
 	}
 
 	public void columnsmenudropdownTaxVatClick() {
-		columnsmenudropdown.taxVatNumberCheck.click();
+		getColumnsMenuDropdown().getTaxVatNumberCheck().click();
 	}
 
 	public void columnsmenudropdownGenderClick() {
-		columnsmenudropdown.genderCheck.click();
+		getColumnsMenuDropdown().getGenderCheck().click();
 	}
 
 	public void columnsmenudropdownCityClick() {
-		columnsmenudropdown.cityCheck.click();
+		getColumnsMenuDropdown().getCityCheck().click();
 	}
 
 	public void columnsmenudropdownResetButtonClick() {
-		columnsmenudropdown.resetButton.click();
+		getColumnsMenuDropdown().getResetButton().click();
+	}
+// setData
+	// click for main class
+
+	public void clearAllButtonClick() {
+		getClearAllButton().click();
 	}
 
-	// click for main class
+	public void allCustomersLabelClick() {
+		getCustomersLabel().click();
+	}
+	
+	public void searchFieldClear(){
+		getSearchField().clear();
+	}
+
+	public void nameFieldInListClick() {
+		Actions actions = new Actions(driver);
+
+		actions.moveToElement(nameFieldInList).click().perform();
+		// getNameFieldInList().click();
+	}
 
 	// input data
 
 	public void enterDataInSearchField(String text) {
 		searchField.clear();
-		searchField.sendKeys(text);
+		searchField.sendKeys(text, Keys.ENTER);
+	//	refreshAllCustomersPage();
+	//	clearAllButtonClick();
 	}
 
-	// functional
+	// functional Business Logic
 
-	public RegistrationNewCustomerPage goToRegistrationNewCustomerPage(){
+	public RegistrationNewCustomerPage goToRegistrationNewCustomerPage() {
 		getAddNewCustomerButton().click();
 		return new RegistrationNewCustomerPage(driver);
 	}
+
 	public ColumnsMenuDropdown goToColumnsMenuDropdown() {
 		getColumnsButton().click();
 		return new ColumnsMenuDropdown(driver);
@@ -701,170 +745,311 @@ public class AllCustomersPage extends VerticalMenu {
 		getDefaultViewButton().click();
 		return new DefaultViewDropdownMenu(driver);
 	}
-	//------------------Yaryna Kharko update 23.07.2016--------------------------
-		public List<RowCustomerUser> getTableCustomerUser() {
-			//TODO when there are more that 1 pagetable
-			List<WebElement> rows = driver.findElements(By.className("data-row"));
-			List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
-			for(int i=0;i<rows.size();i++) {
-			rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
-			}
-			return rowsCustomerUserTable;	
-		}
-		public List<String> getNameColumn() {
-			List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
-			List<String> usernames = new ArrayList<String>();
-			for(int i=0;i<rowsCustomerUserTable.size();i++) {
-				usernames.add(rowsCustomerUserTable.get(i).getNameText());
-				System.out.println(rowsCustomerUserTable.get(i).getNameText());
+
+	// Business Logic
+	public AllCustomersPage refreshAllCustomersPage() {
+		AllCustomersPage page = new AllCustomersPage(driver);
+		page.clearAll = driver.findElement(By.xpath("//button[contains(text(), 'Clear all')]"));
+		return page;
+	}
+
+	// ------------------Mykhaylo Holovanov update--------------------------
+
+	public boolean findCustomerInTheList(ICustomerUser customerUser) {
+		String userName = customerUser.getPersonalInfo().getPrefix() + " "
+				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
+				+ " " + customerUser.getPersonalInfo().getLastname() + " " + customerUser.getPersonalInfo().getSuffix();
+		List<WebElement> customers = null;
+		WebElement customer = null;
+		while (!isWebElementFound) {
+			customers = driver.findElements(By.xpath("//div[contains(text(),'" + userName + "')]"));
+			if (customers.size() > 0) {
+				isWebElementFound = true;
+				customer = customers.get(0);
+				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+			} else {
+				List<WebElement> next = driver.findElements(By.xpath(".//*[@class='action-next'][1]"));
+				if (next.size() > 0) {
+					next.get(0).click();
+				} else {
+					break;
 				}
-			return usernames;
-		}
-		public void checkCustomerUser (RowCustomerUser rowCustomerUser) {
-			rowCustomerUser.getName().click();
-			System.out.println("checked USER"+ rowCustomerUser.getNameText());
-		}
-		public void checkCustomerUser (List<RowCustomerUser> rowsCustomerUser) {
-			for(int i=0;i<rowsCustomerUser.size();i++) {
-				checkCustomerUser(rowsCustomerUser.get(i));			
 			}
 		}
-		public List<RowCustomerUser> findCustomerUsersByName(List<RowCustomerUser> rowsCustomerUser,ICustomerUser customerUser) {
-			List<RowCustomerUser> foundRowCustomerUser = new ArrayList<RowCustomerUser>();
-			String username = customerUser.getPersonalInfo().getFullName();
-			String email = customerUser.getSigninInfo().getEmail();
-			for(int i=0;i<rowsCustomerUser.size();i++) {
-				if(rowsCustomerUser.get(i).getNameText().equals(username) && 
-						rowsCustomerUser.get(i).getEmailText().equals(email)) {
-					foundRowCustomerUser.add(rowsCustomerUser.get(i));
-				}	
+		return isWebElementFound;
+	}
+
+	public boolean findCustomerInTheListAfterSearch(ICustomerUser customerUser) {
+		String userName = customerUser.getPersonalInfo().getPrefix() + " "
+				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
+				+ " " + customerUser.getPersonalInfo().getLastname() + " " + customerUser.getPersonalInfo().getSuffix();
+		enterDataInSearchField(userName);
+		List<WebElement> customers = null;
+		WebElement customer = null;
+		while (!isWebElementFound) {
+			customers = driver.findElements(By.xpath("//div[contains(text(),'" + userName + "')]"));
+			if (customers.size() > 0) {
+				isWebElementFound = true;
+				customer = customers.get(0);
+				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+			} else {
+				List<WebElement> next = driver.findElements(By.xpath(".//*[@class='action-next'][1]"));
+				if (next.size() > 0) {
+					next.get(0).click();
+				} else {
+					break;
+				}
 			}
-			return foundRowCustomerUser;
-			
 		}
-		public void sendKeysSearchCustomerField(String search) {
-			this.getSearchField().sendKeys(search);	
+		return isWebElementFound;
+	}
+
+	public boolean findDeletedColumn() {
+
+		List<WebElement> customers = null;
+		WebElement customer = null;
+		while (!isWebElementFound) {
+			customers = driver.findElements(By.xpath("(//span[contains(text(),'Name')])[3]"));
+			if (customers.size() > 0) {
+				isWebElementFound = true;
+				customer = customers.get(0);
+				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+			} else {
+				List<WebElement> next = driver.findElements(By.xpath(".//*[@class='action-next'][1]"));
+				if (next.size() > 0) {
+					next.get(0).click();
+				} else {
+					break;
+				}
+			}
 		}
-		public void clearSendKeysSearchCustomerField(String search) {
-			this.getSearchField().clear();
-			this.sendKeysSearchCustomerField(search);
+		return isWebElementFound;
+	}
+
+	public List<String> getColumnsNameFromTable() {
+		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
+		List<String> usernames = new ArrayList<String>();
+		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
+			usernames.add(rowsCustomerUserTable.get(i).getNameText());
+			System.out.println(rowsCustomerUserTable.get(i).getNameText());
 		}
-		public AllCustomersPage doCustomerSearch(String search) {
-			this.clearSendKeysSearchCustomerField(search);
-			this.getSearchField().sendKeys(Keys.ENTER);
-			return new  AllCustomersPage(driver);
+		return usernames;
+	}
+
+	public Boolean sortedNameField() {
+		boolean isNameFieldSorted = false;
+		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
+		List<String> usernames = new ArrayList<String>();
+		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
+			usernames.add(rowsCustomerUserTable.get(i).getNameText());
+			System.out.println(rowsCustomerUserTable.get(i).getNameText());
 		}
-		public void clickDeleteActions() {
-			goToActionsDropDownMenu().delete.click();
+		System.out.println(" ");
+
+		List<String> sortedNames = new ArrayList<>(usernames);
+		Collections.sort(sortedNames);
+		for (String str : sortedNames) {
+			System.out.println(str);
 		}
-		
-		public void deleteCustomerUser (ICustomerUser customerUser) throws InterruptedException {	
-			AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
-			
-			List<RowCustomerUser> foundCustomerUsersByName = 
-					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
-			if(foundCustomerUsersByName.size()>0) {
+		if (sortedNames.equals(usernames)) {
+			return isNameFieldSorted = true;
+		} else {
+			nameFieldInListClick();
+			isNameFieldSorted = true;
+		}
+
+		return isNameFieldSorted;
+	}
+
+	// ------------------Yaryna Kharko update
+	// 23.07.2016--------------------------
+	public List<RowCustomerUser> getTableCustomerUser() {
+		// TODO when there are more that 1 pagetable
+		List<WebElement> rows = driver.findElements(By.className("data-row"));
+		List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
+		for (int i = 0; i < rows.size(); i++) {
+			rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
+		}
+		return rowsCustomerUserTable;
+	}
+
+	public List<String> getNameColumn() {
+		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
+		List<String> usernames = new ArrayList<String>();
+		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
+			usernames.add(rowsCustomerUserTable.get(i).getNameText());
+			System.out.println(rowsCustomerUserTable.get(i).getNameText());
+		}
+		return usernames;
+	}
+
+	public void checkCustomerUser(RowCustomerUser rowCustomerUser) {
+		rowCustomerUser.getName().click();
+		System.out.println("checked USER" + rowCustomerUser.getNameText());
+	}
+
+	public void checkCustomerUser(List<RowCustomerUser> rowsCustomerUser) {
+		for (int i = 0; i < rowsCustomerUser.size(); i++) {
+			checkCustomerUser(rowsCustomerUser.get(i));
+		}
+	}
+
+	public List<RowCustomerUser> findCustomerUsersByName(List<RowCustomerUser> rowsCustomerUser,
+			ICustomerUser customerUser) {
+		List<RowCustomerUser> foundRowCustomerUser = new ArrayList<RowCustomerUser>();
+		String username = customerUser.getPersonalInfo().getFullName();
+		String email = customerUser.getSigninInfo().getEmail();
+		for (int i = 0; i < rowsCustomerUser.size(); i++) {
+			if (rowsCustomerUser.get(i).getNameText().equals(username)
+					&& rowsCustomerUser.get(i).getEmailText().equals(email)) {
+				foundRowCustomerUser.add(rowsCustomerUser.get(i));
+			}
+		}
+		return foundRowCustomerUser;
+
+	}
+
+	public void sendKeysSearchCustomerField(String search) {
+		this.getSearchField().sendKeys(search);
+	}
+
+	public void clearSendKeysSearchCustomerField(String search) {
+		this.getSearchField().clear();
+		this.sendKeysSearchCustomerField(search);
+	}
+
+	public AllCustomersPage doCustomerSearch(String search) {
+		this.clearSendKeysSearchCustomerField(search);
+		this.getSearchField().sendKeys(Keys.ENTER);
+		return new AllCustomersPage(driver);
+	}
+
+	public void clickDeleteActions() {
+		goToActionsDropDownMenu().delete.click();
+	}
+
+	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) throws InterruptedException {
+		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+
+		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),
+				customerUser);
+		if (foundCustomerUsersByName.size() > 0) {
 			checkCustomerUser(foundCustomerUsersByName);
 			CustomersPage.clickDeleteActions();
-			 
+
 			this.getConfirmDeleteWindow().clickButtonOk();
-			
-			}
-		}
-		
-		public List<RowCustomerUser> findCustomersUser(ICustomerUser customerUser) {
-			AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
-			List<RowCustomerUser> foundCustomerUsersByName = 
-					findCustomerUsersByName(CustomersPage.getTableCustomerUser(),customerUser);
-			return foundCustomerUsersByName;
-		}
-		public Boolean confirmCustomerUserIsCreated(ICustomerUser customerUser) {
-			if ( this.findCustomersUser(customerUser).size() > 0 ) {
-				return true;
-			} else 
-				return false;
-		}
-		public Boolean confirmAlreadyExistCustomerUserIsCreated(ICustomerUser customerUser) {
-			if ( this.findCustomersUser(customerUser).size() >= 2 ) {
-				return true;
-			} else 
-				return false;
-		}
-		public ConfirmDeleteWindow getConfirmDeleteWindow() {
-			return new ConfirmDeleteWindow();
-		}
-		//--------------------ConfirmDeleteWindow----------------------------
-		private class ConfirmDeleteWindow {
-			private WebElement window;
-			private WebElement buttonCancel;
-			private WebElement buttonOk;
-			private WebElement exit;
-			public ConfirmDeleteWindow() {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
-				this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
-				
-				this.buttonOk = driver.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
-				this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
-				this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
-			}
-			public WebElement getWindow() {
-				return window;
-			}
-			public WebElement getButtonCancel() {
-				return buttonCancel;
-			}
-			public WebElement getButtonOk() {
-				return buttonOk;
-			}
-			public WebElement getExit() {
-				return exit;
-			}
-			//click 
-			public void clickButtonCancel() {
-				this.getButtonCancel().click();
-			}
-			public AllCustomersPage clickButtonOk() {
-				this.getButtonOk().click();
-				return new AllCustomersPage(driver);
-			}
-			public void clickExit() {
-				this.getExit().click();
-			}
-			
-		}
-		//--------------------RowCustomerUser----------------------------
-		private class RowCustomerUser{
-			WebElement check;
-			WebElement name;
-			WebElement email;
-			RowCustomerUser(WebElement row) {
-				this.check = row.findElement(By.className("data-grid-checkbox-cell"));
-				this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
-				this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
-			}
-			
-			public WebElement getCheck() {
-				return check;
-			}
 
-			public WebElement getName() {
-				return name;
-			}
+		}
+		return new AllCustomersPage(driver);
+	}
 
-			public WebElement getEmail() {
-				return email;
-			}
+	public List<RowCustomerUser> findCustomersUser(ICustomerUser customerUser) {
+		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),
+				customerUser);
+		return foundCustomerUsersByName;
+	}
 
-			public String getNameText() {
-				String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
-				return nameText;
-			}
-			public String getEmailText() {
-				String emailText = getEmail().findElement(By.className("data-grid-cell-content")).getText();
-				return emailText;
-			}
+	public Boolean confirmCustomerUserIsCreated(ICustomerUser customerUser) {
+		if (this.findCustomersUser(customerUser).size() > 0) {
+			return true;
+		} else
+			return false;
+	}
+
+	public Boolean confirmAlreadyExistCustomerUserIsCreated(ICustomerUser customerUser) {
+		if (this.findCustomersUser(customerUser).size() >= 2) {
+			return true;
+		} else
+			return false;
+	}
+
+	public ConfirmDeleteWindow getConfirmDeleteWindow() {
+		return new ConfirmDeleteWindow();
+	}
+
+	// --------------------ConfirmDeleteWindow----------------------------
+	private class ConfirmDeleteWindow {
+		private WebElement window;
+		private WebElement buttonCancel;
+		private WebElement buttonOk;
+		private WebElement exit;
+
+		public ConfirmDeleteWindow() {
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
+
+			this.buttonOk = driver
+					.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
+			this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
+			this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
 		}
 
-	
+		public WebElement getWindow() {
+			return window;
+		}
+
+		public WebElement getButtonCancel() {
+			return buttonCancel;
+		}
+
+		public WebElement getButtonOk() {
+			return buttonOk;
+		}
+
+		public WebElement getExit() {
+			return exit;
+		}
+
+		// click
+		public void clickButtonCancel() {
+			this.getButtonCancel().click();
+		}
+
+		public AllCustomersPage clickButtonOk() {
+			this.getButtonOk().click();
+			return new AllCustomersPage(driver);
+		}
+
+		public void clickExit() {
+			this.getExit().click();
+		}
+
+	}
+
+	// --------------------RowCustomerUser----------------------------
+	private class RowCustomerUser {
+		WebElement check;
+		WebElement name;
+		WebElement email;
+
+		RowCustomerUser(WebElement row) {
+			this.check = row.findElement(By.className("data-grid-checkbox-cell"));
+			this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
+			this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
+		}
+
+		public WebElement getCheck() {
+			return check;
+		}
+
+		public WebElement getName() {
+			return name;
+		}
+
+		public WebElement getEmail() {
+			return email;
+		}
+
+		public String getNameText() {
+			String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
+			return nameText;
+		}
+
+		public String getEmailText() {
+			String emailText = getEmail().findElement(By.className("data-grid-cell-content")).getText();
+			return emailText;
+		}
+	}
 
 }

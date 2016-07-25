@@ -35,7 +35,14 @@ public final class ListUtils {
 	        array[0][1] = data;
 	        return array;
 	    }
-
+	   
+	   public Object[][] toMultiArray(Object object, Object data, Object data2) {
+	        Object[][] array = new Object[1][3];
+	        array[0][0] = object;
+	        array[0][1] = data;
+	        array[0][2] = data2;
+	        return array;
+	    }
     public Object[][] toMultiArray(List<?> list) {
         Object[][] array = new Object[list.size()][1];
         for (int i = 0; i < list.size(); i++) {

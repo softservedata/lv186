@@ -187,7 +187,7 @@ public class AllCustomersPage extends VerticalMenu {
 		private WebElement edit;
 
 		public ActionsDropDownMenu(WebDriver driver) {
-			this.delete = driver.findElement(By.xpath("(//span[text()='Delete'])[3]"));
+			this.delete = driver.findElement(By.xpath("//span[text()='Delete']"));
 			this.subscribe = driver.findElement(By.xpath("(//span[text()='Subscribe to Newsletter'])[2]"));
 			this.unSubscribe = driver.findElement(By.xpath("(//span[text()='Unsubscribe from Newsletter'])[2]"));
 			this.assignCustomerGroup = driver.findElement(By.xpath("(//span[text()='Assign a Customer Group'])[2]"));
@@ -228,8 +228,8 @@ public class AllCustomersPage extends VerticalMenu {
 			super();
 			this.defaultView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[1]"));
 			this.myNewView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[2]"));
-			this.myNewViewEdit = driver.findElement(By.xpath("(.//*[@class='action-edit'])[1]"));
-			this.saveViewAs = driver.findElement(By.xpath(".//*[@id='container']//div[1]/div[1]/ul/li[3]/a"));
+			//this.myNewViewEdit = driver.findElement(By.xpath("//*[@class='action-edit']"));
+			//this.saveViewAs = driver.findElement(By.xpath(".//*[@id='container']//div[1]/div[1]/ul/li[3]/a"));
 		}
 
 		public WebElement getDefaultView() {
@@ -926,7 +926,7 @@ public class AllCustomersPage extends VerticalMenu {
 		goToActionsDropDownMenu().delete.click();
 	}
 
-	public void deleteCustomerUser(ICustomerUser customerUser) throws InterruptedException {
+	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) throws InterruptedException {
 		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
 
 		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),
@@ -938,6 +938,7 @@ public class AllCustomersPage extends VerticalMenu {
 			this.getConfirmDeleteWindow().clickButtonOk();
 
 		}
+		return new AllCustomersPage(driver);
 	}
 
 	public List<RowCustomerUser> findCustomersUser(ICustomerUser customerUser) {

@@ -33,11 +33,11 @@ public class CustomerSmokeTests {
 		// };
 		return ListUtils.get()
 				.toMultiArray(ParameterUtils.get()
-						.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+						.updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
 						AdminUserRepository.get().adminMykhaylo());
 	}
 
-	// @Test(dataProvider = "smokeParameters")
+	 @Test(dataProvider = "smokeParameters")
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		// Precondition
@@ -60,7 +60,7 @@ public class CustomerSmokeTests {
 		applicationAdmin.quit();
 	}
 
-	 @Test(dataProvider = "smokeParameters")
+	// @Test(dataProvider = "smokeParameters")
 	public void searchCustomerInTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);

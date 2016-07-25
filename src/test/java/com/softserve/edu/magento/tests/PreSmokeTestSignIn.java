@@ -40,135 +40,171 @@ public class PreSmokeTestSignIn {
   void tearDown() throws Exception {
 	  //ApplicationCustomer.quitAll();
   }
-  @DataProvider //(parallel = true)
+  @DataProvider (parallel = true)
   public Object[][] smokeParameters(ITestContext context) {
-      return ListUtils.get().toMultiArray(
+     return ListUtils.get().toMultiArray(
               ParameterUtils.get().updateParametersAll(
                       ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
 				AdminUserRepository.get().adminYaryna());
-	/* return new Object[][] {
+	 /*return new Object[][] {
 			 { ParameterUtils.get().updateParametersAll(
-			 ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context)},
+			 ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
+				 AdminUserRepository.get().adminYaryna() },
 			 { ParameterUtils.get().updateParametersAll(
-			 ApplicationSourcesRepository.getChromeLocalhostCustomer(), context)}
+			 ApplicationSourcesRepository.getChromeLocalhostCustomer(), context),
+				 AdminUserRepository.get().adminYaryna()}
 			 };*/
   }
 
-  //@Test(dataProvider = "smokeParameters")
+  @Test(dataProvider = "smokeParameters")
   public void testSignIn1(ApplicationSources applicationSources, IAdminUser adminUser) {
-	  //prepare our application
+	  //Precondition
+	  // Prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
-	  //confirm that home page is opened 
+	  // Test step
+	  // 1. Confirm that home page is opened 
 	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
-	  //go to the signIn page 
+	  // 2. Go to the signIn page 
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
-	  //confirm that signIn page is opened
+	  // 3. Confirm that signIn page is opened
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
-	  //succsess log in user
-	  //go to the AccountDashboard Page
+	  // 4. Successful log in user
+	  // 5. Go to the AccountDashboard Page
 	  AccountDashboardPage accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().User());  
-	  //confirm that AccountDashboard page is opened
+	  // 6. Confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
+	  // Return to the previous state
 	  // Sign Out user
-	  //go to the home page
+	  // Go to the home page
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
 	  
   }
-  //@Test(dataProvider = "smokeParameters")
+  @Test(dataProvider = "smokeParameters")
   public void testSignIn1_1(ApplicationSources applicationSources, IAdminUser adminUser) {
+	  //Precondition
+	  // Prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
-	  
+	  // Test step
+	  // 1. Confirm that home page is opened 
 	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
-	  
+	  // 2. Go to the signIn page 
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
-	  
+	  // 3. Confirm that signIn page is opened
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
-	  
+	  // 4. Successful log in user
+	  // 5. Go to the AccountDashboard Page
 	  AccountDashboardPage accountDashboardPage = signInPage.SignIn_Enter(CustomerUserRepository.get().User());  
-	  
+	  // 6. Confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
-	  
+	  // Return to the previous state
+	  // Sign Out user
+	  // Go to the home page
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
   }
-  //@Test(dataProvider = "smokeParameters")
+  @Test(dataProvider = "smokeParameters")
   public void testSignIn2(ApplicationSources applicationSources, IAdminUser adminUser) {
+	  //Precondition
+	  // Prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
+	  // Test step
+	  // 1. Confirm that home page is opened 
+	  Assert.assertEquals(homePageLogout.getTitleText(), Titles.HOME_PAGE.toString());
+	  // 2. Go to the signIn page 
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
+	  // 3. Confirm that signIn page is opened
+	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
+	  // 4. Unsuccessful log in user
 	  UnsuccessfulSignInPage unsuccessfulSignInPage = signInPage.
-			  unsuccessfulSignIn(CustomerUserRepository.get().invalidUser());  
+			  unsuccessfulSignIn(CustomerUserRepository.get().invalidUser()); 
+	  // 5. Confirm that signIn page is still opened
 	  Assert.assertEquals(unsuccessfulSignInPage.getTitleText(), 
 			  Titles.CUSTOMER_LOGIN.toString());
+	  // 6. Confirm that error message appear above sing in block 
+	  // with right text 
 	  Assert.assertEquals(unsuccessfulSignInPage.getErrorMessageText(),
 			  ErrorMessageSignIn.INVALID_SIGNIN.toString());
+	  // Return to the previous state
+	  // Go to the home page
+	  unsuccessfulSignInPage.clickLogo();
   }
- // @Test(dataProvider = "smokeParameters")
+  @Test(dataProvider = "smokeParameters")
   public void testCreateAccount1(ApplicationSources applicationSources, IAdminUser adminUser) throws InterruptedException {
-	  
+	  //Precondition
+	  // Prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
+	  // Test step
+	  // 1. Go to the signIn page
 	  SignInPage signInPage = homePageLogout.clickSignInLink();
+	  // 2. Go to the create account page
 	  CreateAccountPage createAccountPage = signInPage.clickCreateAccountButton();
-	  
+	  // 3. Confirm that create account page is opened
+	  Assert.assertEquals(createAccountPage.getTitleText(),
+			  Titles.CREATE_NEW_CUSTOMER_ACCOUNT.toString());
+	  // 4. Successful create new account
+	  // 5. Go to the account dashboard page
 	  AccountDashboardPage accountDashboardPage = createAccountPage.createNewAccount
 			  (CustomerUserRepository.get().newUser());
-	  
+	  // 6. Confirm that account dashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(),
 			  Titles.ACCOUNT_DASHBOARD.toString());
-	  
+	  // 7. Sign Out user
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
-	  
+	  // 8.Confirm that home page is opened after log out
 	  Assert.assertEquals(homePageLogout.getTitleText(),
-			  Titles.YOU_ARE_SIGNED_OUT.toString());
-	  
+		  Titles.YOU_ARE_SIGNED_OUT.toString());
+	  // 9.Confirm that currently created user can log in
+	  signInPage = homePageLogout.clickSignInLink();
+	  accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().newUser());
+	  Assert.assertEquals(accountDashboardPage.getTitleText(),
+			  Titles.ACCOUNT_DASHBOARD.toString());
+	  // Return to the previous state
+	  // 1. Sign Out user
+	  accountDashboardPage.clickSignOutButton();
+	  // 2. Go to the admin page
 	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
-	  
+	  // 3. Log in admin
+	  // 4. Go to the all customer page
 	  AllCustomersPage allCustomersPage = applicationAdmin.load()
 			  .successAdminLogin(adminUser)
 			  .gotoAllCustomersPage();
-	  allCustomersPage.deleteCustomerUser(CustomerUserRepository.get().newUser());
+	  // 5. Delete currently created user
+	  allCustomersPage = allCustomersPage.deleteCustomerUser(CustomerUserRepository.get().newUser());
+	  // 6. Log out admin
+	  allCustomersPage.clickSignOut();
 	  
   }
   @Test(dataProvider = "smokeParameters")
   public void testCreateAccount2(ApplicationSources applicationSources, IAdminUser adminUser) {
-	//prepare our application
+	  //Precondition
+	  // Prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 	  HomePageLogout homePageLogout = applicationCustomer.load();
-	  //test steps
-	  //1.Unsuccessful create account
+	  // Test steps
+	  // 1.Unsuccessful create account already exist customer
 	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
 			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());
-	  //2.Confirm that error message 
+	  // 2.Confirm that error message appear with right text
 	  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorMessageText(),
 			  ErrorMessage.ALREADY_EXIST_ACCOUNT.toString());
+	  // 3.Go to  the admin page
 	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
-	  
-	  
+	  // 4. Log in admin
+	  // 5. Go to the all customer page
 	  AllCustomersPage allCustomersPage = applicationAdmin.load()
 			  .successAdminLogin(adminUser)
 			  .gotoAllCustomersPage();
+	  // 6. Confirm that already exist customer account is not created
 	  Assert.assertFalse(allCustomersPage
 			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().User()));
+	  // Return to the previous state
+	  allCustomersPage.clickSignOut();
 	  
   }
-  //@Test(dataProvider = "smokeParameters")
-  public void testMysha(ApplicationSources applicationSources, IAdminUser adminUser) {
-	//prepare our application
-	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
-	  HomePageLogout homePageLogout = applicationCustomer.load();
-	  
-	  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
-	  
-	  
-	  AllCustomersPage allCustomersPage = applicationAdmin.load()
-			  .successAdminLogin(adminUser)
-			  .gotoAllCustomersPage();
-	  allCustomersPage.doCustomerSearch("");
-	  allCustomersPage.getNameColumn();
-	  
-  }
+  
 }

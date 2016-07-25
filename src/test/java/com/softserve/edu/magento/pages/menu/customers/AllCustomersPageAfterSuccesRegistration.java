@@ -1,3 +1,4 @@
+
 package com.softserve.edu.magento.pages.menu.customers;
 
 import java.util.ArrayList;
@@ -112,7 +113,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement edit;
 
 		public ActionsDropDownMenu(WebDriver driver) {
-			this.delete = driver.findElement(By.xpath("//span[text()='Delete']"));
+			this.delete = driver.findElement(By.xpath("(//span[text()='Delete'])[3]"));
 			this.subscribe = driver.findElement(By.xpath("(//span[text()='Subscribe to Newsletter'])[2]"));
 			this.unSubscribe = driver.findElement(By.xpath("(//span[text()='Unsubscribe from Newsletter'])[2]"));
 			this.assignCustomerGroup = driver.findElement(By.xpath("(//span[text()='Assign a Customer Group'])[2]"));
@@ -910,3 +911,4 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 
 }
+>>>>>>> branch 'development' of https://github.com/softservedata/lv186.git

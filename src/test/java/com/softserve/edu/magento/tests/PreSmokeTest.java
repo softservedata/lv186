@@ -11,6 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
@@ -68,7 +69,7 @@ public class PreSmokeTest {
 		driver.quit();
 	}
 
-	@DataProvider(parallel = true)
+	@DataProvider//(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		// return new Object[][] {
 		// { ParameterUtils.get().updateParametersAll(
@@ -84,9 +85,10 @@ public class PreSmokeTest {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	// @Test(dataProvider = "smokeParameters")
+	@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
+	    SoftAssert softAssert = new SoftAssert(); 
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		Thread.sleep(1000);
 		//
@@ -97,15 +99,15 @@ public class PreSmokeTest {
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		Thread.sleep(1000);
 		// Check
-		Assert.assertEquals(dashboardPage.getPageTitleText(), DashboardPage.PAGE_TITLE);
-		Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
+		softAssert.assertEquals(dashboardPage.getPageTitleText(), DashboardPage.PAGE_TITLE);
+		softAssert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
 		//
 		// Test Steps
 		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
-		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
+		softAssert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
 		
 																				// name
@@ -124,6 +126,8 @@ public class PreSmokeTest {
 		HomePageLogout homePageLogout = applicationCustomer.load();
 		Thread.sleep(2000);
 		// applicationAdmin.quit();
+        System.out.println("+++Test Done");
+		softAssert.assertAll();
 	}
 
 	//@Test(dataProvider = "smokeParameters")
@@ -143,7 +147,7 @@ public class PreSmokeTest {
 		applicationAdmin.quit();
 	}
 	
-	@Test(dataProvider = "smokeParameters") 
+	//@Test(dataProvider = "smokeParameters") 
 	public void goToEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -169,6 +173,7 @@ public class PreSmokeTest {
 		Thread.sleep(5000);
 		applicationAdmin.quit();
 	}
+
 	@AfterMethod
 	public void afterMethod() {
 		ApplicationAdmin.signout();

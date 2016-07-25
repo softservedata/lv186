@@ -78,5 +78,14 @@ public class AdminUserRepository {
 			   .build();
    }
    
+   public IAdminUser invalid() {
+       return AdminUser.get()
+               .setUsername("invalid")
+               .setFirstname("invalid")
+               .setLastname("invalid")
+               .setMail("invalid@gmail.com")
+               .setPassword("invalid")
+               .build();
+   }
 
 }

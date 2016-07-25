@@ -1,3 +1,4 @@
+
 package com.softserve.edu.magento.tests;
 
 import org.testng.Assert;
@@ -33,11 +34,11 @@ public class CustomerSmokeTests {
 		// };
 		return ListUtils.get()
 				.toMultiArray(ParameterUtils.get()
-						.updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
+						.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
 						AdminUserRepository.get().adminMykhaylo());
 	}
 
-	 @Test(dataProvider = "smokeParameters")
+	// @Test(dataProvider = "smokeParameters")
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		// Precondition
@@ -60,7 +61,7 @@ public class CustomerSmokeTests {
 		applicationAdmin.quit();
 	}
 
-	// @Test(dataProvider = "smokeParameters")
+	 @Test(dataProvider = "smokeParameters")
 	public void searchCustomerInTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -122,3 +123,4 @@ public class CustomerSmokeTests {
 	}
 
 }
+>>>>>>> branch 'development' of https://github.com/softservedata/lv186.git

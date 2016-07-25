@@ -1,27 +1,23 @@
 package com.softserve.edu.magento.tests;
 
-import com.softserve.edu.magento.data.AdminUserRepository;
-import com.softserve.edu.magento.data.ApplicationSources;
-import com.softserve.edu.magento.data.ApplicationSourcesRepository;
-import com.softserve.edu.magento.data.IAdminUser;
-import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
-import com.softserve.edu.magento.editCustomer.EditCustomerPage;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
-import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
-import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
-import com.softserve.edu.magento.tools.ListUtils;
-import com.softserve.edu.magento.tools.ParameterUtils;
-
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-
 import java.util.Random;
 
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import com.softserve.edu.magento.data.ApplicationSources;
+import com.softserve.edu.magento.data.ApplicationSourcesRepository;
+import com.softserve.edu.magento.data.admin.AdminUserRepository;
+import com.softserve.edu.magento.data.admin.IAdminUser;
+import com.softserve.edu.magento.editCustomer.EditCustomerPage;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.tools.ListUtils;
+import com.softserve.edu.magento.tools.ParameterUtils;
 
 public class EditCustomerTest {
 	@DataProvider(parallel = true)

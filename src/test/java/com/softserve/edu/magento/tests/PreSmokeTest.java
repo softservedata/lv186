@@ -3,7 +3,6 @@ package com.softserve.edu.magento.tests;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -13,21 +12,20 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
-import com.softserve.edu.magento.data.IAdminUser;
-import com.softserve.edu.magento.data.ProductRepository;
+import com.softserve.edu.magento.data.admin.AdminUserRepository;
+import com.softserve.edu.magento.data.admin.IAdminUser;
+import com.softserve.edu.magento.data.admin.products.ProductRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
-import com.softserve.edu.magento.editCustomer.EditCustomerPage;
-import com.softserve.edu.magento.pages.AdminLoginPage;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
-import com.softserve.edu.magento.pages.ApplicationCustomer;
+import com.softserve.edu.magento.pages.admin.AdminLoginPage;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
+import com.softserve.edu.magento.pages.admin.menu.customers.RegistrationNewCustomerPage;
+import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage;
+import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
-import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.pages.menu.customers.RegistrationNewCustomerPage;
-import com.softserve.edu.magento.pages.menu.dashboard.DashboardPage;
-import com.softserve.edu.magento.pages.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
@@ -147,26 +145,7 @@ public class PreSmokeTest {
 		applicationAdmin.quit();
 	}
 	
-<<<<<<< HEAD
-	@Test(dataProvider = "smokeParameters") 
-	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
-=======
-	//@Test(dataProvider = "smokeParameters") 
-	public void goToEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-		// Precondition
->>>>>>> branch 'development' of https://github.com/softservedata/lv186.git
-		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 
-		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		System.out.println("luck dashboard");
-	
-		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		System.out.println("luck editcustomer");
-
-		ecp.navToAccountInfo();
-		Assert.assertTrue(ecp.compareFields(ecp.getCustomerAllData().get(8)));
-		applicationAdmin.quit();
-	}
 
 	@AfterMethod
 	public void afterMethod() {

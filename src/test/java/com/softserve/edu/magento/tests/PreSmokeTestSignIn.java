@@ -10,14 +10,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
-import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.admin.AdminUserRepository;
+import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
-import com.softserve.edu.magento.pages.ApplicationCustomer;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.customer.AccountDashboardPage;
+import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import com.softserve.edu.magento.pages.customer.CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.customer.SignInPage;
@@ -26,7 +27,6 @@ import com.softserve.edu.magento.pages.customer.UnsuccessfulSignInPage.ErrorMess
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage.ErrorMessage;
 import com.softserve.edu.magento.pages.customer.components.Header.Titles;
-import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 

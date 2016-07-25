@@ -32,53 +32,74 @@ public class CustomerSmokeTests {
 		// AdminUserRepository.get().adminMykhaylo() }
 		// };
 		return ListUtils.get()
-				.toMultiArray(ParameterUtils.get()
-						.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+				.toMultiArray(
+						ParameterUtils.get()
+								.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
 						AdminUserRepository.get().adminMykhaylo());
 	}
 
-	 @Test(dataProvider = "smokeParameters", priority = 1)
-	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-		// Precondition
-		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
-		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
-		Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
-		applicationAdmin.quit();
-	}
-	 @Test(dataProvider = "smokeParameters", priority = 2)
-	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources, IAdminUser adminUser)
+	@Test(dataProvider = "smokeParameters", priority = 1)
+	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		// Precondition
+		// login and go to DashboardPage
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		// go to AllCustomersPage
 		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
+		// Verify that AllCustomersPage is opened
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
+		// check fields if sorted
+		Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
+		// Sign Out Admin
+		applicationAdmin.quit();
+	}
+
+	@Test(dataProvider = "smokeParameters", priority = 2)
+	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources,
+			IAdminUser adminUser) throws Exception {
+		// Precondition
+		// login and go to DashboardPage
+		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		// go to AllCustomersPage
+		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
+		// Verify that AllCustomersPage is opened
+		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
+		// go to RegistrationNewCustomerPage
 		RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
+		// Verify that RegistrationNewCustomerPage is opened
 		Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
+		// setting data to login form
 		AllCustomersPageAfterSuccesRegistration allCustAfter = regNewCust
 				.setCustomerDataInLoginForm(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
-		Assert.assertTrue(
-				allCustAfter.findCustomerInTheList(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide()));
-		Assert.assertEquals(allCustAfter.getRegisteredNewCustomerLabelgetText(), allCustAfter.REGISTERED_CUSTOMER_TITLE);
+		// Verify that new Customer was registered
+		Assert.assertEquals(allCustAfter.getRegisteredNewCustomerLabelgetText(),
+				allCustAfter.REGISTERED_CUSTOMER_TITLE);
+		// Try to find registered customer in Customer page
+		Assert.assertTrue(allCustAfter
+				.findCustomerInTheList(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide()));
+		// deleting registered Customer
 		allCustAfter.deleteCustomerUser(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
+		// Sign Out Admin
 		applicationAdmin.quit();
 	}
 
-	 @Test(dataProvider = "smokeParameters", priority = 3)
+	@Test(dataProvider = "smokeParameters", priority = 3)
 	public void searchCustomerInTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
+		// login and go to DashboardPage
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		//go to AllCustomersPAge
 		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
+		// Verify that AllCustomersPage is opened
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
-		Assert.assertTrue(acp
-				.findCustomerInTheListAfterSearch(CustomerUserRepository.get().SteveRinger()));
+		//find and verify customer
+		Assert.assertTrue(acp.findCustomerInTheListAfterSearch(CustomerUserRepository.get().SteveRinger()));
+		// Sign Out Admin
 		applicationAdmin.quit();
 	}
-
-	 
 
 	@AfterMethod
 	public void afterMethod() {
@@ -92,4 +113,3 @@ public class CustomerSmokeTests {
 	}
 
 }
-

@@ -652,7 +652,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return new EditCustomerPage(driver);
 	}
 
-	// get Data Business Logic 
+	// get Data Business Logic
 
 	public String getRegisteredNewCustomerLabelgetText() {
 		return getRegisteredNewCustomerLabel().getText().trim();
@@ -693,7 +693,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	public void defaultdropdownmenuMyNewViewSaveViewAs() {
 		getDefaultViewDropdownMenu().getSaveViewAs().click();
 	}
-	
+
 	// click for ActionsDropDownMenu class
 
 	public void actionsdropdownmenuDeleteClick() {
@@ -717,7 +717,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	}
 
 	// click for ColumnsMenuDropdown class
-	
+
 	public void columnsmenudropdownIdClick() {
 		getColumnsMenuDropdown().getIdCheck().click();
 	}
@@ -904,15 +904,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		List<String> usernames = new ArrayList<String>();
 		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
 			usernames.add(rowsCustomerUserTable.get(i).getNameText());
-			System.out.println(rowsCustomerUserTable.get(i).getNameText());
 		}
-		System.out.println(" ");
-
 		List<String> sortedNames = new ArrayList<>(usernames);
 		Collections.sort(sortedNames);
-		for (String str : sortedNames) {
-			System.out.println(str);
-		}
 		if (sortedNames.equals(usernames)) {
 			return isNameFieldSorted = true;
 		} else {

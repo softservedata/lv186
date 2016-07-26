@@ -186,6 +186,44 @@ public class CustomerUserRepository {
     			.build();
     			
     }
+    public ICustomerUser testEditor(){
+    	return CustomerUser.get()
+    			.setPersonalInfo(PersonalInfo_User.get()
+    					.setFirstname("Clint")
+    					.setLastname("Eastwood")
+    					.setSignUpNewsletter(true)
+    					.build()
+    					.setGender(Gender.MALE)
+    					.setMiddlename("Jr.")
+    					.setPrefix("Mr.")
+    					.setSuffix("cowboy")
+    					.setBirthdayDate(Date.get()
+    							.setMonth(Month.AUGUST)
+    							.setDay("26")
+    							.setYear("1946")
+    							.build())
+    						)
+    			.setSigninInfo(SigninInfo_User.get()
+        				.setEmail("astwood@bang.com")
+        				.setPassword("123")
+        				.setConfirmPassword("123")
+        				.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+        				.build())
+        		.build()
+        		.setContactInfo_User(ContactInfo_User.get()
+        				.setPhoneNumber("555-222-000")
+        				.setStreetAddress("5th Avenue")
+        				.setCity("New York")
+        				.setState("Columbia")
+        				.setPostalCode("1000")
+        				.setCountry("US")
+        				.build()
+        				.setCompanyName("PrestonInnovations")
+        				.setFax("0932791256")
+        				.setVatNumber("111115412")
+        				);
+    }
     }
 
 //    public List<IUser> getExistUsersCVS() {

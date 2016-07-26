@@ -162,6 +162,7 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public void clickSaveButton() {
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(getSaveButton()));
 		getSaveButton().click();
 	}
 

@@ -62,13 +62,13 @@ public class EditCustomerTest {
 		applicationAdmin.quit();
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
 		ApplicationAdmin.signout();
 		// ApplicationAdmin.quitAll();
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	void tearDown() throws Exception {
 		ApplicationAdmin.quitAll();
 	}

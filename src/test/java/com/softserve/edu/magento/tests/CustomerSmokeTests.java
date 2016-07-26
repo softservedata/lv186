@@ -103,6 +103,7 @@ public class CustomerSmokeTests {
 
 	@AfterMethod
 	public void afterMethod() {
+		
 		ApplicationAdmin.signout();
 		// ApplicationAdmin.quitAll();
 	}

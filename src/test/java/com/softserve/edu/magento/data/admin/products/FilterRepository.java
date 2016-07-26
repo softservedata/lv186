@@ -5,31 +5,34 @@ public class FilterRepository {
 	public FilterRepository() {
 	}
 
-	public FilterData getExistingName() {
-		FilterData nameFilterData = new FilterData();
-		nameFilterData.setName("Gigabyte");
-		return nameFilterData;
+	public static FilterRepository get() {
+		return new FilterRepository();
 	}
 
-	public FilterData getExistingPrice() {
-		FilterData priceFilterData = new FilterData();
-		priceFilterData.setPriceFrom("50");
-		priceFilterData.setPriceTo("100");
-		return priceFilterData;
+	public Filter getExistingName() {
+		Filter nameFilter = new Filter();
+		nameFilter.setName("Gigabyte");
+		return nameFilter;
 	}
 
-	public FilterData getExistingNamePrice() {
-		FilterData namePriceFilterData = new FilterData();
-		namePriceFilterData.setName("Gigabyte");
-		namePriceFilterData.setPriceFrom("10");
-		namePriceFilterData.setPriceTo("1000");
-		return namePriceFilterData;
-	}
-	
-	public FilterData getNonExistingName() {
-		FilterData nameFilterData = new FilterData();
-		nameFilterData.setName("nonexistence");
-		return nameFilterData;
+	public Filter getExistingPrice() {
+		Filter priceFilter = new Filter();
+		priceFilter.setPriceFrom("50");
+		priceFilter.setPriceTo("100");
+		return priceFilter;
 	}
 
+	public Filter getExistingNamePrice() {
+		Filter namePriceFilter = new Filter();
+		namePriceFilter.setName("Gigabyte");
+		namePriceFilter.setPriceFrom("10");
+		namePriceFilter.setPriceTo("1000");
+		return namePriceFilter;
+	}
+
+	public Filter getNonExistingName() {
+		Filter nameFilter = new Filter();
+		nameFilter.setName("nonexistence");
+		return nameFilter;
+	}
 }

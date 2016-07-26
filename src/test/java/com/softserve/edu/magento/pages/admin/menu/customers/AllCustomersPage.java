@@ -226,8 +226,10 @@ public class AllCustomersPage extends VerticalMenu {
 			super();
 			this.defaultView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[1]"));
 			this.myNewView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[2]"));
-			//this.myNewViewEdit = driver.findElement(By.xpath("//*[@class='action-edit']"));
-			//this.saveViewAs = driver.findElement(By.xpath(".//*[@id='container']//div[1]/div[1]/ul/li[3]/a"));
+			// this.myNewViewEdit =
+			// driver.findElement(By.xpath("//*[@class='action-edit']"));
+			// this.saveViewAs =
+			// driver.findElement(By.xpath(".//*[@id='container']//div[1]/div[1]/ul/li[3]/a"));
 		}
 
 		public WebElement getDefaultView() {
@@ -367,7 +369,6 @@ public class AllCustomersPage extends VerticalMenu {
 			this.retailer = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[4]"));
 		}
 	}
-
 
 	// main page constructor
 	public AllCustomersPage(WebDriver driver) {
@@ -601,7 +602,7 @@ public class AllCustomersPage extends VerticalMenu {
 	public void defaultdropdownmenuMyNewViewSaveViewAs() {
 		getDefaultViewDropdownMenu().getSaveViewAs().click();
 	}
-	
+
 	// click for ActionsDropDownMenu class
 
 	public void actionsdropdownmenuDeleteClick() {
@@ -702,8 +703,8 @@ public class AllCustomersPage extends VerticalMenu {
 	public void allCustomersLabelClick() {
 		getCustomersLabel().click();
 	}
-	
-	public void searchFieldClear(){
+
+	public void searchFieldClear() {
 		getSearchField().clear();
 	}
 
@@ -719,8 +720,8 @@ public class AllCustomersPage extends VerticalMenu {
 	public void enterDataInSearchField(String text) {
 		searchField.clear();
 		searchField.sendKeys(text, Keys.ENTER);
-	//	refreshAllCustomersPage();
-	//	clearAllButtonClick();
+		// refreshAllCustomersPage();
+		// clearAllButtonClick();
 	}
 
 	// functional Business Logic
@@ -836,7 +837,7 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	public Boolean sortedNameField() {
-		boolean isNameFieldSorted = false;
+		boolean isNameFieldSorted = true;
 		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
 		List<String> usernames = new ArrayList<String>();
 		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
@@ -845,14 +846,18 @@ public class AllCustomersPage extends VerticalMenu {
 
 		List<String> sortedNames = new ArrayList<>(usernames);
 		Collections.sort(sortedNames);
-		
-		if (sortedNames.equals(usernames)) {
-			return isNameFieldSorted = true;
-		} else {
+
+		for (int i = 0; i < usernames.size(); i++) {
+			if (!usernames.get(i).equals(sortedNames.get(i))) {
+				isNameFieldSorted = false;
+				break;
+			}
+
+		}
+		if (isNameFieldSorted == false) {
 			nameFieldInListClick();
 			isNameFieldSorted = true;
 		}
-
 		return isNameFieldSorted;
 	}
 
@@ -922,7 +927,7 @@ public class AllCustomersPage extends VerticalMenu {
 		goToActionsDropDownMenu().delete.click();
 	}
 
-	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser){
+	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) {
 		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
 
 		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),

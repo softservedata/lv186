@@ -15,7 +15,7 @@ import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
  * 
  * @author Andrew
  */
-public class EditCustomerPage extends ACustomPageSideMenu {
+public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustomer {
 
 	private CustommerView custommerViewAjax;
 	private AccountInformation accountInformationAjax;
@@ -26,37 +26,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	/**
 	 * Enum for AssosieteWebsites selector.
 	 */
-	private enum AssosieteWebsites {
-		MAIN_WEBSITE("Main Website"), MAIN_WEBSITE_STORE("Main Website Store"), DEFAULT_STORE_VIEW(
-				"Default Store View");
-		private String websiteId;
-
-		private AssosieteWebsites(String websiteId) {
-			this.websiteId = websiteId;
-		}
-
-		@Override
-		public String toString() {
-			return this.websiteId;
-		}
-	}
-
-	private enum Groups {
-		// TODO
-	}
-
-	private enum Gender {
-		// TODO
-	}
-
-	private enum DateOfBirth {
-		// TODO
-	}
-
-	private enum Country {
-		// TODO
-	}
-
+	
 	/**
 	 * Constructor
 	 * Initializes the one component, visible on page load.
@@ -210,7 +180,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	 * 
 	 * @author Andrew
 	 */
-	private class CustommerView {
+		class CustommerView {
 
 		private WebElement LastLoggedInfo;
 		private WebElement AccountLockedInInfo;
@@ -733,7 +703,7 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 	/**
 	 * Inner class that represents the Addresses component.
 	 */
-	private class Orders extends ACustomerEditFilter {
+	class Orders extends ACustomerEditFilter {
 		private WebElement orderSort;
 		private WebElement purchasedSort;
 		private WebElement bill_toSort;
@@ -796,6 +766,10 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 	}
 	
+	/**
+	 * Navigates to AccountInformation component
+	 * and loads it.
+	 */
 	public EditCustomerPage.AccountInformation navToAccountInfo() {
 		accountInfo.click();
 		if (this.accountInformationAjax == null) {
@@ -803,7 +777,11 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 		return accountInformationAjax;
 	}
-
+	
+	/**
+	 * Navigates to Adresses component
+	 * and loads it.
+	 */
 	public EditCustomerPage.Adresses navToadresses() {
 		adresses.click();
 		if (this.adressesAjax == null) {
@@ -811,7 +789,11 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 		return adressesAjax;
 	}
-
+	
+	/**
+	 * Navigates to Orders component
+	 * and loads it.
+	 */
 	public EditCustomerPage.Orders navToorders() {
 		orders.click();
 		if (this.ordersAjax == null) {
@@ -819,20 +801,17 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		}
 		return ordersAjax;
 	}
-
-	public boolean compareChangesMadetoCity() {
-		String pre = this.adressesAjax.getCity().getText();
-		this.adressesAjax.setCity("New City");
-		reset();
-		String aft = this.adressesAjax.getCity().getText();
-		return pre.toLowerCase().equals(aft);
-	}
-
+	
+	/*
+	 * Getters and Setters with bussiness logick.
+	 * @see com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.IEditCustomer#getSelectedWebsiteText()
+	 */
 	public String getSelectedWebsiteText() {
 		navToAccountInfo();
 		return accountInformationAjax.getSelectedWebsite().getText();
 	}
-
+	
+	
 	public void setAssocietedWebsite(AssosieteWebsites website) {
 		navToAccountInfo();
 		accountInformationAjax.associateToWebsite.selectByValue(website
@@ -859,7 +838,24 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 		accountInformationAjax.sendWelcomeEmailFrom.selectByValue(website
 				.toString());
 	}
-
+	
+	/**
+	 * Saves the state of "City" input,
+	 * send a text to it, resets the changes and compares 
+	 * the state of inpur before and after typing.
+	 */
+	public boolean compareChangesMadetoCity() {
+		String pre = this.adressesAjax.getCity().getText();
+		this.adressesAjax.setCity("New City");
+		reset();
+		String aft = this.adressesAjax.getCity().getText();
+		return pre.toLowerCase().equals(aft);
+	}
+	
+	/**
+	 * Saves the state of all the inputs of AccountInfo
+	 * component.
+	 */
 	public List<WebElement> getCustomerAllData() {
 		if (this.accountInformationAjax == null) {
 			navToAccountInfo();
@@ -868,6 +864,13 @@ public class EditCustomerPage extends ACustomPageSideMenu {
 				.cssSelector("div[data-index='customer'] input"));
 	}
 
+	/**
+	 * Compares the text of some AccountInfo field 
+	 * before and after some changes made to it.
+	 * @param
+	 * 		customerCurrentField - some input from	AccountInfo
+	 * component.
+	 */
 	public boolean compareFields(WebElement customerCurrentField) {
 		Integer index = getCustomerAllData().indexOf(customerCurrentField);
 		String changed = null;

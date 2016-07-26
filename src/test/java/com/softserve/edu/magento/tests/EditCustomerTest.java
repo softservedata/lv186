@@ -1,7 +1,5 @@
 package com.softserve.edu.magento.tests;
 
-import java.util.Random;
-
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -22,14 +20,6 @@ import com.softserve.edu.magento.tools.ParameterUtils;
 public class EditCustomerTest {
 	@DataProvider(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
-		// return new Object[][] {
-		// { ParameterUtils.get().updateParametersAll(
-		// ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
-		// AdminUserRepository.get().adminMykhaylo() },
-		// { ParameterUtils.get().updateParametersAll(
-		// ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
-		// AdminUserRepository.get().adminMykhaylo() }
-		// };
 		return ListUtils.get()
 				.toMultiArray(
 						ParameterUtils.get()
@@ -41,11 +31,10 @@ public class EditCustomerTest {
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		ecp.navToAccountInfo();
-		Assert.assertTrue(ecp.compareFields(ecp.getCustomerAllData()
-				// TODO method
-				.get(new Random().nextInt(ecp.getCustomerAllData().size()))));
+		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+		ediCustomerPage.navToAccountInfo();
+		Assert.assertTrue(ediCustomerPage
+				.compareFields(ediCustomerPage.getCustomerAllData().get(8)));
 		applicationAdmin.quit();
 	}
 
@@ -53,9 +42,9 @@ public class EditCustomerTest {
 	public void resetMadeChanges(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		ecp.navToadresses();
-		Assert.assertTrue(ecp.compareChangesMadetoCity());
+		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+		ediCustomerPage.navToadresses();
+		Assert.assertTrue(ediCustomerPage.compareChangesMadetoCity());
 		applicationAdmin.quit();
 	}
 
@@ -63,12 +52,12 @@ public class EditCustomerTest {
 	public void saveAndContinue(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		ecp.navToAccountInfo().setLastname(" Dirty Johnny");
-		EditCustomerPage nuecp = ecp.saveAndContinueEdit();
-		nuecp.navToAccountInfo();
-		nuecp.setSuccessMessage();
-		Assert.assertTrue(nuecp.getSuccessMessage().isDisplayed());
+		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+		ediCustomerPage.navToAccountInfo().setLastname(" Dirty Johnny");
+		EditCustomerPage newediCustomerPage = ediCustomerPage.saveAndContinueEdit();
+		newediCustomerPage.navToAccountInfo();
+		newediCustomerPage.setSuccessMessage();
+		Assert.assertTrue(newediCustomerPage.getSuccessMessage().isDisplayed());
 		applicationAdmin.quit();
 	}
 

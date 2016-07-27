@@ -9,13 +9,13 @@ public final class ApplicationSourcesRepository {
     }
 
     public static ApplicationSources getFirefoxLocalhostAdmin() {
-        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L,
+        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L, 5L, "Explicit",
                 "http://192.168.195.210/magento/admin", new String());
     }
 
     public static ApplicationSources getChromeLocalhostAdmin() {
         return new ApplicationSources("ChromeDriverTemporary",
-                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L,
+                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento/admin",
                 new String());
     }
@@ -31,13 +31,13 @@ public final class ApplicationSourcesRepository {
     }
 
     public static ApplicationSources getFirefoxLocalhostCustomer() {
-        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L,
+        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
     public static ApplicationSources getChromeLocalhostCustomer() {
         return new ApplicationSources("ChromeDriverTemporary",
-        		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L,
+        		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }

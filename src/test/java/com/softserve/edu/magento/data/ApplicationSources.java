@@ -27,6 +27,20 @@ public class ApplicationSources {
         }
     }
  
+    static class ExplicitTimeOut implements IUpdateApplicationSources {
+        public void setProperty(ApplicationSources applicationSources, String propertyText) {
+            //ApplicationSources.this.setBrowserName(propertyText);
+            applicationSources.setExplicitTimeOut(Long.valueOf(propertyText));
+        }
+    }
+
+    static class SearchStrategy implements IUpdateApplicationSources {
+        public void setProperty(ApplicationSources applicationSources, String propertyText) {
+            //ApplicationSources.this.setBrowserName(propertyText);
+            applicationSources.setSearchStrategy(propertyText);
+        }
+    }
+
     static class LoadUrl implements IUpdateApplicationSources {
         public void setProperty(ApplicationSources applicationSources, String propertyText) {
             //ApplicationSources.this.setBrowserName(propertyText);
@@ -45,6 +59,8 @@ public class ApplicationSources {
         BROWSER_NAME(new BrowserName(), "browserName"),
         DRIVER_PATH(new DriverPath(), "driverPath"),
         IMPLICIT_TIMEOUT(new ImplicitTimeOut(), "implicitTimeOut"),
+        EXPLICIT_TIMEOUT(new ExplicitTimeOut(), "explicitTimeOut"),
+        SEARCH_STRATEGY(new ExplicitTimeOut(), "searchStrategy"),
         LOAD_URL(new LoadUrl(), "loadUrl"),
         LOGOUT_URL(new LogoutUrl(), "logoutUrl");
         private IUpdateApplicationSources updateApplicationSources;
@@ -74,10 +90,12 @@ public class ApplicationSources {
     //
     // Implicit and Explicit Waits
     private long implicitTimeOut;
-    // private long explicitTimeOut;
+    private long explicitTimeOut;
+    //private long pageLoadTimeout;
+    //private long scriptTimeout;
     //
     // Search Strategy
-    // private String searchStrategy;
+    private String searchStrategy;
     //
     // Localization Strategy
     // private String language;
@@ -96,11 +114,15 @@ public class ApplicationSources {
     // Connect to DB
     
     // Constructor
+    // TODO Develop Fluent interface, Builder
     public ApplicationSources(String browserName, String driverPath,
-            long implicitTimeOut, String loadUrl, String logoutUrl) {
+            long implicitTimeOut, long explicitTimeOut, String searchStrategy, 
+            String loadUrl, String logoutUrl) {
         this.browserName = browserName;
         this.driverPath = driverPath;
         this.implicitTimeOut = implicitTimeOut;
+        this.explicitTimeOut = explicitTimeOut;
+        this.searchStrategy = searchStrategy;
         this.loadUrl = loadUrl;
         this.logoutUrl = logoutUrl;
     }
@@ -119,6 +141,14 @@ public class ApplicationSources {
 
     public long getImplicitTimeOut() {
         return implicitTimeOut;
+    }
+
+    public long getExplicitTimeOut() {
+        return explicitTimeOut;
+    }
+
+    public String getSearchStrategy() {
+        return searchStrategy;
     }
 
     public String getLoadUrl() {
@@ -141,6 +171,14 @@ public class ApplicationSources {
 
     public void setImplicitTimeOut(long implicitTimeOut) {
         this.implicitTimeOut = implicitTimeOut;
+    }
+
+    public void setExplicitTimeOut(long explicitTimeOut) {
+        this.explicitTimeOut = explicitTimeOut;
+    }
+
+    public void setSearchStrategy(String searchStrategy) {
+        this.searchStrategy = searchStrategy;
     }
 
     public void setLoadUrl(String loadUrl) {

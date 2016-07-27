@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.tools.BrowserRepository.BrowsersList;
+import com.softserve.edu.magento.tools.Search.SearchStrategyList;
 
 public abstract class Application<TStartPage> {
     protected static final HashMap<Long, WebDriver> drivers = new HashMap<Long, WebDriver>();
@@ -42,10 +43,28 @@ public abstract class Application<TStartPage> {
             // TODO setup waits
             //driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
             //driver.manage().timeouts().setScriptTimeout(30L, TimeUnit.SECONDS);
+            //
+            // Save browser
             drivers.put(Thread.currentThread().getId(), driver);
+            setSearchStrategy();
         }
     }
     
+    protected void setSearchStrategy() {
+        boolean isDefaultStrategy = true;
+        for (SearchStrategyList searchStrategy : SearchStrategyList.values()) {
+            if (searchStrategy.toString().toLowerCase()
+                    .contains(applicationSources.getSearchStrategy().toLowerCase())) {
+                Search.setStrategy(searchStrategy.getSearchStrategy(this));
+                isDefaultStrategy = false;
+                break;
+            }
+        }
+        if (isDefaultStrategy) {
+            Search.setStrategy(SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy(this));
+        }
+    }
+
     protected WebDriver getWebDriver() {
         return drivers.get(Thread.currentThread().getId());
     }

@@ -2,43 +2,38 @@ package com.softserve.edu.magento.pages.admin;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.tools.Search;
 
-public class AdminLogPage {
+public class AdminLoginSearchPage {
 
     // Fields
     protected WebDriver driver;
     //
-    @FindBy(xpath = "//*[@for='username']/span")
     private WebElement usernameLabel;
-    //
-    @FindBy(id = "username")
-    //@CacheLookup
     private WebElement usernameInput;
-    //
-    @FindBy(xpath = "//*[@for='login']/span")
     private WebElement passwordLabel;
-    //
-    @FindBy(id = "login")
     private WebElement passwordInput;
-    //
-    @FindBy(css = "button.action-login.action-primary")
     private WebElement signin;
 
-    public AdminLogPage(WebDriver driver) {
+    public AdminLoginSearchPage(WebDriver driver) {
         this.driver = driver;
-        //PageFactory.initElements(driver, this);
-//        this.usernameLabel = driver.findElement(By.xpath("//*[@for='username']/span"));
-//        this.usernameInput = driver.findElement(By.id("username"));
-//        this.passwordLabel = driver.findElement(By.xpath("//*[@for='login']/span"));
-//        this.passwordInput = driver.findElement(By.id("login"));
-//        this.signin = driver.findElement(By.cssSelector("button.action-login.action-primary"));
+        this.usernameLabel = Search.xpath("//*[@for='username']/span");
+        this.usernameInput = Search.id("username");
+        this.passwordLabel = Search.xpath("//*[@for='login']/span");
+        this.passwordInput = Search.id("login");
+        this.signin = Search.cssSelector("button.action-login.action-primary");
+    }
+
+    public AdminLoginSearchPage() {
+        this.usernameLabel = Search.xpath("//*[@for='username']/span");
+        this.usernameInput = Search.id("username");
+        this.passwordLabel = Search.xpath("//*[@for='login']/span");
+        this.passwordInput = Search.id("login");
+        this.signin = Search.cssSelector("button.action-login.action-primary");
     }
 
     // PageObject

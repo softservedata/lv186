@@ -19,6 +19,7 @@ import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.admin.products.ProductRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.pages.admin.AdminLoginPage;
+import com.softserve.edu.magento.pages.admin.AdminLoginSearchPage;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.RegistrationNewCustomerPage;
@@ -83,7 +84,7 @@ public class PreSmokeTest {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	@Test(dataProvider = "smokeParameters")
+	//@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 	    SoftAssert softAssert = new SoftAssert(); 
@@ -128,6 +129,21 @@ public class PreSmokeTest {
 		softAssert.assertAll();
 	}
 
+	   @Test(dataProvider = "smokeParameters")
+	   public void checkAdminLogon3(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+        // Precondition
+        SoftAssert softAssert = new SoftAssert(); 
+        ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+        Thread.sleep(1000);
+        //
+        // Test Steps
+        applicationAdmin.load();
+        AdminLoginSearchPage adminLoginPage = new AdminLoginSearchPage();
+        adminLoginPage.setLoginInput(adminUser.getUsername());
+        adminLoginPage.setPasswordInput(adminUser.getPassword());
+        Thread.sleep(3000);
+    }
+
 	//@Test(dataProvider = "smokeParameters")
 	public void goToCustomerPage(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -145,7 +161,6 @@ public class PreSmokeTest {
 		applicationAdmin.quit();
 	}
 	
-
 
 	@AfterMethod
 	public void afterMethod() {

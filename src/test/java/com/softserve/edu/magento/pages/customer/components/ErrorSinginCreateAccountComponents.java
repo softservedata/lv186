@@ -12,6 +12,7 @@ public  class ErrorSinginCreateAccountComponents {
 	private List<WebElement> errorMessage;
 	private List<WebElement> errorValidators;
 	public ErrorSinginCreateAccountComponents() {
+	    WebDriver driver = null;
 		this.errorMessage = driver.findElements(By.cssSelector("div.message-error.error.message div"));
 		this.errorValidators = driver.findElements(By.className("mage-error"));
 	}

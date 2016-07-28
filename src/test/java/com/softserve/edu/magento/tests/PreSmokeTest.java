@@ -32,14 +32,16 @@ import com.softserve.edu.magento.tools.ParameterUtils;
 
 public class PreSmokeTest {
 
-	// @Test//(dataProvider = "driverParameters")
+	//@Test//(dataProvider = "driverParameters")
 	public void checkAdminLogon1() throws Exception { // (BrowsersList browser)
+	    System.out.println("Class PreSmokeTest, method checkAdminLogon1() test START");
 		// Precondition
 		// WebDriver driver = browser.getWebDriver();
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://192.168.195.210/magento/admin");
 		Thread.sleep(1000);
+		System.out.println("Class PreSmokeTest, method checkAdminLogon1() driver START");
 		//
 		// Test Steps
 		// AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
@@ -50,14 +52,15 @@ public class PreSmokeTest {
 		Thread.sleep(1000);
 		// Check
 		Assert.assertEquals(dashboardPage.getPageTitleText(), DashboardPage.PAGE_TITLE);
-		Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$0.00");
+		Assert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
+		System.out.println("Class PreSmokeTest, method checkAdminLogon1() first assert DONE");
 		//
 		// Test Steps
 		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
-		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME); 
+//		Assert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME); 
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
 																				// name
 																				// from
@@ -84,12 +87,14 @@ public class PreSmokeTest {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	//@Test(dataProvider = "smokeParameters")
+	@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+        System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) test START");
 		// Precondition
 	    SoftAssert softAssert = new SoftAssert(); 
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		Thread.sleep(1000);
+		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) driver START");
 		//
 		// Test Steps
 		// AdminLoginPage adminLoginPage = applicationAdmin.load();
@@ -97,16 +102,19 @@ public class PreSmokeTest {
 		// adminLoginPage.successAdminLogin(AdminUserRepository.get().adminBohdan());
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		Thread.sleep(1000);
+		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) successAdminLogin() DONE");
 		// Check
 		softAssert.assertEquals(dashboardPage.getPageTitleText(), DashboardPage.PAGE_TITLE);
 		softAssert.assertEquals(dashboardPage.getLifeTimeSalesValueText(), "$900.00");
+		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) first assert DONE");
 		//
 		// Test Steps
-		ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
+		//ProductCatalogPage catalogPage = dashboardPage.gotoProductCatalogPage();
 		Thread.sleep(1000);
+		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) gotoProductCatalogPage() DONE");
 		// Check
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
-		softAssert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
+		//softAssert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
 		
 																				// name
@@ -124,13 +132,15 @@ public class PreSmokeTest {
 				.get(ApplicationSourcesRepository.getFirefoxLocalhostCustomer());
 		HomePageLogout homePageLogout = applicationCustomer.load();
 		Thread.sleep(2000);
+		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) gapplicationCustomer.load() DONE");
 		// applicationAdmin.quit();
-        System.out.println("+++Test Done");
+        //System.out.println("+++Test Done");
+		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) test DONE");
 		softAssert.assertAll();
 	}
 
-	   @Test(dataProvider = "smokeParameters")
-	   public void checkAdminLogon3(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+   //@Test(dataProvider = "smokeParameters")
+   public void checkAdminLogon3(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         // Precondition
         SoftAssert softAssert = new SoftAssert(); 
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);

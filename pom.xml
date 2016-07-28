@@ -33,6 +33,7 @@
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 		<org.seleniumhq.version>2.53.1</org.seleniumhq.version>
 		<org.seleniumhq.selenium.htmlunit-driver>2.21</org.seleniumhq.selenium.htmlunit-driver>
+		<org.seleniumhq.ci.version>2.50.0</org.seleniumhq.ci.version>
 		<org.mockito.version>1.10.19</org.mockito.version>
 		<!-- - - - - - Logging - - - - - -->
 		<org.slf4j.version>1.7.13</org.slf4j.version>
@@ -74,11 +75,11 @@
 		</dependency>
 
 		<!-- - - - Automation Framework Selenium - - - -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<version>${org.seleniumhq.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.seleniumhq.selenium</groupId> -->
+<!-- 			<artifactId>selenium-server</artifactId> -->
+<!-- 			<version>${org.seleniumhq.version}</version> -->
+<!-- 		</dependency> -->
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.seleniumhq.selenium</groupId> -->
 <!-- 			<artifactId>htmlunit-driver</artifactId> -->
@@ -140,6 +141,20 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 
+			<dependencies>
+				<!-- - - - Automation Framework Selenium - - - -->
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-server</artifactId>
+					<version>${org.seleniumhq.version}</version>
+				</dependency>
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>org.seleniumhq.selenium</groupId> -->
+		<!-- 			<artifactId>htmlunit-driver</artifactId> -->
+		<!-- 			<version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+		<!-- 		</dependency> -->
+			</dependencies>
+
 			<build>
 				<plugins>
 
@@ -186,6 +201,20 @@
 
 		<profile>
 			<id>ci</id>
+
+			<dependencies>
+				<!-- - - - Automation Framework Selenium - - - -->
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-server</artifactId>
+					<version>${org.seleniumhq.ci.version}</version>
+				</dependency>
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>org.seleniumhq.selenium</groupId> -->
+		<!-- 			<artifactId>htmlunit-driver</artifactId> -->
+		<!-- 			<version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+		<!-- 		</dependency> -->
+			</dependencies>
 
 			<build>
 				<plugins>

@@ -47,5 +47,15 @@ public class SearchExplicit extends ASearch {
     public WebElement className(String className) {
         return getVisibleWebElement(By.className(className));
     }
+    
+    @Override
+    public  WebElement partialLinkText(String partialLinkText) {
+    	return getVisibleWebElement(By.partialLinkText(partialLinkText));
+    }
+    
+    @Override
+    public  WebElement linkText(String linkText) {
+    	return getVisibleWebElement(By.linkText(linkText));
+    }
 
 }

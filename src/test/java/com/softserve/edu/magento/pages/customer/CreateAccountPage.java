@@ -1,14 +1,13 @@
 package com.softserve.edu.magento.pages.customer;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.data.customer.user.IPersonalInfo_User;
 import com.softserve.edu.magento.data.customer.user.ISigninInfo_User;
 import com.softserve.edu.magento.pages.customer.components.HeaderPanelLogout;
+import com.softserve.edu.magento.tools.Search;
 
 
 public class CreateAccountPage extends HeaderPanelLogout{
@@ -27,12 +26,10 @@ public class CreateAccountPage extends HeaderPanelLogout{
 		private WebElement labelSignUpNewsletterCheckBox;
 		
 		public PersonalInfCreateAccount() {
-			this.firstnameField = driver.findElement(By.id("firstname"));
-			this.labelFirstnameField = driver.findElement(By.xpath("//label[@for='firstname']"));
-			this.lastnameField = driver.findElement(By.id("lastname"));
-			this.labelLastnameField = driver.findElement(By.xpath("//label[@for='lastname']"));
-			this.signUpNewsletterCheckBox = driver.findElement(By.id("is_subscribed"));
-			this.labelSignUpNewsletterCheckBox = driver.findElement(By.xpath("//label[@for='is_subscribed']"));
+			this.firstnameField = Search.id("firstname");
+			this.lastnameField = Search.id("lastname");
+			this.signUpNewsletterCheckBox = Search.id("is_subscribed");
+			this.labelSignUpNewsletterCheckBox = Search.xpath("//label[@for='is_subscribed']");
 		}
 
 		public WebElement getFirstnameField() {
@@ -64,9 +61,9 @@ public class CreateAccountPage extends HeaderPanelLogout{
 		private WebElement confirmPasswordField;
 		
 		public SigninInfCreateAccount() {
-			this.emailField = driver.findElement(By.id("email_address"));
-			this.passwordField = driver.findElement(By.id("password"));
-			this.confirmPasswordField = driver.findElement(By.id("password-confirmation"));
+			this.emailField = Search.id("email_address");
+			this.passwordField = Search.id("password");
+			this.confirmPasswordField = Search.id("password-confirmation");
 		}
 
 		public WebElement getEmailField() {
@@ -83,11 +80,10 @@ public class CreateAccountPage extends HeaderPanelLogout{
 	}
 
 	//----------------------------------------------
-	public CreateAccountPage(WebDriver driver) {
-		super(driver);
+	public CreateAccountPage() {
 		this.personalInf = new PersonalInfCreateAccount();
 		this.signinInf = new SigninInfCreateAccount();
-		this.createAccountButton = driver.findElement(By.cssSelector("button.action.submit.primary"));
+		this.createAccountButton = Search.cssSelector("button.action.submit.primary");
 	}
 //getters
 	public PersonalInfCreateAccount getPersonalInf() {
@@ -240,21 +236,21 @@ public class CreateAccountPage extends HeaderPanelLogout{
 	public AccountDashboardPage createNewAccount(ICustomerUser user) {
 		this.inputData(user);
 		this.clickCreateAccountButton();
-		return new AccountDashboardPage(driver);
+		return new AccountDashboardPage();
 	}
 	public AccountDashboardPage createNewAccount_Enter(ICustomerUser user) {
 		this.inputData(user);
 		this.getSigninInf().getConfirmPasswordField().sendKeys(Keys.ENTER);
-		return new AccountDashboardPage(driver);
+		return new AccountDashboardPage();
 	}
 	public Unsuccessful_CreateAccountPage unsuccessful_createNewAccount(ICustomerUser invalidUser) {
 		this.inputData(invalidUser);
 		this.clickCreateAccountButton();
-		return new Unsuccessful_CreateAccountPage(driver);
+		return new Unsuccessful_CreateAccountPage();
 	}
 	public Unsuccessful_CreateAccountPage unsuccessful_createNewAccount_Enter(ICustomerUser invalidUser) {
 		this.inputData(invalidUser);
 		this.getSigninInf().getConfirmPasswordField().sendKeys(Keys.ENTER);
-		return new Unsuccessful_CreateAccountPage(driver);
+		return new Unsuccessful_CreateAccountPage();
 	}
 }

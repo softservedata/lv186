@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.customer.components.HeaderPanelCustomerAccount;
+import com.softserve.edu.magento.tools.Search;
 
 
 public class AccountDashboardPage extends HeaderPanelCustomerAccount {
@@ -24,12 +25,12 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 		private WebElement editLink_Newsletters;
 		
 		public ContactInformationForm() { 
-			WebElement box_information =  driver.findElement(By.cssSelector("div.box.box-information"));
+			WebElement box_information =  Search.cssSelector("div.box.box-information");
 			this.nameEmail_contactInf = box_information.findElement(By.className("box-content"));
 			this.editLink_contactInf = box_information.findElement(By.cssSelector("div.box-actions a.action.edit"));
 			this.changePass_contactInf = box_information.findElement(By.cssSelector("a.action.change-password"));
 			
-			WebElement box_newsletters =  driver.findElement(By.cssSelector("div.box.box-newsletter"));
+			WebElement box_newsletters =  Search.cssSelector("div.box.box-newsletter");
 			this.inform_Newsletters = box_newsletters.findElement(By.className("box-content"));
 			this.editLink_Newsletters = box_newsletters.findElement(By.cssSelector("div.box-actions a.action.edit"));
 		}
@@ -65,8 +66,8 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 		private WebElement editLink_shippingAddress;
 		
 		 public AddressBookDashboardForm() {
-			 WebElement address_box = driver.findElement(By.cssSelector("div.block.block-dashboard-addresses"));
-			 this.manageAddressLink = driver.findElement(By.cssSelector("div.block-title a.action.edit"));
+			 WebElement address_box = Search.cssSelector("div.block.block-dashboard-addresses");
+			 this.manageAddressLink = Search.cssSelector("div.block-title a.action.edit");
 			 
 			 WebElement billingAddress_box = address_box.findElement(By.cssSelector("div.box.box-billing-address"));
 			 this.inform_billingAddress = billingAddress_box.findElement(By.tagName("address"));
@@ -99,8 +100,7 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 
 	}
 	//-------------------------------------------------------
-	public AccountDashboardPage(WebDriver driver) {
-		super(driver);
+	public AccountDashboardPage() {
 		this.contactInformationForm = new ContactInformationForm();
 		this.addressBookDashboardForm = new AddressBookDashboardForm();
 

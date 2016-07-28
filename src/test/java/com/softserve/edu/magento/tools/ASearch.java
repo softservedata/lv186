@@ -28,5 +28,9 @@ public abstract class ASearch {
     public abstract WebElement cssSelector(String cssSelector);
 
     public abstract WebElement className(String className);
+    
+    public abstract WebElement partialLinkText(String partialLinkText);
+    
+    public abstract WebElement linkText(String linkText);
 
 }

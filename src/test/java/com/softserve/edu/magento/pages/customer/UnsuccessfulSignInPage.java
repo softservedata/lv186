@@ -1,8 +1,6 @@
 package com.softserve.edu.magento.pages.customer;
 
 
-import org.openqa.selenium.WebDriver;
-
 import com.softserve.edu.magento.pages.customer.components.ErrorSinginCreateAccountComponents;
 
 
@@ -42,28 +40,10 @@ public class UnsuccessfulSignInPage extends SignInPage {
 		}
 	}
 	private ErrorSinginCreateAccountComponents  errorSinginComponents;
-	public UnsuccessfulSignInPage(WebDriver driver) {
-		super(driver);
-		this.errorSinginComponents = new ErrorSinginCreateAccountComponents(driver);
+	public UnsuccessfulSignInPage() {
+		this.errorSinginComponents = new ErrorSinginCreateAccountComponents();
 	}
-	
-	/*
-	//-----------------------------------------------
-	private WebElement messageError;
-	public UnsuccessfulSignInPage(WebDriver driver) {
-		super(driver);
-		this.messageError = driver.findElement(By.cssSelector("div.message-error.error.message div"));
-	}
-	public WebElement getMessageError() {
-		return messageError;
-	}
-	public void setMessageError(WebElement messageError) {
-		this.messageError = messageError;
-	}
-	//business logic 
-	public String getMessageErrorText() {
-		return this.getMessageError().getText();
-	}*/
+
 	public ErrorSinginCreateAccountComponents getErrorSinginComponents() {
 		return errorSinginComponents;
 	}

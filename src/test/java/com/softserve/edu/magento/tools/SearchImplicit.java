@@ -44,5 +44,14 @@ public class SearchImplicit extends ASearch {
     public WebElement className(String className) {
         return getWebElement(By.className(className));
     }
-
+    
+    @Override
+    public  WebElement partialLinkText(String partialLinkText) {
+    	return getWebElement(By.partialLinkText(partialLinkText));
+    }
+    
+    @Override
+    public  WebElement linkText(String linkText) {
+    	return getWebElement(By.linkText(linkText));
+    }
 }

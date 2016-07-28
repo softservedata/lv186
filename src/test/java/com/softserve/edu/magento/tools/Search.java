@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.tools;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 interface ISearchStrategy {
@@ -89,6 +90,14 @@ public class Search {
 
     public static WebElement className(String className) {
         return getinstance().getSearch().className(className);
-    } 
+    }
+    
+    public static WebElement partialLinkText(String partialLinkText) {
+    	return getinstance().getSearch().partialLinkText(partialLinkText);
+    }
+    
+    public  static WebElement linkText(String linkText) {
+    	return getinstance().getSearch().linkText(linkText);
+    }
 
 }

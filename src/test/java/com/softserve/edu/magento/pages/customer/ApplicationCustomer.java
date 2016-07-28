@@ -18,7 +18,7 @@ public class ApplicationCustomer extends Application<HomePageLogout> {
 
     @Override
     protected HomePageLogout getStartPage(WebDriver driver) {
-        return new HomePageLogout(driver);
+        return new HomePageLogout();
     }
 
 }

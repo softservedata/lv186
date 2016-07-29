@@ -1,5 +1,7 @@
 package com.softserve.edu.magento.tools;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -103,5 +105,66 @@ public class Search {
     public  static WebElement linkText(String linkText) {
     	return getinstance().getSearch().linkText(linkText);
     }
+    
+ // From Elements
+    
+    public  WebElement id(String id, WebElement fromWebElement) {
+    	return getinstance().getSearch().id(id,fromWebElement);
+    }
+    
+    public  WebElement name(String name, WebElement fromWebElement){
+    	return getinstance().getSearch().name(name,fromWebElement);
+    }
+
+    public  WebElement xpath(String xpath, WebElement fromWebElement) {
+    	return getinstance().getSearch().xpath(xpath,fromWebElement);
+    }
+
+    public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
+    	return getinstance().getSearch().cssSelector(cssSelector,fromWebElement);
+    }
+
+    public  WebElement className(String className, WebElement fromWebElement) {
+    	return getinstance().getSearch().className(className,fromWebElement);
+    }
+    
+    public  WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
+    	return getinstance().getSearch().partialLinkText(partialLinkText,fromWebElement);
+    }
+    
+    public  WebElement linkText(String linkText, WebElement fromWebElement) {
+    	return getinstance().getSearch().linkText(linkText,fromWebElement);
+    }
+    
+    // List
+    
+    public  List<WebElement> ids(String id) {
+        return getinstance().getSearch().ids(id);
+    }
+    
+    public  List<WebElement> names(String name) {
+        return getinstance().getSearch().names(name);
+    }
+
+    public  List<WebElement> xpaths(String xpath) {
+        return getinstance().getSearch().xpaths(xpath);
+    }
+    
+    public  List<WebElement> cssSelectors(String cssSelector) {
+        return getinstance().getSearch().cssSelectors(cssSelector);
+    }
+
+    public  List<WebElement> classNames(String className) {
+        return getinstance().getSearch().classNames(className);
+    }
+    
+    public  List<WebElement> partialLinkTexts(String partialLinkText) {
+        return getinstance().getSearch().partialLinkTexts(partialLinkText);
+    }
+    
+    public  List<WebElement> linkTexts(String linkText) {
+        return getinstance().getSearch().linkTexts(linkText);
+    }
+
 
 }

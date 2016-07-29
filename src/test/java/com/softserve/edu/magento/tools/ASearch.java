@@ -56,10 +56,33 @@ public abstract class ASearch {
     
     public abstract WebElement id(String id, WebElement fromWebElement);
     
+    public abstract WebElement name(String name, WebElement fromWebElement);
+
+    public abstract WebElement xpath(String xpath, WebElement fromWebElement);
+
+    public abstract WebElement cssSelector(String cssSelector, WebElement fromWebElement);
+
+    public abstract WebElement className(String className, WebElement fromWebElement);
+    
+    public abstract WebElement partialLinkText(String partialLinkText, WebElement fromWebElement);
+    
+    public abstract WebElement linkText(String linkText, WebElement fromWebElement);
+    
     // List
+    
+    public abstract List<WebElement> ids(String id);
     
     public abstract List<WebElement> names(String name);
 
-    //public abstract List<WebElement> xpaths(String xpath);
+    public abstract List<WebElement> xpaths(String xpath);
+    
+    public abstract List<WebElement> cssSelectors(String cssSelector);
+
+    public abstract List<WebElement> classNames(String className);
+    
+    public abstract List<WebElement> partialLinkTexts(String partialLinkText);
+    
+    public abstract List<WebElement> linkTexts(String linkText);
+
 
 }

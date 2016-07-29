@@ -80,15 +80,75 @@ public class SearchExplicit extends ASearch {
     public  WebElement linkText(String linkText) {
     	return getVisibleWebElement(By.linkText(linkText));
     }
-
+    
+// From Elements
+    
     @Override
     public  WebElement id(String id, WebElement fromWebElement) {
-        return getVisibleWebElement(By.id(id), fromWebElement);
+    	return getVisibleWebElement(By.id(id), fromWebElement);
+    }
+    
+    @Override
+    public  WebElement name(String name, WebElement fromWebElement) {
+    	return getVisibleWebElement(By.name(name), fromWebElement);
+    }
+    
+    @Override
+    public  WebElement xpath(String xpath, WebElement fromWebElement) {
+    	return getVisibleWebElement(By.xpath(xpath), fromWebElement);
+    }
+    @Override
+    public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
+    	return getVisibleWebElement(By.cssSelector(cssSelector), fromWebElement);
+    }
+    @Override
+    public  WebElement className(String className, WebElement fromWebElement) {
+    	return getVisibleWebElement(By.className(className), fromWebElement);
+    }
+    @Override
+    public  WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
+    	return getVisibleWebElement(By.partialLinkText(partialLinkText), fromWebElement);
+    }
+    @Override
+    public  WebElement linkText(String linkText, WebElement fromWebElement) {
+    	return getVisibleWebElement(By.linkText(linkText), fromWebElement);
+    }
+    
+ // List
+    
+    @Override
+    public  List<WebElement> ids(String id) {
+    	 return getVisibleWebElements(By.id(id));
     }
 
     @Override
     public List<WebElement> names(String name) {
-        return getVisibleWebElements(By.name(name));
+    	 return getVisibleWebElements(By.name(name));
+    }
+    
+    @Override
+    public  List<WebElement> xpaths(String xpath) {
+    	 return getVisibleWebElements(By.xpath(xpath));
+    }
+    
+    @Override
+    public  List<WebElement> cssSelectors(String cssSelector) {
+    	 return getVisibleWebElements(By.cssSelector(cssSelector));
+    }
+    
+    @Override
+    public  List<WebElement> classNames(String className) {
+    	 return getVisibleWebElements(By.className(className));
+    }
+
+    @Override
+    public  List<WebElement> partialLinkTexts(String partialLinkText) {
+    	 return getVisibleWebElements(By.partialLinkText(partialLinkText));
+    }
+    
+    @Override  
+    public  List<WebElement> linkTexts(String linkText) {
+    	 return getVisibleWebElements(By.linkText(linkText));
     }
 
 }

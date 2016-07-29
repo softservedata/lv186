@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<parameter name="browserName" value="Firefox" />
+	<parameter name="browserName" value="Chrome" />
+	<parameter name="driverPath" value="C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe" />
+<!-- 	<parameter name="browserName" value="phantomJS" /> -->
+<!-- 	<parameter name="driverPath" value="C:\\Program Files (x86)\\PhantomJS\\phantomjs.exe" /> -->
 	<!-- <parameter name="thirdBrowser" value="HTMLUnit" /> -->
 	<test name="Test1">
 		<classes>

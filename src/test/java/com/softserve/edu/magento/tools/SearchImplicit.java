@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.tools;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -19,7 +20,15 @@ public class SearchImplicit extends ASearch {
     private WebElement getWebElement(By by) {
         return this.getWebDriver().findElement(by);
     }
-    
+
+    private WebElement getWebElement(By by, WebElement fromWebElement) {
+        return fromWebElement.findElement(by);
+    }
+
+    private List<WebElement> getWebElements(By by) {
+        return this.getWebDriver().findElements(by);
+    }
+
     @Override
     public WebElement id(String id) {
         return getWebElement(By.id(id));
@@ -54,4 +63,15 @@ public class SearchImplicit extends ASearch {
     public  WebElement linkText(String linkText) {
     	return getWebElement(By.linkText(linkText));
     }
+    
+    @Override
+    public  WebElement id(String id, WebElement fromWebElement) {
+        return getWebElement(By.id(id), fromWebElement);
+    }
+
+    @Override
+    public List<WebElement> names(String name) {
+        return getWebElements(By.name(name));
+    }
+
 }

@@ -9,7 +9,7 @@ public final class ApplicationSourcesRepository {
     }
 
     public static ApplicationSources getFirefoxLocalhostAdmin() {
-        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L, 5L, "Explicit",
+        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L, 5L, "Implicit", // "Explicit",
                 "http://192.168.195.210/magento/admin", new String());
     }
 
@@ -22,6 +22,13 @@ public final class ApplicationSourcesRepository {
 
 //    public static ApplicationSources getIELocalhostAdmin() { }
 //    public static ApplicationSources getHtmlUnitLocalhostAdmin() { }
+
+    public static ApplicationSources getPhantomJSLocalhostWindowsAdmin() {
+        return new ApplicationSources("PhantomJSTemporary",
+                "C:\\Program Files (x86)\\PhantomJS\\phantomjs.exe", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento/admin",
+                new String());
+    }
 
     public static List<ApplicationSources> getListBrowsersLocalhostAdmin() {
         List<ApplicationSources> result = new ArrayList<ApplicationSources>();

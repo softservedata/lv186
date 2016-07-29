@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.tools;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -23,6 +24,28 @@ public class SearchExplicit extends ASearch {
             .until(ExpectedConditions.visibilityOfElementLocated(by));
     }
     
+    // Must be Selenium version 2.53.1
+//    private WebElement getVisibleWebElement(By by, WebElement fromWebElement) {
+//        return new WebDriverWait(this.getWebDriver(),
+//                getApplication().getApplicationSources().getExplicitTimeOut())
+//            .until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(fromWebElement, by)).get(0);
+//    }
+
+      // TODO
+      private WebElement getVisibleWebElement(By by, WebElement fromWebElement) {
+          WebElement result;
+          getWebDriver().manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
+          result = fromWebElement.findElement(by); 
+          getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
+          return result;
+    }
+
+    private List<WebElement> getVisibleWebElements(By by) {
+        return new WebDriverWait(this.getWebDriver(),
+                getApplication().getApplicationSources().getExplicitTimeOut())
+            .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+    }
+
     @Override
     public WebElement id(String id) {
         return getVisibleWebElement(By.id(id));
@@ -56,6 +79,16 @@ public class SearchExplicit extends ASearch {
     @Override
     public  WebElement linkText(String linkText) {
     	return getVisibleWebElement(By.linkText(linkText));
+    }
+
+    @Override
+    public  WebElement id(String id, WebElement fromWebElement) {
+        return getVisibleWebElement(By.id(id), fromWebElement);
+    }
+
+    @Override
+    public List<WebElement> names(String name) {
+        return getVisibleWebElements(By.name(name));
     }
 
 }

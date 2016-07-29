@@ -72,6 +72,10 @@ public class Search {
         return this.search;
     }
     
+    public static void takeScreenShort(String fileName) {
+        getinstance().getSearch().takeScreenShort(fileName);
+    } 
+
     public static WebElement id(String id) {
         return getinstance().getSearch().id(id);
     } 

@@ -64,6 +64,11 @@ public class SearchImplicit extends ASearch {
     	return getWebElement(By.linkText(linkText));
     }
     
+    @Override
+    public  WebElement tagName(String tagName) {
+    	return getWebElement(By.tagName(tagName));
+    }
+    
     // From Elements
     
     @Override
@@ -95,6 +100,10 @@ public class SearchImplicit extends ASearch {
     @Override
     public  WebElement linkText(String linkText, WebElement fromWebElement) {
     	return getWebElement(By.linkText(linkText), fromWebElement);
+    }
+    @Override
+    public  WebElement tagName(String tagName, WebElement fromWebElement) {
+    	return getWebElement(By.tagName(tagName),fromWebElement);
     }
     
     // List
@@ -132,6 +141,11 @@ public class SearchImplicit extends ASearch {
     @Override  
     public  List<WebElement> linkTexts(String linkText) {
         return getWebElements(By.linkText(linkText));
+    }
+    
+    @Override
+    public  List<WebElement> tagNames(String tagName) {
+    	return getWebElements(By.tagName(tagName));
     }
 
 }

@@ -1,9 +1,6 @@
 package com.softserve.edu.magento.pages.customer.components;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import com.softserve.edu.magento.tools.Search;
 
 public abstract class Header {

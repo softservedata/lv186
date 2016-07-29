@@ -1,8 +1,5 @@
 package com.softserve.edu.magento.pages.customer;
 
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.customer.components.HeaderPanelCustomerAccount;
@@ -26,13 +23,13 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 		
 		public ContactInformationForm() { 
 			WebElement box_information =  Search.cssSelector("div.box.box-information");
-			this.nameEmail_contactInf = box_information.findElement(By.className("box-content"));
-			this.editLink_contactInf = box_information.findElement(By.cssSelector("div.box-actions a.action.edit"));
-			this.changePass_contactInf = box_information.findElement(By.cssSelector("a.action.change-password"));
+			this.nameEmail_contactInf = Search.className("box-content",box_information);
+			this.editLink_contactInf = Search.cssSelector("div.box-actions a.action.edit",box_information);
+			this.changePass_contactInf = Search.cssSelector("a.action.change-password",box_information);
 			
 			WebElement box_newsletters =  Search.cssSelector("div.box.box-newsletter");
-			this.inform_Newsletters = box_newsletters.findElement(By.className("box-content"));
-			this.editLink_Newsletters = box_newsletters.findElement(By.cssSelector("div.box-actions a.action.edit"));
+			this.inform_Newsletters = Search.className("box-content",box_newsletters);
+			this.editLink_Newsletters = Search.cssSelector("div.box-actions a.action.edit",box_newsletters);
 		}
 	//getters
 		public WebElement getNameEmail_contactInf() {
@@ -69,13 +66,13 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 			 WebElement address_box = Search.cssSelector("div.block.block-dashboard-addresses");
 			 this.manageAddressLink = Search.cssSelector("div.block-title a.action.edit");
 			 
-			 WebElement billingAddress_box = address_box.findElement(By.cssSelector("div.box.box-billing-address"));
-			 this.inform_billingAddress = billingAddress_box.findElement(By.tagName("address"));
-			 this.editLink_billingAddress = billingAddress_box.findElement(By.cssSelector("div.box-actions a.action.edit"));
+			 WebElement billingAddress_box = Search.cssSelector("div.box.box-billing-address",address_box);
+			 this.inform_billingAddress = Search.tagName("address",billingAddress_box);
+			 this.editLink_billingAddress = Search.cssSelector("div.box-actions a.action.edit",billingAddress_box);
 			 
-			 WebElement shippingAddress_box = address_box.findElement(By.cssSelector("div.box.box-shipping-address"));
-			 this.inform_shippingAddress = shippingAddress_box.findElement(By.tagName("address"));
-			 this.editLink_shippingAddress = shippingAddress_box.findElement(By.cssSelector("div.box-actions a.action.edit"));
+			 WebElement shippingAddress_box = Search.cssSelector("div.box.box-shipping-address",address_box);
+			 this.inform_shippingAddress = Search.tagName("address",shippingAddress_box);
+			 this.editLink_shippingAddress = Search.cssSelector("div.box-actions a.action.edit",shippingAddress_box);
 		 }
 	//getters
 		public WebElement getManageAddressLink() {

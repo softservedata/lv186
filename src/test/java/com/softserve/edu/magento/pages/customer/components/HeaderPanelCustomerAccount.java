@@ -1,7 +1,5 @@
 package com.softserve.edu.magento.pages.customer.components;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.customer.AccountDashboardPage;
@@ -24,8 +22,7 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		
 		public AccountMenuDropDown() {
 			this.myAccountButton = Search.linkText("My Account");
-			this.myWishListButton = Search.cssSelector("li.link.wishlist").
-					findElement(By.partialLinkText("My Wish List"));
+			this.myWishListButton = Search.partialLinkText("My Wish List",Search.cssSelector("li.link.wishlist"));
 			this.signOutButton = Search.partialLinkText("Sign Out");
 		}
 		public WebElement getMyAccountButton() {
@@ -53,19 +50,19 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		public WebElement myWishListLink;
 		
 		public VerticalAccountMenu() {
-			WebElement verticalBlock = Search.id("block-collapsible-nav");
-			//this.accountDashboardLink = driver.findElement(By.linkText("Account Dashboard"));
 			
-			this.accountDashboardLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Account Dashboard')]"));
-			this.accountInformationLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Account Information')]"));
-			this.adressBookLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Address Book')]"));
-			this.myDownloadableProductsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Downloadable Products')]"));
-			this.myOrderLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Orders')]"));
-			this.newsletterSubscriptionsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Newsletter Subscriptions')]"));
-			this.myCreditCardsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Credit Cards')]"));
-			this.myProductReviewsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Product Reviews')]"));
-			this.billingAgreementsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Billing Agreements')]"));
-			this.myWishListLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Wish List')]"));
+			WebElement verticalBlock = Search.id("block-collapsible-nav");
+			
+			this.accountDashboardLink = Search.xpath("//*[contains(text(),'Account Dashboard')]",verticalBlock);
+			this.accountInformationLink = Search.xpath("//*[contains(text(),'Account Information')]",verticalBlock);
+			this.adressBookLink = Search.xpath("//*[contains(text(),'Address Book')]",verticalBlock);
+			this.myDownloadableProductsLink = Search.xpath("//*[contains(text(),'My Downloadable Products')]",verticalBlock);
+			this.myOrderLink = Search.xpath("//*[contains(text(),'My Orders')]",verticalBlock);
+			this.newsletterSubscriptionsLink = Search.xpath("//*[contains(text(),'Newsletter Subscriptions')]",verticalBlock);
+			this.myCreditCardsLink = Search.xpath("//*[contains(text(),'My Credit Cards')]",verticalBlock);
+			this.myProductReviewsLink = Search.xpath("//*[contains(text(),'My Product Reviews')]",verticalBlock);
+			this.billingAgreementsLink = Search.xpath("//*[contains(text(),'Billing Agreements')]",verticalBlock);
+			this.myWishListLink = Search.xpath("//*[contains(text(),'My Wish List')]",verticalBlock);
 					
 		}
 

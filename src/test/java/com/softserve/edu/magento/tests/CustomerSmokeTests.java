@@ -12,6 +12,7 @@ import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.admin.AdminUserRepository;
 import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
+import com.softserve.edu.magento.data.customer.user.CustomerUserRepositoryForAdmin;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPageAfterSuccesRegistration;
@@ -72,15 +73,15 @@ public class CustomerSmokeTests {
 		Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
 		// setting data to login form
 		AllCustomersPageAfterSuccesRegistration allCustAfter = regNewCust
-				.setCustomerDataInLoginForm(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
+				.setCustomerDataInLoginForm(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide());
 		// Verify that new Customer was registered
 		Assert.assertEquals(allCustAfter.getRegisteredNewCustomerLabelgetText(),
 				allCustAfter.REGISTERED_CUSTOMER_TITLE);
 		// Try to find registered customer in Customer page
 		Assert.assertTrue(allCustAfter
-				.findCustomerInTheList(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide()));
+				.findCustomerInTheList(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide()));
 		// deleting registered Customer
-		allCustAfter.deleteCustomerUser(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
+		allCustAfter.deleteCustomerUser(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide());
 		// Sign Out Admin
 		applicationAdmin.quit();
 	}
@@ -96,7 +97,7 @@ public class CustomerSmokeTests {
 		// Verify that AllCustomersPage is opened
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		//find and verify customer
-		Assert.assertTrue(acp.findCustomerInTheListAfterSearch(CustomerUserRepository.get().SteveRinger()));
+		Assert.assertTrue(acp.findCustomerInTheListAfterSearch(CustomerUserRepositoryForAdmin.get().SteveRinger()));
 		// Sign Out Admin
 		applicationAdmin.quit();
 	}

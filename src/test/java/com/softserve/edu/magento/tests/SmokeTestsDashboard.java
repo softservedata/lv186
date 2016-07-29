@@ -16,6 +16,7 @@ import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.admin.dashboard.ISearch;
 import com.softserve.edu.magento.data.admin.dashboard.SearchRepository;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
+import com.softserve.edu.magento.data.customer.user.CustomerUserRepositoryForAdmin;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
@@ -31,11 +32,11 @@ public class SmokeTestsDashboard {
 				{ ParameterUtils.get().updateParametersAll(
 						ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
 						context), AdminUserRepository.get().adminTest(),
-						CustomerUserRepository.get().getTeodorDrayzer() },
+						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() },
 				{ ParameterUtils.get().updateParametersAll(
 						ApplicationSourcesRepository.getChromeLocalhostAdmin(),
 						context), AdminUserRepository.get().adminBohdan(),
-						CustomerUserRepository.get().getTeodorDrayzer() } };
+						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() } };
 
 }
 	@DataProvider(parallel = true)

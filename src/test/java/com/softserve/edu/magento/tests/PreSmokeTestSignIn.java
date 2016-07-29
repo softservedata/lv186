@@ -71,7 +71,7 @@ public class PreSmokeTestSignIn {
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
 	  // 4. Successful log in user
 	  // 5. Go to the AccountDashboard Page
-	  AccountDashboardPage accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().User());  
+	  AccountDashboardPage accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().UserYaryna());  
 	  // 6. Confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
@@ -96,7 +96,7 @@ public class PreSmokeTestSignIn {
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
 	  // 4. Successful log in user
 	  // 5. Go to the AccountDashboard Page
-	  AccountDashboardPage accountDashboardPage = signInPage.SignIn_Enter(CustomerUserRepository.get().User());  
+	  AccountDashboardPage accountDashboardPage = signInPage.SignIn_Enter(CustomerUserRepository.get().UserYaryna());  
 	  // 6. Confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
@@ -188,7 +188,7 @@ public class PreSmokeTestSignIn {
 	  // Test steps
 	  // 1.Unsuccessful create account already exist customer
 	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
-			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());
+			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().UserYaryna());
 	  // 2.Confirm that error message appear with right text
 	  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorMessageText(),
 			  ErrorMessage.ALREADY_EXIST_ACCOUNT.toString());
@@ -201,7 +201,7 @@ public class PreSmokeTestSignIn {
 			  .gotoAllCustomersPage();
 	  // 6. Confirm that already exist customer account is not created
 	  Assert.assertFalse(allCustomersPage
-			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().User()));
+			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().UserYaryna()));
 	  // Return to the previous state
 	  allCustomersPage.clickSignOut();
 	  

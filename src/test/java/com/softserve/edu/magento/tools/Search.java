@@ -106,64 +106,75 @@ public class Search {
     	return getinstance().getSearch().linkText(linkText);
     }
     
+    public  static WebElement tagName(String tagName) {
+    	return getinstance().getSearch().tagName(tagName);
+    }
+    
  // From Elements
     
-    public  WebElement id(String id, WebElement fromWebElement) {
+    public  static WebElement id(String id, WebElement fromWebElement) {
     	return getinstance().getSearch().id(id,fromWebElement);
     }
     
-    public  WebElement name(String name, WebElement fromWebElement){
+    public  static WebElement name(String name, WebElement fromWebElement){
     	return getinstance().getSearch().name(name,fromWebElement);
     }
 
-    public  WebElement xpath(String xpath, WebElement fromWebElement) {
+    public  static WebElement xpath(String xpath, WebElement fromWebElement) {
     	return getinstance().getSearch().xpath(xpath,fromWebElement);
     }
 
-    public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
+    public  static WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
     	return getinstance().getSearch().cssSelector(cssSelector,fromWebElement);
     }
 
-    public  WebElement className(String className, WebElement fromWebElement) {
+    public  static WebElement className(String className, WebElement fromWebElement) {
     	return getinstance().getSearch().className(className,fromWebElement);
     }
     
-    public  WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
+    public  static WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
     	return getinstance().getSearch().partialLinkText(partialLinkText,fromWebElement);
     }
     
-    public  WebElement linkText(String linkText, WebElement fromWebElement) {
+    public  static WebElement linkText(String linkText, WebElement fromWebElement) {
     	return getinstance().getSearch().linkText(linkText,fromWebElement);
+    }
+    public  static WebElement tagName(String tagName, WebElement fromWebElement) {
+    	return getinstance().getSearch().tagName(tagName, fromWebElement);
     }
     
     // List
     
-    public  List<WebElement> ids(String id) {
+    public  static List<WebElement> ids(String id) {
         return getinstance().getSearch().ids(id);
     }
     
-    public  List<WebElement> names(String name) {
+    public  static List<WebElement> names(String name) {
         return getinstance().getSearch().names(name);
     }
 
-    public  List<WebElement> xpaths(String xpath) {
+    public  static List<WebElement> xpaths(String xpath) {
         return getinstance().getSearch().xpaths(xpath);
     }
     
-    public  List<WebElement> cssSelectors(String cssSelector) {
+    public  static List<WebElement> cssSelectors(String cssSelector) {
         return getinstance().getSearch().cssSelectors(cssSelector);
     }
 
-    public  List<WebElement> classNames(String className) {
+    public  static List<WebElement> classNames(String className) {
         return getinstance().getSearch().classNames(className);
     }
     
-    public  List<WebElement> partialLinkTexts(String partialLinkText) {
+    public  static List<WebElement> partialLinkTexts(String partialLinkText) {
         return getinstance().getSearch().partialLinkTexts(partialLinkText);
     }
     
-    public  List<WebElement> linkTexts(String linkText) {
+    public  static List<WebElement> linkTexts(String linkText) {
         return getinstance().getSearch().linkTexts(linkText);
+    }
+    
+    public  static List<WebElement> tagNames(String tagName) {
+    	return getinstance().getSearch().tagNames(tagName);
     }
 
 

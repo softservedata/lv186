@@ -1,7 +1,6 @@
 package com.softserve.edu.magento.pages.customer;
 
 import org.openqa.selenium.WebElement;
-
 import com.softserve.edu.magento.tools.Search;
 
 public class HomePage {

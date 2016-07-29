@@ -1,10 +1,5 @@
 package com.softserve.edu.magento.pages.customer.components;
 
-import java.io.File;
-
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.customer.CreateAccountPage;
@@ -21,11 +16,8 @@ public abstract class HeaderPanelLogout extends Header{
 	
 	protected HeaderPanelLogout() {
 		this.welcomeMessage = Search.cssSelector("li.greet.welcome");
-		//System.out.println("*****Finding partialLinkText(Sign In)");
-		//Search.takeScreenShort("screen12.png");
 		this.signInLink = Search.partialLinkText("Sign In");
 		this.createAccountLink = Search.partialLinkText("Create an Account");
-        //System.out.println("*****HeaderPanelLogout() DONE");
 	}
 	
 	//setters

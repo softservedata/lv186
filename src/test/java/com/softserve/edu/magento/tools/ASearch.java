@@ -51,6 +51,8 @@ public abstract class ASearch {
     public abstract WebElement partialLinkText(String partialLinkText);
     
     public abstract WebElement linkText(String linkText);
+    
+    public abstract WebElement tagName(String tagName);
 
     // From Elements
     
@@ -68,6 +70,8 @@ public abstract class ASearch {
     
     public abstract WebElement linkText(String linkText, WebElement fromWebElement);
     
+    public abstract WebElement tagName(String tagName, WebElement fromWebElement);
+    
     // List
     
     public abstract List<WebElement> ids(String id);
@@ -83,6 +87,8 @@ public abstract class ASearch {
     public abstract List<WebElement> partialLinkTexts(String partialLinkText);
     
     public abstract List<WebElement> linkTexts(String linkText);
+    
+    public abstract List<WebElement> tagNames(String tagName);
 
 
 }

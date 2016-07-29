@@ -2,19 +2,16 @@
 package com.softserve.edu.magento.pages.customer.components;
 
 import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import com.softserve.edu.magento.tools.Search;
 
 
 public  class ErrorSinginCreateAccountComponents {
 	private List<WebElement> errorMessage;
 	private List<WebElement> errorValidators;
 	public ErrorSinginCreateAccountComponents() {
-	    WebDriver driver = null;
-		this.errorMessage = driver.findElements(By.cssSelector("div.message-error.error.message div"));
-		this.errorValidators = driver.findElements(By.className("mage-error"));
+		this.errorMessage = Search.cssSelectors("div.message-error.error.message div");
+		this.errorValidators = Search.classNames("mage-error");
 	}
 	public List<WebElement> getErrorMessage() {
 		return errorMessage;

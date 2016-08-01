@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
+import com.softserve.edu.magento.tools.Search;
 
 public class RegistrationNewCustomerPage extends VerticalMenu {
 	public final static String PAGE_TITLE = "New Customer";
@@ -37,27 +38,25 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	private WebElement genderButton;
 	private WebElement addNewAddressesButton;
 
-	public RegistrationNewCustomerPage(WebDriver driver) {
-		super(driver);
-		this.newCustomerLabel = driver.findElement(By.cssSelector(".page-title"));
-		this.accountInformationButton = driver.findElement(By.id("tab_customer"));
-		this.addressesButton = driver.findElement(By.id("tab_address"));
-		this.backButton = driver.findElement(By.id("back"));
-		this.resetButton = driver.findElement(By.id("reset"));
-		this.saveAndContinueButton = driver.findElement(By.id("save_and_continue"));
-		this.saveCustomerButton = driver.findElement(By.id("save"));
-		this.groupSelectField = driver.findElement(By.cssSelector("[name='customer[group_id]']"));
-		this.groupChangeBasedOnVatCheck = driver
-				.findElement(By.cssSelector("[name='customer[disable_auto_group_change]']"));
-		this.prefixInput = driver.findElement(By.cssSelector("[name='customer[prefix]']"));
-		this.firstnameInput = driver.findElement(By.cssSelector("[name='customer[firstname]']"));
-		this.middlenameInput = driver.findElement(By.cssSelector("[name='customer[middlename]']"));
-		this.lastnameInput = driver.findElement(By.cssSelector("[name='customer[lastname]']"));
-		this.sufixInput = driver.findElement(By.cssSelector("[name='customer[suffix]']"));
-		this.emailInput = driver.findElement(By.cssSelector("[name='customer[email]']"));
-		this.dateOfBirfthInput = driver.findElement(By.cssSelector("[name='customer[dob]']"));
-		this.taxVatInput = driver.findElement(By.cssSelector("[name='customer[taxvat]']"));
-		this.genderButton = driver.findElement(By.cssSelector("[name='customer[gender]']"));
+	public RegistrationNewCustomerPage() {
+		this.newCustomerLabel = Search.cssSelector(".page-title");
+		this.accountInformationButton = Search.id("tab_customer");
+		this.addressesButton = Search.id("tab_address");
+		this.backButton = Search.id("back");
+		this.resetButton = Search.id("reset");
+		this.saveAndContinueButton = Search.id("save_and_continue");
+		this.saveCustomerButton = Search.id("save");
+		this.groupSelectField = Search.cssSelector("[name='customer[group_id]']");
+		this.groupChangeBasedOnVatCheck = Search.cssSelector("[name='customer[disable_auto_group_change]']");
+		this.prefixInput = Search.cssSelector("[name='customer[prefix]']");
+		this.firstnameInput = Search.cssSelector("[name='customer[firstname]']");
+		this.middlenameInput = Search.cssSelector("[name='customer[middlename]']");
+		this.lastnameInput = Search.cssSelector("[name='customer[lastname]']");
+		this.sufixInput = Search.cssSelector("[name='customer[suffix]']");
+		this.emailInput = Search.cssSelector("[name='customer[email]']");
+		this.dateOfBirfthInput = Search.cssSelector("[name='customer[dob]']");
+		this.taxVatInput = Search.cssSelector("[name='customer[taxvat]']");
+		this.genderButton = Search.cssSelector("[name='customer[gender]']");
 	}
 
 	public class Addresses {
@@ -78,23 +77,23 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		private WebElement vatNumberInputAddresses;
 		private WebElement addNewAddressesButton;
 
-		public Addresses(WebDriver driver) {
-			this.defaultBillingAddressCheckAddresses = driver.findElement(By.id("QGJJ96Q"));
-			this.defaultdShippingAddressCheckAddresses = driver.findElement(By.id("BC0QRXU"));
-			this.stateInputAddresses = driver.findElement(By.id("NQ2Y2XL"));
-			this.prefixInputAddresses = driver.findElement(By.id("J76217E"));
-			this.firstnameInputAddresses = driver.findElement(By.id("IRRX7TE"));
-			this.middlenameInputAddresses = driver.findElement(By.id("DRA2VHQ"));
-			this.lastnameInputAddresses = driver.findElement(By.id("HUQDFEG"));
-			this.sufixInputAddresses = driver.findElement(By.id("FFLEL5N"));
-			this.companyInputAddresses = driver.findElement(By.id("FA1FJFS"));
-			this.streetAddressInputAddresses = driver.findElement(By.id("G01M6M3"));
-			this.cityInputAddresses = driver.findElement(By.id("R4N42X6"));
-			this.countryMenuDropdownAddresses = driver.findElement(By.id("TEQ7LB5"));
-			this.postalInputAddresses = driver.findElement(By.id("SLB27G5"));
-			this.phoneNumberInputAddresses = driver.findElement(By.id("XST3GE3"));
-			this.vatNumberInputAddresses = driver.findElement(By.id("K8LDS6P"));
-			this.addNewAddressesButton = driver.findElement(By.xpath("//span[text()='Add New Addresses']"));
+		public Addresses() {
+			this.defaultBillingAddressCheckAddresses = Search.id("QGJJ96Q");
+			this.defaultdShippingAddressCheckAddresses = Search.id("BC0QRXU");
+			this.stateInputAddresses = Search.id("NQ2Y2XL");
+			this.prefixInputAddresses = Search.id("J76217E");
+			this.firstnameInputAddresses = Search.id("IRRX7TE");
+			this.middlenameInputAddresses = Search.id("DRA2VHQ");
+			this.lastnameInputAddresses = Search.id("HUQDFEG");
+			this.sufixInputAddresses = Search.id("FFLEL5N");
+			this.companyInputAddresses = Search.id("FA1FJFS");
+			this.streetAddressInputAddresses = Search.id("G01M6M3");
+			this.cityInputAddresses = Search.id("R4N42X6");
+			this.countryMenuDropdownAddresses = Search.id("TEQ7LB5");
+			this.postalInputAddresses = Search.id("SLB27G5");
+			this.phoneNumberInputAddresses = Search.id("XST3GE3");
+			this.vatNumberInputAddresses = Search.id("K8LDS6P");
+			this.addNewAddressesButton = Search.xpath("//span[text()='Add New Addresses']");
 		}
 
 	}
@@ -104,9 +103,8 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	private class AddNewAddress {
 		private WebElement addNewAddressesButton;
 
-		public AddNewAddress(WebDriver driver) {
-			super();
-			this.addNewAddressesButton = driver.findElement(By.xpath("//span[text()='Add New Addresses']"));
+		public AddNewAddress() {
+			this.addNewAddressesButton = Search.xpath("//span[text()='Add New Addresses']");
 		}
 
 	}
@@ -115,9 +113,9 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		private WebElement country;
 		private WebElement ukrainian;
 
-		public Countries(WebDriver driver) {
-			this.country = driver.findElement(By.id("TEQ7LB5"));
-			this.ukrainian = driver.findElement(By.xpath(".//*[@id='TEQ7LB5']/option[230]"));
+		public Countries() {
+			this.country = Search.id("TEQ7LB5");
+			this.ukrainian = Search.xpath(".//*[@id='TEQ7LB5']/option[230]");
 		}
 	}
 
@@ -537,18 +535,18 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 
 	public Countries countriesFieldAddressesClick() {
 		getCountry().click();
-		return new Countries(driver);
+		return new Countries();
 	}
 
 	public AddNewAddress goToaddNewAddressesButton() {
 		getAddressesButton().click();
-		return new AddNewAddress(driver);
+		return new AddNewAddress();
 	}
 
 	public Addresses goToAddressesPage() {
 		addressesButtonClick();
 		addNewAddressesButtonClick();
-		return new Addresses(driver);
+		return new Addresses();
 	}
 
 }

@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
+import com.softserve.edu.magento.tools.Search;
 
 public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
@@ -86,25 +87,24 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement cityCheck;
 		private WebElement resetButton;
 
-		public ColumnsMenuDropdown(WebDriver driver) {
-			super();
-			this.idCheck = driver.findElement(By.cssSelector("input[id='1']"));
-			this.nameCheck = driver.findElement(By.cssSelector("input[id='2']"));
-			this.emailCheck = driver.findElement(By.cssSelector("input[id='3']"));
-			this.groupCheck = driver.findElement(By.cssSelector("input[id='4']"));
-			this.phoneCheck = driver.findElement(By.cssSelector("input[id='5']"));
-			this.zipCheck = driver.findElement(By.cssSelector("input[id='6']"));
-			this.countryCheck = driver.findElement(By.cssSelector("input[id='7']"));
-			this.stateCheck = driver.findElement(By.cssSelector("input[id='8']"));
-			this.customerSinceCheck = driver.findElement(By.cssSelector("input[id='9']"));
-			this.websiteCheck = driver.findElement(By.cssSelector("input[id='10']"));
-			this.confirmedEmailCheck = driver.findElement(By.cssSelector("input[id='11']"));
-			this.accauntCreatedInCheck = driver.findElement(By.cssSelector("input[id='12']"));
-			this.dateOfBirdthCheck = driver.findElement(By.cssSelector("input[id='15']"));
-			this.taxVatNumberCheck = driver.findElement(By.cssSelector("input[id='16']"));
-			this.genderCheck = driver.findElement(By.cssSelector("input[id='17']"));
-			this.cityCheck = driver.findElement(By.cssSelector("input[id='19']"));
-			this.resetButton = driver.findElement(By.xpath("(.//*[@class='action-tertiary'])[1]"));
+		public ColumnsMenuDropdown() {
+			this.idCheck = Search.cssSelector("input[id='1']");
+			this.nameCheck = Search.cssSelector("input[id='2']");
+			this.emailCheck = Search.cssSelector("input[id='3']");
+			this.groupCheck = Search.cssSelector("input[id='4']");
+			this.phoneCheck = Search.cssSelector("input[id='5']");
+			this.zipCheck = Search.cssSelector("input[id='6']");
+			this.countryCheck = Search.cssSelector("input[id='7']");
+			this.stateCheck = Search.cssSelector("input[id='8']");
+			this.customerSinceCheck = Search.cssSelector("input[id='9']");
+			this.websiteCheck = Search.cssSelector("input[id='10']");
+			this.confirmedEmailCheck = Search.cssSelector("input[id='11']");
+			this.accauntCreatedInCheck = Search.cssSelector("input[id='12']");
+			this.dateOfBirdthCheck = Search.cssSelector("input[id='15']");
+			this.taxVatNumberCheck = Search.cssSelector("input[id='16']");
+			this.genderCheck = Search.cssSelector("input[id='17']");
+			this.cityCheck = Search.cssSelector("input[id='19']");
+			this.resetButton = Search.xpath("(.//*[@class='action-tertiary'])[1]");
 		}
 
 		// getters to ColumnsMenuPage
@@ -187,12 +187,12 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement assignCustomerGroup;
 		private WebElement edit;
 
-		public ActionsDropDownMenu(WebDriver driver) {
-			this.delete = driver.findElements(By.xpath("//li/span[contains(text(), 'Delete')]")).get(0);
-			this.subscribe = driver.findElement(By.xpath("(//span[text()='Subscribe to Newsletter'])[2]"));
-			this.unSubscribe = driver.findElement(By.xpath("(//span[text()='Unsubscribe from Newsletter'])[2]"));
-			this.assignCustomerGroup = driver.findElement(By.xpath("(//span[text()='Assign a Customer Group'])[2]"));
-			this.edit = driver.findElement(By.xpath("(//span[text()='Edit'])[2]"));
+		public ActionsDropDownMenu() {
+			this.delete = Search.xpaths("//li/span[contains(text(), 'Delete')]").get(0);
+			this.subscribe = Search.xpath("(//span[text()='Subscribe to Newsletter'])[2]");
+			this.unSubscribe = Search.xpath("(//span[text()='Unsubscribe from Newsletter'])[2]");
+			this.assignCustomerGroup = Search.xpath("(//span[text()='Assign a Customer Group'])[2]");
+			this.edit = Search.xpath("(//span[text()='Edit'])[2]");
 		}
 
 		// getters to ActionsDropDownMenu
@@ -225,10 +225,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement myNewViewEdit;
 		private WebElement saveViewAs;
 
-		public DefaultViewDropdownMenu(WebDriver driver) {
-			super();
-			this.defaultView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[1]"));
-			this.myNewView = driver.findElement(By.xpath("(.//*[@class='action-dropdown-menu-link'])[2]"));
+		public DefaultViewDropdownMenu() {
+			this.defaultView = Search.xpath("(.//*[@class='action-dropdown-menu-link'])[1]");
+			this.myNewView = Search.xpath("(.//*[@class='action-dropdown-menu-link'])[2]");
 		}
 
 		public WebElement getDefaultView() {
@@ -268,23 +267,23 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement filtersTaxVat;
 		private WebElement filtersGender;
 
-		public FiltersDropDownMenu(WebDriver driver) {
-			this.filtersIdFrom = driver.findElement(By.cssSelector("input[name='entity_id[from]']"));
-			this.filtersIdTo = driver.findElement(By.cssSelector("input[name='entity_id[to]']"));
-			this.filtersCustomerSinceFrom = driver.findElement(By.cssSelector("input[name='created_at[from]']"));
-			this.filtersCustomerSinceTo = driver.findElement(By.cssSelector("input[name='created_at[to]']"));
-			this.filtersDateOfBirthFrom = driver.findElement(By.cssSelector("input[name='dob[from]']"));
-			this.filtersDateOfBirthTo = driver.findElement(By.cssSelector("input[name='dob[to]']"));
-			this.filtersName = driver.findElement(By.cssSelector("input[name='name']"));
-			this.filtersEmail = driver.findElement(By.cssSelector("input[name='email']"));
-			this.filtersGroup = driver.findElement(By.cssSelector("select[name='group_id']"));
-			this.filtersPhone = driver.findElement(By.cssSelector("input[name='billing_telephone']"));
-			this.filtersZip = driver.findElement(By.cssSelector("input[name='billing_postcode']"));
-			this.filtersCountry = driver.findElement(By.cssSelector("select[name='billing_country_id']"));
-			this.filtersProvince = driver.findElement(By.cssSelector("input[name='billing_region']"));
-			this.filtersWebSite = driver.findElement(By.cssSelector("select[name='website_id']"));
-			this.filtersTaxVat = driver.findElement(By.cssSelector("input[name='taxvat']"));
-			this.filtersGender = driver.findElement(By.cssSelector("select[name='gender']"));
+		public FiltersDropDownMenu() {
+			this.filtersIdFrom = Search.cssSelector("input[name='entity_id[from]']");
+			this.filtersIdTo = Search.cssSelector("input[name='entity_id[to]']");
+			this.filtersCustomerSinceFrom = Search.cssSelector("input[name='created_at[from]']");
+			this.filtersCustomerSinceTo = Search.cssSelector("input[name='created_at[to]']");
+			this.filtersDateOfBirthFrom = Search.cssSelector("input[name='dob[from]']");
+			this.filtersDateOfBirthTo = Search.cssSelector("input[name='dob[to]']");
+			this.filtersName = Search.cssSelector("input[name='name']");
+			this.filtersEmail = Search.cssSelector("input[name='email']");
+			this.filtersGroup = Search.cssSelector("select[name='group_id']");
+			this.filtersPhone = Search.cssSelector("input[name='billing_telephone']");
+			this.filtersZip = Search.cssSelector("input[name='billing_postcode']");
+			this.filtersCountry = Search.cssSelector("select[name='billing_country_id']");
+			this.filtersProvince = Search.cssSelector("input[name='billing_region']");
+			this.filtersWebSite = Search.cssSelector("select[name='website_id']");
+			this.filtersTaxVat = Search.cssSelector("input[name='taxvat']");
+			this.filtersGender = Search.cssSelector("select[name='gender']");
 
 		}
 		// getters to FiltersDropDownMenu
@@ -361,11 +360,10 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement wholesale;
 		private WebElement retailer;
 
-		public GroupsButton(WebElement general, WebElement wholesale) {
-			super();
-			this.general = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[2]"));
-			this.wholesale = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[3]"));
-			this.retailer = driver.findElement(By.xpath(".//*[@id='A1HMI49']/option[4]"));
+		public GroupsButton() {
+			this.general = Search.xpath(".//*[@id='A1HMI49']/option[2]");
+			this.wholesale = Search.xpath(".//*[@id='A1HMI49']/option[3]");
+			this.retailer = Search.xpath(".//*[@id='A1HMI49']/option[4]");
 		}
 	}
 
@@ -409,7 +407,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 		public AllCustomersPage clickButtonOk() {
 			this.getButtonOk().click();
-			return new AllCustomersPage(driver);
+			return new AllCustomersPage();
 		}
 
 		public void clickExit() {
@@ -454,42 +452,39 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	}
 
 	// main page constructor
-	public AllCustomersPageAfterSuccesRegistration(WebDriver driver) {
-		super(driver);
-		this.customersLabel = driver.findElement(By.xpath(".//*[@class='page-title-wrapper']"));
-		this.registeredNewCustomerLabel = driver.findElement(By.cssSelector(".message-success > div:nth-child(1)"));
-		this.addNewCustomerButton = driver.findElement(By.id("add"));
-		this.searchField = driver.findElement(By.xpath("(.//*[@id='fulltext'])[1]"));
-		this.defaultViewButton = driver.findElement(By.xpath("(//span[text()='Default View'])[1]"));
-		this.columnsButton = driver.findElement(By.xpath("(//span[text()='Columns'])[1]"));
-		this.exportButton = driver.findElement(By.xpath("(//span[text()='Export'])[2]"));
-		this.actionsButton = driver.findElement(By.xpath("(//span[text()='Actions'])[1]"));
-		this.perPageButton = driver.findElement(
-				By.xpath("(.//*[@id='customer_listing.customer_listing.listing_top.listing_paging_sizes'])[1]"));
-		this.goToPageLeftButton = driver.findElement(By.xpath("(.//*[@class='action-previous'])[1]"));
-		this.goToPageRightButton = driver.findElement(By.xpath(".//*[@class='action-next'][1]"));
-		this.howManyCustomersInListArePresentedField = driver
-				.findElement(By.xpath("(//span[text()='records found'])[1]"));
-		this.selectAllButton = driver.findElement(By.xpath("//*[@for='60']"));
-		this.selectAllCustomersInListButton = driver.findElement(By.xpath("//*[@for='60']"));
-		this.howManyPagesAreInList = driver.findElement(By.id("29"));
-		this.idFielsInList = driver.findElement(By.xpath("(//span[text()='ID'])[2]"));
-		this.nameFieldInList = driver.findElement(By.xpath("(//span[text()='Name'])[3]"));
-		this.emailFieldInList = driver.findElement(By.xpath("(//span[text()='Email'])[2]"));
-		this.groupFieldInList = driver.findElement(By.xpath("(//span[text()='Group'])[2]"));
-		this.phoneFieldInList = driver.findElement(By.xpath("(//span[text()='Phone'])[2]"));
-		this.zipFieldInList = driver.findElement(By.xpath("(//span[text()='ZIP'])[2]"));
-		this.countryFieldInList = driver.findElement(By.xpath("(//span[text()='Country'])[2]"));
-		this.stateFieldInList = driver.findElement(By.xpath("(//span[text()='State/Province'])[2]"));
-		this.customerSinceFieldInList = driver.findElement(By.xpath("(//span[text()='Customer Since'])[2]"));
-		this.webSiteFieldInList = driver.findElement(By.xpath("(//span[text()='Web Site'])[2]"));
-		this.confirmedEmailFieldInList = driver.findElement(By.xpath("(//span[text()='Confirmed email'])[1]"));
-		this.accountCreatedInFieldInList = driver.findElement(By.xpath("(//span[text()='Account Created in'])[1]"));
-		this.dateOfBirdthFieldInList = driver.findElement(By.xpath("(//span[text()='Date of Birth'])[2]"));
-		this.taxVatNumberFieldInList = driver.findElement(By.xpath("(//span[text()='Tax VAT Number'])[2]"));
-		this.genderFieldInList = driver.findElement(By.xpath("(//span[text()='Gender'])[2]"));
+	public AllCustomersPageAfterSuccesRegistration() {
+		this.customersLabel = Search.xpath(".//*[@class='page-title-wrapper']");
+		this.registeredNewCustomerLabel = Search.cssSelector(".message-success > div:nth-child(1)");
+		this.addNewCustomerButton = Search.id("add");
+		this.searchField = Search.xpath("(.//*[@id='fulltext'])[1]");
+		this.defaultViewButton = Search.xpath("(//span[text()='Default View'])[1]");
+		this.columnsButton = Search.xpath("(//span[text()='Columns'])[1]");
+		this.exportButton = Search.xpath("(//span[text()='Export'])[2]");
+		this.actionsButton = Search.xpath("(//span[text()='Actions'])[1]");
+		this.perPageButton = Search.xpath("(.//*[@id='customer_listing.customer_listing.listing_top.listing_paging_sizes'])[1]");
+		this.goToPageLeftButton = Search.xpath("(.//*[@class='action-previous'])[1]");
+		this.goToPageRightButton = Search.xpath(".//*[@class='action-next'][1]");
+		this.howManyCustomersInListArePresentedField = Search.xpath("(//span[text()='records found'])[1]");
+		this.selectAllButton = Search.xpath("//*[@for='60']");
+		this.selectAllCustomersInListButton = Search.xpath("//*[@for='60']");
+		this.howManyPagesAreInList = Search.id("29");
+		this.idFielsInList = Search.xpath("(//span[text()='ID'])[2]");
+		this.nameFieldInList = Search.xpath("(//span[text()='Name'])[3]");
+		this.emailFieldInList = Search.xpath("(//span[text()='Email'])[2]");
+		this.groupFieldInList = Search.xpath("(//span[text()='Group'])[2]");
+		this.phoneFieldInList = Search.xpath("(//span[text()='Phone'])[2]");
+		this.zipFieldInList = Search.xpath("(//span[text()='ZIP'])[2]");
+		this.countryFieldInList = Search.xpath("(//span[text()='Country'])[2]");
+		this.stateFieldInList = Search.xpath("(//span[text()='State/Province'])[2]");
+		this.customerSinceFieldInList = Search.xpath("(//span[text()='Customer Since'])[2]");
+		this.webSiteFieldInList = Search.xpath("(//span[text()='Web Site'])[2]");
+		this.confirmedEmailFieldInList = Search.xpath("(//span[text()='Confirmed email'])[1]");
+		this.accountCreatedInFieldInList = Search.xpath("(//span[text()='Account Created in'])[1]");
+		this.dateOfBirdthFieldInList = Search.xpath("(//span[text()='Date of Birth'])[2]");
+		this.taxVatNumberFieldInList = Search.xpath("(//span[text()='Tax VAT Number'])[2]");
+		this.genderFieldInList = Search.xpath("(//span[text()='Gender'])[2]");
 		// written by Andrii
-		this.editList = driver.findElements(By.cssSelector("a[data-repeat-index='0'"));
+		this.editList = Search.cssSelectors("a[data-repeat-index='0'");
 	}
 
 	// ----------------System logic get page components----------------------//
@@ -808,27 +803,27 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	public RegistrationNewCustomerPage goToRegistrationNewCustomerPage() {
 		getAddNewCustomerButton().click();
-		return new RegistrationNewCustomerPage(driver);
+		return new RegistrationNewCustomerPage();
 	}
 
 	public ColumnsMenuDropdown goToColumnsMenuDropdown() {
 		getColumnsButton().click();
-		return new ColumnsMenuDropdown(driver);
+		return new ColumnsMenuDropdown();
 	}
 
 	public ActionsDropDownMenu goToActionsDropDownMenu() {
 		getActionsButton().click();
-		return new ActionsDropDownMenu(driver);
+		return new ActionsDropDownMenu();
 	}
 
 	public DefaultViewDropdownMenu goToDefaultViewDropdownMenu() {
 		getDefaultViewButton().click();
-		return new DefaultViewDropdownMenu(driver);
+		return new DefaultViewDropdownMenu();
 	}
 
 	// Business Logic
 	public AllCustomersPage refreshAllCustomersPage() {
-		AllCustomersPage page = new AllCustomersPage(driver);
+		AllCustomersPage page = new AllCustomersPage();
 		// page.clearAll =
 		// driver.findElement(By.xpath("//button[contains(text(), 'Clear
 		// all')]"));
@@ -995,7 +990,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	public AllCustomersPageAfterSuccesRegistration doCustomerSearch(String search) {
 		this.clearSendKeysSearchCustomerField(search);
 		this.getSearchField().sendKeys(Keys.ENTER);
-		return new AllCustomersPageAfterSuccesRegistration(driver);
+		return new AllCustomersPageAfterSuccesRegistration();
 	}
 
 	public void clickDeleteActions() {

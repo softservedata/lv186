@@ -147,14 +147,9 @@ public class PreSmokeTest {
 		applicationAdmin.quit();
 	}
 	
-<<<<<<< HEAD
-	@Test(dataProvider = "smokeParameters") 
-	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
-=======
 	//@Test(dataProvider = "smokeParameters") 
 	public void goToEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
->>>>>>> branch 'development' of https://github.com/softservedata/lv186.git
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);

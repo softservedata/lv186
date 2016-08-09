@@ -4,7 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-abstract class ACustomerPageHead {
+import com.softserve.edu.magento.pages.VerticalMenu;
+import com.softserve.edu.magento.tools.Search;
+
+abstract class ACustomerPageHead extends VerticalMenu {
 	protected WebDriver driver;
 	protected UIMapperForAbstracts find;
 	
@@ -18,16 +21,16 @@ abstract class ACustomerPageHead {
 	protected WebElement saveCustomer;
 	
 	protected ACustomerPageHead(WebDriver driver){
-		find = new UIMapperForAbstracts(driver);
+		super(driver);
 		this.driver = driver;
-		this.back = find.getAbstractLocators().get("back");
-		this.deleteCustomer = find.getAbstractLocators().get("deleteCustomer");
-		this.reset = find.getAbstractLocators().get("reset");
-		this.createOrder = driver.findElement((By.id("order")));
-		this.resetPassword = driver.findElement((By.id("resetPassword")));
-		this.forceSignIn = driver.findElement((By.id("invalidateToken")));
-		this.saveAndContinueEdit = driver.findElement((By.id("save_and_continue")));
-		this.saveCustomer = driver.findElement((By.id("save")));
+		this.back = Search.id("back");
+		this.deleteCustomer = Search.id("customer-edit-delete-button");
+		this.reset = Search.id("reset");
+		this.createOrder = Search.id("order");
+		this.resetPassword = Search.id("resetPassword");
+		this.forceSignIn = Search.id("invalidateToken");
+		this.saveAndContinueEdit = Search.id("save_and_continue");
+		this.saveCustomer = Search.id("save");
 	}
 
 	public WebDriver getDriver() {

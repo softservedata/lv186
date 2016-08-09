@@ -21,48 +21,8 @@ public class CustomerUserRepository {
         }
         return instance;
     }
-    public ICustomerUser NewCustomerRegistrationFromAdminSide(){
-    	return CustomerUser.get()
-    			.setPersonalInfo(PersonalInfo_User.get()
-    					.setFirstname("Vasyl")
-    					.setLastname("Vasyltsiv")
-    					.setSignUpNewsletter(true)
-    					.build()
-    					.setGender(Gender.MALE)
-    					.setMiddlename("Ivanov")
-    					.setPrefix("Pre")
-    					.setSuffix("Iva")
-    					.setBirthdayDate(Date.get()
-    							.setMonth(Month.AUGUST)
-    							.setDay("12")
-    							.setYear("1988")
-    							.build())
-    						)
-    			.setSigninInfo(SigninInfo_User.get()
-        				.setEmail("vasyltsiv@ukr.net")
-        				.setPassword("789")
-        				.setConfirmPassword("789")
-        				.setAssosiateToWebsite("Main Website")
-        				.setGroup(Group.GENERAL)
-        				.build())
-        		.build()
-        		.setContactInfo_User(ContactInfo_User.get()
-        				.setPhoneNumber("0938791256")
-        				.setStreetAddress("Kulparkivska")
-        				.setCity("Lviv")
-        				.setState("Lviv")
-        				.setPostalCode("79040")
-        				.setCountry("Ukraine")
-        				.build()
-        				.setCompanyName("SoftServe")
-        				.setFax("0938791256")
-        				.setVatNumber("998745412")
-        				);
-    }
-    				
-    
 
-    public ICustomerUser User() {
+    public ICustomerUser UserYaryna() {
         return CustomerUser.get()
         		.setPersonalInfo(PersonalInfo_User.get()
         				.setFirstname("Yaryna")
@@ -131,23 +91,482 @@ public class CustomerUserRepository {
 						.build())
 				.build();
     }
-    public ICustomerUser getTeodorDrayzer(){
-    	return CustomerUser.get().
-    			setPersonalInfo(PersonalInfo_User.get()
-    					.setFirstname("Teodor")
-    					.setLastname("Drayzer")
-    					.setSignUpNewsletter(true)
-    					.build())
-    			.setSigninInfo(SigninInfo_User.get()
-    					.setEmail("teo@gmail.com")
-    					.setPassword("qwerty-1")
-    					.setConfirmPassword("qwerty-1")
-    					.setAssosiateToWebsite("Main Website")
-    					.setGroup(Group.GENERAL)
-    					.build())
-    			.build();
-    			
+    
+    //USERS SPECIAL SYMB
+    
+    public ICustomerUser User_Special_Symb1() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname(";")
+						.setLastname(";")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail(";")
+						.setPassword(";")
+						.setConfirmPassword(";")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
     }
+    public ICustomerUser User_Special_Symb2() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname(":")
+						.setLastname(":")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail(":")
+						.setPassword(":")
+						.setConfirmPassword(":")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb3() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("/")
+						.setLastname("/")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("/")
+						.setPassword("/")
+						.setConfirmPassword("/")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb4() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("|")
+						.setLastname("|")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("|")
+						.setPassword("|")
+						.setConfirmPassword("|")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb5() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("[")
+						.setLastname("[")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("[")
+						.setPassword("[")
+						.setConfirmPassword("[")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb6() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("{")
+						.setLastname("{")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("{")
+						.setPassword("{")
+						.setConfirmPassword("{")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb7() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("*")
+						.setLastname("*")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("*")
+						.setPassword("*")
+						.setConfirmPassword("*")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb8() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("!")
+						.setLastname("!")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("!")
+						.setPassword("!")
+						.setConfirmPassword("!")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb9() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("(")
+						.setLastname("(")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("(")
+						.setPassword("(")
+						.setConfirmPassword("(")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb10() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname(")")
+						.setLastname(")")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail(")")
+						.setPassword(")")
+						.setConfirmPassword(")")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb11() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("=")
+						.setLastname("=")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("=")
+						.setPassword("=")
+						.setConfirmPassword("=")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb12() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("#")
+						.setLastname("#")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("#")
+						.setPassword("#")
+						.setConfirmPassword("#")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb13() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("_")
+						.setLastname("_")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("_")
+						.setPassword("_")
+						.setConfirmPassword("_")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb14() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("%")
+						.setLastname("%")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("%")
+						.setPassword("%")
+						.setConfirmPassword("%")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb15() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("^")
+						.setLastname("^")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("^")
+						.setPassword("^")
+						.setConfirmPassword("^")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    public ICustomerUser User_Special_Symb16() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("?")
+						.setLastname("?")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("?")
+						.setPassword("?")
+						.setConfirmPassword("?")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    // CYRYLIC SYMB
+    
+    public ICustomerUser User_Cyrylic_Symb1() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Андрій")
+						.setLastname("Андрієнко")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("андрій")
+						.setPassword("андрій")
+						.setConfirmPassword("андрій")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_Cyrylic_Symb2() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Андрій")
+						.setLastname("Андрієнко")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("андрій@gmail.com")
+						.setPassword("андрій")
+						.setConfirmPassword("андрій")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    // LATIN SYMBL
+    
+    public ICustomerUser User_Latin_Symb1() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew")
+						.setPassword("Andrew")
+						.setConfirmPassword("Andrew")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_Latin_Symb2() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("Andrew")
+						.setConfirmPassword("Andrew")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    // DIGIT SYMB
+    
+    public ICustomerUser User_Digit_Symb1() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("12345")
+						.setLastname("12345")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("12345")
+						.setPassword("12345678")
+						.setConfirmPassword("12345678")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_Digit_Symb2() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("12345")
+						.setLastname("12345")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("12345@gmail.com")
+						.setPassword("12345678")
+						.setConfirmPassword("12345678")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    // PASSWORD FIELD EP + BV :
+    
+    public ICustomerUser User_BV1() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("1")
+						.setConfirmPassword("1")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_BV2() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("")
+						.setConfirmPassword("")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_BV3() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("12Ya")
+						.setConfirmPassword("12Ya")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_BV4() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("123Ta67")
+						.setConfirmPassword("123Ta67")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_BV5() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("12Ya5678")
+						.setConfirmPassword("12Ya5678")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    public ICustomerUser User_BV6() {
+        return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("12Ya56789")
+						.setConfirmPassword("12Ya56789")
+						.setAssosiateToWebsite("Main Website")
+        				.setGroup(Group.GENERAL)
+						.build())
+				.build();
+    }
+    
+    
+    
+   
+   
     }
 
 //    public List<IUser> getExistUsersCVS() {

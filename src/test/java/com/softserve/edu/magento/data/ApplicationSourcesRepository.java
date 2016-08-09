@@ -9,19 +9,26 @@ public final class ApplicationSourcesRepository {
     }
 
     public static ApplicationSources getFirefoxLocalhostAdmin() {
-        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L,
+        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L, 5L, "Implicit", // "Explicit",
                 "http://192.168.195.210/magento/admin", new String());
     }
 
     public static ApplicationSources getChromeLocalhostAdmin() {
         return new ApplicationSources("ChromeDriverTemporary",
-                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L,
+                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento/admin",
                 new String());
     }
 
 //    public static ApplicationSources getIELocalhostAdmin() { }
 //    public static ApplicationSources getHtmlUnitLocalhostAdmin() { }
+
+    public static ApplicationSources getPhantomJSLocalhostWindowsAdmin() {
+        return new ApplicationSources("PhantomJSTemporary",
+                "C:\\Program Files (x86)\\PhantomJS\\phantomjs.exe", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento/admin",
+                new String());
+    }
 
     public static List<ApplicationSources> getListBrowsersLocalhostAdmin() {
         List<ApplicationSources> result = new ArrayList<ApplicationSources>();
@@ -31,13 +38,13 @@ public final class ApplicationSourcesRepository {
     }
 
     public static ApplicationSources getFirefoxLocalhostCustomer() {
-        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L,
+        return new ApplicationSources("FirefoxDriverTemporary", new String(), 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
     public static ApplicationSources getChromeLocalhostCustomer() {
         return new ApplicationSources("ChromeDriverTemporary",
-        		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L,
+        		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }

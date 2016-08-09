@@ -1,12 +1,11 @@
 package com.softserve.edu.magento.pages.customer.components;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.customer.AccountDashboardPage;
 import com.softserve.edu.magento.pages.customer.HomePageCustomer;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
+import com.softserve.edu.magento.tools.Search;
 
 
 public abstract class HeaderPanelCustomerAccount extends Header{
@@ -22,10 +21,9 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		private WebElement signOutButton;
 		
 		public AccountMenuDropDown() {
-			this.myAccountButton = driver.findElement(By.linkText("My Account"));
-			this.myWishListButton = driver.findElement(By.cssSelector("li.link.wishlist")).
-					findElement(By.partialLinkText("My Wish List"));
-			this.signOutButton = driver.findElement(By.partialLinkText("Sign Out"));
+			this.myAccountButton = Search.linkText("My Account");
+			this.myWishListButton = Search.partialLinkText("My Wish List",Search.cssSelector("li.link.wishlist"));
+			this.signOutButton = Search.partialLinkText("Sign Out");
 		}
 		public WebElement getMyAccountButton() {
 			return myAccountButton;
@@ -52,19 +50,19 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 		public WebElement myWishListLink;
 		
 		public VerticalAccountMenu() {
-			WebElement verticalBlock = driver.findElement(By.id("block-collapsible-nav"));
-			//this.accountDashboardLink = driver.findElement(By.linkText("Account Dashboard"));
 			
-			this.accountDashboardLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Account Dashboard')]"));
-			this.accountInformationLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Account Information')]"));
-			this.adressBookLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Address Book')]"));
-			this.myDownloadableProductsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Downloadable Products')]"));
-			this.myOrderLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Orders')]"));
-			this.newsletterSubscriptionsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Newsletter Subscriptions')]"));
-			this.myCreditCardsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Credit Cards')]"));
-			this.myProductReviewsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Product Reviews')]"));
-			this.billingAgreementsLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'Billing Agreements')]"));
-			this.myWishListLink = verticalBlock.findElement(By.xpath("//*[contains(text(),'My Wish List')]"));
+			WebElement verticalBlock = Search.id("block-collapsible-nav");
+			
+			this.accountDashboardLink = Search.xpath("//*[contains(text(),'Account Dashboard')]",verticalBlock);
+			this.accountInformationLink = Search.xpath("//*[contains(text(),'Account Information')]",verticalBlock);
+			this.adressBookLink = Search.xpath("//*[contains(text(),'Address Book')]",verticalBlock);
+			this.myDownloadableProductsLink = Search.xpath("//*[contains(text(),'My Downloadable Products')]",verticalBlock);
+			this.myOrderLink = Search.xpath("//*[contains(text(),'My Orders')]",verticalBlock);
+			this.newsletterSubscriptionsLink = Search.xpath("//*[contains(text(),'Newsletter Subscriptions')]",verticalBlock);
+			this.myCreditCardsLink = Search.xpath("//*[contains(text(),'My Credit Cards')]",verticalBlock);
+			this.myProductReviewsLink = Search.xpath("//*[contains(text(),'My Product Reviews')]",verticalBlock);
+			this.billingAgreementsLink = Search.xpath("//*[contains(text(),'Billing Agreements')]",verticalBlock);
+			this.myWishListLink = Search.xpath("//*[contains(text(),'My Wish List')]",verticalBlock);
 					
 		}
 
@@ -112,10 +110,10 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	}
 
 	//---------------------------------
-	protected HeaderPanelCustomerAccount(WebDriver driver) {
-		super(driver);
-		this.customer_welcome = driver.findElement(By.className("customer-welcome")); 
-		this.dropdown_account_menu_button = driver.findElement(By.cssSelector("button.action.switch"));
+	protected HeaderPanelCustomerAccount() {
+		//super(driver);
+		this.customer_welcome = Search.className("customer-welcome"); 
+		this.dropdown_account_menu_button = Search.cssSelector("button.action.switch");
 		this.verticalAccountMenu = new VerticalAccountMenu();
 	}
 	//getters
@@ -147,7 +145,7 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	//logo click
 	public HomePageCustomer clickLogo() {
 		this.getLogo().click();
-		return new HomePageCustomer(driver);
+		return new HomePageCustomer();
 	}
 	//drop down menu click
 	public WebElement getMyAccountButton() {
@@ -161,14 +159,14 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	}
 	public AccountDashboardPage clickMyAccountButton() {
 		this.getMyAccountButton().click();
-		return new AccountDashboardPage(driver);
+		return new AccountDashboardPage();
 	}
 	public void clickMyWishListButton() {
 		this.getMyWishListButton().click();
 	}
 	public HomePageLogout clickSignOutButton() {
 		this.getSignOutButton().click();
-		return new HomePageLogout(driver);
+		return new HomePageLogout();
 		
 	}
 //------------------------VerticalAccountMenu---------------------------
@@ -214,7 +212,7 @@ public abstract class HeaderPanelCustomerAccount extends Header{
 	//click links
 	public AccountDashboardPage clickAccountDashboardLink() {
 		this.getAccountDashboardLink().click();
-		return new AccountDashboardPage(driver);
+		return new AccountDashboardPage();
 	}
 	public void clickAccountInformationLink() {
 		this.getAccountInformationLink().click();

@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 interface IBrowser {
@@ -38,10 +39,27 @@ public class BrowserRepository {
     static class HtmlUnitTemporary implements IBrowser {
         public WebDriver getBrowser(String driverPath) {
             WebDriver driver = new HtmlUnitDriver(true);
+            driver.manage().window().maximize();
             // TODO detele
             System.out.println("HtmlUnitDriver = " + driver);
             ((HtmlUnitDriver) driver).setJavascriptEnabled(true);
             // TODO set CSS Enables
+            return driver;
+        }
+    }
+
+    static class PhantomJSTemporary implements IBrowser {
+        public WebDriver getBrowser(String driverPath) {
+            // TODO detele
+            System.out.println("\t+++PhantomJSTemporary START");
+            System.setProperty("phantomjs.binary.path", driverPath);
+            // TODO Develop Modules
+            WebDriver driver =new PhantomJSDriver();
+            driver.manage().window().maximize();
+            //return new PhantomJSDriver();
+//            WebDriver driver = new HtmlUnitDriver(true);
+//            ((HtmlUnitDriver) driver).setJavascriptEnabled(true);
+//            // TODO set CSS Enables
             return driver;
         }
     }
@@ -51,7 +69,8 @@ public class BrowserRepository {
         FIREFOX_DEFAULT(new FirefoxTemporary(), "FirefoxDriverDefault"),
         IE_TEMPORARY(new IETemporary(), "InternetExplorerDriver"),
         CHROME_TEMPORARY(new ChromeTemporary(), "ChromeDriverTemporary"),
-        HTMLUNIT_TEMPORARY(new HtmlUnitTemporary(), "HtmlUnitDriver");
+        HTMLUNIT_TEMPORARY(new HtmlUnitTemporary(), "HtmlUnitDriver"),
+        PHANTOMJS_TEMPORARY(new PhantomJSTemporary(), "PhantomJSTemporary");
         private IBrowser browser;
         private String browserName;
 

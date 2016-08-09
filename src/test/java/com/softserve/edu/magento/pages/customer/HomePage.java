@@ -1,15 +1,14 @@
 package com.softserve.edu.magento.pages.customer;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import com.softserve.edu.magento.tools.Search;
 
 public class HomePage {
 	 
 private WebElement contentMessage;
  
-protected HomePage(WebDriver driver) {
-	 this.contentMessage = driver.findElement(By.xpath("//div[@class='column main']/p"));
+protected HomePage() {
+	 this.contentMessage = Search.xpath("//div[@class='column main']/p");
  }
  //setters
 public void setContecntMessage(WebElement contecntMessage) {

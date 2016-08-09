@@ -10,14 +10,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.softserve.edu.magento.data.AdminUserRepository;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
-import com.softserve.edu.magento.data.IAdminUser;
+import com.softserve.edu.magento.data.admin.AdminUserRepository;
+import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
-import com.softserve.edu.magento.pages.ApplicationAdmin;
-import com.softserve.edu.magento.pages.ApplicationCustomer;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.customer.AccountDashboardPage;
+import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import com.softserve.edu.magento.pages.customer.CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.customer.SignInPage;
@@ -26,7 +27,6 @@ import com.softserve.edu.magento.pages.customer.UnsuccessfulSignInPage.ErrorMess
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.Unsuccessful_CreateAccountPage.ErrorMessage;
 import com.softserve.edu.magento.pages.customer.components.Header.Titles;
-import com.softserve.edu.magento.pages.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
@@ -71,7 +71,7 @@ public class PreSmokeTestSignIn {
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
 	  // 4. Successful log in user
 	  // 5. Go to the AccountDashboard Page
-	  AccountDashboardPage accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().User());  
+	  AccountDashboardPage accountDashboardPage = signInPage.SignIn(CustomerUserRepository.get().UserYaryna());  
 	  // 6. Confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
@@ -96,7 +96,7 @@ public class PreSmokeTestSignIn {
 	  Assert.assertEquals(signInPage.getTitleText(), Titles.CUSTOMER_LOGIN.toString());
 	  // 4. Successful log in user
 	  // 5. Go to the AccountDashboard Page
-	  AccountDashboardPage accountDashboardPage = signInPage.SignIn_Enter(CustomerUserRepository.get().User());  
+	  AccountDashboardPage accountDashboardPage = signInPage.SignIn_Enter(CustomerUserRepository.get().UserYaryna());  
 	  // 6. Confirm that AccountDashboard page is opened
 	  Assert.assertEquals(accountDashboardPage.getTitleText(), 
 			  Titles.ACCOUNT_DASHBOARD.toString());
@@ -188,7 +188,7 @@ public class PreSmokeTestSignIn {
 	  // Test steps
 	  // 1.Unsuccessful create account already exist customer
 	  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage =
-			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().User());
+			  homePageLogout.clickCreateAccountLink().unsuccessful_createNewAccount(CustomerUserRepository.get().UserYaryna());
 	  // 2.Confirm that error message appear with right text
 	  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorMessageText(),
 			  ErrorMessage.ALREADY_EXIST_ACCOUNT.toString());
@@ -201,7 +201,7 @@ public class PreSmokeTestSignIn {
 			  .gotoAllCustomersPage();
 	  // 6. Confirm that already exist customer account is not created
 	  Assert.assertFalse(allCustomersPage
-			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().User()));
+			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().UserYaryna()));
 	  // Return to the previous state
 	  allCustomersPage.clickSignOut();
 	  

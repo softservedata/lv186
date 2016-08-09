@@ -11,6 +11,7 @@ public class ParameterUtils {
 	private static volatile ParameterUtils instance = null;
 	//
 	private static final String SUREFIRE_WEBDRIVER_NAME = "surefire.webdriver.name";
+    private static final String SUREFIRE_WEBDRIVER_DRIVERPATH = "surefire.webdriver.driverpath";
     private static final String DEFAULT_POM_FROM = "from";
     private static final String DEFAULT_POM_CODE = "code";
     //
@@ -33,9 +34,11 @@ public class ParameterUtils {
 
     public ApplicationSources updateParametersFromPOM(ApplicationSources applicationSources) {
         if ((System.getProperty(SUREFIRE_WEBDRIVER_NAME) != null)
+                && (System.getProperty(SUREFIRE_WEBDRIVER_DRIVERPATH) != null)
                 && (!System.getProperty(SUREFIRE_WEBDRIVER_NAME).toLowerCase().contains(DEFAULT_POM_FROM))
                 && (!System.getProperty(SUREFIRE_WEBDRIVER_NAME).toLowerCase().contains(DEFAULT_POM_CODE))) {
             applicationSources.setBrowserName(System.getProperty(SUREFIRE_WEBDRIVER_NAME));
+            applicationSources.setDriverPath(System.getProperty(SUREFIRE_WEBDRIVER_DRIVERPATH));
             isCIRunnig = true;
         }
         return applicationSources;

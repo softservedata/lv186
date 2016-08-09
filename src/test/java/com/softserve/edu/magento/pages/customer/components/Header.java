@@ -1,8 +1,7 @@
 package com.softserve.edu.magento.pages.customer.components;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import com.softserve.edu.magento.tools.Search;
 
 public abstract class Header {
 	
@@ -34,7 +33,7 @@ public abstract class Header {
 		}
 	}
 	//-----------------------------------------------
-	protected WebDriver driver;
+	//protected WebDriver driver;
 	 
 	//private WebElement welcomeMessage;
 	private WebElement searchField;
@@ -42,19 +41,16 @@ public abstract class Header {
 	private WebElement logo;
 	private WebElement title;
 	 
-	 protected Header(WebDriver driver) {
-		 this.driver = driver;
-		 //this.welcomeMessage = driver.findElement(By.cssSelector("li.greet.welcome")); 
-		 this.searchField = driver.findElement(By.id("search"));
-		 this.cart = driver.findElement(By.cssSelector("a.action.showcart"));
-		 this.cart = driver.findElement(By.cssSelector("a.action.showcart"));
-		 this.logo = driver.findElement(By.className("logo"));
-		 this.title = driver.findElement(By.className("base"));
+	 protected Header() {
+
+		 this.searchField = Search.id("search");
+		 this.cart = Search.cssSelector("a.action.showcart");
+		 this.cart = Search.cssSelector("a.action.showcart");
+		 this.logo = Search.className("logo");
+		 this.title = Search.className("base");
 	 }
 // setters
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
-	}
+
 
 	//public void setWelcomeMessage(WebElement welcomeMessage) {
 	//	this.welcomeMessage = welcomeMessage;
@@ -72,9 +68,7 @@ public abstract class Header {
 		this.logo = logo;
 	}
 // getters
-	public WebDriver getDriver() {
-		return driver;
-	}
+
 
 	//public WebElement getWelcomeMessage() {
 	//	return welcomeMessage;

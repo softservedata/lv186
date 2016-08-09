@@ -1,12 +1,11 @@
 package com.softserve.edu.magento.pages.customer.components;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.customer.CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.customer.SignInPage;
+import com.softserve.edu.magento.tools.Search;
 
 
 public abstract class HeaderPanelLogout extends Header{
@@ -15,13 +14,13 @@ public abstract class HeaderPanelLogout extends Header{
 	private WebElement signInLink;
 	private WebElement createAccountLink;
 	
-	protected HeaderPanelLogout(WebDriver driver) {
-		super(driver);
-		this.welcomeMessage = driver.findElement(By.cssSelector("li.greet.welcome")); 
-		this.signInLink = driver.findElement(By.partialLinkText("Sign In"));
-		this.createAccountLink = driver.findElement(By.partialLinkText("Create an Account"));
+	protected HeaderPanelLogout() {
+		this.welcomeMessage = Search.cssSelector("li.greet.welcome");
+		this.signInLink = Search.partialLinkText("Sign In");
+		this.createAccountLink = Search.partialLinkText("Create an Account");
 	}
-//setters
+	
+	//setters
 	public void setSignIn(WebElement signInLink) {
 		this.signInLink = signInLink;
 	}
@@ -46,14 +45,14 @@ public abstract class HeaderPanelLogout extends Header{
 	}
 	public SignInPage clickSignInLink() {
 		this.getSignInLink().click();
-		return new SignInPage(driver);
+		return new SignInPage();
 	}
 	public CreateAccountPage clickCreateAccountLink() {
 		this.getCreateAccountLink().click();
-		return new CreateAccountPage(driver);
+		return new CreateAccountPage();
 	}
 	public HomePageLogout clickLogo() {
 		this.getLogo().click();
-		return new HomePageLogout(driver);
+		return new HomePageLogout();
 	}
 }

@@ -29,10 +29,14 @@
 		<!-- - - - - - Test - - - - - -->
 		<org.testng.version>6.9.10</org.testng.version>
 		<testng.reports.directory>./target/surefire-reports/test-output</testng.reports.directory>
-		<profile.ci.webdriver.name>htmlunitdriver</profile.ci.webdriver.name>
+		<!-- <profile.ci.webdriver.name>htmlunitdriver</profile.ci.webdriver.name> -->
+		<profile.ci.webdriver.name>phantomjstemporary</profile.ci.webdriver.name>
+		<!-- <profile.ci.webdriver.driverpath>C:/Program Files (x86)/PhantomJS/phantomjs.exe</profile.ci.webdriver.driverpath> -->
+		<profile.ci.webdriver.driverpath>./target/test-classes/lib/phantomjs.exe</profile.ci.webdriver.driverpath>
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 		<org.seleniumhq.version>2.53.1</org.seleniumhq.version>
 		<org.seleniumhq.selenium.htmlunit-driver>2.21</org.seleniumhq.selenium.htmlunit-driver>
+		<org.seleniumhq.ci.version>2.50.0</org.seleniumhq.ci.version>
 		<org.mockito.version>1.10.19</org.mockito.version>
 		<!-- - - - - - Logging - - - - - -->
 		<org.slf4j.version>1.7.13</org.slf4j.version>
@@ -74,16 +78,21 @@
 		</dependency>
 
 		<!-- - - - Automation Framework Selenium - - - -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<version>${org.seleniumhq.version}</version>
-		</dependency>
 <!-- 		<dependency> -->
-<!-- 			<groupId>org.seleniumhq.selenium</groupId> -->
-<!-- 			<artifactId>htmlunit-driver</artifactId> -->
-<!-- 			<version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+<!-- 		<groupId>org.seleniumhq.selenium</groupId> -->
+<!-- 		<artifactId>selenium-server</artifactId> -->
+<!-- 		<version>${org.seleniumhq.version}</version> -->
 <!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.seleniumhq.selenium</groupId> -->
+		<!-- <artifactId>htmlunit-driver</artifactId> -->
+		<!-- <version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.github.detro.ghostdriver</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>1.1.0</version>
+		</dependency>
 
 		<!-- - - - Logging - - - -->
 		<dependency>
@@ -140,6 +149,20 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 
+			<dependencies>
+				<!-- - - - Automation Framework Selenium - - - -->
+				<!-- <dependency> -->
+				<!-- <groupId>org.seleniumhq.selenium</groupId> -->
+				<!-- <artifactId>selenium-server</artifactId> -->
+				<!-- <version>${org.seleniumhq.version}</version> -->
+				<!-- </dependency> -->
+				<!-- <dependency> -->
+				<!-- <groupId>org.seleniumhq.selenium</groupId> -->
+				<!-- <artifactId>htmlunit-driver</artifactId> -->
+				<!-- <version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+				<!-- </dependency> -->
+			</dependencies>
+
 			<build>
 				<plugins>
 
@@ -187,6 +210,20 @@
 		<profile>
 			<id>ci</id>
 
+			<dependencies>
+				<!-- - - - Automation Framework Selenium - - - -->
+				<!-- <dependency> -->
+				<!-- <groupId>org.seleniumhq.selenium</groupId> -->
+				<!-- <artifactId>selenium-server</artifactId> -->
+				<!-- <version>${org.seleniumhq.ci.version}</version> -->
+				<!-- </dependency> -->
+				<!-- <dependency> -->
+				<!-- <groupId>org.seleniumhq.selenium</groupId> -->
+				<!-- <artifactId>htmlunit-driver</artifactId> -->
+				<!-- <version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+				<!-- </dependency> -->
+			</dependencies>
+
 			<build>
 				<plugins>
 
@@ -216,6 +253,9 @@
 								<surefire.webdriver.name>
 									${profile.ci.webdriver.name}
 								</surefire.webdriver.name>
+								<surefire.webdriver.driverpath>
+									${profile.ci.webdriver.driverpath}
+								</surefire.webdriver.driverpath>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->

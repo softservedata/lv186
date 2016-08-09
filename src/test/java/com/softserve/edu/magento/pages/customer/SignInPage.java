@@ -1,12 +1,11 @@
 package com.softserve.edu.magento.pages.customer;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.customer.components.HeaderPanelLogout;
+import com.softserve.edu.magento.tools.Search;
 
 
 public class SignInPage extends HeaderPanelLogout{
@@ -17,13 +16,12 @@ public class SignInPage extends HeaderPanelLogout{
 	private WebElement forgotPassword;
 	private WebElement createAccountButton;
 	
- public SignInPage(WebDriver driver) {
-	 super(driver);
-	 this.emailField = driver.findElement(By.id("email"));
-	 this.passwordField = driver.findElement(By.id("pass"));
-	 this.signInButton = driver.findElement(By.id("send2"));
-	 this.forgotPassword = driver.findElement(By.cssSelector("a.action.remind"));
-	 this.createAccountButton = driver.findElement(By.cssSelector("a.action.create.primary"));
+ public SignInPage() {
+	 this.emailField = Search.id("email");
+	 this.passwordField = Search.id("pass");
+	 this.signInButton = Search.id("send2");
+	 this.forgotPassword = Search.cssSelector("a.action.remind");
+	 this.createAccountButton = Search.cssSelector("a.action.create.primary");
  }
 //getters
 	public WebElement getEmailField() {
@@ -83,32 +81,32 @@ public class SignInPage extends HeaderPanelLogout{
 	}
 	public CreateAccountPage clickCreateAccountButton() {
 		this.getCreateAccountButton().click();
-		return new CreateAccountPage(driver);
+		return new CreateAccountPage();
 	}
 	// functional sign in
 	public AccountDashboardPage SignIn(ICustomerUser user) {
 		clearSendKeysEmail(user.getSigninInfo().getEmail());
 		clearSendKeysPassword(user.getSigninInfo().getPassword());
 		clickSignInButton();
-		return new AccountDashboardPage(driver);
+		return new AccountDashboardPage();
 	}
 	public AccountDashboardPage SignIn_Enter(ICustomerUser user) {
 		clearSendKeysEmail(user.getSigninInfo().getEmail());
 		clearSendKeysPassword(user.getSigninInfo().getPassword());
 		getPasswordField().sendKeys(Keys.ENTER);
-		return new AccountDashboardPage(driver);
+		return new AccountDashboardPage();
 	}
 	public UnsuccessfulSignInPage unsuccessfulSignIn(ICustomerUser invalidUser) {
 		clearSendKeysEmail(invalidUser.getSigninInfo().getEmail());
 		clearSendKeysPassword(invalidUser.getSigninInfo().getPassword());
 		clickSignInButton();
-		return new UnsuccessfulSignInPage(driver);
+		return new UnsuccessfulSignInPage();
 	}
 	public UnsuccessfulSignInPage unsuccessfulSignIn_Enter(ICustomerUser invalidUser) {
 		clearSendKeysEmail(invalidUser.getSigninInfo().getEmail());
 		clearSendKeysPassword(invalidUser.getSigninInfo().getPassword());
 		getPasswordField().sendKeys(Keys.ENTER);
-		return new UnsuccessfulSignInPage(driver);
+		return new UnsuccessfulSignInPage();
 	}
  
 }

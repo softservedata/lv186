@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
+import com.softserve.edu.magento.tools.Search;
 
 /**
  * Class that represents the EditCustomerPage with all the AJAX components in
@@ -194,26 +195,19 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 * Constructor for CustommerView component.
 		 */
 		public CustommerView() {
-			this.LastLoggedInfo = driver
-					.findElement(By
-							.xpath("//th[contains(text(), 'Last Logged')]//following-sibling::td"));
-			this.AccountLockedInInfo = driver
-					.findElement(By
-							.xpath("//th[contains(text(), 'Account Lock')]//following-sibling::td"));
-			this.ConfirmedEmailInfo = driver
-					.findElement(By
-							.xpath("//th[contains(text(), 'Confirmed email')]//following-sibling::td"));
-			this.AccountCreatedInfo = driver
-					.findElement(By
-							.xpath("//th[contains(text(), 'Account Created')]//following-sibling::td"));
-			this.AccountCreatedInInfo = driver
-					.findElement(By
-							.xpath("//th[contains(text(), 'Account Created in')]//following-sibling::td"));
-			this.CustomerGroupInfo = driver
-					.findElement(By
-							.xpath("//th[contains(text(), 'Customer Group')]//following-sibling::td"));
-			this.DefaultBillingAddress = driver.findElement(By
-					.cssSelector("address"));
+			this.LastLoggedInfo = Search
+							.xpath("//th[contains(text(), 'Last Logged')]//following-sibling::td");
+			this.AccountLockedInInfo = Search
+							.xpath("//th[contains(text(), 'Account Lock')]//following-sibling::td");
+			this.ConfirmedEmailInfo = Search
+							.xpath("//th[contains(text(), 'Confirmed email')]//following-sibling::td");
+			this.AccountCreatedInfo = Search
+							.xpath("//th[contains(text(), 'Account Created')]//following-sibling::td");
+			this.AccountCreatedInInfo = Search
+							.xpath("//th[contains(text(), 'Account Created in')]//following-sibling::td");
+			this.CustomerGroupInfo = Search
+							.xpath("//th[contains(text(), 'Customer Group')]//following-sibling::td");
+			this.DefaultBillingAddress = Search.cssSelector("address");
 		}
 	}
 	
@@ -240,33 +234,33 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 * on wake up.
 		 */
 		private AccountInformation() {
-			this.associateToWebsite = new Select(driver.findElement(By
-					.cssSelector("select[name='customer[website_id]']")));
-			this.group = new Select(driver.findElement(By
-					.cssSelector("select[name='customer[group_id]']")));
-			this.chekboxForGroup = driver.findElement(By
-					.xpath("//label[contains(text(),'Disable Automatic ')]"));
-			this.prefix = driver.findElement(By
-					.cssSelector("input[name='customer[prefix]']"));
-			this.firstname = driver.findElement(By
-					.cssSelector("input[name='customer[firstname]']"));
-			this.middlename = driver.findElement(By
-					.cssSelector("input[name='customer[middlename]']"));
-			this.lastname = driver.findElement(By
-					.cssSelector("input[name='customer[lastname]']"));
-			this.suffix = driver.findElement(By
-					.cssSelector("input[name='customer[suffix]']"));
-			this.email = driver.findElement(By
-					.cssSelector("input[name='customer[email]']"));
-			this.dateOfBirth = driver.findElement(By
-					.cssSelector("input[name='customer[dob]']"));
-			this.tax = driver.findElement(By
-					.cssSelector("input[name='customer[taxvat]']"));
-			this.gender = new Select(driver.findElement(By
-					.cssSelector("select[name='customer[gender]']")));
+			this.associateToWebsite = new Select(Search
+					.cssSelector("select[name='customer[website_id]']"));
+			this.group = new Select(Search
+					.cssSelector("select[name='customer[group_id]']"));
+			this.chekboxForGroup = Search
+					.xpath("//label[contains(text(),'Disable Automatic ')]");
+			this.prefix =Search
+					.cssSelector("input[name='customer[prefix]']");
+			this.firstname = Search
+					.cssSelector("input[name='customer[firstname]']");
+			this.middlename = Search
+					.cssSelector("input[name='customer[middlename]']");
+			this.lastname = Search
+					.cssSelector("input[name='customer[lastname]']");
+			this.suffix = Search
+					.cssSelector("input[name='customer[suffix]']");
+			this.email = Search
+					.cssSelector("input[name='customer[email]']");
+			this.dateOfBirth = Search
+					.cssSelector("input[name='customer[dob]']");
+			this.tax = Search
+					.cssSelector("input[name='customer[taxvat]']");
+			this.gender = new Select(Search
+					.cssSelector("select[name='customer[gender]']"));
 			this.sendWelcomeEmailFrom = new Select(
-					driver.findElement(By
-							.cssSelector("select[name='customer[sendemail_store_id]']")));
+					Search
+							.cssSelector("select[name='customer[sendemail_store_id]']"));
 		}
 
 		/*
@@ -436,49 +430,49 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 * present.
 		 */
 		private Adresses() {
-			this.addNewAddresses = driver.findElement(By
-							.xpath("//span[contains(text(),'Add New Addresses')]/parent::button"));
+			this.addNewAddresses = Search
+							.xpath("//span[contains(text(),'Add New Addresses')]/parent::button");
 			/*
 			 * Initialization depends on customer information.
 			 */
-			if (!driver.findElement(By.cssSelector("address")).isDisplayed()) {
+			if (!Search.cssSelector("address").isDisplayed()) {
 				addNewAddresses.click();
 			}
-			this.address = driver.findElement(By.cssSelector("address"));
-			this.deleteButton = driver.findElement(By
-					.cssSelector(".action-delete"));
-			this.defaultBillingCHK = driver.findElement(By
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]"));
-			this.defaultShippingCHK = driver.findElement(By
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]"));
-			this.prefix = driver.findElement(By
-							.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]"));
-			this.firstname = driver.findElement(By
-							.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]"));
-			this.middlename = driver.findElement(By
-							.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]"));
-			this.lastname = driver.findElement(By
-							.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]"));
-			this.suffix = driver.findElement(By
-							.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]"));
-			this.company = driver.findElement(By
-							.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input"));
-			this.streetAdressFirst = driver.findElement(By
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input"));
-			this.streetAdressSecond = driver.findElement(By
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]"));
-			this.city = driver.findElement(By
-							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input"));
-			this.country = new Select(driver.findElement(By
-							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select")));
-			this.state = driver.findElement(By
-							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select"));
-			this.zip = driver.findElement(By
-							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input"));
-			this.phone = driver.findElement(By
-							.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input"));
-			this.vat = driver.findElement(By
-							.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input"));
+			this.address = Search.cssSelector("address");
+			this.deleteButton = Search
+					.cssSelector(".action-delete");
+			this.defaultBillingCHK = Search
+							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]");
+			this.defaultShippingCHK = Search
+							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]");
+			this.prefix = Search
+							.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]");
+			this.firstname = Search
+							.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]");
+			this.middlename = Search
+							.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]");
+			this.lastname = Search
+							.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]");
+			this.suffix = Search
+							.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]");
+			this.company = Search
+							.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input");
+			this.streetAdressFirst = Search
+							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input");
+			this.streetAdressSecond = Search
+							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]");
+			this.city = Search
+							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input");
+			this.country = new Select(Search
+							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select"));
+			this.state = Search
+							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select");
+			this.zip = Search
+							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input");
+			this.phone = Search
+							.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input");
+			this.vat = Search
+							.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input");
 		}
 		
 		/**
@@ -727,39 +721,37 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			/*
 			 * Inits the super class elements.
 			 */
-			super.search = driver.findElement(By
-					.cssSelector("button[title='Search']"));
-			super.resetFilter = driver.findElement(By
-					.cssSelector("button[data-ui-id='widget-button-3']"));
-			super.recordsFound = driver.findElement(By
-					.id("customer_orders_grid-total-count"));
-			super.perPage = new Select(driver.findElement(By
-					.id("customer_orders_grid_page-limit")));
-			super.pagination = driver.findElements(By
-					.className("admin__data-grid-pager"));
+			super.search = Search
+					.cssSelector("button[title='Search']");
+			super.resetFilter = Search
+					.cssSelector("button[data-ui-id='widget-button-3']");
+			super.recordsFound = Search
+					.id("customer_orders_grid_page-limit");
+		//	super.pagination = driver.findElements(By
+		//			.className("admin__data-grid-pager"));
 			/*
 			 * Inits the components elements
 			 */
-			this.orderSort = driver.findElement(By.cssSelector("th[data-sort='increment_id']"));
-			this.purchasedSort = driver.findElement(By.cssSelector("th[data-sort='created_at']"));
-			this.bill_toSort = driver.findElement(By.cssSelector("th[data-sort='billing_name']"));
-			this.ship_toSort = driver.findElement(By.cssSelector("th[data-sort='shipping_name']"));
-			this.totalSort = driver.findElement(By.cssSelector("th[data-sort='grand_total']"));
-			this.storeSort = driver.findElement(By.cssSelector("th[data-sort='store_id']"));
-			this.orderFilter = driver.findElement(By.cssSelector("input[name='increment_id']"));
-			this.purchaseDateFilterFrom = driver.findElement(By
-					.cssSelector("input[data-ui-id='widget-grid-column-filter-datetime-0-filter-created-at-from']"));
-			this.purchaseDateFilterTo = driver.findElement(By
-					.cssSelector("input[data-ui-id='widget-grid-column-filter-datetime-0-filter-created-at-to']"));
-			this.bill_toFilter = driver.findElement(By.cssSelector("input[name='billing_name']"));
-			this.ship_toFilter = driver.findElement(By.cssSelector("input[name='shipping_name']"));
-			this.totalFilterFrom = driver.findElement(By
-							.cssSelector("td[data-column='grand_total'] input[name='grand_total[from]']"));
-			this.totalFilterTo = driver.findElement(By
-							.cssSelector("td[data-column='grand_total'] input[name='grand_total[to]']"));
-			this.storeSelect = new Select(driver.findElement(By.cssSelector("select[name='store_id']")));
-			if (driver.findElement(By.className("empty-text")).isDisplayed()) {
-				this.result = driver.findElement(By.className("empty-text"));
+			this.orderSort = Search.cssSelector("th[data-sort='increment_id']");
+			this.purchasedSort = Search.cssSelector("th[data-sort='created_at']");
+			this.bill_toSort = Search.cssSelector("th[data-sort='billing_name']");
+			this.ship_toSort = Search.cssSelector("th[data-sort='shipping_name']");
+			this.totalSort = Search.cssSelector("th[data-sort='grand_total']");
+			this.storeSort = Search.cssSelector("th[data-sort='store_id']");
+			this.orderFilter = Search.cssSelector("input[name='increment_id']");
+			this.purchaseDateFilterFrom = Search
+					.cssSelector("input[data-ui-id='widget-grid-column-filter-datetime-0-filter-created-at-from']");
+			this.purchaseDateFilterTo = Search
+					.cssSelector("input[data-ui-id='widget-grid-column-filter-datetime-0-filter-created-at-to']");
+			this.bill_toFilter = Search.cssSelector("input[name='billing_name']");
+			this.ship_toFilter = Search.cssSelector("input[name='shipping_name']");
+			this.totalFilterFrom = Search
+							.cssSelector("td[data-column='grand_total'] input[name='grand_total[from]']");
+			this.totalFilterTo = Search
+							.cssSelector("td[data-column='grand_total'] input[name='grand_total[to]']");
+			this.storeSelect = new Select(Search.cssSelector("select[name='store_id']"));
+			if (Search.className("empty-text").isDisplayed()) {
+				this.result = Search.className("empty-text");
 			} else {
 				// TODO
 			}

@@ -3,12 +3,11 @@ package com.softserve.edu.magento.pages.admin.menu.products;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.admin.products.Filter;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
+import com.softserve.edu.magento.tools.Search;
 
 public class ProductCatalogPage extends VerticalMenu {
 
@@ -33,31 +32,28 @@ public class ProductCatalogPage extends VerticalMenu {
 	private List<ProductRow> productRows;
 	List<WebElement> productRowsSource;
 
-	public ProductCatalogPage(WebDriver driver) {
-		super(driver);
-		addProductButton = driver.findElement(By.id("add_new_product-button"));
-		addProductToggleButton = driver.findElement(By.className("action-toggle"));
-		simpleProductButton = driver.findElement(By.cssSelector("span[title='Simple Product']"));
-		configurableProductButton = driver.findElement(By.cssSelector("span[title='Configurable Product']"));
-		groupedProductButton = driver.findElement(By.cssSelector("span[title='Grouped Product']"));
-		virtualProductButton = driver.findElement(By.cssSelector("span[title='Virtual Product']"));
-		bundleProductButton = driver.findElement(By.cssSelector("span[title='Bundle Product']"));
-		downloadableProductButton = driver.findElement(By.cssSelector("span[title='Downloadable Product']"));
-		actionsDropdown = driver.findElement(By.xpath("(//div[@class='action-select-wrap'])[1]"));
-		deleteProductButton = driver
-				.findElement(By.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]"));
-		changeProductStatusButton = driver
-				.findElement(By.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]"));
-		updateProductAttributesButton = driver
-				.findElement(By.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]"));
-		nextPageButton = driver.findElement(By.cssSelector("button[title='Next Page']"));
+	public ProductCatalogPage() {
+
+		addProductButton = Search.id("add_new_product-button");
+		addProductToggleButton = Search.className("action-toggle");
+		simpleProductButton = Search.cssSelector("span[title='Simple Product']");
+		configurableProductButton = Search.cssSelector("span[title='Configurable Product']");
+		groupedProductButton = Search.cssSelector("span[title='Grouped Product']");
+		virtualProductButton = Search.cssSelector("span[title='Virtual Product']");
+		bundleProductButton = Search.cssSelector("span[title='Bundle Product']");
+		downloadableProductButton = Search.cssSelector("span[title='Downloadable Product']");
+		actionsDropdown = Search.xpath("(//div[@class='action-select-wrap'])[1]");
+		deleteProductButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]");
+		changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
+		updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
+		nextPageButton = Search.cssSelector("button[title='Next Page']");
 		productRows = new ArrayList<ProductRow>();
-		productRowsSource = driver.findElements(By.cssSelector("tbody tr"));
+		productRowsSource = Search.cssSelectors("tbody tr");
 		for (WebElement row : productRowsSource) {
 			ProductRow productRow = new ProductRow(row);
 			productRows.add(productRow);
 		}
-		filterButton = driver.findElement(By.xpath("(//button[@class='action-default'])[1]"));
+		filterButton = Search.xpath("(//button[@class='action-default'])[1]");
 	}
 
 	// Getters
@@ -180,7 +176,7 @@ public class ProductCatalogPage extends VerticalMenu {
 	// Functional Business Logic
 	public AddProductPage gotoAddProductPage() {
 		clickAddProductButton();
-		return new AddProductPage(driver);
+		return new AddProductPage();
 	}
 
 	public ProductRow getRowWithProductName(String productName) {
@@ -194,7 +190,7 @@ public class ProductCatalogPage extends VerticalMenu {
 
 	public ProductCatalogPage moveToNextPage() {
 		nextPageButton.click();
-		return new ProductCatalogPage(driver);
+		return new ProductCatalogPage();
 	}
 
 	public boolean checkNextPageButtonIsEnabled() {
@@ -227,18 +223,18 @@ public class ProductCatalogPage extends VerticalMenu {
 		private WebElement noProductFound;
 
 		private ProductRow(WebElement row) {
-			productCheckbox = row.findElement(By.cssSelector("td:first-child"));
-			productId = row.findElement(By.cssSelector("td:nth-child(2)"));
-			productName = row.findElement(By.cssSelector("td:nth-child(4)"));
-			productType = row.findElement(By.cssSelector("td:nth-child(5)"));
-			productAttributeSet = row.findElement(By.cssSelector("td:nth-child(6)"));
-			productSku = row.findElement(By.cssSelector("td:nth-child(7)"));
-			productPrice = row.findElement(By.cssSelector("td:nth-child(8)"));
-			productQuantity = row.findElement(By.cssSelector("td:nth-child(9)"));
-			productVisibility = row.findElement(By.cssSelector("td:nth-child(10)"));
-			productStatus = row.findElement(By.cssSelector("td:nth-child(11)"));
-			productWebsites = row.findElement(By.cssSelector("td:nth-child(12)"));
-			productActions = row.findElement(By.cssSelector("td:nth-child(13)"));
+			productCheckbox = Search.cssSelector("td:first-child");
+			productId = Search.cssSelector("td:nth-child(2)");
+			productName = Search.cssSelector("td:nth-child(4)");
+			productType = Search.cssSelector("td:nth-child(5)");
+			productAttributeSet = Search.cssSelector("td:nth-child(6)");
+			productSku = Search.cssSelector("td:nth-child(7)");
+			productPrice = Search.cssSelector("td:nth-child(8)");
+			productQuantity = Search.cssSelector("td:nth-child(9)");
+			productVisibility = Search.cssSelector("td:nth-child(10)");
+			productStatus = Search.cssSelector("td:nth-child(11)");
+			productWebsites = Search.cssSelector("td:nth-child(12)");
+			productActions = Search.cssSelector("td:nth-child(13)");
 		}
 
 		// Getters
@@ -324,16 +320,16 @@ public class ProductCatalogPage extends VerticalMenu {
 		private WebElement cancelFiltersButton;
 
 		private FilterObject() {
-			filterIdFromInput = driver.findElement(By.cssSelector("input[name='entity_id[from]']"));
-			filterIdToInput = driver.findElement(By.cssSelector("input[name='entity_id[to]']"));
-			filterPriceFromInput = driver.findElement(By.cssSelector("input[name='price[from]']"));
-			filterPriceToInput = driver.findElement(By.cssSelector("input[name='price[to]']"));
-			filterQuantityFromInput = driver.findElement(By.cssSelector("input[name='qty[from]']"));
-			filterQuantityToInput = driver.findElement(By.cssSelector("input[name='qty[to]']"));
-			filterNameInput = driver.findElement(By.cssSelector("input[name='name']"));
-			filterSkuInput = driver.findElement(By.cssSelector("input[name='sku']"));
-			applyFiltersButton = driver.findElement(By.className("action-secondary"));
-			cancelFiltersButton = driver.findElement(By.cssSelector(".admin__footer-main-actions .action-tertiary"));
+			filterIdFromInput = Search.cssSelector("input[name='entity_id[from]']");
+			filterIdToInput = Search.cssSelector("input[name='entity_id[to]']");
+			filterPriceFromInput = Search.cssSelector("input[name='price[from]']");
+			filterPriceToInput = Search.cssSelector("input[name='price[to]']");
+			filterQuantityFromInput = Search.cssSelector("input[name='qty[from]']");
+			filterQuantityToInput = Search.cssSelector("input[name='qty[to]']");
+			filterNameInput = Search.cssSelector("input[name='name']");
+			filterSkuInput = Search.cssSelector("input[name='sku']");
+			applyFiltersButton = Search.className("action-secondary");
+			cancelFiltersButton = Search.cssSelector(".admin__footer-main-actions .action-tertiary");
 		}
 
 		// Setters
@@ -448,7 +444,7 @@ public class ProductCatalogPage extends VerticalMenu {
 
 		public ProductCatalogPage applyFilters() {
 			applyFiltersButton.click();
-			return new ProductCatalogPage(driver);
+			return new ProductCatalogPage();
 		}
 
 		public void clickCancelFiltersButton() {
@@ -504,9 +500,9 @@ public class ProductCatalogPage extends VerticalMenu {
 		private WebElement closeDeletePopupButton;
 
 		public DeleteConfirmationPopup() {
-			deleteConfirmationButton = driver.findElement(By.className("action-accept"));
-			cancelDeleteLink = driver.findElement(By.className("action-dismiss"));
-			closeDeletePopupButton = driver.findElement(By.xpath("(//button[@data-role='closeBtn'])[2]"));
+			deleteConfirmationButton = Search.className("action-accept");
+			cancelDeleteLink = Search.className("action-dismiss");
+			closeDeletePopupButton = Search.xpath("(//button[@data-role='closeBtn'])[2]");
 		}
 
 		// Getters
@@ -527,7 +523,7 @@ public class ProductCatalogPage extends VerticalMenu {
 
 		public ProductCatalogPage clickDeleteConfirmationButton() {
 			getDeleteConfirmationButton().click();
-			return new ProductCatalogPage(driver);
+			return new ProductCatalogPage();
 		}
 
 		public void clickCancelDeleteLink() {

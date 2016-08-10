@@ -4,14 +4,14 @@ package com.softserve.edu.magento.pages.admin.menu.dashboard;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.data.admin.dashboard.SearchFromRecords;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
+import com.softserve.edu.magento.tools.Search;
 
 public class DashboardPage extends VerticalMenu {
 	
@@ -21,14 +21,14 @@ public class DashboardPage extends VerticalMenu {
 		public final WebElement	mainWebsiteStore;
 		public final WebElement	defaultStoreView;
 		public StoreViewComponent(){
-			this.allStoreViews = driver.findElement(By
-					.cssSelector(".store-switcher-all"));
-			this.mainWebsite = driver.findElement(By
-					.cssSelector(".store-switcher-website"));
-			this.mainWebsiteStore = driver.findElement(By
-					.cssSelector(".store-switcher-store"));
-			this.defaultStoreView = driver.findElement(By
-					.cssSelector(".store-switcher-store-view"));
+			this.allStoreViews = Search.
+					cssSelector(".store-switcher-all");
+			this.mainWebsite = Search.
+					cssSelector(".store-switcher-website");
+			this.mainWebsiteStore = Search.
+					cssSelector(".store-switcher-store");
+			this.defaultStoreView = Search.
+					cssSelector(".store-switcher-store-view");
 		}
 		
 	}
@@ -86,71 +86,67 @@ public class DashboardPage extends VerticalMenu {
     private StoreViewComponent storeViewMenu;
 
     
-    public DashboardPage(WebDriver driver) {
-        super(driver);
+    public DashboardPage() {
+        ;
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start");
-        this.storeView = driver.findElement(By.id("store-change-button"));
-        this.lifeTimeSales = driver.findElement(By
-        		.xpath("//div[contains(text(),'Lifetime Sales')]"));
-        this.lifeTimeSalesValue = driver.findElement(By
-        		.xpath("//div[contains(text(),'Lifetime Sales')]/following-sibling::div//span[@class='price']"));
+        this.storeView = Search.id("store-change-button");
+        this.lifeTimeSales = Search
+        		.xpath("//div[contains(text(),'Lifetime Sales')]");
+        this.lifeTimeSalesValue = Search
+        		.xpath("//div[contains(text(),'Lifetime Sales')]/following-sibling::div//span[@class='price']");
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start01");
-        this.averageOrder = driver.findElement(By
-        		.xpath("//div[contains(text(),'Average Order')]"));
-        this.averageOrderValue = driver.findElement(By
-        		.xpath("//div[contains(text(),'Average Order')]/following-sibling::div//span[@class='price']"));
-        this.lastOrders = driver.findElement(By
-        		.xpath("//div[contains(text(),'Last Orders')]"));
+        this.averageOrder = Search
+        		.xpath("//div[contains(text(),'Average Order')]");
+        this.averageOrderValue = Search
+        		.xpath("//div[contains(text(),'Average Order')]/following-sibling::div//span[@class='price']");
+        this.lastOrders = Search
+        		.xpath("//div[contains(text(),'Last Orders')]");
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start02");
-        this.lastOrdersRecords = driver.findElements(By
-        		.cssSelector("#lastOrdersGrid_table tbody tr"));
-        this.lastSearchTerms = driver.findElement(By
-        		.xpath("//div[contains(text(),'Last Search Terms')]"));
-        this.lastSearchTermsRecords = driver.findElements(By
-        		.cssSelector("#lastSearchGrid_table tbody tr"));
-        this.topSearchTerms = driver.findElement(By
-        		.xpath("//div[contains(text(),'Top Search Terms')]"));
-        this.topSearchTermsRecords = driver.findElements(By
-        		.cssSelector("#topSearchGrid_table tbody tr"));
-        this.revenue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Revenue')]"));
+        this.lastOrdersRecords = Search.cssSelectors("#lastOrdersGrid_table tbody tr");
+        this.lastSearchTerms = Search
+        		.xpath("//div[contains(text(),'Last Search Terms')]");
+        this.lastSearchTermsRecords = Search.cssSelectors("#lastSearchGrid_table tbody tr");
+        this.topSearchTerms = Search
+        		.xpath("//div[contains(text(),'Top Search Terms')]");
+        this.topSearchTermsRecords = Search.cssSelectors("#topSearchGrid_table tbody tr");
+        this.revenue = Search
+        		.xpath("//span[contains(text(),'Revenue')]");
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start03");
-        this.revenueValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Revenue')]/following-sibling::strong//span[@class='price']"));
-        this.tax = driver.findElement(By.
-        		xpath("//span[contains(text(),'Tax')]"));
-        this.taxValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Tax')]/following-sibling::strong//span[@class='price']"));
-        this.shipping = driver.findElement(By.
-        		xpath("//span[contains(text(),'Shipping')]"));
-        this.shippingValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Shipping')]/following-sibling::strong//span[@class='price']"));
+        this.revenueValue = Search
+        		.xpath("//span[contains(text(),'Revenue')]/following-sibling::strong//span[@class='price']");
+        this.tax = Search
+        		.xpath("//span[contains(text(),'Tax')]");
+        this.taxValue = Search
+        		.xpath("//span[contains(text(),'Tax')]/following-sibling::strong//span[@class='price']");
+        this.shipping = Search
+        		.xpath("//span[contains(text(),'Shipping')]");
+        this.shippingValue = Search
+        		.xpath("//span[contains(text(),'Shipping')]/following-sibling::strong//span[@class='price']");
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start04");
-        this.quantity = driver.findElement(By.
-        		xpath("//span[contains(text(),'Quantity')]"));
-        this.quantityValue = driver.findElement(By.
-        		xpath("//span[contains(text(),'Quantity')]/following-sibling::strong[@class='dashboard-totals-value']"));
-        this.reloadData = driver.findElement(By.
-        		cssSelector("button.action-primary"));
-        this.bestsellersTab = driver.findElement(By.
-        		id("grid_tab_ordered_products"));
-        this.bestsellersRecords = driver.findElements(By
-        		.cssSelector("#productsOrderedGrid_table tbody tr"));
-        this.mostViewedProductsTab = driver.findElement(By.
-        		id("grid_tab_reviewed_products"));
+        this.quantity = Search
+        		.xpath("//span[contains(text(),'Quantity')]");
+        this.quantityValue = Search
+        		.xpath("//span[contains(text(),'Quantity')]/following-sibling::strong[@class='dashboard-totals-value']");
+        this.reloadData = Search
+        		.cssSelector("button.action-primary");
+        this.bestsellersTab = Search
+        		.id("grid_tab_ordered_products");
+        this.bestsellersRecords = Search.cssSelectors("#productsOrderedGrid_table tbody tr");
+        this.mostViewedProductsTab = Search
+        		.id("grid_tab_reviewed_products");
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start05");
-        this.newCustomersTab = driver.findElement(By.
-        		id("grid_tab_new_customers"));
-        this.customersTab = driver.findElement(By.
-        		id("grid_tab_customers"));
-        this.ordersTab = driver.findElement(By.
-        		id("diagram_tab_orders"));
-        this.amountTab = driver.findElement(By.
-        		id("diagram_tab_amounts"));
-        this.ordersPeriod = new Select(driver.findElement(By.
-        		id("order_orders_period")));
-        this.amountPeriod = new Select(driver.findElement(By.
-        		id("order_amounts_period")));
+        this.newCustomersTab = Search
+        		.id("grid_tab_new_customers");
+        this.customersTab = Search
+        		.id("grid_tab_customers");
+        this.ordersTab = Search
+        		.id("diagram_tab_orders");
+        this.amountTab = Search
+        		.id("diagram_tab_amounts");
+        this.ordersPeriod = new Select(Search
+        		.id("order_orders_period"));
+        this.amountPeriod = new Select(Search
+        		.id("order_amounts_period"));
         //
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start06");
         saveLogoutUrl();
@@ -161,7 +157,7 @@ public class DashboardPage extends VerticalMenu {
         if ((ApplicationAdmin.getCurrentApplicationSources() != null) 
                 && ((ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl() == null)
                         || (ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl().isEmpty()))) {
-            System.out.println("\t    saveLogoutUrl() Start if ...");
+            System.out.println("\t    saveLogoutUrl() Start if ..");
             ApplicationAdmin.getCurrentApplicationSources()
                 .setLogoutUrl(getSignOut().getAttribute(HREF_ATTRIBUTE));
             System.out.println("\t    saveLogoutUrl() setLogoutUrl DONE");
@@ -419,8 +415,7 @@ public class DashboardPage extends VerticalMenu {
 
 	public void clickBestsellersTab() {
 		getBestsellersTab().click();
-		this.bestsellersRecords = driver.findElements(By
-				.cssSelector("#productsOrderedGrid_table tbody tr"));
+		this.bestsellersRecords = Search.cssSelectors("#productsOrderedGrid_table tbody tr");
 		this.mostViewedProductsRecords = null;
 		this.newCustomersRecords = null;
 		this.customersRecords = null;
@@ -429,8 +424,7 @@ public class DashboardPage extends VerticalMenu {
 	public void clickMostViewedProductsTab() {
 		getMostViewedProductsTab().click();
 		this.bestsellersRecords = null;
-		this.mostViewedProductsRecords = driver.findElements(By
-				.cssSelector("#productsReviewedGrid_table tbody tr"));
+		this.mostViewedProductsRecords = Search.cssSelectors("#productsReviewedGrid_table tbody tr");
 		this.newCustomersRecords = null;
 		this.customersRecords = null;
 
@@ -440,8 +434,7 @@ public class DashboardPage extends VerticalMenu {
 		getNewCustomersTab().click();
 		this.bestsellersRecords = null;
 		this.mostViewedProductsRecords = null;
-		this.newCustomersRecords = driver.findElements(By
-				.cssSelector("#customersNewestGrid_table tbody tr"));
+		this.newCustomersRecords = Search.cssSelectors("#customersNewestGrid_table tbody tr");
 		this.customersRecords = null;
 	}
 
@@ -450,8 +443,7 @@ public class DashboardPage extends VerticalMenu {
 		this.bestsellersRecords = null;
 		this.mostViewedProductsRecords = null;
 		this.newCustomersRecords = null;
-		this.customersRecords = driver.findElements(By
-				.cssSelector("#customersMostGrid_table tbody tr"));
+		this.customersRecords = Search.cssSelectors("#customersMostGrid_table tbody tr");
 	}
 
 	public void clickReloadData() {
@@ -461,9 +453,9 @@ public class DashboardPage extends VerticalMenu {
 	//  Business Logic
 	public DashboardPage refreshPage() {
 		clickReloadData();
-		DashboardPage page = new DashboardPage(driver);
-		page.reloadMessage = driver.findElement(By
-				.cssSelector(".message.message-success.success"));
+		DashboardPage page = new DashboardPage();
+		page.reloadMessage = Search
+				.cssSelector(".message.message-success.success");
 		return page;
 	}
 }

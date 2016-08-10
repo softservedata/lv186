@@ -1,8 +1,9 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class SuccessProductSaveAndDuplicatePage extends SuccessProductSavePage {
 
@@ -10,9 +11,9 @@ public class SuccessProductSaveAndDuplicatePage extends SuccessProductSavePage {
 
 	WebElement successfulProductDuplicate;
 
-	public SuccessProductSaveAndDuplicatePage(WebDriver driver) {
-		super(driver);
-		successfulProductDuplicate = driver.findElement(By.cssSelector("#messages .message-success:nth-child(2)"));
+	public SuccessProductSaveAndDuplicatePage() {
+
+		successfulProductDuplicate = Search.cssSelector("#messages .message-success:nth-child(2)");
 	}
 
 	// Getters

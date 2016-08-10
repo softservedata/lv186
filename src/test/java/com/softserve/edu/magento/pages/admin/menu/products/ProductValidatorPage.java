@@ -2,9 +2,10 @@ package com.softserve.edu.magento.pages.admin.menu.products;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class ProductValidatorPage extends AddProductPage {
 
@@ -16,11 +17,11 @@ public class ProductValidatorPage extends AddProductPage {
 	private WebElement skuValidator;
 	private WebElement priceValidator;
 
-	public ProductValidatorPage(WebDriver driver) {
-		super(driver);
-		productNameValidators = driver.findElements(By.xpath("(//label[@class='admin__field-error'])[1]"));
-		skuValidators = driver.findElements(By.xpath("(//label[@class='admin__field-error'])[2]"));
-		priceValidators = driver.findElements(By.xpath("(//label[@class='admin__field-error'])[3]"));
+	public ProductValidatorPage() {
+
+		productNameValidators = Search.xpaths("(//label[@class='admin__field-error'])[1]");
+		skuValidators = Search.xpaths("(//label[@class='admin__field-error'])[2]");
+		priceValidators = Search.xpaths("(//label[@class='admin__field-error'])[3]");
 
 		if (productNameValidators.size() > 0) {
 			this.productNameValidator = productNameValidators.get(0);

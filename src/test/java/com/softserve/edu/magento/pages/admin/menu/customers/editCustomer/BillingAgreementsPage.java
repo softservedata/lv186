@@ -1,9 +1,10 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class BillingAgreementsPage extends ACustomPageSideMenu {
 	private WebElement idSort;
@@ -20,19 +21,18 @@ public class BillingAgreementsPage extends ACustomPageSideMenu {
 	private WebElement updatedFilterTo;
 	private WebElement result;
 	
-	public BillingAgreementsPage (WebDriver driver){
-		super(driver);
-		this.idSort = driver.findElement(By.cssSelector("th[data-sort='agreement_id']"));
-		this.referenceIdSort = driver.findElement(By.cssSelector("th[data-sort='reference_id']"));
-		this.statusSort = driver.findElement(By.cssSelector("th[data-sort='status']"));
-		this.createdSort = driver.findElement(By.cssSelector("th[data-sort='created_at']"));
-		this.updatedSort = driver.findElement(By.cssSelector("th[data-sort='updated_at']"));
-		this.idFilter = driver.findElement(By.cssSelector("input[name='agreement_id']"));
-		this.referenceIdFilter = driver.findElement(By.cssSelector("input[name='reference_id']")); 
-		this.statusFilter = new Select(driver.findElement(By.id("customer_edit_tab_agreements_filter_status")));
+	public BillingAgreementsPage (){
+		this.idSort = Search.cssSelector("th[data-sort='agreement_id']");
+		this.referenceIdSort = Search.cssSelector("th[data-sort='reference_id']");
+		this.statusSort = Search.cssSelector("th[data-sort='status']");
+		this.createdSort = Search.cssSelector("th[data-sort='created_at']");
+		this.updatedSort = Search.cssSelector("th[data-sort='updated_at']");
+		this.idFilter = Search.cssSelector("input[name='agreement_id']");
+		this.referenceIdFilter = Search.cssSelector("input[name='reference_id']"); 
+		this.statusFilter = new Select(Search.id("customer_edit_tab_agreements_filter_status"));
 		// TODO
-		this.createdFilterFrom = driver.findElement(By.cssSelector("th[data-sort='created_at']"));
-		this.updatedSort = driver.findElement(By.cssSelector("th[data-sort='updated_at']"));
+		this.createdFilterFrom = Search.cssSelector("th[data-sort='created_at']");
+		this.updatedSort = Search.cssSelector("th[data-sort='updated_at']");
 	}
 
 }

@@ -47,7 +47,7 @@ public class PreSmokeTest {
 		// AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
 		// DashboardPage dashboardPage =
 		// adminLoginPage.successAdminLogin(AdminUserRepository.get().adminBohdan());
-		DashboardPage dashboardPage = new AdminLoginPage(driver)
+		DashboardPage dashboardPage = new AdminLoginPage()
 				.successAdminLogin(AdminUserRepository.get().adminBohdan());
 		Thread.sleep(1000);
 		// Check

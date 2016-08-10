@@ -1,8 +1,9 @@
 package com.softserve.edu.magento.pages.admin;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.tools.Search;
 
 public abstract class ATopPage {
 
@@ -12,14 +13,14 @@ public abstract class ATopPage {
         public final WebElement signOut;
 
         public ControlsMenuComponent() {
-            this.accountSetting = driver.findElement(By.xpath("//*[@data-ui-id='user-user-account-settings']"));
-            this.customerView = driver.findElement(By.className("store-front"));
-            this.signOut = driver.findElement(By.className("account-signout"));
+            this.accountSetting = Search.xpath("//*[@data-ui-id='user-user-account-settings']");
+            this.customerView = Search.className("store-front");
+            this.signOut = Search.className("account-signout");
         }
     }
 
     // Fields
-    protected WebDriver driver;
+//    protected WebDriver Search;
     // Elements
     private WebElement pageTitle;
     private WebElement searchLabel;
@@ -29,16 +30,16 @@ public abstract class ATopPage {
     // Components
     private ControlsMenuComponent menuControls;
 
-    protected ATopPage(WebDriver driver) {
-        this.driver = driver;
+    protected ATopPage() {
+
         //
-        this.pageTitle = driver.findElement(By.cssSelector("h1.page-title"));
-        this.searchLabel = driver.findElement(By.className("search-global-label"));
+        this.pageTitle = Search.cssSelector("h1.page-title");
+        this.searchLabel = Search.className("search-global-label");
         //this.searchInput = driver.findElement(By.className("div.autocomplete-results"));
         //this.notifications = driver.findElement(By.className("notifications-action admin__action-dropdown"));
-        this.notifications = driver.findElement(By.cssSelector("a.notifications-action.admin__action-dropdown"));
+        this.notifications = Search.cssSelector("a.notifications-action.admin__action-dropdown");
         //this.menuAccount = driver.findElement(By.xpath("//*[@class='admin-user admin__action-dropdown-wrap']/a"));
-        this.accountMenu = driver.findElement(By.cssSelector("span.admin-user-account-text"));
+        this.accountMenu = Search.cssSelector("span.admin-user-account-text");
     }
 
     // PageObject
@@ -108,7 +109,7 @@ public abstract class ATopPage {
     public void clickSearchLabel() {
         getPageTitle().click();
         getSearchLabel().click();
-        searchInput = driver.findElement(By.id("search-global"));
+        searchInput = Search.id("search-global");
         // TODO Create Components
     }
 
@@ -150,7 +151,7 @@ public abstract class ATopPage {
         clickSignOut();
         clearLogoutUrl();
         // Return a new page object representing the destination.
-        return new AdminLoginPage(driver);
+        return new AdminLoginPage();
     }
 
     private void clearLogoutUrl() {

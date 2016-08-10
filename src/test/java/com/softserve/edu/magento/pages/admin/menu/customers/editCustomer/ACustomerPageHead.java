@@ -1,14 +1,13 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
 
 abstract class ACustomerPageHead extends VerticalMenu {
-	protected WebDriver driver;
+
 	protected UIMapperForAbstracts find;
 	
 	protected WebElement back;
@@ -20,9 +19,7 @@ abstract class ACustomerPageHead extends VerticalMenu {
 	protected WebElement saveAndContinueEdit;
 	protected WebElement saveCustomer;
 	
-	protected ACustomerPageHead(WebDriver driver){
-		super(driver);
-		this.driver = driver;
+	protected ACustomerPageHead(){
 		this.back = Search.id("back");
 		this.deleteCustomer = Search.id("customer-edit-delete-button");
 		this.reset = Search.id("reset");
@@ -33,9 +30,7 @@ abstract class ACustomerPageHead extends VerticalMenu {
 		this.saveCustomer = Search.id("save");
 	}
 
-	public WebDriver getDriver() {
-		return driver;
-	}
+
 
 	public UIMapperForAbstracts getFind() {
 		return find;
@@ -73,9 +68,6 @@ abstract class ACustomerPageHead extends VerticalMenu {
 		return saveCustomer;
 	}
 
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
-	}
 
 	public void setFind(UIMapperForAbstracts find) {
 		this.find = find;

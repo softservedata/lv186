@@ -38,7 +38,7 @@ public class ApplicationAdmin extends Application<AdminLoginPage> {
 
     @Override
     protected AdminLoginPage getStartPage(WebDriver driver) {
-        return new AdminLoginPage(driver);
+        return new AdminLoginPage();
     }
 
     @Override

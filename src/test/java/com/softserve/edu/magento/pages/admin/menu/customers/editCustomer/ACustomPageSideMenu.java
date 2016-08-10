@@ -20,8 +20,8 @@ abstract class ACustomPageSideMenu extends ACustomerPageHead {
 	protected List<WebElement> changesMade;
 	protected boolean areChangesMade = false;
 	
-	protected ACustomPageSideMenu(WebDriver driver){
-		super(driver);
+	protected ACustomPageSideMenu(){
+
 		this.custommerView = Search.id("tab_block_customer_edit_tab_view");
 		this.accountInfo = Search.id("tab_customer");
 		this.adresses = Search.id("tab_address");

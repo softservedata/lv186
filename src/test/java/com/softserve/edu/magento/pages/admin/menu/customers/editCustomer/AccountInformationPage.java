@@ -1,9 +1,10 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class AccountInformationPage extends ACustomPageSideMenu {
 	private Select associateToWebsite;
@@ -32,21 +33,21 @@ public class AccountInformationPage extends ACustomPageSideMenu {
 		}
 	}
 	
-	public AccountInformationPage (WebDriver driver) {
-		super(driver);
-		this.associateToWebsite = new Select(driver.findElement(By.cssSelector("select[name='customer[website_id]']")));
-		this.group = new Select(driver.findElement(By.cssSelector("select[name='customer[group_id]']")));
-		this.chekboxForGroup = driver.findElement(By.xpath("//label[contains(text(),'Disable Automatic ')]"));
-		this.prefix = driver.findElement(By.cssSelector("input[name='customer[prefix]']"));
-		this.firstname = driver.findElement(By.cssSelector("input[name='customer[firstname]']"));
-		this.middlename = driver.findElement(By.cssSelector("input[name='customer[middlename]']"));
-		this.lastname = driver.findElement(By.cssSelector("input[name='customer[lastname]']"));
-		this.suffix = driver.findElement(By.cssSelector("input[name='customer[suffix]']"));
-		this.email = driver.findElement(By.cssSelector("input[name='customer[email]']"));
-		this.dateOfBirth = new Select(driver.findElement(By.cssSelector("input[name='customer[dob]']")));
-		this.tax = driver.findElement(By.cssSelector("input[name='customer[taxvat]']"));
-		this.gender = new Select(driver.findElement(By.cssSelector("select[name='customer[gender]']")));
-		this.sendWelcomeEmailFrom = new Select(driver.findElement(By.cssSelector("select[name='customer[sendemail_store_id]']")));
+	public AccountInformationPage () {
+
+		this.associateToWebsite = new Select(Search.cssSelector("select[name='customer[website_id]']"));
+		this.group = new Select(Search.cssSelector("select[name='customer[group_id]']"));
+		this.chekboxForGroup = Search.xpath("//label[contains(text(),'Disable Automatic ')]");
+		this.prefix = Search.cssSelector("input[name='customer[prefix]']");
+		this.firstname = Search.cssSelector("input[name='customer[firstname]']");
+		this.middlename = Search.cssSelector("input[name='customer[middlename]']");
+		this.lastname = Search.cssSelector("input[name='customer[lastname]']");
+		this.suffix = Search.cssSelector("input[name='customer[suffix]']");
+		this.email = Search.cssSelector("input[name='customer[email]']");
+		this.dateOfBirth = new Select(Search.cssSelector("input[name='customer[dob]']"));
+		this.tax = Search.cssSelector("input[name='customer[taxvat]']");
+		this.gender = new Select(Search.cssSelector("select[name='customer[gender]']"));
+		this.sendWelcomeEmailFrom = new Select(Search.cssSelector("select[name='customer[sendemail_store_id]']"));
 	}
 
 	public Select getAssociateToWebsite() {

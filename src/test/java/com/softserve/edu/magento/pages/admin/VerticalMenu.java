@@ -8,6 +8,7 @@ import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.pages.admin.menu.products.categories.CategoriesPage;
+import com.softserve.edu.magento.tools.Search;
 
 public abstract class VerticalMenu extends ATopPage {
 
@@ -25,15 +26,15 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public SalesComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='Sales']"));
-			this.groupTitle = driver.findElement(By.xpath("//span[text()='Operations']"));
-			this.orders = driver.findElement(By.linkText("Orders"));
-			this.invoices = driver.findElement(By.linkText("Invoices"));
-			this.shipments = driver.findElement(By.linkText("Shipments"));
-			this.creditMemos = driver.findElement(By.linkText("Credit Memos"));
-			this.billingAgreements = driver.findElement(By.linkText("Billing Agreements"));
-			this.transactions = driver.findElement(By.linkText("Transcations"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-sales-sales > div > a"));
+			this.title = Search.xpath("//strong[text()='Sales']");
+			this.groupTitle = Search.xpath("//span[text()='Operations']");
+			this.orders = Search.linkText("Orders");
+			this.invoices = Search.linkText("Invoices");
+			this.shipments = Search.linkText("Shipments");
+			this.creditMemos = Search.linkText("Credit Memos");
+			this.billingAgreements = Search.linkText("Billing Agreements");
+			this.transactions = Search.linkText("Transcations");
+			this.close = Search.cssSelector("#menu-magento-sales-sales > div > a");
 		}
 
 	}
@@ -48,11 +49,11 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public ProductsComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='Products']"));
-			this.groupTitle = driver.findElement(By.xpath("//span[text()='Operations']"));
-			this.catalog = driver.findElement(By.linkText("Catalog"));
-			this.categories = driver.findElement(By.linkText("Categories"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-catalog-catalog > div > a"));
+			this.title = Search.xpath("//strong[text()='Products']");
+			this.groupTitle = Search.xpath("//span[text()='Operations']");
+			this.catalog = Search.linkText("Catalog");
+			this.categories = Search.linkText("Categories");
+			this.close = Search.cssSelector("#menu-magento-catalog-catalog > div > a");
 		}
 
 	}
@@ -66,10 +67,10 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public CustomersComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='Customers']"));
-			this.allCustomers = driver.findElement(By.linkText("All Customers"));
-			this.nowOnline = driver.findElement(By.linkText("Now Online"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-customer-customer > div > a"));
+			this.title = Search.xpath("//strong[text()='Customers']");
+			this.allCustomers = Search.linkText("All Customers");
+			this.nowOnline = Search.linkText("Now Online");
+			this.close = Search.cssSelector("#menu-magento-customer-customer > div > a");
 		}
 
 	}
@@ -96,23 +97,23 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public MarketingComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='Marketing']"));
-			this.groupTitlePromotions = driver.findElement(By.xpath("//strong[text()='Promotions']"));
-			this.groupTitleCommunications = driver.findElement(By.xpath("//span[text()='Communications']"));
-			this.groupTitleSEOAndSearch = driver.findElement(By.xpath("//span[text()='SEO & Search']"));
-			this.groupTitleUserContent = driver.findElement(By.xpath("//span[text()='User Content']"));
-			this.catalogPriceRule = driver.findElement(By.linkText("Catalog Price Rule"));
-			this.cartPriceRules = driver.findElement(By.linkText("Cart Price Rules"));
-			this.emailTemplates = driver.findElement(By.linkText("Email Templates"));
-			this.newsletterTemplate = driver.findElement(By.linkText("Newsletter Template"));
-			this.newsletterQueue = driver.findElement(By.linkText("Newsletter Queue"));
-			this.newsletterSubscribers = driver.findElement(By.linkText("Newsletter Subscribers"));
-			this.URLRewrites = driver.findElement(By.linkText("URL Rewrites"));
-			this.searchTerms = driver.findElement(By.linkText("Search Terms"));
-			this.searchSynonyms = driver.findElement(By.linkText("Search Synonyms"));
-			this.siteMap = driver.findElement(By.linkText("Site Map"));
-			this.reviews = driver.findElement(By.linkText("Reviews"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-backend-marketing > div > a"));
+			this.title = Search.xpath("//strong[text()='Marketing']");
+			this.groupTitlePromotions = Search.xpath("//strong[text()='Promotions']");
+			this.groupTitleCommunications = Search.xpath("//span[text()='Communications']");
+			this.groupTitleSEOAndSearch = Search.xpath("//span[text()='SEO & Search']");
+			this.groupTitleUserContent = Search.xpath("//span[text()='User Content']");
+			this.catalogPriceRule = Search.linkText("Catalog Price Rule");
+			this.cartPriceRules = Search.linkText("Cart Price Rules");
+			this.emailTemplates = Search.linkText("Email Templates");
+			this.newsletterTemplate = Search.linkText("Newsletter Template");
+			this.newsletterQueue = Search.linkText("Newsletter Queue");
+			this.newsletterSubscribers = Search.linkText("Newsletter Subscribers");
+			this.URLRewrites = Search.linkText("URL Rewrites");
+			this.searchTerms = Search.linkText("Search Terms");
+			this.searchSynonyms = Search.linkText("Search Synonyms");
+			this.siteMap = Search.linkText("Site Map");
+			this.reviews = Search.linkText("Reviews");
+			this.close = Search.cssSelector("#menu-magento-backend-marketing > div > a");
 
 		}
 
@@ -133,16 +134,16 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public ContentComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='Content']"));
-			this.groupTitleElements = driver.findElement(By.xpath("//strong[text()='Elements']"));
-			this.groupTitleDesign = driver.findElement(By.xpath("//span[text()='Design']"));
-			this.pages = driver.findElement(By.linkText("Pages"));
-			this.blocks = driver.findElement(By.linkText("Blocks"));
-			this.widgets = driver.findElement(By.linkText("Widgets"));
-			this.configuration = driver.findElement(By.linkText("Configuration"));
-			this.themes = driver.findElement(By.linkText("Themes"));
-			this.schedule = driver.findElement(By.linkText("Schedule"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-backend-content > div > a"));
+			this.title = Search.xpath("//strong[text()='Content']");
+			this.groupTitleElements = Search.xpath("//strong[text()='Elements']");
+			this.groupTitleDesign = Search.xpath("//span[text()='Design']");
+			this.pages = Search.linkText("Pages");
+			this.blocks = Search.linkText("Blocks");
+			this.widgets = Search.linkText("Widgets");
+			this.configuration = Search.linkText("Configuration");
+			this.themes = Search.linkText("Themes");
+			this.schedule = Search.linkText("Schedule");
+			this.close = Search.cssSelector("#menu-magento-backend-content > div > a");
 		}
 
 	}
@@ -184,37 +185,37 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public ReportsComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='Reports']"));
-			this.groupTitleMarketing = driver.findElement(By.xpath("//strong[text()='Marketing']"));
-			this.groupTitleSales = driver.findElement(By.xpath("//span[text()='Sales']"));
-			this.groupTitleReviews = driver.findElement(By.xpath("//strong[text()='Reviews']"));
-			this.groupTitleCustomers = driver.findElement(By.xpath("//span[text()='Customers']"));
-			this.groupTitleProducts = driver.findElement(By.xpath("//strong[text()='Products']"));
-			this.groupTitleStatistics = driver.findElement(By.xpath("//span[text()='Statistics']"));
-			this.productsInCart = driver.findElement(By.linkText("Products in Cart"));
-			this.searchTerms = driver.findElement(By.linkText("Search Terms"));
-			this.abandonedCarts = driver.findElement(By.linkText("Abandoned Carts"));
-			this.newsletterProblemReports = driver.findElement(By.linkText("Newsletter Problem Reports"));
-			this.byCustomers = driver.findElement(By.linkText("By Customers"));
-			this.byProducts = driver.findElement(By.linkText("By Products"));
-			this.orders = driver.findElement(By.linkText("Orders"));
-			this.tax = driver.findElement(By.linkText("Pages"));
-			this.invoiced = driver.findElement(By.linkText("Invoiced"));
-			this.shipping = driver.findElement(By.linkText("Shipping"));
-			this.refunds = driver.findElement(By.linkText("Refunds"));
-			this.coupons = driver.findElement(By.linkText("Coupons"));
-			this.payPalSettlement = driver.findElement(By.linkText("PayPal Settlement"));
-			this.braintreeSettlement = driver.findElement(By.linkText("Braintree Settlement"));
-			this.orderTotal = driver.findElement(By.linkText("Order Total"));
-			this.orderCount = driver.findElement(By.linkText("Order Count"));
-			this.newOne = driver.findElement(By.linkText("New"));
-			this.views = driver.findElement(By.linkText("Views"));
-			this.bestsellers = driver.findElement(By.linkText("Pages"));
-			this.lowStock = driver.findElement(By.linkText("Low Stock"));
-			this.ordered = driver.findElement(By.linkText("Ordered"));
-			this.downloads = driver.findElement(By.linkText("Downloads"));
-			this.refreshStatistics = driver.findElement(By.linkText("Refresh Statistics"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-reports-report > div > a"));
+			this.title = Search.xpath("//strong[text()='Reports']");
+			this.groupTitleMarketing = Search.xpath("//strong[text()='Marketing']");
+			this.groupTitleSales = Search.xpath("//span[text()='Sales']");
+			this.groupTitleReviews = Search.xpath("//strong[text()='Reviews']");
+			this.groupTitleCustomers = Search.xpath("//span[text()='Customers']");
+			this.groupTitleProducts = Search.xpath("//strong[text()='Products']");
+			this.groupTitleStatistics = Search.xpath("//span[text()='Statistics']");
+			this.productsInCart = Search.linkText("Products in Cart");
+			this.searchTerms = Search.linkText("Search Terms");
+			this.abandonedCarts = Search.linkText("Abandoned Carts");
+			this.newsletterProblemReports = Search.linkText("Newsletter Problem Reports");
+			this.byCustomers = Search.linkText("By Customers");
+			this.byProducts = Search.linkText("By Products");
+			this.orders = Search.linkText("Orders");
+			this.tax = Search.linkText("Pages");
+			this.invoiced = Search.linkText("Invoiced");
+			this.shipping = Search.linkText("Shipping");
+			this.refunds = Search.linkText("Refunds");
+			this.coupons = Search.linkText("Coupons");
+			this.payPalSettlement = Search.linkText("PayPal Settlement");
+			this.braintreeSettlement = Search.linkText("Braintree Settlement");
+			this.orderTotal = Search.linkText("Order Total");
+			this.orderCount = Search.linkText("Order Count");
+			this.newOne = Search.linkText("New");
+			this.views = Search.linkText("Views");
+			this.bestsellers = Search.linkText("Pages");
+			this.lowStock = Search.linkText("Low Stock");
+			this.ordered = Search.linkText("Ordered");
+			this.downloads = Search.linkText("Downloads");
+			this.refreshStatistics = Search.linkText("Refresh Statistics");
+			this.close = Search.cssSelector("#menu-magento-reports-report > div > a");
 		}
 
 	}
@@ -243,25 +244,25 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public StoresComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='Reports']"));
-			this.groupTitleSettings = driver.findElement(By.xpath("//strong[text()='Settings']"));
-			this.groupTitleAttributes = driver.findElement(By.xpath("//span[text()='Attributes']"));
-			this.groupTitleTaxes = driver.findElement(By.xpath("//strong[text()='Taxes']"));
-			this.groupTitleCurrency = driver.findElement(By.xpath("//span[text()='Currency']"));
-			this.groupTitleOtherSettings = driver.findElement(By.xpath("//strong[text()='Other Settings']"));
-			this.allStores = driver.findElement(By.linkText("All Stores"));
-			this.configuration = driver.findElement(By.linkText("Configuration"));
-			this.termsAndConditions = driver.findElement(By.linkText("Terms and Conditions"));
-			this.orderStatus = driver.findElement(By.linkText("Order Status"));
-			this.taxRules = driver.findElement(By.linkText("Tax Rules"));
-			this.taxZonesAndRates = driver.findElement(By.linkText("Tax Zones and Rates"));
-			this.currencyRates = driver.findElement(By.linkText("Currency Rates"));
-			this.currencySymbols = driver.findElement(By.linkText("Currency Symbols"));
-			this.product = driver.findElement(By.linkText("Product"));
-			this.attributeSet = driver.findElement(By.linkText("Attribute Set"));
-			this.rating = driver.findElement(By.linkText("Rating"));
-			this.customerGroups = driver.findElement(By.linkText("Customer Groups"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-backend-stores > div > a"));
+			this.title = Search.xpath("//strong[text()='Reports']");
+			this.groupTitleSettings = Search.xpath("//strong[text()='Settings']");
+			this.groupTitleAttributes = Search.xpath("//span[text()='Attributes']");
+			this.groupTitleTaxes = Search.xpath("//strong[text()='Taxes']");
+			this.groupTitleCurrency = Search.xpath("//span[text()='Currency']");
+			this.groupTitleOtherSettings = Search.xpath("//strong[text()='Other Settings']");
+			this.allStores = Search.linkText("All Stores");
+			this.configuration = Search.linkText("Configuration");
+			this.termsAndConditions = Search.linkText("Terms and Conditions");
+			this.orderStatus = Search.linkText("Order Status");
+			this.taxRules = Search.linkText("Tax Rules");
+			this.taxZonesAndRates = Search.linkText("Tax Zones and Rates");
+			this.currencyRates = Search.linkText("Currency Rates");
+			this.currencySymbols = Search.linkText("Currency Symbols");
+			this.product = Search.linkText("Product");
+			this.attributeSet = Search.linkText("Attribute Set");
+			this.rating = Search.linkText("Rating");
+			this.customerGroups = Search.linkText("Customer Groups");
+			this.close = Search.cssSelector("#menu-magento-backend-stores > div > a");
 		}
 
 	}
@@ -293,28 +294,28 @@ public abstract class VerticalMenu extends ATopPage {
 		public final WebElement close;
 
 		public SystemComponent() {
-			this.title = driver.findElement(By.xpath("//strong[text()='System']"));
-			this.groupTitleDataTransfer = driver.findElement(By.xpath("//strong[text()='Data Transfer']"));
-			this.groupTitleExtensions = driver.findElement(By.xpath("//span[text()='Extensions']"));
-			this.groupTitleTools = driver.findElement(By.xpath("//strong[text()='Tools']"));
-			this.groupTitlePermissions = driver.findElement(By.xpath("//span[text()='Permissions']"));
-			this.groupTitleOtherSettings = driver.findElement(By.xpath("//strong[text()='Other Settings']"));
-			this.importOne = driver.findElement(By.linkText("Import"));
-			this.export = driver.findElement(By.linkText("Export"));
-			this.importExportTaxRates = driver.findElement(By.linkText("Import/Export Tax Rates"));
-			this.importHistory = driver.findElement(By.linkText("Import History"));
-			this.integrations = driver.findElement(By.linkText("Integrations"));
-			this.cacheManagement = driver.findElement(By.linkText("Cache Management"));
-			this.backups = driver.findElement(By.linkText("Backups"));
-			this.indexManagement = driver.findElement(By.linkText("Index Management"));
-			this.webSetupWizard = driver.findElement(By.linkText("Web Setup Wizard"));
-			this.allUsers = driver.findElement(By.linkText("All Users"));
-			this.lockedUsers = driver.findElement(By.linkText("Locked Users"));
-			this.userRoles = driver.findElement(By.linkText("User Roles"));
-			this.notifications = driver.findElement(By.linkText("Notifications"));
-			this.customVariables = driver.findElement(By.linkText("Custom Variables"));
-			this.manageEncryptionKey = driver.findElement(By.linkText("Manage Encryption Key"));
-			this.close = driver.findElement(By.cssSelector("#menu-magento-backend-system > div > a"));
+			this.title = Search.xpath("//strong[text()='System']");
+			this.groupTitleDataTransfer = Search.xpath("//strong[text()='Data Transfer']");
+			this.groupTitleExtensions = Search.xpath("//span[text()='Extensions']");
+			this.groupTitleTools = Search.xpath("//strong[text()='Tools']");
+			this.groupTitlePermissions = Search.xpath("//span[text()='Permissions']");
+			this.groupTitleOtherSettings = Search.xpath("//strong[text()='Other Settings']");
+			this.importOne = Search.linkText("Import");
+			this.export = Search.linkText("Export");
+			this.importExportTaxRates = Search.linkText("Import/Export Tax Rates");
+			this.importHistory = Search.linkText("Import History");
+			this.integrations = Search.linkText("Integrations");
+			this.cacheManagement = Search.linkText("Cache Management");
+			this.backups = Search.linkText("Backups");
+			this.indexManagement = Search.linkText("Index Management");
+			this.webSetupWizard = Search.linkText("Web Setup Wizard");
+			this.allUsers = Search.linkText("All Users");
+			this.lockedUsers = Search.linkText("Locked Users");
+			this.userRoles = Search.linkText("User Roles");
+			this.notifications = Search.linkText("Notifications");
+			this.customVariables = Search.linkText("Custom Variables");
+			this.manageEncryptionKey = Search.linkText("Manage Encryption Key");
+			this.close = Search.cssSelector("#menu-magento-backend-system > div > a");
 		}
 
 	}
@@ -346,19 +347,18 @@ public abstract class VerticalMenu extends ATopPage {
 	private StoresComponent storesMenu;
 	private SystemComponent systemMenu;
 
-	protected VerticalMenu(WebDriver driver) {
-		super(driver);
-		this.logo = driver.findElement(By.cssSelector(".logo-img"));
-		this.dashboard = driver.findElement(By.xpath("//*[@id='menu-magento-backend-dashboard']/a"));
-		this.sales = driver.findElement(By.xpath("//*[@id='menu-magento-sales-sales']/a"));
-		this.products = driver.findElement(By.xpath("//*[@id='menu-magento-catalog-catalog']/a"));
-		this.customers = driver.findElement(By.xpath("//*[@id='menu-magento-customer-customer']/a"));
-		this.marketing = driver.findElement(By.xpath("//*[@id='menu-magento-backend-marketing']/a"));
-		this.content = driver.findElement(By.xpath("//*[@id='menu-magento-backend-content']/a"));
-		this.reports = driver.findElement(By.xpath("//*[@id='menu-magento-reports-report']/a"));
-		this.stores = driver.findElement(By.xpath("//*[@id='menu-magento-backend-stores']/a"));
-		this.system = driver.findElement(By.xpath("//*[@id='menu-magento-backend-system']/a"));
-		this.findPartners = driver.findElement(By.xpath("//*[@id='menu-magento-marketplace-partners']/a"));
+	protected VerticalMenu() {
+		this.logo = Search.cssSelector(".logo-img");
+		this.dashboard = Search.xpath("//*[@id='menu-magento-backend-dashboard']/a");
+		this.sales = Search.xpath("//*[@id='menu-magento-sales-sales']/a");
+		this.products = Search.xpath("//*[@id='menu-magento-catalog-catalog']/a");
+		this.customers = Search.xpath("//*[@id='menu-magento-customer-customer']/a");
+		this.marketing = Search.xpath("//*[@id='menu-magento-backend-marketing']/a");
+		this.content = Search.xpath("//*[@id='menu-magento-backend-content']/a");
+		this.reports = Search.xpath("//*[@id='menu-magento-reports-report']/a");
+		this.stores = Search.xpath("//*[@id='menu-magento-backend-stores']/a");
+		this.system = Search.xpath("//*[@id='menu-magento-backend-system']/a");
+		this.findPartners = Search.xpath("//*[@id='menu-magento-marketplace-partners']/a");
 
 	}
 
@@ -1437,13 +1437,13 @@ public abstract class VerticalMenu extends ATopPage {
 	public DashboardPage gotoHomePage() {
 		clickLogo();
 		// Return a new page object representing the destination.
-		return new DashboardPage(driver);
+		return new DashboardPage();
 	}
 
 	public DashboardPage gotoDashboardPage() {
 		clickMenuDashboard();
 		// Return a new page object representing the destination.
-		return new DashboardPage(driver);
+		return new DashboardPage();
 	}
 
 	// -----------------Sales---------------
@@ -1465,13 +1465,13 @@ public abstract class VerticalMenu extends ATopPage {
 
 	public ProductCatalogPage gotoProductCatalogPage() {
 		clickMenuProductsCatalog();
-		return new ProductCatalogPage(driver);
+		return new ProductCatalogPage();
 	}
 
 
 	 public CategoriesPage gotoCategoriesPage() {
 		 clickMenuProductsCategories();
-		 return new CategoriesPage(driver);
+		 return new CategoriesPage();
 	 }
 
 
@@ -1479,7 +1479,7 @@ public abstract class VerticalMenu extends ATopPage {
 
 	public AllCustomersPage gotoAllCustomersPage() {
 		clickMenuCustomersAllCustomers();
-		return new AllCustomersPage(driver);
+		return new AllCustomersPage();
 	}
 
 	/*

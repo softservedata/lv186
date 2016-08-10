@@ -7,11 +7,12 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
+import com.softserve.edu.magento.tools.Search;
 
 public class AdminLoginPage {
 
     // Fields
-    protected WebDriver driver;
+    //protected WebDriver driver;
     //
     private WebElement usernameLabel;
     private WebElement usernameInput;
@@ -19,13 +20,13 @@ public class AdminLoginPage {
     private WebElement passwordInput;
     private WebElement signin;
 
-    public AdminLoginPage(WebDriver driver) {
-        this.driver = driver;
-        this.usernameLabel = driver.findElement(By.xpath("//*[@for='username']/span"));
-        this.usernameInput = driver.findElement(By.id("username"));
-        this.passwordLabel = driver.findElement(By.xpath("//*[@for='login']/span"));
-        this.passwordInput = driver.findElement(By.id("login"));
-        this.signin = driver.findElement(By.cssSelector("button.action-login.action-primary"));
+    public AdminLoginPage() {
+
+        this.usernameLabel = Search.xpath("//*[@for='username']/span");
+        this.usernameInput = Search.id("username");
+        this.passwordLabel = Search.xpath("//*[@for='login']/span");
+        this.passwordInput = Search.id("login");
+        this.signin = Search.cssSelector("button.action-login.action-primary");
     }
 
     // PageObject
@@ -127,17 +128,17 @@ public class AdminLoginPage {
     public DashboardPage successAdminLogin(IAdminUser admin) {
         setLoginData(admin);
         // Return a new page object representing the destination.
-        return new DashboardPage(driver);
+        return new DashboardPage();
     }
     public EditCustomerPage successEditCustomer(IAdminUser admin) {
         setLoginData(admin);
         // Return a new page object representing the destination.
-        return new EditCustomerPage(driver);
+        return new EditCustomerPage();
     }
 
     public AdminLoginValidatorPage unsuccessfulLogin(IAdminUser invalidUser) {
         setLoginData(invalidUser);
-        return new AdminLoginValidatorPage(driver); // return this;
+        return new AdminLoginValidatorPage(); // return this;
     }
 
 }

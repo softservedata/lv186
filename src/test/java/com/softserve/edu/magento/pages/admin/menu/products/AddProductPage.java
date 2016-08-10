@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.http.util.TextUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.softserve.edu.magento.data.admin.products.IProduct;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
+import com.softserve.edu.magento.tools.Search;
 
 public class AddProductPage extends VerticalMenu {
 
@@ -30,23 +30,20 @@ public class AddProductPage extends VerticalMenu {
 	private WebElement priceInput;
 	private WebElement quantityInput;
 
-	public AddProductPage(WebDriver driver) {
-		super(driver);
-		saveButton = driver.findElement(By.id("save-button"));
-		saveDropdownToggle = driver.findElement(By.cssSelector("button[title=Save]:nth-child(2)"));
-		saveAndNewButton = driver.findElement(By.id("save_and_new"));
-		saveAndDuplicateButton = driver.findElement(By.id("save_and_duplicate"));
-		saveAndCloseButton = driver.findElement(By.id("save_and_close"));
-		backButton = driver.findElement(By.id("back"));
-		addAttributeButton = driver.findElement(By.id("addAttribute"));
-		enableProductButton = driver
-				.findElement(By.xpath("//*[@id='container']/div/div[2]/div[1]/div/fieldset/div[1]/div/div"));
-		attributeSetInput = driver.findElement(By.xpath("//*[@id='container']/div/div[2]/div[1]/div/fieldset/div[2]"));
-		productNameInput = driver.findElement(By.cssSelector("input[name='product[name]']"));
-		skuInput = driver.findElement(By.cssSelector("input[name='product[sku]']"));
-		priceInput = driver.findElement(By.cssSelector("input[name='product[price]']"));
-		quantityInput = driver.findElement(
-				By.cssSelector(".admin__field-small input[name='product[quantity_and_stock_status][qty]']"));
+	public AddProductPage() {
+		saveButton = Search.id("save-button");
+		saveDropdownToggle = Search.cssSelector("button[title=Save]:nth-child(2)");
+		saveAndNewButton = Search.id("save_and_new");
+		saveAndDuplicateButton = Search.id("save_and_duplicate");
+		saveAndCloseButton = Search.id("save_and_close");
+		backButton = Search.id("back");
+		addAttributeButton = Search.id("addAttribute");
+		enableProductButton = Search.xpath("//*[@id='container']/div/div[2]/div[1]/div/fieldset/div[1]/div/div");
+		attributeSetInput = Search.xpath("//*[@id='container']/div/div[2]/div[1]/div/fieldset/div[2]");
+		productNameInput = Search.cssSelector("input[name='product[name]']");
+		skuInput = Search.cssSelector("input[name='product[sku]']");
+		priceInput = Search.cssSelector("input[name='product[price]']");
+		quantityInput = Search.cssSelector(".admin__field-small input[name='product[quantity_and_stock_status][qty]']");
 	}
 
 	// Getters
@@ -162,12 +159,12 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public void clickSaveButton() {
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(getSaveButton()));
+		//(new WebDriverWait(Search, 10).until(ExpectedConditions.elementToBeClickable(getSaveButton());
 		getSaveButton().click();
 	}
 
 	public void clickSaveDropdownToggle() {
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(getSaveDropdownToggle()));
+		//(new WebDriverWait(Search, 10).until(ExpectedConditions.elementToBeClickable(getSaveDropdownToggle());
 		getSaveDropdownToggle().click();
 	}
 
@@ -225,8 +222,8 @@ public class AddProductPage extends VerticalMenu {
 
 	public void setAttributeSet(String attributeSet) {
 		attributeSetInput.click();
-		List<WebElement> listsOfDropdownItems = driver
-				.findElements(By.className("admin__action-multiselect-menu-inner"));
+		List<WebElement> listsOfDropdownItems = Search
+				.classNames("admin__action-multiselect-menu-inner");
 		WebElement listOfAttributeSets = listsOfDropdownItems.get(0);
 		List<WebElement> attributeSetValues = listOfAttributeSets
 				.findElements(By.className("admin__action-multiselect-label"));
@@ -242,66 +239,66 @@ public class AddProductPage extends VerticalMenu {
 
 	public ProductCatalogPage returnToProductPage() {
 		clickBackButton();
-		return new ProductCatalogPage(driver);
+		return new ProductCatalogPage();
 	}
 
 	public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
 		clickSaveButton();
-		return new SuccessProductSavePage(driver);
+		return new SuccessProductSavePage();
 	}
 
 	public SuccessProductSavePage gotoSuccessProductSavePageAfterSaveAndNew() {
 		clickSaveAndNewButton();
-		return new SuccessProductSavePage(driver);
+		return new SuccessProductSavePage();
 	}
 
 	public SuccessProductSaveAndDuplicatePage gotoSuccessProductSaveAndDuplicatePage() {
 		clickSaveButton();
-		return new SuccessProductSaveAndDuplicatePage(driver);
+		return new SuccessProductSaveAndDuplicatePage();
 	}
 
 	public ProductCatalogPage gotoProductCatalogPage() {
 		clickSaveAndCloseButton();
-		return new ProductCatalogPage(driver);
+		return new ProductCatalogPage();
 	}
 
 	public ProductExistsPage gotoProductExistsPageAfterSave() {
 		clickSaveButton();
-		return new ProductExistsPage(driver);
+		return new ProductExistsPage();
 	}
 
 	public ProductExistsPage gotoProductExistsPageAfterSaveAndNew() {
 		clickSaveAndNewButton();
-		return new ProductExistsPage(driver);
+		return new ProductExistsPage();
 	}
 
 	public ProductExistsPage gotoProductExistsPageAfterSaveAndDuplicate() {
 		clickSaveAndDuplicateButton();
-		return new ProductExistsPage(driver);
+		return new ProductExistsPage();
 	}
 
 	public ProductExistsPage gotoProductExistsPageAfterSaveAndClose() {
 		clickSaveAndCloseButton();
-		return new ProductExistsPage(driver);
+		return new ProductExistsPage();
 	}
 
 	public ProductValidatorPage gotoProductValidatorPageAfterSave() {
 		clickSaveButton();
-		return new ProductValidatorPage(driver);
+		return new ProductValidatorPage();
 	}
 
 	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndNew() {
 		clickSaveAndNewButton();
-		return new ProductValidatorPage(driver);
+		return new ProductValidatorPage();
 	}
 
 	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndDuplicate() {
 		clickSaveAndDuplicateButton();
-		return new ProductValidatorPage(driver);
+		return new ProductValidatorPage();
 	}
 
 	public ProductValidatorPage gotoProductValidatorPageAfterSaveAndClose() {
 		clickSaveAndCloseButton();
-		return new ProductValidatorPage(driver);
+		return new ProductValidatorPage();
 	}
 }

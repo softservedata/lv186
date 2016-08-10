@@ -1,16 +1,17 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class ProductExistsPage extends AddProductPage {
 
 	private WebElement productAlreadyExists;
 
-	public ProductExistsPage(WebDriver driver) {
-		super(driver);
-		productAlreadyExists = driver.findElement(By.cssSelector("messages message-error"));
+	public ProductExistsPage() {
+
+		productAlreadyExists = Search.cssSelector("messages message-error");
 	}
 
 	// Getters

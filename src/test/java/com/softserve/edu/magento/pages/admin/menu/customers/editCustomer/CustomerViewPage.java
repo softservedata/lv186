@@ -1,8 +1,9 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class CustomerViewPage extends ACustomPageSideMenu {
 
@@ -34,23 +35,23 @@ public class CustomerViewPage extends ACustomPageSideMenu {
 	private WebElement DefaultBillingAddress;
 	
 	
-	public CustomerViewPage(WebDriver driver) {
-		super(driver);
-		this.LastLoggedInfo = driver.findElement(By
-				.xpath("//th[contains(text(), '"+ Labels.FIRST_FIELD.toString()+"')]//following-sibling::td"));
-		this.AccountLockedInInfo = driver.findElement(By
-				.xpath("//th[contains(text(), '"+ Labels.SECOND_FIELD.toString()+"')]//following-sibling::td"));
-		this.ConfirmedEmailInfo = driver.findElement(By
-				.xpath("//th[contains(text(), '"+ Labels.THIRD_FIELD.toString()+"')]//following-sibling::td"));
-		this.AccountCreatedInfo = driver.findElement(By
-				.xpath("//th[contains(text(), '"+ Labels.FOURTH_FIELD.toString()+"')]//following-sibling::td"));
-		this.AccountCreatedInInfo = driver.findElement(By
-				.xpath("//th[contains(text(), '"+ Labels.FIFTH_FIELD.toString()+"')]//following-sibling::td"));
-		this.CustomerGroupInfo = driver.findElement(By
-				.xpath("//th[contains(text(), '"+ Labels.SIXTH_FIELD.toString()+"')]//following-sibling::td"));
+	public CustomerViewPage() {
+
+		this.LastLoggedInfo = Search
+				.xpath("//th[contains(text(), '"+ Labels.FIRST_FIELD.toString()+"')]//following-sibling::td");
+		this.AccountLockedInInfo = Search
+				.xpath("//th[contains(text(), '"+ Labels.SECOND_FIELD.toString()+"')]//following-sibling::td");
+		this.ConfirmedEmailInfo = Search
+				.xpath("//th[contains(text(), '"+ Labels.THIRD_FIELD.toString()+"')]//following-sibling::td");
+		this.AccountCreatedInfo = Search
+				.xpath("//th[contains(text(), '"+ Labels.FOURTH_FIELD.toString()+"')]//following-sibling::td");
+		this.AccountCreatedInInfo = Search
+				.xpath("//th[contains(text(), '"+ Labels.FIFTH_FIELD.toString()+"')]//following-sibling::td");
+		this.CustomerGroupInfo = Search
+				.xpath("//th[contains(text(), '"+ Labels.SIXTH_FIELD.toString()+"')]//following-sibling::td");
 		// TODO
-		this.CustomerGroupInfo = driver.findElement(By
-				.xpath("//th[contains(text(), '"+ Labels.SIXTH_FIELD.toString()+"')]//following-sibling::td"));
+		this.CustomerGroupInfo = Search
+				.xpath("//th[contains(text(), '"+ Labels.SIXTH_FIELD.toString()+"')]//following-sibling::td");
 	}
 	
 }

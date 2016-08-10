@@ -11,7 +11,7 @@ import com.softserve.edu.magento.tools.Search;
 public class AdminLoginSearchPage {
 
     // Fields
-    protected WebDriver driver;
+
     //
     private WebElement usernameLabel;
     private WebElement usernameInput;
@@ -19,14 +19,7 @@ public class AdminLoginSearchPage {
     private WebElement passwordInput;
     private WebElement signin;
 
-    public AdminLoginSearchPage(WebDriver driver) {
-        this.driver = driver;
-        this.usernameLabel = Search.xpath("//*[@for='username']/span");
-        this.usernameInput = Search.id("username");
-        this.passwordLabel = Search.xpath("//*[@for='login']/span");
-        this.passwordInput = Search.id("login");
-        this.signin = Search.cssSelector("button.action-login.action-primary");
-    }
+
 
     public AdminLoginSearchPage() {
         this.usernameLabel = Search.xpath("//*[@for='username']/span");
@@ -135,17 +128,17 @@ public class AdminLoginSearchPage {
     public DashboardPage successAdminLogin(IAdminUser admin) {
         setLoginData(admin);
         // Return a new page object representing the destination.
-        return new DashboardPage(driver);
+        return new DashboardPage();
     }
     public EditCustomerPage successEditCustomer(IAdminUser admin) {
         setLoginData(admin);
         // Return a new page object representing the destination.
-        return new EditCustomerPage(driver);
+        return new EditCustomerPage();
     }
 
     public AdminLoginValidatorPage unsuccessfulLogin(IAdminUser invalidUser) {
         setLoginData(invalidUser);
-        return new AdminLoginValidatorPage(driver); // return this;
+        return new AdminLoginValidatorPage(); // return this;
     }
 
 }

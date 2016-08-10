@@ -1,9 +1,10 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class AdressesPage extends ACustomPageSideMenu {
 	private WebElement addNewAddresses;
@@ -26,27 +27,26 @@ public class AdressesPage extends ACustomPageSideMenu {
 	private WebElement phone;
 	private WebElement vat;
 	
-	public AdressesPage (WebDriver driver) {
-		super(driver);
-		this.addNewAddresses = driver.findElement(By.xpath("//span[contains(text(),'Add New Addresses')]"));
-		this.address = driver.findElement(By.cssSelector("address"));
-		this.deleteButton = driver.findElement(By.cssSelector(".action-delete"));
-		this.defaultBillingCHK = driver.findElement(By.cssSelector("input[name='address[3][default_billing]']")); 
-		this.defaultShippingCHK = driver.findElement(By.cssSelector("input[name='address[3][default_shipping]']")); 
-		this.prefix = driver.findElement(By.cssSelector("input[name='address[3][prefix]']"));
-		this.firstname = driver.findElement(By.cssSelector("input[name='address[3][firstname]']"));
-		this.middlename = driver.findElement(By.cssSelector("input[name='address[3][middlename]']"));
-		this.lastname = driver.findElement(By.cssSelector("input[name='address[3][lastname]']"));
-		this.suffix = driver.findElement(By.cssSelector("input[name='address[3][suffix]']"));
-		this.company = driver.findElement(By.cssSelector("input[name='address[3][company]']")); 
-		this.streetAdressFirst = driver.findElement(By.cssSelector("input[name='address[3][street][0]']")); 
-		this.streetAdressSecond = driver.findElement(By.cssSelector("input[name='address[3][street][1]']")); 
-		this.city = driver.findElement(By.cssSelector("input[name='address[3][city]']")); 
-		this.country = new Select(driver.findElement(By.cssSelector("input[name='address[3][country_id]']")));  
-		this.state = driver.findElement(By.cssSelector("input[name='address[3][region]']")); 
-		this.zip = driver.findElement(By.cssSelector("input[name='address[3][postcode]']"));  
-		this.phone = driver.findElement(By.cssSelector("input[name='address[3][telephone]']"));  
-		this.vat = driver.findElement(By.cssSelector("input[name='address[3][vat_id]']")); 
+	public AdressesPage () {
+		this.addNewAddresses = Search.xpath("//span[contains(text(),'Add New Addresses')]");
+		this.address = Search.cssSelector("address");
+		this.deleteButton = Search.cssSelector(".action-delete");
+		this.defaultBillingCHK = Search.cssSelector("input[name='address[3][default_billing]']"); 
+		this.defaultShippingCHK = Search.cssSelector("input[name='address[3][default_shipping]']"); 
+		this.prefix = Search.cssSelector("input[name='address[3][prefix]']");
+		this.firstname = Search.cssSelector("input[name='address[3][firstname]']");
+		this.middlename = Search.cssSelector("input[name='address[3][middlename]']");
+		this.lastname = Search.cssSelector("input[name='address[3][lastname]']");
+		this.suffix = Search.cssSelector("input[name='address[3][suffix]']");
+		this.company = Search.cssSelector("input[name='address[3][company]']"); 
+		this.streetAdressFirst = Search.cssSelector("input[name='address[3][street][0]']"); 
+		this.streetAdressSecond = Search.cssSelector("input[name='address[3][street][1]']"); 
+		this.city = Search.cssSelector("input[name='address[3][city]']"); 
+		this.country = new Select(Search.cssSelector("input[name='address[3][country_id]']"));  
+		this.state = Search.cssSelector("input[name='address[3][region]']"); 
+		this.zip = Search.cssSelector("input[name='address[3][postcode]']");  
+		this.phone = Search.cssSelector("input[name='address[3][telephone]']");  
+		this.vat = Search.cssSelector("input[name='address[3][vat_id]']"); 
 	}
 
 	public WebElement getAddNewAddresses() {

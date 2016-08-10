@@ -1,8 +1,8 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class SuccessProductSavePage extends AddProductPage {
 
@@ -10,9 +10,9 @@ public class SuccessProductSavePage extends AddProductPage {
 
 	WebElement successfulProductSaveMessage;
 
-	public SuccessProductSavePage(WebDriver driver) {
-		super(driver);
-		successfulProductSaveMessage = driver.findElement(By.cssSelector("#messages .message-success:first-child"));
+	public SuccessProductSavePage() {
+
+		successfulProductSaveMessage = Search.cssSelector("#messages .message-success:first-child");
 	}
 
 	// Getters
@@ -29,6 +29,6 @@ public class SuccessProductSavePage extends AddProductPage {
 
 	public SuccessProductSavePage gotoSuccessProductSavePage() {
 		clickSaveButton();
-		return new SuccessProductSavePage(driver);
+		return new SuccessProductSavePage();
 	}
 }

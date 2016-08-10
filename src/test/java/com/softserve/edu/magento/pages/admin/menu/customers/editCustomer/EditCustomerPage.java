@@ -35,8 +35,8 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * @param driver
 	 *            Webdriver that runs through test.
 	 */
-	public EditCustomerPage(WebDriver driver) {
-		super(driver);
+	public EditCustomerPage() {
+
 		this.custommerViewAjax = new CustommerView();
 	}
 	
@@ -47,9 +47,9 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * Driver to run through the test.
 	 * @see com.softserve.edu.magento.editCustomer.ACustomerPageHead#getDriver()
 	 */
-	public WebDriver getDriver() {
+/*	public WebDriver getDriver() {
 		return this.driver;
-	}
+	}*/
 
 	public CustommerView getCustommerView() {
 		return this.custommerViewAjax;
@@ -89,9 +89,9 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	/**@param	driver to pass to the page instance.
 	 * @see com.softserve.edu.magento.editCustomer.ACustomerPageHead#setDriver(org.openqa.selenium.WebDriver)
 	 */
-	public void setDriver(WebDriver driver) {
+/*	public void setDriver(WebDriver driver) {
 		this.driver = driver;
-	}
+	}*/
 
 	public void setCustommerView(CustommerView custommerView) {
 		this.custommerViewAjax = custommerView;
@@ -109,8 +109,8 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * Locates the message and inits it.
 	 */
 	public void setSuccessMessage() {
-		this.successMessage = driver.findElement(By
-				.xpath("//div[contains(text(), 'You saved the customer.')]"));
+		this.successMessage = Search
+				.xpath("//div[contains(text(), 'You saved the customer.')]");
 	}
 	
 	/**
@@ -136,7 +136,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	public EditCustomerPage reset() {
 		reset.click();
 		areChangesMade = false;
-		return new EditCustomerPage(driver);
+		return new EditCustomerPage();
 	}
 
 	// TODO CreateOrder PAge
@@ -162,7 +162,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public EditCustomerPage saveAndContinueEdit() {
 		saveAndContinueEdit.click();
-		return new EditCustomerPage(driver);
+		return new EditCustomerPage();
 	}
 	
 	/**
@@ -481,40 +481,40 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 */
 		public void clickAddNewAddresses() {
 			addNewAddresses.click();
-			this.address = driver.findElement(By.cssSelector("address"));
-			this.deleteButton = driver.findElement(By.cssSelector(".action-delete"));
-			this.defaultBillingCHK = driver.findElement(By
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]"));
-			this.defaultShippingCHK = driver.findElement(By
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]"));
-			this.prefix = driver.findElement(By
-							.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]"));
-			this.firstname = driver.findElement(By
-							.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]"));
-			this.middlename = driver.findElement(By
-							.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]"));
-			this.lastname = driver.findElement(By
-							.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]"));
-			this.suffix = driver.findElement(By
-							.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]"));
-			this.company = driver.findElement(By
-							.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input"));
-			this.streetAdressFirst = driver.findElement(By
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input"));
-			this.streetAdressSecond = driver.findElement(By
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]"));
-			this.city = driver.findElement(By
-							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input"));
-			this.country = new Select(driver.findElement(By
-							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select")));
-			this.state = driver.findElement(By
-							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select"));
-			this.zip = driver.findElement(By
-							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input"));
-			this.phone = driver.findElement(By
-							.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input"));
-			this.vat = driver.findElement(By
-							.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input"));
+			this.address = Search.cssSelector("address");
+			this.deleteButton = Search.cssSelector(".action-delete");
+			this.defaultBillingCHK = Search
+							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]");
+			this.defaultShippingCHK = Search
+							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]");
+			this.prefix = Search
+							.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]");
+			this.firstname = Search
+							.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]");
+			this.middlename = Search
+							.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]");
+			this.lastname = Search
+							.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]");
+			this.suffix = Search
+							.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]");
+			this.company = Search
+							.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input");
+			this.streetAdressFirst = Search
+							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input");
+			this.streetAdressSecond = Search
+							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]");
+			this.city = Search
+							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input");
+			this.country = new Select(Search
+							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select"));
+			this.state = Search
+							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select");
+			this.zip = Search
+							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input");
+			this.phone = Search
+							.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input");
+			this.vat = Search
+							.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input");
 		}
 		
 		/*
@@ -728,7 +728,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			super.recordsFound = Search
 					.id("customer_orders_grid_page-limit");
 		//	super.pagination = driver.findElements(By
-		//			.className("admin__data-grid-pager"));
+		//			.className("admin__data-grid-pager");
 			/*
 			 * Inits the components elements
 			 */
@@ -852,8 +852,8 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		if (this.accountInformationAjax == null) {
 			navToAccountInfo();
 		}
-		return driver.findElements(By
-				.cssSelector("div[data-index='customer'] input"));
+		return Search
+				.cssSelectors("div[data-index='customer'] input");
 	}
 
 	/**
@@ -875,6 +875,18 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		custPage.getEditCustomerPage().navToAccountInfo();
 		String saved = getCustomerAllData().get(index).getText();
 		return saved.equals(changed);
+	}
+
+	@Override
+	public WebDriver getDriver() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setDriver(WebDriver driver) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

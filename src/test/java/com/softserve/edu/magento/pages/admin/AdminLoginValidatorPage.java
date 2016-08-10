@@ -1,8 +1,9 @@
 package com.softserve.edu.magento.pages.admin;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.magento.tools.Search;
 
 public class AdminLoginValidatorPage extends AdminLoginPage {
 
@@ -10,10 +11,10 @@ public class AdminLoginValidatorPage extends AdminLoginPage {
 
     private WebElement invalidLoginValidator;
 
-    public AdminLoginValidatorPage(WebDriver driver) {
-        super(driver);
+    public AdminLoginValidatorPage() {
+
         //this.invalidLoginValidator = driver.findElement(By.cssSelector("div.message.message-error.error div"));
-        this.invalidLoginValidator = driver.findElement(By.xpath("//*[@data-ui-id]"));
+        this.invalidLoginValidator = Search.xpath("//*[@data-ui-id]");
     }
 
     // PageObject

@@ -140,17 +140,17 @@ public class AdminLogPage {
     public DashboardPage successAdminLogin(IAdminUser admin) {
         setLoginData(admin);
         // Return a new page object representing the destination.
-        return new DashboardPage(driver);
+        return new DashboardPage();
     }
     public EditCustomerPage successEditCustomer(IAdminUser admin) {
         setLoginData(admin);
         // Return a new page object representing the destination.
-        return new EditCustomerPage(driver);
+        return new EditCustomerPage();
     }
 
     public AdminLoginValidatorPage unsuccessfulLogin(IAdminUser invalidUser) {
         setLoginData(invalidUser);
-        return new AdminLoginValidatorPage(driver); // return this;
+        return new AdminLoginValidatorPage(); // return this;
     }
 
 }

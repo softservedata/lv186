@@ -120,7 +120,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public AllCustomersPage back() {
 		back.click();
-		return new AllCustomersPage(getDriver());
+		return new AllCustomersPage();
 	}
 
 	public void deleteCustomer() {
@@ -173,7 +173,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public AllCustomersPage saveCustomer() {
 		saveCustomer.click();
-		return new AllCustomersPage(getDriver());
+		return new AllCustomersPage();
 	}
 
 	/**

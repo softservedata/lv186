@@ -166,7 +166,7 @@ public class PreSmokeTest {
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
 		Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
-		regNewCust.setCustomerDataInLoginForm(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
+	//	regNewCust.setCustomerDataInLoginForm(CustomerUserRepository.get().NewCustomerRegistrationFromAdminSide());
 		Thread.sleep(5000);
 		applicationAdmin.quit();
 	}

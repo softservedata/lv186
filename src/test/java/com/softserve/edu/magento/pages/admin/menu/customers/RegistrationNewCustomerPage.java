@@ -511,7 +511,7 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
 		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		saveCustomerButtonClick();
-		return new AllCustomersPageAfterSuccesRegistration(driver);
+		return new AllCustomersPageAfterSuccesRegistration();
 	}
 
 	public void setCustomerDataInAddressesForm(ICustomerUser customer) {

@@ -724,7 +724,7 @@ public class AllCustomersPage extends VerticalMenu {
 
 	public RegistrationNewCustomerPage goToRegistrationNewCustomerPage() {
 		getAddNewCustomerButton().click();
-		return new RegistrationNewCustomerPage(driver);
+		return new RegistrationNewCustomerPage();
 	}
 
 	public ColumnsMenuDropdown goToColumnsMenuDropdown() {

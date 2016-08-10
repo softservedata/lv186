@@ -171,25 +171,6 @@ public class PreSmokeTest {
 		applicationAdmin.quit();
 	}
 	
-<<<<<<< HEAD
-	//@Test(dataProvider = "smokeParameters") 
-	public void goToEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-		// Precondition
-		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-
-		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-		System.out.println("luck dashboard");
-	
-		EditCustomerPage ecp = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		System.out.println("luck editcustomer");
-
-		ecp.navToAccountInfo();
-		Assert.assertTrue(ecp.compareFields(ecp.getCustomerAllData().get(8)));
-		applicationAdmin.quit();
-	}
-=======
->>>>>>> branch 'development' of https://github.com/softservedata/lv186.git
-
 	@AfterMethod
 	public void afterMethod() {
 		ApplicationAdmin.signout();

@@ -402,7 +402,7 @@ public class AllCustomersPage extends VerticalMenu {
 		this.taxVatNumberFieldInList = Search.xpath("(//span[text()='Tax VAT Number'])[2]");
 		this.genderFieldInList = Search.xpath("(//span[text()='Gender'])[2]");
 		// written by Andrii
-		this.editList = driver.findElements(By.cssSelector("a[data-repeat-index='0'"));
+		this.editList = Search.cssSelectors("a[data-repeat-index='0'");
 		this.columnsmenudropdown = new ColumnsMenuDropdown();
 		this.actionsdropdownmenu = new ActionsDropDownMenu();
 		this.defaultdropdownmenu = new DefaultViewDropdownMenu();
@@ -556,10 +556,10 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	// written by Andrii
-	public EditCustomerPage getEditCustomerPage() {
-		getEditLink(3).click();
-		return new EditCustomerPage(driver);
-	}
+//	public EditCustomerPage getEditCustomerPage() {
+//		getEditLink(3).click();
+//		return new EditCustomerPage(driver);
+//	}
 
 	// get Data Business Logic
 
@@ -705,9 +705,9 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	public void nameFieldInListClick() {
-		Actions actions = new Actions(driver);
+		//Actions actions = new Actions(driver);
 
-		actions.moveToElement(nameFieldInList).click().perform();
+	//	actions.moveToElement(nameFieldInList).click().perform();
 		// getNameFieldInList().click();
 	}
 
@@ -758,13 +758,13 @@ public class AllCustomersPage extends VerticalMenu {
 		List<WebElement> customers = null;
 		WebElement customer = null;
 		while (!isWebElementFound) {
-			customers = driver.findElements(By.xpath("//div[contains(text(),'" + userName + "')]"));
+			customers = Search.xpaths("//div[contains(text(),'" + userName + "')]");
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
 				System.out.println("++++++++++  FOUNDED !!!!!!!!");
 			} else {
-				List<WebElement> next = driver.findElements(By.xpath(".//*[@class='action-next'][1]"));
+				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
 					next.get(0).click();
 				} else {
@@ -783,13 +783,13 @@ public class AllCustomersPage extends VerticalMenu {
 		List<WebElement> customers = null;
 		WebElement customer = null;
 		while (!isWebElementFound) {
-			customers = driver.findElements(By.xpath("//div[contains(text(),'" + userName + "')]"));
+			customers = Search.xpaths("//div[contains(text(),'" + userName + "')]");
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
 				System.out.println("++++++++++  FOUNDED !!!!!!!!");
 			} else {
-				List<WebElement> next = driver.findElements(By.xpath(".//*[@class='action-next'][1]"));
+				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
 					next.get(0).click();
 				} else {
@@ -805,13 +805,13 @@ public class AllCustomersPage extends VerticalMenu {
 		List<WebElement> customers = null;
 		WebElement customer = null;
 		while (!isWebElementFound) {
-			customers = driver.findElements(By.xpath("(//span[contains(text(),'Name')])[3]"));
+			customers = Search.xpaths("(//span[contains(text(),'Name')])[3]");
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
 				System.out.println("++++++++++  FOUNDED !!!!!!!!");
 			} else {
-				List<WebElement> next = driver.findElements(By.xpath(".//*[@class='action-next'][1]"));
+				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
 					next.get(0).click();
 				} else {
@@ -861,7 +861,7 @@ public class AllCustomersPage extends VerticalMenu {
 	// 23.07.2016--------------------------
 	public List<RowCustomerUser> getTableCustomerUser() {
 		// TODO when there are more that 1 pagetable
-		List<WebElement> rows = driver.findElements(By.className("data-row"));
+		List<WebElement> rows = Search.classNames("data-row");
 		List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
 		for (int i = 0; i < rows.size(); i++) {
 			rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
@@ -971,13 +971,12 @@ public class AllCustomersPage extends VerticalMenu {
 		private WebElement exit;
 
 		public ConfirmDeleteWindow() {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
-			this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
+			//WebDriverWait wait = new WebDriverWait(driver, 10);
+			//this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
 
-			this.buttonOk = driver
-					.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
-			this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
-			this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
+			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
+			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
+			this.exit = Search.cssSelector("header.modal-header button.action-close");
 		}
 
 		public WebElement getWindow() {

@@ -33,28 +33,6 @@ public class Category implements INameCategory, IParent, IEnable, IIncludeInMenu
     //private int LayeredNavigationPrice;
     //private Image image;
     //private String cmsBlock;
-
-    /*HashMap<String, ICategory> categoryMap = new HashMap<String, ICategory>();
-
-    public boolean existCategory (ICategory category){
-        String name = category.getName();
-        for(Map.Entry<String, ICategory> entry: categoryMap.entrySet()){
-            if (name == entry.getValue().getName()){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean existCategoryByName (String name){
-        for(Map.Entry<String, ICategory> entry: categoryMap.entrySet()){
-            if (name == entry.getKey()){
-                return true;
-            }
-        }
-        return false;
-    } */
-
     private Category (){
 
     }

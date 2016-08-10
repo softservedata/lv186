@@ -7,7 +7,7 @@ public class CategoryRepository {
 
     private static volatile CategoryRepository instance = null;
     public static final String CATEGORY_NAME = "Name";
-    public static final String SUBCATEGORY_NAME = "SubName";
+    public static final String SUBCATEGORY_NAME = "Sub";
 
     private CategoryRepository() {
     }

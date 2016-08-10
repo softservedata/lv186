@@ -1,11 +1,9 @@
 package com.softserve.edu.magento.pages.admin.menu.products.categories;
 
-import org.apache.log4j.lf5.viewer.categoryexplorer.CategoryPath;
+import com.softserve.edu.magento.tools.Search;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-
 import com.softserve.edu.magento.pages.admin.AdminLoginPage;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 
@@ -21,10 +19,10 @@ public class CategoriesPage extends VerticalMenu{
         public WebElement cmsBlock;
 
         public ContentComponent(){
-            this.upload = driver.findElement(By.xpath("//input[@name='image']"));
+            this.upload = Search.xpath("//input[@name='image']");
             this.description = new Description();
-            this.wysiwygEditor = driver.findElement(By.xpath("//button[@title='WYSIWYG Editor']"));
-            this.cmsBlock = driver.findElement(By.xpath("//select[@class='admin__control-select' and @name='landing_page']"));
+            this.wysiwygEditor = Search.xpath("//button[@title='WYSIWYG Editor']");
+            this.cmsBlock = Search.xpath("//select[@class='admin__control-select' and @name='landing_page']");
         }
 
 
@@ -42,14 +40,14 @@ public class CategoriesPage extends VerticalMenu{
         public WebElement tree;
 
         public CategoryTree(){
-            this.collapseAll = driver.findElement(By.xpath("//a[text()='Collapse All']"));
-            this.expandAll = driver.findElement(By.xpath("//a[text()='Expand All']"));
-            this.tree = driver.findElement(By.id("tree-div"));
+            this.collapseAll = Search.xpath("//a[text()='Collapse All']");
+            this.expandAll = Search.xpath("//a[text()='Expand All']");
+            this.tree = Search.id("tree-div");
         }
 
         private boolean checkCategoryByName(String name){
             String path = "//li[@class='x-tree-node']//*[contains( text(),'" + name + "')]";
-            if(!driver.findElements(By.xpath(path)).isEmpty()){
+            if(!Search.xpaths(path).isEmpty()){
                 return true;
             }
             return false;
@@ -58,7 +56,7 @@ public class CategoriesPage extends VerticalMenu{
         public WebElement findCategoryByName(String name){
             String path = "//li[@class='x-tree-node']//*[contains( text(),'" + name + "')]";
             if(checkCategoryByName(name)){
-                return driver.findElement(By.xpath(path));
+                return Search.xpath(path);
             }
             return null;
         }
@@ -95,20 +93,20 @@ public class CategoriesPage extends VerticalMenu{
 
     public CategoriesPage(WebDriver driver){
         super(driver);
-        this.title = driver.findElement(By.xpath("//h1[@class='page-title']"));
-        this.save = driver.findElement(By.id("save"));
-        this.addRootCategory = driver.findElement(By.id("add_root_category_button"));
-        this.addSubcategory = driver.findElement(By.id("add_subcategory_button"));
+        this.title = Search.xpath("//h1[@class='page-title']");
+        this.save = Search.id("save");
+        this.addRootCategory = Search.id("add_root_category_button");
+        this.addSubcategory = Search.id("add_subcategory_button");
         this.treeComponent = new CategoryTree();
-        this.enabledCategory = driver.findElement(By.xpath("//input[@type='checkbox' and @name='is_active']"));
-        this.includeInMenu = driver.findElement(By.xpath("//input[@type='checkbox' and @name='include_in_menu']"));
-        this.categoryName = driver.findElement(By.xpath("//input[@type='text' and @name='name' and @class='admin__control-text']"));
-        this.content = driver.findElement(By.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Content')]/../.."));
-        this.displaySettings = driver.findElement(By.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Display Settings')]/../.."));
-        this.searchEngineOptimization = driver.findElement(By.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Search Engine Optimization')]/../.."));
-        this.productsInCategory = driver.findElement(By.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Products in Category')]/../.."));
-        this.design = driver.findElement(By.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Design')]/../.."));
-        this.scheduleDesignUpdate = driver.findElement(By.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Schedule Design Update')]/../.."));
+        this.enabledCategory = Search.xpath("//input[@type='checkbox' and @name='is_active']");
+        this.includeInMenu = Search.xpath("//input[@type='checkbox' and @name='include_in_menu']");
+        this.categoryName = Search.xpath("//input[@type='text' and @name='name' and @class='admin__control-text']");
+        this.content = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Content')]/../..");
+        this.displaySettings = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Display Settings')]/../..");
+        this.searchEngineOptimization = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Search Engine Optimization')]/../..");
+        this.productsInCategory = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Products in Category')]/../..");
+        this.design = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Design')]/../..");
+        this.scheduleDesignUpdate = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Schedule Design Update')]/../..");
         this.delete = null;
         this.message = null;
 
@@ -244,6 +242,10 @@ public class CategoriesPage extends VerticalMenu{
         return getMessage().getText();
     }
 
+    public void initDeleteButton() {
+        this.delete = Search.id("delete");
+    }
+
     //------------ Set Data PageObject -----------------
 
     public void clickSave(){
@@ -301,12 +303,14 @@ public class CategoriesPage extends VerticalMenu{
     }
 
     public void clickDelete() {
-        driver.findElement(By.id("delete")).click();
+        //driver.findElement(By.id("delete")).click();
+        Search.id("delete").click();
         //getDelete().click();
     }
 
     public void clickOkButton(){
-        driver.findElement(By.xpath("//button[@class='action-primary action-accept']")).click();
+        //driver.findElement(By.xpath("//button[@class='action-primary action-accept']")).click();
+        Search.xpath("//button[@class='action-primary action-accept']").click();
     }
 
 
@@ -365,28 +369,13 @@ public class CategoriesPage extends VerticalMenu{
         }
         return null;
     }
+
     public void selectCategory (String name){
         if (checkCategoryByName(name)){
             treeComponent.findCategoryByName(name).click();
-            this.delete = driver.findElement(By.id("delete"));
+            initDeleteButton();
         }
 
     }
-
-    public AdminLoginPage logout(){
-        clickAccountMenu();
-        clickSignOut();
-        return new AdminLoginPage(driver);
-    }
-
-    public void clickAccountMenu(){
-        driver.findElement(By.xpath("//a[@title='My Account']")).click();
-    }
-
-    public void clickSignOut(){
-        driver.findElement(By.xpath("//a[@class='account-signout']")).click();
-    }
-
-
 
 }

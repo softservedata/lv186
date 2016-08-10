@@ -41,6 +41,7 @@ public class CategoryDeleteTest {
         page = page.refresh();
         page.clickDelete();
         page.clickOkButton();
+        page = page.refresh();
         Assert.assertEquals(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME), false);
 
     }

@@ -1,10 +1,9 @@
 package com.softserve.edu.magento.pages.admin.menu.products.categories;
 
 import com.softserve.edu.magento.tools.Search;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
-import com.softserve.edu.magento.pages.admin.AdminLoginPage;
+
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 
 public class CategoriesPage extends VerticalMenu{
@@ -91,8 +90,7 @@ public class CategoriesPage extends VerticalMenu{
     private ScheduleDesignUpdateComponent scheduleDesignUpdateComponent;
 
 
-    public CategoriesPage(WebDriver driver){
-        super(driver);
+    public CategoriesPage(){
         this.title = Search.xpath("//h1[@class='page-title']");
         this.save = Search.id("save");
         this.addRootCategory = Search.id("add_root_category_button");
@@ -117,7 +115,7 @@ public class CategoriesPage extends VerticalMenu{
     //------------ Get Data PageObject -----------
 
     public CategoriesPage refresh(){
-        return new CategoriesPage(driver);
+        return new CategoriesPage();
     }
 
     public WebElement getTitle() {

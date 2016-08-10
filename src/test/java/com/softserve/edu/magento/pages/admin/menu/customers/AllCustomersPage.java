@@ -556,10 +556,10 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	// written by Andrii
-//	public EditCustomerPage getEditCustomerPage() {
-//		getEditLink(3).click();
-//		return new EditCustomerPage(driver);
-//	}
+	public EditCustomerPage getEditCustomerPage() {
+		getEditLink(3).click();
+		return new EditCustomerPage();
+	}
 
 	// get Data Business Logic
 

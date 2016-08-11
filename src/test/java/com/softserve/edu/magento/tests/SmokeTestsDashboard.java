@@ -23,18 +23,19 @@ import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.tools.ParameterUtils;
+import ss.af.reporting.annotations.ServiceReport;
 
-public class SmokeTestsDashboard {
+public class SmokeTestsDashboard extends TestBase {
 
 	@DataProvider(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		return new Object[][] {
-				{ ParameterUtils.get().updateParametersAll(
+				/*{ ParameterUtils.get().updateParametersAll(
 						ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
 						context), AdminUserRepository.get().adminTest(),
-						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() },
+						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() },*/
 				{ ParameterUtils.get().updateParametersAll(
-						ApplicationSourcesRepository.getChromeLocalhostAdmin(),
+						ApplicationSourcesRepository.getChromeLocalhostAdminLinux(),
 						context), AdminUserRepository.get().adminBohdan(),
 						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() } };
 
@@ -42,11 +43,11 @@ public class SmokeTestsDashboard {
 	@DataProvider(parallel = true)
 	public Object[][] smokeParameters2(ITestContext context) {
 		return new Object[][] {
-				{ ParameterUtils.get().updateParametersAll(
+				/*{ ParameterUtils.get().updateParametersAll(
 						ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
-						context), AdminUserRepository.get().adminBohdan() },
+						context), AdminUserRepository.get().adminBohdan() },*/
 				{ ParameterUtils.get().updateParametersAll(
-						ApplicationSourcesRepository.getChromeLocalhostAdmin(),
+						ApplicationSourcesRepository.getChromeLocalhostAdminLinux(),
 						context), AdminUserRepository.get().adminTest() } };
 
 }
@@ -57,17 +58,18 @@ public class SmokeTestsDashboard {
 				{ ParameterUtils.get().updateParametersAll(
 						ApplicationSourcesRepository.getChromeLocalhostCustomer(),
 						context), AdminUserRepository.get().adminBohdan(),
-						ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostAdmin()),
+						ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostAdminLinux()),
 						SearchRepository.get().searchFields() },
-				{ ParameterUtils.get().updateParametersAll(
+				/*{ ParameterUtils.get().updateParametersAll(
 						ApplicationSourcesRepository.getFirefoxLocalhostCustomer(),
 						context), AdminUserRepository.get().adminTest(),
 						ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin()),
-						SearchRepository.get().searchFields() } };
+						SearchRepository.get().searchFields() }*/ };
 
 	}
 	
 	@Test(dataProvider = "smokeParameters")
+	@ServiceReport
 	public void findCustomerFromLastOrders(ApplicationSources applicationSources, IAdminUser adminUser,
 			ICustomerUser customerUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);

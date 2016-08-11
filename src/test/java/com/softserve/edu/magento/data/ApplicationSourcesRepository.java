@@ -19,7 +19,12 @@ public final class ApplicationSourcesRepository {
                 "http://192.168.195.210/magento/admin",
                 new String());
     }
-
+    public static ApplicationSources getChromeLocalhostAdminLinux() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "/home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento/admin",
+                new String());
+    }
 //    public static ApplicationSources getIELocalhostAdmin() { }
 //    public static ApplicationSources getHtmlUnitLocalhostAdmin() { }
 

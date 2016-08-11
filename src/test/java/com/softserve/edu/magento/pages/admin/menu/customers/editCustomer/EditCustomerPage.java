@@ -31,25 +31,14 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	/**
 	 * Constructor
 	 * Initializes the one component, visible on page load.
-	 * 
-	 * @param driver
-	 *            Webdriver that runs through test.
 	 */
 	public EditCustomerPage() {
-
 		this.custommerViewAjax = new CustommerView();
 	}
 	
 	/*
 	 * Getters for the Page components.
 	 */
-	/**
-	 * Driver to run through the test.
-	 * @see com.softserve.edu.magento.editCustomer.ACustomerPageHead#getDriver()
-	 */
-/*	public WebDriver getDriver() {
-		return this.driver;
-	}*/
 
 	public CustommerView getCustommerView() {
 		return this.custommerViewAjax;
@@ -86,13 +75,6 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	/*
 	 * Setters for the page components and fields.
 	 */
-	/**@param	driver to pass to the page instance.
-	 * @see com.softserve.edu.magento.editCustomer.ACustomerPageHead#setDriver(org.openqa.selenium.WebDriver)
-	 */
-/*	public void setDriver(WebDriver driver) {
-		this.driver = driver;
-	}*/
-
 	public void setCustommerView(CustommerView custommerView) {
 		this.custommerViewAjax = custommerView;
 	}
@@ -876,17 +858,4 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		String saved = getCustomerAllData().get(index).getText();
 		return saved.equals(changed);
 	}
-
-	@Override
-	public WebDriver getDriver() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setDriver(WebDriver driver) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

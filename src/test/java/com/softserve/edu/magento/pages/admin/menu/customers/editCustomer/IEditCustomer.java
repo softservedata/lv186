@@ -42,76 +42,69 @@ public interface IEditCustomer {
 	 enum Country {
 		// TODO
 	}
-	 
-	 public WebDriver getDriver();
 
-		public CustommerView getCustommerView();
+	public CustommerView getCustommerView();
 
-		public AccountInformation getAccountInformation();
+	public AccountInformation getAccountInformation();
 
-		public Orders getOrders();
+	public Orders getOrders();
 		
-		public WebElement getSuccessMessage();
+	public WebElement getSuccessMessage();
 		
-		public CustommerView getCustommerViewAjax();
+	public CustommerView getCustommerViewAjax();
 
-		public AccountInformation getAccountInformationAjax();
+	public AccountInformation getAccountInformationAjax();
 
-		public Adresses getAdressesAjax();
+	public Adresses getAdressesAjax();
 
-		public Orders getOrdersAjax();
+	public Orders getOrdersAjax();
 		
+	public void setCustommerView(CustommerView custommerView);
 
-		public void setDriver(WebDriver driver);
+	public void setAccountInformation(AccountInformation accountInformation);
 
-		public void setCustommerView(CustommerView custommerView);
+	public void setOrders(EditCustomerPage.Orders orders);
 
-		public void setAccountInformation(AccountInformation accountInformation);
-
-		public void setOrders(EditCustomerPage.Orders orders);
+	public void setSuccessMessage();
 		
-		
-		public void setSuccessMessage();
-		
-		public AllCustomersPage back();
+	public AllCustomersPage back();
 
-		public void deleteCustomer();
+	public void deleteCustomer();
 	
-		public EditCustomerPage reset();
+	public EditCustomerPage reset();
 
-		// TODO CreateOrder PAge
-		public void createOrder();
+	// TODO CreateOrder PAge
+	public void createOrder();
 		
-		public void resetPassword();
+	public void resetPassword();
 
-		public void forceSignIn();
+	public void forceSignIn();
 		
-		public EditCustomerPage saveAndContinueEdit();
+	public EditCustomerPage saveAndContinueEdit();
 		
-		public AllCustomersPage saveCustomer();
+	public AllCustomersPage saveCustomer();
 		
-		public EditCustomerPage.AccountInformation navToAccountInfo();
+	public EditCustomerPage.AccountInformation navToAccountInfo();
 
-		public EditCustomerPage.Adresses navToadresses();
+	public EditCustomerPage.Adresses navToadresses();
 
-		public EditCustomerPage.Orders navToorders();
+	public EditCustomerPage.Orders navToorders();
 
-		public boolean compareChangesMadetoCity();
+	public boolean compareChangesMadetoCity();
 
-		public String getSelectedWebsiteText();
+	public String getSelectedWebsiteText();
 
-		public void setAssocietedWebsite(AssosieteWebsites website);
+	public void setAssocietedWebsite(AssosieteWebsites website);
 
-		public String getElectedGroupText();
+	public String getElectedGroupText();
 
-		public void setGroup(Groups group);
+	public void setGroup(Groups group);
 
-		public void setGender(Gender gender);
+	public void setGender(Gender gender);
 
-		public void setSendWelcomeEmailFrom(AssosieteWebsites website);
+	public void setSendWelcomeEmailFrom(AssosieteWebsites website);
 		
-		public List<WebElement> getCustomerAllData();
+	public List<WebElement> getCustomerAllData();
 
-		public boolean compareFields(WebElement customerCurrentField);
-
+	public boolean compareFields(WebElement customerCurrentField);
 }

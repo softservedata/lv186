@@ -1,23 +1,10 @@
 package com.softserve.edu.magento.tests;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.admin.AdminUserRepository;
 import com.softserve.edu.magento.data.admin.IAdminUser;
-import com.softserve.edu.magento.data.admin.products.ProductRepository;
-import com.softserve.edu.magento.data.customer.user.CustomerUserRepository;
 import com.softserve.edu.magento.pages.admin.AdminLoginPage;
 import com.softserve.edu.magento.pages.admin.AdminLoginSearchPage;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
@@ -29,6 +16,17 @@ import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.util.concurrent.TimeUnit;
 
 public class PreSmokeTest {
 

@@ -1,6 +1,7 @@
 package com.softserve.edu.magento.tests;
 
 //import core.WebDriverManager;
+import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -30,7 +31,7 @@ public class TestBase extends AutoTestWithReporting {
     private String currentTestName;
     private static HashMap<String,Integer> testRunHistory = new HashMap<String,Integer>();
 
-    public static final String YOUR_PROJECT_NAME = "KSL_POC";
+    public static final String YOUR_PROJECT_NAME = "MAGENTO_POC";
     public static final String YOUR_SUITE_NAME = "POC_SUITE";
     public static final String YOUR_AUTOMATION_SUITE_DESCRIPTION = "proof of concept";
     public static final String YOUR_AUTOMATION_TEST_DESCRIPTION = "proof of concept";
@@ -93,6 +94,7 @@ public class TestBase extends AutoTestWithReporting {
     public void suiteTearDown(){
         AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
         //WebDriverManager.getDriver().quit();
+        ApplicationAdmin.quitAll();
     }
     /*
     * TestNG specific implementation of abstract method from AutoTestWithReporting class

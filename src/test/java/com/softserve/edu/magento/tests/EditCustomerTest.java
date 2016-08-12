@@ -39,7 +39,7 @@ public class EditCustomerTest {
 		applicationAdmin.quit();
 	}
 
-	 @Test(dataProvider = "smokeParameters", groups = "EditTest")
+	// @Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void resetMadeChanges(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -49,7 +49,7 @@ public class EditCustomerTest {
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", groups = "EditTest")
+	//@Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveAndContinue(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);

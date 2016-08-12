@@ -4,6 +4,7 @@ package com.softserve.edu.magento.pages.admin;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.tools.Search;
+import ss.af.reporting.annotations.ServiceReport;
 
 public abstract class ATopPage {
 
@@ -83,7 +84,7 @@ public abstract class ATopPage {
     }
 
     // get Data Business Logic
-    
+    @ServiceReport
     public String getPageTitleText() {
         return getPageTitle().getText();
     }

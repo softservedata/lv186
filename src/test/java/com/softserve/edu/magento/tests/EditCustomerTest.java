@@ -18,17 +18,17 @@ import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class EditCustomerTest {
+public class EditCustomerTest extends TestBase {
 	@DataProvider(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		return ListUtils.get()
 				.toMultiArray(
 						ParameterUtils.get()
-								.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+								.updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	 @Test(dataProvider = "smokeParameters", groups = "EditTest")
+	@Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -39,7 +39,7 @@ public class EditCustomerTest {
 		applicationAdmin.quit();
 	}
 
-	 @Test(dataProvider = "smokeParameters", groups = "EditTest")
+	@Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void resetMadeChanges(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);

@@ -24,7 +24,7 @@ public class EditCustomerTest {
 		return ListUtils.get()
 				.toMultiArray(
 						ParameterUtils.get()
-								.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+								.updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 

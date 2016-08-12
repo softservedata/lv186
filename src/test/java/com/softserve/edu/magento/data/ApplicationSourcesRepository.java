@@ -47,16 +47,37 @@ public final class ApplicationSourcesRepository {
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
+
     public static ApplicationSources getChromeLocalhostCustomer() {
         return new ApplicationSources("ChromeDriverTemporary",
         		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
+
+    public static ApplicationSources getChromeLocalhostCustomerLinux() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "/home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento",
+                "http://192.168.195.210/magento/customer/account/logout/");
+    }
+
     public static List<ApplicationSources> getListBrowsersLocalhostCustomer() {
         List<ApplicationSources> result = new ArrayList<ApplicationSources>();
         result.add(getFirefoxLocalhostCustomer());
         return result; 
     }
+    public static ApplicationSources getChromeMyHostAdminLinux() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "/home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
+                "http://localhost/magento2/admin",
+                new String());
+    }
 
+    public static ApplicationSources getChromeMyHostCustomerLinux() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "/home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
+                "http://localhost/magento2",
+                "http://localhost/magento2/customer/account/logout/");
+    }
 }

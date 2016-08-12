@@ -2,6 +2,8 @@ package com.softserve.edu.magento.tests;
 
 
 import java.util.List;
+
+import com.softserve.edu.magento.tools.Application;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -35,7 +37,7 @@ public class SmokeTestsDashboard extends TestBase {
 						context), AdminUserRepository.get().adminTest(),
 						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() },*/
 				{ ParameterUtils.get().updateParametersAll(
-						ApplicationSourcesRepository.getChromeLocalhostAdminLinux(),
+						ApplicationSourcesRepository.getChromeMyHostAdminLinux(),
 						context), AdminUserRepository.get().adminBohdan(),
 						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() } };
 
@@ -47,8 +49,8 @@ public class SmokeTestsDashboard extends TestBase {
 						ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
 						context), AdminUserRepository.get().adminBohdan() },*/
 				{ ParameterUtils.get().updateParametersAll(
-						ApplicationSourcesRepository.getChromeLocalhostAdminLinux(),
-						context), AdminUserRepository.get().adminTest() } };
+						ApplicationSourcesRepository.getChromeMyHostAdminLinux(),
+						context), AdminUserRepository.get().adminBohdan() } };
 
 }
 
@@ -56,9 +58,9 @@ public class SmokeTestsDashboard extends TestBase {
 	public Object[][] smokeParameters3(ITestContext context) {
 		return new Object[][] {
 				{ ParameterUtils.get().updateParametersAll(
-						ApplicationSourcesRepository.getChromeLocalhostCustomer(),
+						ApplicationSourcesRepository.getChromeMyHostCustomerLinux(),
 						context), AdminUserRepository.get().adminBohdan(),
-						ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostAdminLinux()),
+						ApplicationAdmin.get(ApplicationSourcesRepository.getChromeMyHostAdminLinux()),
 						SearchRepository.get().searchFields() },
 				/*{ ParameterUtils.get().updateParametersAll(
 						ApplicationSourcesRepository.getFirefoxLocalhostCustomer(),
@@ -82,6 +84,7 @@ public class SmokeTestsDashboard extends TestBase {
 	}
 
 	@Test(dataProvider = "smokeParameters2")
+	@ServiceReport
 	public void checkReloadMessage(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -89,7 +92,7 @@ public class SmokeTestsDashboard extends TestBase {
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters3")
+	//@Test(dataProvider = "smokeParameters3")
 	public void checkSearchResults(ApplicationSources applicationSources, 
 			IAdminUser adminUser, ApplicationAdmin adminBrowser, ISearch listOfTerms) {
 		ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
@@ -103,13 +106,13 @@ public class SmokeTestsDashboard extends TestBase {
 		applicationAdmin.quit();
 	}
 	
-	@AfterMethod
+	//@AfterMethod
 	public void afterMethod() {
 		ApplicationAdmin.signout();
-		// ApplicationAdmin.quitAll();
+		Application.quitAll();
 	}
 
-	@AfterClass
+	//@AfterClass
 	void tearDown() {
 		ApplicationAdmin.quitAll();
 	}

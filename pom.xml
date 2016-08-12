@@ -172,7 +172,37 @@
 
 			<build>
 				<plugins>
-
+					<!-- aspect weaving plugin  -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>aspectj-maven-plugin</artifactId>
+						<version>1.7</version>
+						<configuration>
+							<aspectLibraries>
+								<aspectLibrary>
+									<groupId>SSAF</groupId>
+									<artifactId>af.reporting</artifactId>
+								</aspectLibrary>
+							</aspectLibraries>
+							<showWeaveInfo>true</showWeaveInfo>
+							<complianceLevel>1.8</complianceLevel>
+							<source>1.8</source>
+							<target>1.8</target>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+									<goal>test-compile</goal>
+								</goals>
+								<configuration>
+									<complianceLevel>1.8</complianceLevel>
+									<source>1.8</source>
+									<target>1.8</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
@@ -202,9 +232,9 @@
 								</surefire.webdriver.name>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
-								<file>testng.xml</file>
-
+								<!--<suiteXmlFile>testng.xml</suiteXmlFile>-->
+								<!--<file>testng.xml</file>-->
+								<file>testngDashboardAdmin.xml</file>
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>
@@ -268,6 +298,7 @@
 							<suiteXmlFiles>
 								<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
 								<file>testng.xml</file>
+
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>

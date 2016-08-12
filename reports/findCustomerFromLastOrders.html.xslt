@@ -1,8 +1,176 @@
-<html>
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
-<style type="text/css">
+﻿<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="message">
+    <xsl:choose>
+      <xsl:when test ="@level = 'VALIDATION-FAILED'">
+        <tr class="validation failed" valign="top">
+          <td width="159">
+            <span class="failed">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="failed">
+              VALIDATION FAILURE
+            </span>
+          </td>
+          <td width="688">
+            <span class="failed">
+              <xsl:copy-of select ="."/>
+            </span>
+          </td>
+        </tr>
+      </xsl:when>
+      <xsl:when test ="@level = 'VALIDATION-SUCCESSFUL'">
+        <tr class="validation success" valign="top">
+          <td width="159">
+            <span class="success">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="success">
+              VALIDATION SUCCESS
+            </span>
+          </td>
+          <td width="688">
+            <span class="success">
+              <xsl:copy-of select ="."/>
+            </span>
+          </td>
+        </tr>
+      </xsl:when>
+      <xsl:when test ="@level = 'VERBOSE'">
+        <tr class="verbose" valign="top">
+          <td width="159">
+            <span class="metadata">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="metadata">
+              <xsl:value-of select ="./@level"/>
+            </span>
+          </td>
+          <td width="688">
+            <span class="metadata">
+              <xsl:copy-of select ="."/>
+            </span>
+          </td>
+        </tr>
+      </xsl:when>
+      <xsl:when test ="@level = 'WARNING'">
+        <tr class="warning" valign="top">
+          <td width="159">
+            <span class="metadata">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="metadata">
+              <xsl:value-of select ="./@level"/>
+            </span>
+          </td>
+          <td width="688">
+            <span class="metadata">
+              <xsl:copy-of select ="."/>
+            </span>
+          </td>
+        </tr>
+      </xsl:when>
+      <xsl:when test ="@level = 'ERROR'">
+        <tr class="error failed" valign="top">
+          <td width="159">
+            <span class="failed">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="failed">
+              <xsl:value-of select ="./@level"/>
+            </span>
+          </td>
+          <td width="688">
+            <span class="failed">
+              <xsl:copy-of select ="."/>
+            </span>
+          </td>
+        </tr>
+      </xsl:when>
+      <xsl:when test ="@level = 'SUCCESS'">
+        <tr class="testresult success" valign="top">
+          <td width="159">
+            <span class="success">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="success">
+              <xsl:value-of select ="./@level"/>
+            </span>
+          </td>
+          <td width="688">
+            <span class="success">
+              <xsl:copy-of select ="."/>
+            </span>
+          </td>
+        </tr>
+      </xsl:when>
+      <xsl:when test ="@level = 'FAILURE'">
+        <tr class="testresult failed" valign="top" id = "failureId">
+          <td width="159">
+            <span class="failed">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="failed">
+              <xsl:value-of select ="./@level"/>
+            </span>
+          </td>
+          <td width="688">
+            <span class="failed">
+              <xsl:copy-of select ="."/>
+            </span>
+          </td>
+        </tr>
+      </xsl:when>
+      <xsl:otherwise>
+        <tr class="info" valign="top">
+          <td width="159">
+            <span class="metadata">
+              <xsl:value-of select ="./@time"/>
+            </span>
+          </td>
+          <td width="119">
+            <span class="metadata">
+              <xsl:value-of select ="./@level"/>
+            </span>
+          </td>
+          <td width="688">
+            <xsl:choose>
+              <xsl:when test="a">
+                <xsl:apply-templates select="a"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <span class="metadata">
+                  <xsl:copy-of select="."/>
+                </span>
+              </xsl:otherwise>
+            </xsl:choose>
+          </td>
+        </tr>
+      </xsl:otherwise>
+    </xsl:choose>
+
+  </xsl:template>
+  <xsl:template match="/report">
+    <html>
+      <head>
+        <title>
+          <xsl:value-of select ="/report/@title"/>
+        </title>
+        <style type="text/css">
           * {
           margin: 0;
           padding: 0;
@@ -196,101 +364,124 @@
           display:none;
           }
         </style>
-</head>
-<body>
-<div class="container">
-<div class="header">
-<img src="ss_logo.png" id="ss_logo"><p>Automation Framework Report</p>
-<img src="abiliton_logo.png" id="abiliton_logo"></div>
-<div class="content">
-<span class="main-h">Test Report</span><span class="summary">Summary Information</span>
-<div class="sum-inform">
-<table cellspacing="0" cellpadding="0" border="0">
-<tr>
-<td><span class="inform-name">Test Name:</span></td><td><span class="inform-res">checkAdminLogon2</span></td>
-</tr>
-<tr>
-<td><span class="inform-name">Test Result:</span></td><td><span class="inform-res"><span id="testResult" onclick="scrollToError(&quot;failureId&quot;);" class="failed-up"></span></span></td>
-</tr>
-<tr>
-<td><span class="inform-name">Description:</span></td><td><span class="inform-res">proof of concept</span></td>
-</tr>
-<tr>
-<td><span class="inform-name">Start Time:</span></td><td><span class="inform-res">11 Aug 2016 19:56:31.281 PM</span></td>
-</tr>
-</table>
-</div>
-<br>
-<table cellspacing="0" cellpadding="0" border="0" class="data-tests">
-<tr valign="top" class="t-caption">
-<th width="159"><span class="t-caption">runtime</span></th><th width="808"><span class="t-caption">Before test run</span></th>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">Test process RAM</span></td><td width="808"><span class="metadata">37.5 MB</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">Test process CPU</span></td><td width="808"><span class="metadata">0.0%</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">CPU Load</span></td><td width="808"><span class="metadata">31.0%</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">RAM available</span></td><td width="808"><span class="metadata">111.4 MB</span></td>
-</tr>
-</table>
-<span class="summary tests view-ll">View Log Level:</span>
-<form id="view-log-level" action="">
-<input checked="1" onClick="toggleRows('verbose', this.checked);" name="verbose" id="verbose" class="checkbox" type="checkbox"><label id="first-l" class="tocheckbox" for="verbose">Verbose</label><input checked="1" onClick="toggleRows('info', this.checked);" name="info" id="info" class="checkbox" type="checkbox"><label class="tocheckbox" for="info">Info</label><input checked="1" onClick="toggleRows('warning', this.checked);" name="warning" id="warning" class="checkbox" type="checkbox"><label class="tocheckbox" for="warning">Warning</label><input checked="1" onClick="toggleRows('error', this.checked);" name="error" id="error" class="checkbox" type="checkbox"><label class="tocheckbox" for="error">Error</label><input checked="1" onClick="toggleRows('validation', this.checked);" name="validation" id="validation" class="checkbox" type="checkbox"><label class="tocheckbox" for="validation">Validation</label><input checked="1" onClick="toggleRows('testresult', this.checked);" name="test-result" id="test-result" class="checkbox" type="checkbox"><label class="tocheckbox" for="test-result">Test Result</label>
-</form>
-<table cellspacing="0" cellpadding="0" border="0" class="data-tests">
-<tr valign="top" class="t-caption">
-<th width="159"><span class="t-caption">time</span></th><th width="119"><span class="t-caption">level</span></th><th width="688"><span class="t-caption">message</span></th>
-</tr>
-<tr id="failureId" valign="top" class="testresult failed">
-<td width="159"><span class="failed">11 Aug, 19:56:47.212</span></td><td width="119"><span class="failed">FAILURE</span></td><td width="688"><span class="failed">
-<message time="11 Aug, 19:56:47.212" level="FAILURE" message="Test result message">Test result message<br>
-</message>
-</span></td>
-</tr>
-<tr id="failureId" valign="top" class="testresult failed">
-<td width="159"><span class="failed">11 Aug, 19:56:47.233</span></td><td width="119"><span class="failed">FAILURE</span></td><td width="688"><span class="failed">
-<message time="11 Aug, 19:56:47.233" level="FAILURE" message="Test Result">Test Result<br>
-</message>
-</span></td>
-</tr>
-</table>
-<br>
-<table cellspacing="0" cellpadding="0" border="0" class="data-tests">
-<tr valign="top" class="t-caption">
-<th width="159"><span class="t-caption">runtime</span></th><th width="808"><span class="t-caption">after test run</span></th>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">Test process RAM</span></td><td width="808"><span class="metadata">37.6 MB</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">Test process CPU</span></td><td width="808"><span class="metadata">5.0%</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">Test Duration</span></td><td width="808"><span class="metadata">00:00:16.073</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">Number of unique BMs calls</span></td><td width="808"><span class="metadata">0</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">CPU Load</span></td><td width="808"><span class="metadata">26.0%</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">Number of BMs calls</span></td><td width="808"><span class="metadata">0</span></td>
-</tr>
-<tr valign="top">
-<td width="159"><span class="metadata">RAM available</span></td><td width="808"><span class="metadata">155.0 MB</span></td>
-</tr>
-</table>
-</div>
-<div class="footer"></div>
-</div>
-<script>
-           
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <img id="ss_logo" src="ss_logo.png"/>
+            <p>Automation Framework Report</p>
+            <img id="abiliton_logo" src="abiliton_logo.png"/>
+          </div>
+          <div class="content">
+            <span class="main-h">Test Report</span>
+            <span class="summary">Summary Information</span>
+            <div class="sum-inform">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <span class="inform-name">Test Name:</span>
+                  </td>
+                  <td>
+                    <span class="inform-res">
+                      <xsl:apply-templates select="//report-name/@value"/>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="inform-name">Test Result:</span>
+                  </td>
+                  <td>
+                    <span class="inform-res">
+                      <span class="failed-up" onclick='scrollToError("failureId");' id="testResult" />
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="inform-name">Description:</span>
+                  </td>
+                  <td>
+                    <span class="inform-res">
+                      <xsl:apply-templates select="//report-description/@value"/>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="inform-name">Start Time:</span>
+                  </td>
+                  <td>
+                    <span class="inform-res">
+                      <xsl:apply-templates select="//report-start-datetime/@value"/>
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <xsl:if test="//start-report-metadata">
+              <br/>
+              <table class="data-tests" border="0" cellpadding="0" cellspacing="0">
+                <tr class="t-caption" valign="top">
+                  <th width="159">
+                    <span class="t-caption">runtime</span>
+                  </th>
+                  <th width="808">
+                    <span class="t-caption">Before test run</span>
+                  </th>
+                </tr>
+                <xsl:apply-templates select="//start-report-metadata"/>
+              </table>
+            </xsl:if>
+            <span class="summary tests view-ll">View Log Level:</span>
+            <form action="" id="view-log-level">
+              <input type="checkbox" class="checkbox" id="verbose" name="verbose" onClick="toggleRows('verbose', this.checked);" checked="1" />
+              <label for="verbose" class="tocheckbox" id="first-l">Verbose</label>
+              <input type="checkbox" class="checkbox" id="info" name="info" onClick="toggleRows('info', this.checked);" checked="1" />
+              <label for="info" class="tocheckbox">Info</label>
+              <input type="checkbox" class="checkbox" id="warning" name="warning" onClick="toggleRows('warning', this.checked);" checked="1" />
+              <label for="warning" class="tocheckbox">Warning</label>
+              <input type="checkbox" class="checkbox" id="error" name="error" onClick="toggleRows('error', this.checked);" checked="1" />
+              <label for="error" class="tocheckbox">Error</label>
+              <input type="checkbox" class="checkbox" id="validation" name="validation" onClick="toggleRows('validation', this.checked);" checked="1" />
+              <label for="validation" class="tocheckbox">Validation</label>
+              <input type="checkbox" class="checkbox" id="test-result" name="test-result" onClick="toggleRows('testresult', this.checked);" checked="1" />
+              <label for="test-result" class="tocheckbox">Test Result</label>
+            </form>
+            <table class="data-tests" border="0" cellpadding="0" cellspacing="0">
+              <tr class="t-caption" valign="top">
+                <th width="159">
+                  <span class="t-caption">time</span>
+                </th>
+                <th width="119">
+                  <span class="t-caption">level</span>
+                </th>
+                <th width="688">
+                  <span class="t-caption">message</span>
+                </th>
+              </tr>
+              <xsl:apply-templates select="//message"/>
+            </table>
+            <xsl:if test="//end-report-metadata">
+              <br/>
+              <table class="data-tests" border="0" cellpadding="0" cellspacing="0">
+                <tr class="t-caption" valign="top">
+                  <th width="159">
+                    <span class="t-caption">runtime</span>
+                  </th>
+                  <th width="808">
+                    <span class="t-caption">after test run</span>
+                  </th>
+                </tr>
+                <xsl:apply-templates select="//end-report-metadata"/>
+              </table>
+            </xsl:if>
+          </div>
+          <div class="footer">
+          </div>
+        </div>
+        <script>
+          <![CDATA[ 
           function toggleRows(className, doShow){
             var rows = document.getElementsByTagName('tr');
 			      var invisible = 'invisible';
@@ -321,7 +512,50 @@
           function scrollToError(elementId){
             var element = document.getElementById(elementId);
             element.scrollIntoView(true);
-          }
+          }]]>
         </script>
-</body>
-</html>
+      </body>
+    </html>
+  </xsl:template>
+  <xsl:template match="lf">
+    <br/>
+  </xsl:template>
+  <xsl:template match="a">
+    <span class="image">
+      <xsl:copy-of select ="node()"/>
+      <a class="zoom">
+        <xsl:attribute name="href">
+          <xsl:value-of select="@href"/>
+        </xsl:attribute>
+      </a>
+    </span>
+  </xsl:template>
+  <xsl:template match="start-report-metadata">
+    <tr valign="top">
+      <td width="159">
+        <span class="metadata">
+          <xsl:value-of select ="./@key"/>
+        </span>
+      </td>
+      <td width="808">
+        <span class="metadata">
+          <xsl:value-of select ="./@value"/>
+        </span>
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="end-report-metadata">
+    <tr valign="top">
+      <td width="159">
+        <span class="metadata">
+          <xsl:value-of select ="./@key"/>
+        </span>
+      </td>
+      <td width="808">
+        <span class="metadata">
+          <xsl:value-of select ="./@value"/>
+        </span>
+      </td>
+    </tr>
+  </xsl:template>
+</xsl:stylesheet>

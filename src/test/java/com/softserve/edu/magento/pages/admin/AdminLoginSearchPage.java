@@ -7,6 +7,7 @@ import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.Search;
+import ss.af.reporting.annotations.ServiceReport;
 
 public class AdminLoginSearchPage {
 
@@ -76,7 +77,7 @@ public class AdminLoginSearchPage {
     }
 
     // set Data PageObject
-
+    @ServiceReport
     public void setLoginInput(String login) {
         getUsernameInput().sendKeys(login);
     }

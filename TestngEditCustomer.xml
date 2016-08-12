@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<parameter name="browser" value="Firefox" />
-	<parameter name="driverPath" value="C:\Users\ayaremctc\Downloads\chromedriver" />
+<parameter name="browser" value="Firefox" />
 	<test name="Clickg the 'Duplicate' link">
 		<groups>
 			<run>

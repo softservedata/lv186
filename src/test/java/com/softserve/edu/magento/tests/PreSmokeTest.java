@@ -25,11 +25,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import ss.af.reporting.annotations.ServiceReport;
 
 import java.util.concurrent.TimeUnit;
 
-public class PreSmokeTest extends TestBase {
+public class PreSmokeTest extends TestBase{
 
 	//@Test//(dataProvider = "driverParameters")
 	public void checkAdminLogon1() throws Exception { // (BrowsersList browser)
@@ -82,16 +81,15 @@ public class PreSmokeTest extends TestBase {
 		// };
 		return ListUtils.get()
 				.toMultiArray(ParameterUtils.get()
-						.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdminLinux(), context),
+						.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 
 	@Test(dataProvider = "smokeParameters")
-	@ServiceReport
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) test START");
 		// Precondition
-	    SoftAssert softAssert = new SoftAssert();
+	    SoftAssert softAssert = new SoftAssert(); 
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		Thread.sleep(1000);
 		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) driver START");
@@ -116,7 +114,7 @@ public class PreSmokeTest extends TestBase {
 		//Assert.assertEquals(catalogPage.getPageTitleText(), ProductCatalogPage.PAGE_TITLE);
 		//softAssert.assertEquals(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME), ProductRepository.VALID_PRODUCT_NAME);																				// name
 		//Assert.assertEquals(catalogPage.getFirstProductNameText(), "Gigabyte"); // Read
-
+		
 																				// name
 																				// from
 																				// ProductRepository
@@ -142,7 +140,7 @@ public class PreSmokeTest extends TestBase {
    //@Test(dataProvider = "smokeParameters")
    public void checkAdminLogon3(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         // Precondition
-        SoftAssert softAssert = new SoftAssert();
+        SoftAssert softAssert = new SoftAssert(); 
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         Thread.sleep(1000);
         //
@@ -170,7 +168,7 @@ public class PreSmokeTest extends TestBase {
 		Thread.sleep(5000);
 		applicationAdmin.quit();
 	}
-
+	
 	@AfterMethod
 	public void afterMethod() {
 		ApplicationAdmin.signout();

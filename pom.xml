@@ -234,7 +234,7 @@
 							<suiteXmlFiles>
 								<!--<suiteXmlFile>testng.xml</suiteXmlFile>-->
 								<!--<file>testng.xml</file>-->
-								<file>testngDashboardAdmin.xml</file>
+								<file>testng.xml</file>
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>

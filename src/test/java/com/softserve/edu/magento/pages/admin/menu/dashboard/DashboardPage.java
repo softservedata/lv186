@@ -12,6 +12,7 @@ import com.softserve.edu.magento.data.admin.dashboard.SearchFromRecords;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
+import ss.af.reporting.annotations.ServiceReport;
 
 public class DashboardPage extends VerticalMenu {
 	
@@ -324,7 +325,7 @@ public class DashboardPage extends VerticalMenu {
 	
 	// get Data Business Logic
 	
-	
+	@ServiceReport
 	public String getLifeTimeSalesValueText() {
 		return getLifeTimeSalesValue().getText();
 	}

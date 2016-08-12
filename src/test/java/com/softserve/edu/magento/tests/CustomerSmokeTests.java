@@ -21,7 +21,7 @@ import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class CustomerSmokeTests {
+public class CustomerSmokeTests extends TestBase{
 	@DataProvider
 	public Object[][] smokeParameters(ITestContext context) {
 		// return new Object[][] {
@@ -56,7 +56,7 @@ public class CustomerSmokeTests {
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", priority = 2)
+	//@Test(dataProvider = "smokeParameters", priority = 2)
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources,
 			IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -86,7 +86,7 @@ public class CustomerSmokeTests {
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", priority = 3)
+	//@Test(dataProvider = "smokeParameters", priority = 3)
 	public void searchCustomerInTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 		// Precondition
 		// login and go to DashboardPage

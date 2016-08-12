@@ -18,7 +18,7 @@ import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class EditCustomerTest extends TestBase {
+public class EditCustomerTest {
 	@DataProvider(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		return ListUtils.get()
@@ -28,7 +28,7 @@ public class EditCustomerTest extends TestBase {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	@Test(dataProvider = "smokeParameters", groups = "EditTest")
+	 @Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -39,7 +39,7 @@ public class EditCustomerTest extends TestBase {
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", groups = "EditTest")
+	// @Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void resetMadeChanges(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -49,7 +49,7 @@ public class EditCustomerTest extends TestBase {
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", groups = "EditTest")
+	//@Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveAndContinue(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);

@@ -47,24 +47,15 @@ public interface IEditCustomer {
 
 	public AccountInformation getAccountInformation();
 
-	public Orders getOrders();
-		
+	public Adresses getAdressesAjax();
+
+
 	public WebElement getSuccessMessage();
 		
 	public CustommerView getCustommerViewAjax();
 
-	public AccountInformation getAccountInformationAjax();
-
-	public Adresses getAdressesAjax();
-
 	public Orders getOrdersAjax();
 		
-	public void setCustommerView(CustommerView custommerView);
-
-	public void setAccountInformation(AccountInformation accountInformation);
-
-	public void setOrders(EditCustomerPage.Orders orders);
-
 	public void setSuccessMessage();
 		
 	public AllCustomersPage back();
@@ -84,11 +75,11 @@ public interface IEditCustomer {
 		
 	public AllCustomersPage saveCustomer();
 		
-	public EditCustomerPage.AccountInformation navToAccountInfo();
+	public AccountInformation navToAccountInfo();
 
-	public EditCustomerPage.Adresses navToadresses();
+	public Adresses navToadresses();
 
-	public EditCustomerPage.Orders navToorders();
+	public Orders navToorders();
 
 	public boolean compareChangesMadetoCity();
 

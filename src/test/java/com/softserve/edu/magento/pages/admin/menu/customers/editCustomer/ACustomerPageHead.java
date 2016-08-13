@@ -7,8 +7,6 @@ import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
 
 abstract class ACustomerPageHead extends VerticalMenu {
-
-	protected UIMapperForAbstracts find;
 	
 	protected WebElement back;
 	protected WebElement deleteCustomer;
@@ -28,12 +26,6 @@ abstract class ACustomerPageHead extends VerticalMenu {
 		this.forceSignIn = Search.id("invalidateToken");
 		this.saveAndContinueEdit = Search.id("save_and_continue");
 		this.saveCustomer = Search.id("save");
-	}
-
-
-
-	public UIMapperForAbstracts getFind() {
-		return find;
 	}
 
 	public WebElement getBack() {
@@ -66,11 +58,6 @@ abstract class ACustomerPageHead extends VerticalMenu {
 
 	public WebElement getSaveCustomer() {
 		return saveCustomer;
-	}
-
-
-	public void setFind(UIMapperForAbstracts find) {
-		this.find = find;
 	}
 
 	public void setBack(WebElement back) {

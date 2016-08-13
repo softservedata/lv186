@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -54,11 +53,11 @@ public class EditCustomerTest {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		ediCustomerPage.navToAccountInfo().setLastname(" Dirty Johnny");
-		EditCustomerPage newediCustomerPage = ediCustomerPage.saveAndContinueEdit();
-		newediCustomerPage.navToAccountInfo();
-		newediCustomerPage.setSuccessMessage();
-		Assert.assertTrue(newediCustomerPage.getSuccessMessage().isDisplayed());
+		ediCustomerPage.navToAccountInfo().lastnameSendValue(" Dirty Johnny");
+		EditCustomerPage newEdiCustomerPage = ediCustomerPage.saveAndContinueEdit();
+		newEdiCustomerPage.navToAccountInfo();
+		newEdiCustomerPage.setSuccessMessage();
+		Assert.assertTrue(newEdiCustomerPage.getSuccessMessage().isDisplayed());
 		applicationAdmin.quit();
 	}
 

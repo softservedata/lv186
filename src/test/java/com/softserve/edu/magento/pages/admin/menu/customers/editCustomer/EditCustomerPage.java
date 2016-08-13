@@ -2,8 +2,6 @@ package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -39,7 +37,6 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	/*
 	 * Getters for the Page components.
 	 */
-
 	public CustommerView getCustommerView() {
 		return this.custommerViewAjax;
 	}
@@ -57,7 +54,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	}
 	
 	public CustommerView getCustommerViewAjax() {
-		return custommerViewAjax;
+		return this.custommerViewAjax;
 	}
 
 	public AccountInformation getAccountInformationAjax() {
@@ -65,26 +62,11 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	}
 
 	public Adresses getAdressesAjax() {
-		return adressesAjax;
+		return this.adressesAjax;
 	}
 
 	public Orders getOrdersAjax() {
-		return ordersAjax;
-	}
-	
-	/*
-	 * Setters for the page components and fields.
-	 */
-	public void setCustommerView(CustommerView custommerView) {
-		this.custommerViewAjax = custommerView;
-	}
-
-	public void setAccountInformation(AccountInformation accountInformation) {
-		this.accountInformationAjax = accountInformation;
-	}
-
-	public void setOrders(Orders orders) {
-		this.ordersAjax = orders;
+		return this.ordersAjax;
 	}
 	
 	/**
@@ -163,7 +145,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * 
 	 * @author Andrew
 	 */
-		class CustommerView {
+	public class CustommerView {
 
 		private WebElement LastLoggedInfo;
 		private WebElement AccountLockedInInfo;
@@ -176,7 +158,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		/**
 		 * Constructor for CustommerView component.
 		 */
-		public CustommerView() {
+		private CustommerView() {
 			this.LastLoggedInfo = Search
 							.xpath("//th[contains(text(), 'Last Logged')]//following-sibling::td");
 			this.AccountLockedInInfo = Search
@@ -190,6 +172,34 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			this.CustomerGroupInfo = Search
 							.xpath("//th[contains(text(), 'Customer Group')]//following-sibling::td");
 			this.DefaultBillingAddress = Search.cssSelector("address");
+		}
+
+		public WebElement getLastLoggedInfo() {
+			return this.LastLoggedInfo;
+		}
+
+		public WebElement getAccountLockedInInfo() {
+			return this.AccountLockedInInfo;
+		}
+
+		public WebElement getConfirmedEmailInfo() {
+			return this.ConfirmedEmailInfo;
+		}
+
+		public WebElement getAccountCreatedInfo() {
+			return this.AccountCreatedInfo;
+		}
+
+		public WebElement getAccountCreatedInInfo() {
+			return this.AccountCreatedInInfo;
+		}
+
+		public WebElement getCustomerGroupInfo() {
+			return this.CustomerGroupInfo;
+		}
+
+		public WebElement getDefaultBillingAddress() {
+			return this.DefaultBillingAddress;
 		}
 	}
 	
@@ -215,7 +225,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 * Constructor - inits the elements for component
 		 * on wake up.
 		 */
-		private AccountInformation() {
+		public AccountInformation() {
 			this.associateToWebsite = new Select(Search
 					.cssSelector("select[name='customer[website_id]']"));
 			this.group = new Select(Search
@@ -312,41 +322,8 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			return this.tax;
 		}
 
-		/*
-		 * Setters for AccountInfo component
-		 */
-		public void setEmail(String value) {
-			this.email.sendKeys(value);
-			areChangesMade = true;
-		}
-
-		public void setSuffix(String value) {
-			this.suffix.sendKeys(value);
-			areChangesMade = true;
-		}
-
-		public void setLastname(String value) {
-			this.lastname.sendKeys(value);
-			areChangesMade = true;
-		}
-
-		public void setMiddlename(String value) {
-			this.middlename.sendKeys(value);
-			areChangesMade = true;
-		}
-
-		public void setFirstname(String value) {
-			EditCustomerPage.this.accountInformationAjax.firstname
-					.sendKeys(value);
-			areChangesMade = true;
-		}
-
-		public void setPrefix(String value) {
-			this.prefix.sendKeys(value);
-			areChangesMade = true;
-		}
-		public void setTax(String value) {
-			this.tax.sendKeys(value);
+		public void lastnameSendValue(String value) {
+			getLastname().sendKeys(value);
 			areChangesMade = true;
 		}
 
@@ -384,7 +361,6 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * Inner class that represents the Addresses component.
 	 */
 	public class Adresses {
-
 		private WebElement addNewAddresses;
 		private WebElement address;
 		private WebElement deleteButton;
@@ -411,7 +387,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 * when no AJAX component that represents the addresses is
 		 * present.
 		 */
-		private Adresses() {
+		public Adresses() {
 			this.addNewAddresses = Search
 							.xpath("//span[contains(text(),'Add New Addresses')]/parent::button");
 			/*
@@ -423,48 +399,6 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			this.address = Search.cssSelector("address");
 			this.deleteButton = Search
 					.cssSelector(".action-delete");
-			this.defaultBillingCHK = Search
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]");
-			this.defaultShippingCHK = Search
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]");
-			this.prefix = Search
-							.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]");
-			this.firstname = Search
-							.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]");
-			this.middlename = Search
-							.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]");
-			this.lastname = Search
-							.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]");
-			this.suffix = Search
-							.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]");
-			this.company = Search
-							.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input");
-			this.streetAdressFirst = Search
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input");
-			this.streetAdressSecond = Search
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]");
-			this.city = Search
-							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input");
-			this.country = new Select(Search
-							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select"));
-			this.state = Search
-							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select");
-			this.zip = Search
-							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input");
-			this.phone = Search
-							.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input");
-			this.vat = Search
-							.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input");
-		}
-		
-		/**
-		 * Initializes all of the needed elements, when
-		 * no address is attached to customer.
-		 */
-		public void clickAddNewAddresses() {
-			addNewAddresses.click();
-			this.address = Search.cssSelector("address");
-			this.deleteButton = Search.cssSelector(".action-delete");
 			this.defaultBillingCHK = Search
 							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]");
 			this.defaultShippingCHK = Search
@@ -578,108 +512,16 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			return vat;
 		}
 
-		/*
-		 * Setters for the component
-		 */
-		public void setAddNewAddresses(String addNewAddresses) {
-			this.addNewAddresses.sendKeys("addNewAddresses");
-			areChangesMade = true;
-		}
-
-		public void setAddress(String address) {
-			this.address.sendKeys("address");
-			areChangesMade = true;
-		}
-
-		public void setDeleteButton(String deleteButton) {
-			this.deleteButton.sendKeys("deleteButton");
-			areChangesMade = true;
-		}
-
-		public void setDefaultBillingCHK() {
-			this.defaultBillingCHK.click();
-		}
-
-		public void setDefaultShippingCHK() {
-			this.defaultShippingCHK.click();
-		}
-
-		public void setPrefix(String prefix) {
-			this.prefix.sendKeys("prefix");
-			areChangesMade = true;
-		}
-
-		public void setFirstname(String firstname) {
-			this.firstname.sendKeys("firstname");
-			areChangesMade = true;
-		}
-
-		public void setMiddlename(String middlename) {
-			this.middlename.sendKeys("middlename");
-			areChangesMade = true;
-		}
-
-		public void setLastname(String lastname) {
-			this.lastname.sendKeys("lastname");
-			areChangesMade = true;
-		}
-
-		public void setSuffix(String suffix) {
-			this.suffix.sendKeys("suffix");
-			areChangesMade = true;
-		}
-
-		public void setCompany(String company) {
-			this.company.sendKeys("company");
-			areChangesMade = true;
-		}
-
-		public void setStreetAdressFirst(String streetAdressFirst) {
-			this.streetAdressFirst.sendKeys("streetAdressFirst");
-			areChangesMade = true;
-		}
-
-		public void setStreetAdressSecond(String streetAdressSecond) {
-			this.streetAdressSecond.sendKeys("streetAdressSecond");
-			areChangesMade = true;
-		}
-
-		public void setCity(String city) {
+		public void citySendValue(String city) {
 			this.city.sendKeys("city");
 			areChangesMade = true;
 		}
-
-		public void setCountry(Country country) {
-			this.country.selectByValue(country.toString());
-			areChangesMade = true;
-		}
-
-		public void setState(String state) {
-			this.state.sendKeys("state");
-			areChangesMade = true;
-		}
-
-		public void setZip(String zip) {
-			this.zip.sendKeys("zip");
-			areChangesMade = true;
-		}
-
-		public void setPhone(String phone) {
-			this.phone.sendKeys("phone");
-			areChangesMade = true;
-		}
-
-		public void setVat(String vat) {
-			this.vat.sendKeys("vat");
-			areChangesMade = true;
-		}
-
 	}
 	
 	/**
 	 * Inner class that represents the Addresses component.
 	 */
-	class Orders extends ACustomerEditFilter {
+	public class Orders extends ACustomerEditFilter {
 		private WebElement orderSort;
 		private WebElement purchasedSort;
 		private WebElement bill_toSort;
@@ -709,8 +551,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 					.cssSelector("button[data-ui-id='widget-button-3']");
 			super.recordsFound = Search
 					.id("customer_orders_grid_page-limit");
-		//	super.pagination = driver.findElements(By
-		//			.className("admin__data-grid-pager");
+			super.pagination = Search.cssSelectors(".admin__data-grid-pager");
 			/*
 			 * Inits the components elements
 			 */
@@ -744,7 +585,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * Navigates to AccountInformation component
 	 * and loads it.
 	 */
-	public EditCustomerPage.AccountInformation navToAccountInfo() {
+	public AccountInformation navToAccountInfo() {
 		accountInfo.click();
 		if (this.accountInformationAjax == null) {
 			return this.accountInformationAjax = new AccountInformation();
@@ -756,7 +597,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * Navigates to Adresses component
 	 * and loads it.
 	 */
-	public EditCustomerPage.Adresses navToadresses() {
+	public Adresses navToadresses() {
 		adresses.click();
 		if (this.adressesAjax == null) {
 			return this.adressesAjax = new Adresses();
@@ -768,12 +609,12 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * Navigates to Orders component
 	 * and loads it.
 	 */
-	public EditCustomerPage.Orders navToorders() {
+	public Orders navToorders() {
 		orders.click();
 		if (this.ordersAjax == null) {
 			return this.ordersAjax = new Orders();
 		}
-		return ordersAjax;
+		return getOrdersAjax();
 	}
 	
 	/*
@@ -820,7 +661,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public boolean compareChangesMadetoCity() {
 		String pre = this.adressesAjax.getCity().getText();
-		this.adressesAjax.setCity("New City");
+		this.adressesAjax.citySendValue("New City");
 		reset();
 		String aft = this.adressesAjax.getCity().getText();
 		return pre.toLowerCase().equals(aft);

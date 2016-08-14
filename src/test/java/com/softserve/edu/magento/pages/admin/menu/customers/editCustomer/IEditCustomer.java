@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IAccountInformation;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IAdresses;
-import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.CustommerView;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.ICustommerView;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IOrders;
 
 public interface IEditCustomer {
@@ -47,15 +47,13 @@ public interface IEditCustomer {
 		// TODO
 	}
 
-	public CustommerView getCustommerView();
+	public ICustommerView getCustommerView();
 
 	public IAccountInformation getAccountInformation();
 
 	public IAdresses getAdressesAjax();
 
 	public WebElement getSuccessMessage();
-		
-	public CustommerView getCustommerViewAjax();
 
 	public IOrders getOrdersAjax();
 		

@@ -15,7 +15,7 @@ import com.softserve.edu.magento.tools.Search;
  */
 public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustomer {
 
-	private static volatile CustommerView custommerViewAjax;
+	private static volatile ICustommerView custommerViewAjax;
 	private static volatile IAccountInformation accountInformationAjax = null;
 	private static volatile IAdresses adressesAjax;
 	private static volatile IOrders ordersAjax;
@@ -32,15 +32,11 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	/*
 	 * Getters for the Page components.
 	 */
-	public CustommerView getCustommerView() {
+	public ICustommerView getCustommerView() {
 		return this.custommerViewAjax;
 	}
 
 	public IAccountInformation getAccountInformation() {return this.accountInformationAjax; }
-
-	public CustommerView getCustommerViewAjax() {
-		return this.custommerViewAjax;
-	}
 
 	public IAdresses getAdressesAjax() {
 		return this.adressesAjax;
@@ -125,13 +121,22 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		return new AllCustomersPage();
 	}
 
+	interface ICustommerView {
+		public WebElement getLastLoggedInfo();
+		public WebElement getAccountLockedInInfo();
+		public WebElement getConfirmedEmailInfo();
+		public WebElement getAccountCreatedInfo();
+		public WebElement getAccountCreatedInInfo();
+		public WebElement getCustomerGroupInfo();
+		public WebElement getDefaultBillingAddress();
+	}
+
 	/**
 	 * Component for CustommerView.
 	 * 
 	 * @author Andrew
 	 */
-	private class CustommerView {
-
+	private class CustommerView implements ICustommerView {
 		private WebElement LastLoggedInfo;
 		private WebElement AccountLockedInInfo;
 		private WebElement ConfirmedEmailInfo;

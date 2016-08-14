@@ -2,19 +2,23 @@ package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.util.List;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.AccountInformation;
-import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Adresses;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IAccountInformation;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IAdresses;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.CustommerView;
-import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Orders;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IOrders;
 
 public interface IEditCustomer {
+
+	/**
+	 * Enum for AssosieteWebsites selector.
+	 */
 	static enum AssosieteWebsites {
-		MAIN_WEBSITE("Main Website"), MAIN_WEBSITE_STORE("Main Website Store"), DEFAULT_STORE_VIEW(
-				"Default Store View");
+		MAIN_WEBSITE("Main Website"),
+		MAIN_WEBSITE_STORE("Main Website Store"),
+		DEFAULT_STORE_VIEW("Default Store View");
 		private String websiteId;
 
 		private AssosieteWebsites(String websiteId) {
@@ -45,16 +49,15 @@ public interface IEditCustomer {
 
 	public CustommerView getCustommerView();
 
-	public AccountInformation getAccountInformation();
+	public IAccountInformation getAccountInformation();
 
-	public Adresses getAdressesAjax();
-
+	public IAdresses getAdressesAjax();
 
 	public WebElement getSuccessMessage();
 		
 	public CustommerView getCustommerViewAjax();
 
-	public Orders getOrdersAjax();
+	public IOrders getOrdersAjax();
 		
 	public void setSuccessMessage();
 		
@@ -75,11 +78,11 @@ public interface IEditCustomer {
 		
 	public AllCustomersPage saveCustomer();
 		
-	public AccountInformation navToAccountInfo();
+	public IAccountInformation navToAccountInfo();
 
-	public Adresses navToadresses();
+	public IAdresses navToadresses();
 
-	public Orders navToorders();
+	public IOrders navToorders();
 
 	public boolean compareChangesMadetoCity();
 
@@ -87,7 +90,7 @@ public interface IEditCustomer {
 
 	public void setAssocietedWebsite(AssosieteWebsites website);
 
-	public String getElectedGroupText();
+	public String getSelectedGroupText();
 
 	public void setGroup(Groups group);
 

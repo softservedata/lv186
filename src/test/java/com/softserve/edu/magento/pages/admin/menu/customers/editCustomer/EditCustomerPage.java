@@ -11,20 +11,15 @@ import com.softserve.edu.magento.tools.Search;
 /**
  * Class that represents the EditCustomerPage with all the AJAX components in
  * it.
- * 
  * @author Andrew
  */
 public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustomer {
 
-	private CustommerView custommerViewAjax;
-	private AccountInformation accountInformationAjax;
-	private Adresses adressesAjax;
-	private Orders ordersAjax;
+	private static volatile CustommerView custommerViewAjax;
+	private static volatile IAccountInformation accountInformationAjax = null;
+	private static volatile IAdresses adressesAjax;
+	private static volatile IOrders ordersAjax;
 	private WebElement successMessage;
-
-	/**
-	 * Enum for AssosieteWebsites selector.
-	 */
 	
 	/**
 	 * Constructor
@@ -41,32 +36,22 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		return this.custommerViewAjax;
 	}
 
-	public AccountInformation getAccountInformation() {
-		return this.accountInformationAjax;
-	}
+	public IAccountInformation getAccountInformation() {return this.accountInformationAjax; }
 
-	public Orders getOrders() {
-		return this.ordersAjax;
-	}
-	
-	public WebElement getSuccessMessage() {
-		return successMessage;
-	}
-	
 	public CustommerView getCustommerViewAjax() {
 		return this.custommerViewAjax;
 	}
 
-	public AccountInformation getAccountInformationAjax() {
-		return this.accountInformationAjax;
-	}
-
-	public Adresses getAdressesAjax() {
+	public IAdresses getAdressesAjax() {
 		return this.adressesAjax;
 	}
 
-	public Orders getOrdersAjax() {
+	public IOrders getOrdersAjax() {
 		return this.ordersAjax;
+	}
+
+	public WebElement getSuccessMessage() {
+		return this.successMessage;
 	}
 	
 	/**
@@ -145,7 +130,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * 
 	 * @author Andrew
 	 */
-	public class CustommerView {
+	private class CustommerView {
 
 		private WebElement LastLoggedInfo;
 		private WebElement AccountLockedInInfo;
@@ -206,7 +191,26 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	/**
 	 *Inner class that represents the AccountInformation component.
 	 */
-	public class AccountInformation {
+	interface IAccountInformation {
+		public Select getAssociateToWebsite();
+		public Select getGroup();
+		public WebElement getChekboxForGroup();
+		public WebElement getLastname();
+		public WebElement getSelectedWebsite();
+		public WebElement getSelectGroup();
+		public WebElement getPrefix();
+		public WebElement getFirstname();
+		public WebElement getMiddlename();
+		public WebElement geLastname();
+		public WebElement getSuffix();
+		public WebElement getEmail();
+		public WebElement getDateOfBirth();
+		public Select getGender();
+		public Select getSendWelcomeEmailFrom();
+		public WebElement getTax();
+	}
+
+	private class AccountInformation implements IAccountInformation {
 		private Select associateToWebsite;
 		private Select group;
 		private WebElement chekboxForGroup;
@@ -225,7 +229,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 * Constructor - inits the elements for component
 		 * on wake up.
 		 */
-		public AccountInformation() {
+		private AccountInformation() {
 			this.associateToWebsite = new Select(Search
 					.cssSelector("select[name='customer[website_id]']"));
 			this.group = new Select(Search
@@ -310,57 +314,45 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			return this.dateOfBirth;
 		}
 
-		public WebElement getGender() {
-			return this.gender.getFirstSelectedOption();
+		public Select getGender() {
+			return this.gender;
 		}
 
-		public WebElement getSendWelcomeEmailFrom() {
-			return this.sendWelcomeEmailFrom.getFirstSelectedOption();
+		public Select getSendWelcomeEmailFrom() {
+			return this.sendWelcomeEmailFrom;
 		}
 
 		public WebElement getTax() {
 			return this.tax;
 		}
-
-		public void lastnameSendValue(String value) {
-			getLastname().sendKeys(value);
-			areChangesMade = true;
-		}
-
-		/**
-		 * Cheks if changes in AccountInformation fields are made.
-		 * The supesrclass ACustomPageSideMenu field.
-		 * @return true if some info was transfered to component inputs.
-		 */
-		public boolean isAreChangesMade() {
-			return areChangesMade;
-		}
-		
-		/**
-		 * Cheks if checkbox for groups is
-		 * checked.
-		 * @return
-		 * 			true if checkbox is checked.
-		 */
-		public boolean isGroupcheckboxchecked() {
-			return this.chekboxForGroup.isSelected();
-		}
-		
-		/**
-		 * Cheks/unchecks the checkbox in AccountInformation
-		 * Component.
-		 */
-		public void checkGroupcheckbox() {
-			this.chekboxForGroup.click();
-			areChangesMade = true;
-		}
-
 	}
-	
+
+	interface IAdresses {
+		public WebElement getAddNewAddresses();
+		public WebElement getAddress();
+		public WebElement getDeleteButton();
+		public WebElement getDefaultBillingCHK();
+		public WebElement getDefaultShippingCHK();
+		public WebElement getPrefix();
+		public WebElement getFirstname();
+		public WebElement getMiddlename();
+		public WebElement getLastname();
+		public WebElement getSuffix();
+		public WebElement getCompany();
+		public WebElement getStreetAdressFirst();
+		public WebElement getStreetAdressSecond();
+		public WebElement getCity();
+		public Select getCountry();
+		public WebElement getState();
+		public WebElement getZip();
+		public WebElement getPhone();
+		public WebElement getVat();
+	}
+
 	/**
 	 * Inner class that represents the Addresses component.
 	 */
-	public class Adresses {
+	private class Adresses implements IAdresses {
 		private WebElement addNewAddresses;
 		private WebElement address;
 		private WebElement deleteButton;
@@ -387,7 +379,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		 * when no AJAX component that represents the addresses is
 		 * present.
 		 */
-		public Adresses() {
+		private Adresses() {
 			this.addNewAddresses = Search
 							.xpath("//span[contains(text(),'Add New Addresses')]/parent::button");
 			/*
@@ -511,17 +503,15 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		public WebElement getVat() {
 			return vat;
 		}
-
-		public void citySendValue(String city) {
-			this.city.sendKeys("city");
-			areChangesMade = true;
-		}
 	}
-	
+
+	interface IOrders {
+
+	}
 	/**
 	 * Inner class that represents the Addresses component.
 	 */
-	public class Orders extends ACustomerEditFilter {
+	private class Orders extends ACustomerEditFilter implements IOrders{
 		private WebElement orderSort;
 		private WebElement purchasedSort;
 		private WebElement bill_toSort;
@@ -580,78 +570,137 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			}
 		}
 	}
+
+	/*
+	 *Singleton initializers.
+	 */
+	public static IAccountInformation initAccountInfo() {
+		if (accountInformationAjax == null) {
+			synchronized (IAccountInformation.class) {
+				accountInformationAjax = new EditCustomerPage().new AccountInformation();
+			}
+		}
+		return accountInformationAjax;
+	}
+
+	public static IAdresses initAdresses() {
+		if (adressesAjax == null) {
+			synchronized (IAccountInformation.class) {
+				adressesAjax = new EditCustomerPage().new Adresses();
+			}
+		}
+		return adressesAjax;
+	}
+
+	public static IOrders initOrders() {
+		if (ordersAjax == null) {
+			synchronized (IAccountInformation.class) {
+				ordersAjax = new EditCustomerPage().new Orders();
+			}
+		}
+		return ordersAjax;
+	}
+
 	
 	/**
 	 * Navigates to AccountInformation component
 	 * and loads it.
 	 */
-	public AccountInformation navToAccountInfo() {
+	public IAccountInformation navToAccountInfo() {
 		accountInfo.click();
-		if (this.accountInformationAjax == null) {
-			return this.accountInformationAjax = new AccountInformation();
-		}
-		return accountInformationAjax;
+		return this.accountInformationAjax = initAccountInfo();
 	}
 	
 	/**
 	 * Navigates to Adresses component
 	 * and loads it.
 	 */
-	public Adresses navToadresses() {
+	public IAdresses navToadresses() {
 		adresses.click();
-		if (this.adressesAjax == null) {
-			return this.adressesAjax = new Adresses();
-		}
-		return adressesAjax;
+		return this.adressesAjax = initAdresses();
 	}
 	
 	/**
 	 * Navigates to Orders component
 	 * and loads it.
 	 */
-	public Orders navToorders() {
+	public IOrders navToorders() {
 		orders.click();
-		if (this.ordersAjax == null) {
-			return this.ordersAjax = new Orders();
-		}
-		return getOrdersAjax();
+		return this.ordersAjax = initOrders();
 	}
 	
 	/*
 	 * Getters and Setters with bussiness logick.
 	 * @see com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.IEditCustomer#getSelectedWebsiteText()
 	 */
+	public void citySendValue(String city) {
+		getAdressesAjax().getCity().sendKeys("city");
+		areChangesMade = true;
+	}
+
+	public void lastnameSendValue(String value) {
+		getAccountInformation().getLastname().sendKeys(value);
+		areChangesMade = true;
+	}
+
 	public String getSelectedWebsiteText() {
 		navToAccountInfo();
 		return accountInformationAjax.getSelectedWebsite().getText();
 	}
-	
-	
+
 	public void setAssocietedWebsite(AssosieteWebsites website) {
 		navToAccountInfo();
-		accountInformationAjax.associateToWebsite.selectByValue(website
+		accountInformationAjax.getAssociateToWebsite().selectByValue(website
 				.toString());
 	}
 
-	public String getElectedGroupText() {
+	public String getSelectedGroupText() {
 		navToAccountInfo();
 		return this.accountInformationAjax.getSelectGroup().getText();
 	}
 
 	public void setGroup(Groups group) {
 		navToAccountInfo();
-		accountInformationAjax.group.selectByValue(group.toString());
+		accountInformationAjax.getGroup().selectByValue(group.toString());
 	}
 
 	public void setGender(Gender gender) {
 		navToAccountInfo();
-		accountInformationAjax.gender.selectByValue(gender.toString());
+		accountInformationAjax.getGender().selectByValue(gender.toString());
 	}
 
 	public void setSendWelcomeEmailFrom(AssosieteWebsites website) {
 		navToAccountInfo();
-		accountInformationAjax.sendWelcomeEmailFrom.selectByValue(website
+		accountInformationAjax.getSendWelcomeEmailFrom().selectByValue(website
 				.toString());
+	}
+
+	/**
+	 * Cheks if changes in AccountInformation fields are made.
+	 * The supesrclass ACustomPageSideMenu field.
+	 * @return true if some info was transfered to component inputs.
+	 */
+	public boolean isAreChangesMade() {
+		return areChangesMade;
+	}
+
+	/**
+	 * Cheks if checkbox for groups is
+	 * checked.
+	 * @return
+	 * 			true if checkbox is checked.
+	 */
+	public boolean isGroupcheckboxchecked() {
+		return getAccountInformation().getChekboxForGroup().isSelected();
+	}
+
+	/**
+	 * Cheks/unchecks the checkbox in AccountInformation
+	 * Component.
+	 */
+	public void checkGroupcheckbox() {
+		getAccountInformation().getChekboxForGroup().click();
+		areChangesMade = true;
 	}
 	
 	/**
@@ -661,7 +710,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public boolean compareChangesMadetoCity() {
 		String pre = this.adressesAjax.getCity().getText();
-		this.adressesAjax.citySendValue("New City");
+		citySendValue("New City");
 		reset();
 		String aft = this.adressesAjax.getCity().getText();
 		return pre.toLowerCase().equals(aft);

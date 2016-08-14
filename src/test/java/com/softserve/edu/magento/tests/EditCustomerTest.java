@@ -27,12 +27,16 @@ public class EditCustomerTest {
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	 @Test(dataProvider = "smokeParameters", groups = "EditTest")
+	@Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+
 		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+
 		ediCustomerPage.navToAccountInfo();
+
 		Assert.assertTrue(ediCustomerPage
 				.compareFields(ediCustomerPage.getCustomerAllData().get(8)));
 		applicationAdmin.quit();
@@ -41,9 +45,13 @@ public class EditCustomerTest {
 	// @Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void resetMadeChanges(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+
 		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+
 		ediCustomerPage.navToadresses();
+
 		Assert.assertTrue(ediCustomerPage.compareChangesMadetoCity());
 		applicationAdmin.quit();
 	}
@@ -51,12 +59,21 @@ public class EditCustomerTest {
 	//@Test(dataProvider = "smokeParameters", groups = "EditTest")
 	public void saveAndContinue(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+
 		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-		ediCustomerPage.navToAccountInfo().lastnameSendValue(" Dirty Johnny");
+
+		ediCustomerPage.initAccountInfo();
+
+		ediCustomerPage.lastnameSendValue(" Dirty Johnny");
+
 		EditCustomerPage newEdiCustomerPage = ediCustomerPage.saveAndContinueEdit();
+
 		newEdiCustomerPage.navToAccountInfo();
+
 		newEdiCustomerPage.setSuccessMessage();
+
 		Assert.assertTrue(newEdiCustomerPage.getSuccessMessage().isDisplayed());
 		applicationAdmin.quit();
 	}

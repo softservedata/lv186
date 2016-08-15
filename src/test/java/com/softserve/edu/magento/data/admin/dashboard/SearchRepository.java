@@ -19,7 +19,7 @@ public class SearchRepository {
     }
 
    public ISearch searchFields() {
-        return Search.get()
+        return SearchRecords.get()
         		.setSearchField("aaaa")
         		.build()
         		.setSearchField("bbbb")

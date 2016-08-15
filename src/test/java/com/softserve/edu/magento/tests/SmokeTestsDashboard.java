@@ -102,7 +102,7 @@ public class SmokeTestsDashboard extends TestBase {
 		ApplicationAdmin applicationAdmin = adminBrowser;
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		List<String> searchResultTable = dashboardPage.getSearchTermsFromLastSearchTermsRecords();
-		Assert.assertTrue(searchResultTable.contains(searchTerms.get(0)), "Search term not found");
+		Assert.assertTrue(searchResultTable.contains(searchTerms.get(0)), "SearchRecords term not found");
 		applicationAdmin.quit();
 	}
 	

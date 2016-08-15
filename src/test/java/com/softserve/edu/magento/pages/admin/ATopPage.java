@@ -21,7 +21,7 @@ public abstract class ATopPage {
     }
 
     // Fields
-//    protected WebDriver Search;
+//    protected WebDriver SearchRecords;
     // Elements
     private WebElement pageTitle;
     private WebElement searchLabel;

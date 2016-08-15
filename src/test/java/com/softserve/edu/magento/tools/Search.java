@@ -46,11 +46,11 @@ public class Search {
 
     // Fields
 
-    private static final String STRATEGY_NOT_FOUND = "Search Strategy not Found";
+    private static final String STRATEGY_NOT_FOUND = "SearchRecords Strategy not Found";
     private static Search instance;
     private ASearch search;
 
-//    public Search() {
+//    public SearchRecords() {
 //        search = new SearchImplicit();
 //    }
     

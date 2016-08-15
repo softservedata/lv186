@@ -94,7 +94,7 @@ public class ApplicationSources {
     //private long pageLoadTimeout;
     //private long scriptTimeout;
     //
-    // Search Strategy
+    // SearchRecords Strategy
     private String searchStrategy;
     //
     // Localization Strategy

@@ -159,12 +159,12 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public void clickSaveButton() {
-		//(new WebDriverWait(Search, 10).until(ExpectedConditions.elementToBeClickable(getSaveButton());
+		//(new WebDriverWait(SearchRecords, 10).until(ExpectedConditions.elementToBeClickable(getSaveButton());
 		getSaveButton().click();
 	}
 
 	public void clickSaveDropdownToggle() {
-		//(new WebDriverWait(Search, 10).until(ExpectedConditions.elementToBeClickable(getSaveDropdownToggle());
+		//(new WebDriverWait(SearchRecords, 10).until(ExpectedConditions.elementToBeClickable(getSaveDropdownToggle());
 		getSaveDropdownToggle().click();
 	}
 

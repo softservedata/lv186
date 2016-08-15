@@ -1,7 +1,6 @@
 package com.softserve.edu.magento.pages.admin;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
@@ -101,7 +100,7 @@ public abstract class VerticalMenu extends ATopPage {
 			this.title = Search.xpath("//strong[text()='Marketing']");
 			this.groupTitlePromotions = Search.xpath("//strong[text()='Promotions']");
 			this.groupTitleCommunications = Search.xpath("//span[text()='Communications']");
-			this.groupTitleSEOAndSearch = Search.xpath("//span[text()='SEO & Search']");
+			this.groupTitleSEOAndSearch = Search.xpath("//span[text()='SEO & SearchRecords']");
 			this.groupTitleUserContent = Search.xpath("//span[text()='User Content']");
 			this.catalogPriceRule = Search.linkText("Catalog Price Rule");
 			this.cartPriceRules = Search.linkText("Cart Price Rules");
@@ -110,8 +109,8 @@ public abstract class VerticalMenu extends ATopPage {
 			this.newsletterQueue = Search.linkText("Newsletter Queue");
 			this.newsletterSubscribers = Search.linkText("Newsletter Subscribers");
 			this.URLRewrites = Search.linkText("URL Rewrites");
-			this.searchTerms = Search.linkText("Search Terms");
-			this.searchSynonyms = Search.linkText("Search Synonyms");
+			this.searchTerms = Search.linkText("SearchRecords Terms");
+			this.searchSynonyms = Search.linkText("SearchRecords Synonyms");
 			this.siteMap = Search.linkText("Site Map");
 			this.reviews = Search.linkText("Reviews");
 			this.close = Search.cssSelector("#menu-magento-backend-marketing > div > a");
@@ -194,7 +193,7 @@ public abstract class VerticalMenu extends ATopPage {
 			this.groupTitleProducts = Search.xpath("//strong[text()='Products']");
 			this.groupTitleStatistics = Search.xpath("//span[text()='Statistics']");
 			this.productsInCart = Search.linkText("Products in Cart");
-			this.searchTerms = Search.linkText("Search Terms");
+			this.searchTerms = Search.linkText("SearchRecords Terms");
 			this.abandonedCarts = Search.linkText("Abandoned Carts");
 			this.newsletterProblemReports = Search.linkText("Newsletter Problem Reports");
 			this.byCustomers = Search.linkText("By Customers");
@@ -1449,9 +1448,12 @@ public abstract class VerticalMenu extends ATopPage {
 
 	// -----------------Sales---------------
 
-	/*
-	 * public OrdersPage gotoOrdersPage() { clickMenuSalesOrders(); return new
-	 * OrdersPage(driver); } public InvoicesPage gotoInvoicesPage() {
+    public OrdersPage gotoOrdersPage() {
+ 		clickMenuSalesOrders();
+		return new OrdersPage(); }
+
+    /*
+	 * public InvoicesPage gotoInvoicesPage() {
 	 * clickMenuSalesInvoices(); return new InvoicesPage(driver); } public
 	 * ShipmentsPage gotoShipmentsPage() { clickMenuSalesShipments(); return new
 	 * ShipmentsPage(driver); } public CreditMemosPage gotoCreditMemosPage() {

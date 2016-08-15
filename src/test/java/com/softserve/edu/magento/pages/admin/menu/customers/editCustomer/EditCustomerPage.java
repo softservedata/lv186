@@ -541,7 +541,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			 * Inits the super class elements.
 			 */
 			super.search = Search
-					.cssSelector("button[title='Search']");
+					.cssSelector("button[title='SearchRecords']");
 			super.resetFilter = Search
 					.cssSelector("button[data-ui-id='widget-button-3']");
 			super.recordsFound = Search

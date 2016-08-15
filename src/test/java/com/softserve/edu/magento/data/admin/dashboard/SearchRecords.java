@@ -11,11 +11,11 @@ interface ISearchBuild {
 	ISearch build();
 }
 
-public class Search implements ISearchField, ISearchBuild, ISearch {
+public class SearchRecords implements ISearchField, ISearchBuild, ISearch {
 	//
 	private List<String> listOfTerms= new ArrayList<>();
 
-	private Search() {
+	private SearchRecords() {
 	}
 
 	public ISearch build() {
@@ -23,7 +23,7 @@ public class Search implements ISearchField, ISearchBuild, ISearch {
 	}
 
 	public static ISearchField get() {
-		return new Search();
+		return new SearchRecords();
 	}
 
 	public ISearchBuild setSearchField(String text) {

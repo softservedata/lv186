@@ -216,7 +216,7 @@
 <td><span class="inform-name">Description:</span></td><td><span class="inform-res">proof of concept</span></td>
 </tr>
 <tr>
-<td><span class="inform-name">Start Time:</span></td><td><span class="inform-res">12 серп. 2016 11:23:58.727 AM</span></td>
+<td><span class="inform-name">Start Time:</span></td><td><span class="inform-res">15 Aug 2016 10:52:19.083 AM</span></td>
 </tr>
 </table>
 </div>
@@ -226,16 +226,16 @@
 <th width="159"><span class="t-caption">runtime</span></th><th width="808"><span class="t-caption">Before test run</span></th>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">Test process RAM</span></td><td width="808"><span class="metadata">42,6 MB</span></td>
+<td width="159"><span class="metadata">Test process RAM</span></td><td width="808"><span class="metadata">41.9 MB</span></td>
 </tr>
 <tr valign="top">
 <td width="159"><span class="metadata">Test process CPU</span></td><td width="808"><span class="metadata">0.0%</span></td>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">CPU Load</span></td><td width="808"><span class="metadata">0.0%</span></td>
+<td width="159"><span class="metadata">CPU Load</span></td><td width="808"><span class="metadata">30.0%</span></td>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">RAM available</span></td><td width="808"><span class="metadata">4,6 GB</span></td>
+<td width="159"><span class="metadata">RAM available</span></td><td width="808"><span class="metadata">354.6 MB</span></td>
 </tr>
 </table>
 <span class="summary tests view-ll">View Log Level:</span>
@@ -247,22 +247,14 @@
 <th width="159"><span class="t-caption">time</span></th><th width="119"><span class="t-caption">level</span></th><th width="688"><span class="t-caption">message</span></th>
 </tr>
 <tr valign="top" class="error failed">
-<td width="159"><span class="failed">12 серп., 11:23:58.879</span></td><td width="119"><span class="failed">ERROR</span></td><td width="688"><span class="failed">
-<message time="12 серп., 11:23:58.879" level="ERROR" message="&quot;The driver executable does not exist: C:\home\bohdan\Downloads\chromedriver&quot; StackTrace: java.lang.IllegalStateException: The driver executable does not exist: C:\home\bohdan\Downloads\chromedriver  at com.google.common.base.Preconditions.checkState(Preconditions.java:197)  at org.openqa.selenium.remote.service.DriverService.checkExecutable(DriverService.java:117)  at org.openqa.selenium.remote.service.DriverService.findExecutable(DriverService.java:112)  at org.openqa.selenium.chrome.ChromeDriverService.createDefaultService(ChromeDriverService.java:75)  at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:107)  at com.softserve.edu.magento.tools.BrowserRepository$ChromeTemporary.getBrowser(BrowserRepository.java:26)  at com.softserve.edu.magento.tools.BrowserRepository$BrowsersList.getWebDriver(BrowserRepository.java:83)  at com.softserve.edu.magento.tools.Application.startBrowser(Application.java:35)  at com.softserve.edu.magento.tools.Application.<init>(Application.java:19)  at com.softserve.edu.magento.pages.admin.ApplicationAdmin.<init>(ApplicationAdmin.java:14)  at com.softserve.edu.magento.pages.admin.ApplicationAdmin.get(ApplicationAdmin.java:18)  at com.softserve.edu.magento.tests.SmokeTestsDashboard.findCustomerFromLastOrders(SmokeTestsDashboard.java:77)  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)  at java.lang.reflect.Method.invoke(Method.java:498)  at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)  at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)  at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)  at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)  at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)  at java.util.concurrent.FutureTask.run(FutureTask.java:266)  at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)  at java.util.concurrent.FutureTask.run(FutureTask.java:266)  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)  at java.lang.Thread.run(Thread.java:745) ">"The driver executable does not exist: C:\home\bohdan\Downloads\chromedriver"
+<td width="159"><span class="failed">15 Aug, 10:52:42.557</span></td><td width="119"><span class="failed">ERROR</span></td><td width="688"><span class="failed">
+<message time="15 Aug, 10:52:42.557" level="ERROR" message="&quot;User not found expected [true] but found [false]&quot; StackTrace: java.lang.AssertionError: User not found expected [true] but found [false]  at org.testng.Assert.fail(Assert.java:94)  at org.testng.Assert.failNotEquals(Assert.java:513)  at org.testng.Assert.assertTrue(Assert.java:42)  at com.softserve.edu.magento.tests.SmokeTestsDashboard.findCustomerFromLastOrders(SmokeTestsDashboard.java:82)  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)  at java.lang.reflect.Method.invoke(Method.java:498)  at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)  at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)  at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)  at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)  at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)  at java.util.concurrent.FutureTask.run(FutureTask.java:266)  at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)  at java.util.concurrent.FutureTask.run(FutureTask.java:266)  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)  at java.lang.Thread.run(Thread.java:745) ">"User not found expected [true] but found [false]"
 StackTrace:
-java.lang.IllegalStateException: The driver executable does not exist: C:\home\bohdan\Downloads\chromedriver
-	at com.google.common.base.Preconditions.checkState(Preconditions.java:197)
-	at org.openqa.selenium.remote.service.DriverService.checkExecutable(DriverService.java:117)
-	at org.openqa.selenium.remote.service.DriverService.findExecutable(DriverService.java:112)
-	at org.openqa.selenium.chrome.ChromeDriverService.createDefaultService(ChromeDriverService.java:75)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:107)
-	at com.softserve.edu.magento.tools.BrowserRepository$ChromeTemporary.getBrowser(BrowserRepository.java:26)
-	at com.softserve.edu.magento.tools.BrowserRepository$BrowsersList.getWebDriver(BrowserRepository.java:83)
-	at com.softserve.edu.magento.tools.Application.startBrowser(Application.java:35)
-	at com.softserve.edu.magento.tools.Application.&lt;init&gt;(Application.java:19)
-	at com.softserve.edu.magento.pages.admin.ApplicationAdmin.&lt;init&gt;(ApplicationAdmin.java:14)
-	at com.softserve.edu.magento.pages.admin.ApplicationAdmin.get(ApplicationAdmin.java:18)
-	at com.softserve.edu.magento.tests.SmokeTestsDashboard.findCustomerFromLastOrders(SmokeTestsDashboard.java:77)
+java.lang.AssertionError: User not found expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertTrue(Assert.java:42)
+	at com.softserve.edu.magento.tests.SmokeTestsDashboard.findCustomerFromLastOrders(SmokeTestsDashboard.java:82)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -283,23 +275,23 @@ java.lang.IllegalStateException: The driver executable does not exist: C:\home\b
 </span></td>
 </tr>
 <tr valign="top" class="info">
-<td width="159"><span class="metadata">2016/08/12 11:23:59.175</span></td><td width="119"><span class="metadata">INFO</span></td><td width="688"><span class="image"><img src="img\findCustomerFromLastOrders.xml_thumb.png"><a class="zoom" href="img\findCustomerFromLastOrders.xml.png"></a></span></td>
+<td width="159"><span class="metadata">2016/08/15 10:52:43.003</span></td><td width="119"><span class="metadata">INFO</span></td><td width="688"><span class="image"><img src="img/findCustomerFromLastOrders.xml_thumb.png"><a class="zoom" href="img/findCustomerFromLastOrders.xml.png"></a></span></td>
 </tr>
 <tr valign="top" class="verbose">
-<td width="159"><span class="metadata">12 серп., 11:23:59.178</span></td><td width="119"><span class="metadata">VERBOSE</span></td><td width="688"><span class="metadata">
-<message time="12 серп., 11:23:59.178" level="VERBOSE" message="SmokeTestsDashboard.findCustomerFromLastOrders(com.softserve.edu.magento.data.ApplicationSources@7b52f588, com.softserve.edu.magento.data.admin.AdminUser@408ea0f6, com.softserve.edu.magento.data.customer.user.CustomerUser@5f062f5d) Elapsed = 433 ms.">SmokeTestsDashboard.findCustomerFromLastOrders(com.softserve.edu.magento.data.ApplicationSources@7b52f588, com.softserve.edu.magento.data.admin.AdminUser@408ea0f6, com.softserve.edu.magento.data.customer.user.CustomerUser@5f062f5d) Elapsed = 433 ms.<br>
+<td width="159"><span class="metadata">15 Aug, 10:52:43.008</span></td><td width="119"><span class="metadata">VERBOSE</span></td><td width="688"><span class="metadata">
+<message time="15 Aug, 10:52:43.008" level="VERBOSE" message="SmokeTestsDashboard.findCustomerFromLastOrders(com.softserve.edu.magento.data.ApplicationSources@76c42783, com.softserve.edu.magento.data.admin.AdminUser@51ad7d38, com.softserve.edu.magento.data.customer.user.CustomerUser@72feedfe) Elapsed = 23876 ms.">SmokeTestsDashboard.findCustomerFromLastOrders(com.softserve.edu.magento.data.ApplicationSources@76c42783, com.softserve.edu.magento.data.admin.AdminUser@51ad7d38, com.softserve.edu.magento.data.customer.user.CustomerUser@72feedfe) Elapsed = 23876 ms.<br>
 </message>
 </span></td>
 </tr>
 <tr id="failureId" valign="top" class="testresult failed">
-<td width="159"><span class="failed">12 серп., 11:23:59.187</span></td><td width="119"><span class="failed">FAILURE</span></td><td width="688"><span class="failed">
-<message time="12 серп., 11:23:59.187" level="FAILURE" message="Test result message">Test result message<br>
+<td width="159"><span class="failed">15 Aug, 10:52:43.045</span></td><td width="119"><span class="failed">FAILURE</span></td><td width="688"><span class="failed">
+<message time="15 Aug, 10:52:43.045" level="FAILURE" message="Test result message">Test result message<br>
 </message>
 </span></td>
 </tr>
 <tr id="failureId" valign="top" class="testresult failed">
-<td width="159"><span class="failed">12 серп., 11:23:59.193</span></td><td width="119"><span class="failed">FAILURE</span></td><td width="688"><span class="failed">
-<message time="12 серп., 11:23:59.193" level="FAILURE" message="Test Result">Test Result<br>
+<td width="159"><span class="failed">15 Aug, 10:52:43.074</span></td><td width="119"><span class="failed">FAILURE</span></td><td width="688"><span class="failed">
+<message time="15 Aug, 10:52:43.074" level="FAILURE" message="Test Result">Test Result<br>
 </message>
 </span></td>
 </tr>
@@ -310,25 +302,25 @@ java.lang.IllegalStateException: The driver executable does not exist: C:\home\b
 <th width="159"><span class="t-caption">runtime</span></th><th width="808"><span class="t-caption">after test run</span></th>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">Test process RAM</span></td><td width="808"><span class="metadata">83,2 MB</span></td>
+<td width="159"><span class="metadata">Test process RAM</span></td><td width="808"><span class="metadata">67.3 MB</span></td>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">Test process CPU</span></td><td width="808"><span class="metadata">0.0%</span></td>
+<td width="159"><span class="metadata">Test process CPU</span></td><td width="808"><span class="metadata">6.0%</span></td>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">Test Duration</span></td><td width="808"><span class="metadata">00:00:00.657</span></td>
+<td width="159"><span class="metadata">Test Duration</span></td><td width="808"><span class="metadata">00:00:24.130</span></td>
 </tr>
 <tr valign="top">
 <td width="159"><span class="metadata">Number of unique BMs calls</span></td><td width="808"><span class="metadata">1</span></td>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">CPU Load</span></td><td width="808"><span class="metadata">0.0%</span></td>
+<td width="159"><span class="metadata">CPU Load</span></td><td width="808"><span class="metadata">52.0%</span></td>
 </tr>
 <tr valign="top">
 <td width="159"><span class="metadata">Number of BMs calls</span></td><td width="808"><span class="metadata">1</span></td>
 </tr>
 <tr valign="top">
-<td width="159"><span class="metadata">RAM available</span></td><td width="808"><span class="metadata">4,6 GB</span></td>
+<td width="159"><span class="metadata">RAM available</span></td><td width="808"><span class="metadata">131.8 MB</span></td>
 </tr>
 </table>
 </div>

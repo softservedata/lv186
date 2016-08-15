@@ -101,7 +101,7 @@ public class CategoriesPage extends VerticalMenu{
         this.categoryName = Search.xpath("//input[@type='text' and @name='name' and @class='admin__control-text']");
         this.content = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Content')]/../..");
         this.displaySettings = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Display Settings')]/../..");
-        this.searchEngineOptimization = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Search Engine Optimization')]/../..");
+        this.searchEngineOptimization = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'SearchRecords Engine Optimization')]/../..");
         this.productsInCategory = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Products in Category')]/../..");
         this.design = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Design')]/../..");
         this.scheduleDesignUpdate = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Schedule Design Update')]/../..");

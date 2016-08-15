@@ -13,8 +13,8 @@ public class OrdersPage extends VerticalMenu {
 
 
     public OrdersPage() {
-        createNewOrder = Search.id("add");
-        ordersRecords = Search.cssSelector("#container > div > div.admin__data-grid-wrap > table > tbody");
+        this.createNewOrder = Search.id("add");
+        this.ordersRecords = Search.cssSelector("#container > div > div.admin__data-grid-wrap > table > tbody");
     }
 
     // Page Object
@@ -36,7 +36,7 @@ public class OrdersPage extends VerticalMenu {
 
     // Business Logic
 
-    public CreateOrderSelectCustomerPage gotoCreateOrderSelectCustomerPage(){
+    public CreateOrderSelectCustomerPage gotoCreateOrderSelectCustomerPage() {
         clickCreateNewOrder();
         return new CreateOrderSelectCustomerPage();
     }

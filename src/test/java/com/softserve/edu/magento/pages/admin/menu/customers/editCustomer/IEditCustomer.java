@@ -13,15 +13,16 @@ import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCus
 public interface IEditCustomer {
 
 	/**
-	 * Enum for AssosieteWebsites selector.
+	 * Set of possible selections for
+	 * AssosieteWebsites selector.
 	 */
-	static enum AssosieteWebsites {
+	enum AssosieteWebsites {
 		MAIN_WEBSITE("Main Website"),
 		MAIN_WEBSITE_STORE("Main Website Store"),
 		DEFAULT_STORE_VIEW("Default Store View");
 		private String websiteId;
 
-		private AssosieteWebsites(String websiteId) {
+		AssosieteWebsites(String websiteId) {
 			this.websiteId = websiteId;
 		}
 
@@ -31,12 +32,44 @@ public interface IEditCustomer {
 		}
 	}
 
+	/**
+	 * Set of possible selections for
+	 * Group selector.
+	 */
 	enum Groups {
-		// TODO
+		GENERAL("General"),
+		WHOLESALE("Wholesale"),
+		RETAILER("Retailer");
+		private String groupName;
+
+		Groups(String groupName) {
+			this.groupName = groupName;
+		}
+
+		@Override
+		public String toString() {
+			return this.groupName;
+		}
 	}
 
+	/**
+	 * Set of possible selections for
+	 * Gender selector.
+	 */
 	enum Gender {
-		// TODO
+		MALE("Male"),
+		FEMALE("Female"),
+		NOT_SPECIFIED("Not Specified");
+		private String genderName;
+
+		Gender(String genderName) {
+			this.genderName = genderName;
+		}
+
+		@Override
+		public String toString() {
+			return this.genderName;
+		}
 	}
 
 	 enum DateOfBirth {

@@ -50,7 +50,7 @@ public abstract class VerticalMenu extends ATopPage {
 
 		public ProductsComponent() {
 			this.title = Search.xpath("//strong[text()='Products']");
-			this.groupTitle = Search.xpath("//span[text()='Operations']");
+			this.groupTitle = Search.xpath("//span[text()='Inventory']");
 			this.catalog = Search.linkText("Catalog");
 			this.categories = Search.linkText("Categories");
 			this.close = Search.cssSelector("#menu-magento-catalog-catalog > div > a");

@@ -62,6 +62,13 @@ public final class ApplicationSourcesRepository {
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
 
+    public static ApplicationSources getChromeYuliaHostAdmin() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "C:\\Program Files (x86)\\Google\\Chrome\\chromedriver.exe", 5L, 5L, "Explicit",
+                "http://127.0.0.1/Magento/admin/",
+                new String());
+    }
+
     public static List<ApplicationSources> getListBrowsersLocalhostCustomer() {
         List<ApplicationSources> result = new ArrayList<ApplicationSources>();
         result.add(getFirefoxLocalhostCustomer());
@@ -69,7 +76,7 @@ public final class ApplicationSourcesRepository {
     }
     public static ApplicationSources getChromeMyHostAdminLinux() {
         return new ApplicationSources("ChromeDriverTemporary",
-                "/home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
+                "home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
                 "http://localhost/magento2/admin",
                 new String());
     }

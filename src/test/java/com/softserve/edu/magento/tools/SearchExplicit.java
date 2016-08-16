@@ -34,7 +34,7 @@ public class SearchExplicit extends ASearch {
       // TODO
       private WebElement getVisibleWebElement(By by, WebElement fromWebElement) {
           WebElement result;
-          getWebDriver().manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
+          getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
           result = fromWebElement.findElement(by); 
           getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
           return result;

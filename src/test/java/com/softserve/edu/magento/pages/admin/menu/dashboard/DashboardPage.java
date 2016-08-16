@@ -115,16 +115,16 @@ public class DashboardPage extends VerticalMenu {
         this.revenueValue = Search
         		.xpath("//span[contains(text(),'Revenue')]/following-sibling::strong//span[@class='price']");
         this.tax = Search
-        		.xpath("//span[contains(text(),'Tax')]");
+        		.xpath("//span[@class='dashboard-totals-label'][contains(text(),'Tax')]");
         this.taxValue = Search
         		.xpath("//span[contains(text(),'Tax')]/following-sibling::strong//span[@class='price']");
         this.shipping = Search
-        		.xpath("//span[contains(text(),'Shipping')]");
+        		.xpath("//span[@class='dashboard-totals-label'][contains(text(),'Shipping')]");
         this.shippingValue = Search
         		.xpath("//span[contains(text(),'Shipping')]/following-sibling::strong//span[@class='price']");
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start04");
         this.quantity = Search
-        		.xpath("//span[contains(text(),'Quantity')]");
+        		.xpath("//span[@class='dashboard-totals-label'][contains(text(),'Quantity')]");
         this.quantityValue = Search
         		.xpath("//span[contains(text(),'Quantity')]/following-sibling::strong[@class='dashboard-totals-value']");
         this.reloadData = Search
@@ -145,8 +145,8 @@ public class DashboardPage extends VerticalMenu {
         		.id("diagram_tab_amounts");
         this.ordersPeriod = new Select(Search
         		.id("order_orders_period"));
-        this.amountPeriod = new Select(Search
-        		.id("order_amounts_period"));
+        //this.amountPeriod = new Select(Search
+        //		.id("order_amounts_period"));
         //
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start06");
         saveLogoutUrl();

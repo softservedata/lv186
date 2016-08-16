@@ -2,6 +2,8 @@ package com.softserve.edu.magento.tests;
 
 import java.util.List;
 
+import com.softserve.edu.magento.tools.ListUtils;
+import com.softserve.edu.magento.tools.Search;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -28,6 +30,7 @@ import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage.Pr
 import com.softserve.edu.magento.pages.admin.menu.products.ProductValidatorPage;
 import com.softserve.edu.magento.pages.admin.menu.products.SuccessProductSavePage;
 import com.softserve.edu.magento.tools.ParameterUtils;
+import ss.af.reporting.annotations.ServiceReport;
 
 /**
  * SmokeProductTest class checks basic functionality of new product save,
@@ -37,19 +40,25 @@ import com.softserve.edu.magento.tools.ParameterUtils;
  *
  */
 
-public class SmokeProductTest {
+public class SmokeProductTest extends TestBase {
 
 	@DataProvider
 	public Object[][] parameters(ITestContext context) {
-		return new Object[][] {
-				{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
-						context), AdminUserRepository.get().adminYulia() } };
+//		return new Object[][] {
+//				{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
+//						context), AdminUserRepository.get().adminYulia() } };
+        return ListUtils.get()
+                .toMultiArray(ParameterUtils.get()
+                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+                        AdminUserRepository.get().adminYulia());
 	}
 
 	@Test(dataProvider = "parameters")
-	public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-
+    @ServiceReport
+	public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser)  {
+//Search.setStrategy(adminUser.g);
 		/* Log in and go to AddProductPage */
+		applicationSources.setSearchStrategy("SearchExplicitStrategy");
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		ProductCatalogPage productCatalogPage = dashboardPage.gotoProductCatalogPage();
@@ -95,7 +104,7 @@ public class SmokeProductTest {
 
 	}
 
-	@Test(dataProvider = "parameters")
+	//@Test(dataProvider = "parameters")
 	public void checkProductSaveValidation(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 
@@ -119,7 +128,7 @@ public class SmokeProductTest {
 		productValidatorPage.logout();
 	}
 
-	@Test(dataProvider = "parameters")
+	//@Test(dataProvider = "parameters")
 	public void checkFilters(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
 
 		/* Log in and go to ProductCatalogPage */

@@ -70,8 +70,8 @@ public class SmokeTestsDashboard extends TestBase {
 
 	}
 	
-	@Test(dataProvider = "smokeParameters")
-	@ServiceReport
+	//@Test(dataProvider = "smokeParameters")
+	//@ServiceReport
 	public void findCustomerFromLastOrders(ApplicationSources applicationSources, IAdminUser adminUser,
 			ICustomerUser customerUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -83,8 +83,8 @@ public class SmokeTestsDashboard extends TestBase {
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters2")
-	@ServiceReport
+	//@Test(dataProvider = "smokeParameters2")
+	//@ServiceReport
 	public void checkReloadMessage(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -92,7 +92,7 @@ public class SmokeTestsDashboard extends TestBase {
 		applicationAdmin.quit();
 	}
 
-	//@Test(dataProvider = "smokeParameters3")
+	@Test(dataProvider = "smokeParameters3")
 	public void checkSearchResults(ApplicationSources applicationSources, 
 			IAdminUser adminUser, ApplicationAdmin adminBrowser, ISearch listOfTerms) {
 		ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);

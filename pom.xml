@@ -39,7 +39,7 @@
 		<org.seleniumhq.ci.version>2.50.0</org.seleniumhq.ci.version>
 		<org.mockito.version>1.10.19</org.mockito.version>
 		<!-- - - - - - Logging - - - - - -->
-		<org.slf4j.version>1.7.13</org.slf4j.version>
+		<org.slf4j.version>1.7.21</org.slf4j.version>
 		<!-- - - - - - Utils - - - - - -->
 		<org.apache.poi.version>3.13</org.apache.poi.version>
 		<xerces.xercesImpl.version>2.11.0</xerces.xercesImpl.version>
@@ -78,11 +78,11 @@
 		</dependency>
 
 		<!-- - - - Automation Framework Selenium - - - -->
-<!-- 		<dependency> -->
-<!-- 		<groupId>org.seleniumhq.selenium</groupId> -->
-<!-- 		<artifactId>selenium-server</artifactId> -->
-<!-- 		<version>${org.seleniumhq.version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.seleniumhq.selenium</groupId> -->
+		<!-- <artifactId>selenium-server</artifactId> -->
+		<!-- <version>${org.seleniumhq.version}</version> -->
+		<!-- </dependency> -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.seleniumhq.selenium</groupId> -->
 		<!-- <artifactId>htmlunit-driver</artifactId> -->
@@ -172,7 +172,7 @@
 
 			<build>
 				<plugins>
-					<!-- aspect weaving plugin  -->
+					<!-- aspect weaving plugin -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>aspectj-maven-plugin</artifactId>
@@ -232,9 +232,9 @@
 								</surefire.webdriver.name>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<!--<suiteXmlFile>testng.xml</suiteXmlFile>-->
-								<!--<file>testng.xml</file>-->
-								<file>product.xml</file>
+								<!--<suiteXmlFile>testng.xml</suiteXmlFile> -->
+								<file>testng.xml</file>
+								<!-- <file>product.xml</file> -->
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>

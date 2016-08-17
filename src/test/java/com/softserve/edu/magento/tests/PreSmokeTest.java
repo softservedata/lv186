@@ -1,6 +1,18 @@
 package com.softserve.edu.magento.tests;
 
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.admin.AdminUserRepository;
@@ -15,20 +27,10 @@ import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.tools.ListUtils;
+import com.softserve.edu.magento.tools.LoggerUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import java.util.concurrent.TimeUnit;
-
-public class PreSmokeTest extends TestBase{
+public class PreSmokeTest {//extends TestBase{
 
 	//@Test//(dataProvider = "driverParameters")
 	public void checkAdminLogon1() throws Exception { // (BrowsersList browser)
@@ -88,6 +90,7 @@ public class PreSmokeTest extends TestBase{
 	@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) test START");
+        LoggerUtils.get().infoLog("Class PreSmokeTest, method checkAdminLogon2(...) test START");
 		// Precondition
 	    SoftAssert softAssert = new SoftAssert(); 
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -134,6 +137,7 @@ public class PreSmokeTest extends TestBase{
 		// applicationAdmin.quit();
         //System.out.println("+++Test Done");
 		System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) test DONE");
+        LoggerUtils.get().infoLog("Class PreSmokeTest, method checkAdminLogon2(...) test DONE");
 		softAssert.assertAll();
 	}
 

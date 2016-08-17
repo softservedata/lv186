@@ -30,33 +30,26 @@ import com.softserve.edu.magento.pages.customer.components.Header.Titles;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class PreSmokeTestSignIn {
+public class PreSmokeTestSignIn extends TestBase{
 
   @AfterMethod
   public void afterMethod() {
 	  ApplicationCustomer.quitAll();
   }
   @AfterClass
-  void tearDown() throws Exception {
+  void tearDown()  {
 	  //ApplicationCustomer.quitAll();
   }
   @DataProvider (parallel = true)
   public Object[][] smokeParameters(ITestContext context) {
-     return ListUtils.get().toMultiArray(
-              ParameterUtils.get().updateParametersAll(
-                      ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
-				AdminUserRepository.get().adminYaryna());
-	 /*return new Object[][] {
-			 { ParameterUtils.get().updateParametersAll(
-			 ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
-				 AdminUserRepository.get().adminYaryna() },
-			 { ParameterUtils.get().updateParametersAll(
-			 ApplicationSourcesRepository.getChromeLocalhostCustomer(), context),
-				 AdminUserRepository.get().adminYaryna()}
-			 };*/
+     return new Object[][] {
+			  { ParameterUtils.get().updateParametersAll(
+                      ApplicationSourcesRepository.getChromeLocalhostCustomer(), context),
+				AdminUserRepository.get().adminYaryna() }
+	 };
   }
 
-  @Test(dataProvider = "smokeParameters")
+  //@Test(dataProvider = "smokeParameters")
   public void testSignIn1(ApplicationSources applicationSources, IAdminUser adminUser) {
 	  //Precondition
 	  // Prepare our application
@@ -81,7 +74,7 @@ public class PreSmokeTestSignIn {
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
 	  
   }
-  @Test(dataProvider = "smokeParameters")
+  //@Test(dataProvider = "smokeParameters")
   public void testSignIn1_1(ApplicationSources applicationSources, IAdminUser adminUser) {
 	  //Precondition
 	  // Prepare our application
@@ -105,7 +98,7 @@ public class PreSmokeTestSignIn {
 	  // Go to the home page
 	  homePageLogout = accountDashboardPage.clickSignOutButton();
   }
-  @Test(dataProvider = "smokeParameters")
+  //@Test(dataProvider = "smokeParameters")
   public void testSignIn2(ApplicationSources applicationSources, IAdminUser adminUser) {
 	  //Precondition
 	  // Prepare our application
@@ -133,7 +126,7 @@ public class PreSmokeTestSignIn {
 	  unsuccessfulSignInPage.clickLogo();
   }
   @Test(dataProvider = "smokeParameters")
-  public void testCreateAccount1(ApplicationSources applicationSources, IAdminUser adminUser) throws InterruptedException {
+  public void testCreateAccount1(ApplicationSources applicationSources, IAdminUser adminUser){
 	  //Precondition
 	  // Prepare our application
 	  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
@@ -200,6 +193,7 @@ public class PreSmokeTestSignIn {
 			  .successAdminLogin(adminUser)
 			  .gotoAllCustomersPage();
 	  // 6. Confirm that already exist customer account is not created
+	  System.out.println("confirmAlreadyExistCustomerUserIsCreated 0");
 	  Assert.assertFalse(allCustomersPage
 			  .confirmAlreadyExistCustomerUserIsCreated(CustomerUserRepository.get().UserYaryna()));
 	  // Return to the previous state

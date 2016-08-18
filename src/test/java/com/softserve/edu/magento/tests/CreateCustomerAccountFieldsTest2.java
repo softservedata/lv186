@@ -31,7 +31,7 @@ public class CreateCustomerAccountFieldsTest2 extends TestBase{
 
 	 @AfterMethod
 	  public void afterMethod() {
-		 testCustomerUser.get().returnToPrevCreateAccount();
+		 TestCustomerUser.get().returnToPrevCreateAccount();
 	 	ApplicationCustomer.quitAll();
 	  }
 	 @DataProvider 
@@ -55,7 +55,7 @@ public class CreateCustomerAccountFieldsTest2 extends TestBase{
 	  public void testCreateNewAccount1(ApplicationSources applicationSources,ICustomerUser customerUser) {
 		  //Precondition
 		  // Prepare our application
-		 testCustomerUser.get().setCustomerUser(customerUser);
+		 TestCustomerUser.get().setCustomerUser(customerUser);
 		  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 		  HomePageLogout homePageLogout = applicationCustomer.load();
 		  // Test step
@@ -101,7 +101,7 @@ public class CreateCustomerAccountFieldsTest2 extends TestBase{
 	  public void testCreateNewAccount2(ApplicationSources applicationSources,ICustomerUser customerUser) {
 		  //Precondition
 		  // Prepare our application
-		 testCustomerUser.get().setCustomerUser(customerUser);
+		 TestCustomerUser.get().setCustomerUser(customerUser);
 		  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 		  HomePageLogout homePageLogout = applicationCustomer.load();
 		  // Test step

@@ -10,18 +10,18 @@ import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 /**
  * Created by yarynakharko on 16.08.16.
  */
-public class testCustomerUser {
-        private static volatile testCustomerUser instance = null;
+public class TestCustomerUser {
+        private static volatile TestCustomerUser instance = null;
         private ICustomerUser customerUser = null;
 
-        private testCustomerUser() {
+        private TestCustomerUser() {
         }
 
-        public static testCustomerUser get() {
+        public static TestCustomerUser get() {
             if (instance == null) {
-                synchronized (testCustomerUser.class) {
+                synchronized (TestCustomerUser.class) {
                     if (instance == null) {
-                        instance = new testCustomerUser();
+                        instance = new TestCustomerUser();
                     }
                 }
             }
@@ -45,13 +45,13 @@ public class testCustomerUser {
                 .successAdminLogin(AdminUserRepository.get().adminYaryna())
                 .gotoAllCustomersPage();
 
-        ICustomerUser testCustomer = testCustomerUser.get().getCustomerUser();
+        ICustomerUser testCustomer = TestCustomerUser.get().getCustomerUser();
         // 4. Delete currently created user
         if(allCustomersPage.confirmCustomerUserIsCreated(testCustomer) == true ) {
             allCustomersPage = allCustomersPage.deleteCustomerUser(testCustomer);
         }
         // 5. Log out admin
-        allCustomersPage.clickSignOut();
+        applicationAdmin.logout();
     }
 
 }

@@ -1050,4 +1050,10 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return new ConfirmDeleteWindow();
 	}
 
+	public void clickClearAllButton(){
+	    WebElement clearAll = Search.xpaths(".//*[@class='action-tertiary action-clear']").get(0);
+		if(clearAll.isDisplayed())
+			clearAll.click();
+    }
+
 }

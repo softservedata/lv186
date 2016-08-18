@@ -82,6 +82,9 @@ public class CustomerSmokeTests extends TestBase{
 				.findCustomerInTheList(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide()));
 		// deleting registered Customer
 		allCustAfter.deleteCustomerUser(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide());
+		Thread.sleep(2000);
+		allCustAfter.clickClearAllButton();
+		Thread.sleep(2000);
 		// Sign Out Admin
 		applicationAdmin.quit();
 	}

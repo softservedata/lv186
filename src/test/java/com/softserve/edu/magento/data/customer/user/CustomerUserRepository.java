@@ -548,14 +548,14 @@ public class CustomerUserRepository {
 	public ICustomerUser User_BV4() {
 		return CustomerUser.get().
 				setPersonalInfo(PersonalInfo_User.get()
-						.setFirstname("Andrew")
-						.setLastname("Andrienko")
+						.setFirstname("Tania")
+						.setLastname("Lozonova")
 						.setSignUpNewsletter(true)
 						.build())
 				.setSigninInfo(SigninInfo_User.get()
-						.setEmail("andrew@gmail.com")
-						.setPassword("12Ya5678")
-						.setConfirmPassword("12Ya5678")
+						.setEmail("taniaLoza@gmail.com")
+						.setPassword("12Ta5678")
+						.setConfirmPassword("12Ta5678")
 						.setAssosiateToWebsite("Main Website")
 						.setGroup(Group.GENERAL)
 						.build())
@@ -621,14 +621,30 @@ public class CustomerUserRepository {
 						.build())
 				.setSigninInfo(SigninInfo_User.get()
 						.setEmail("andrew@gmail.com")
-						.setPassword("12Y456789")
-						.setConfirmPassword("12Y456789")
+						.setPassword("123456789")
+						.setConfirmPassword("123456789")
 						.setAssosiateToWebsite("Main Website")
 						.setGroup(Group.GENERAL)
 						.build())
 				.build();
 	}
 	public ICustomerUser User_DT_PASSWORD5() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Andrew")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("andrew@gmail.com")
+						.setPassword("ANDrienko")
+						.setConfirmPassword("ANDrienko")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+	public ICustomerUser User_DT_PASSWORD6() {
 		return CustomerUser.get().
 				setPersonalInfo(PersonalInfo_User.get()
 						.setFirstname("Andrew")
@@ -644,22 +660,7 @@ public class CustomerUserRepository {
 						.build())
 				.build();
 	}
-	public ICustomerUser User_DT_PASSWORD6() {
-		return CustomerUser.get().
-				setPersonalInfo(PersonalInfo_User.get()
-						.setFirstname("Andrew")
-						.setLastname("Andrienko")
-						.setSignUpNewsletter(true)
-						.build())
-				.setSigninInfo(SigninInfo_User.get()
-						.setEmail("andrew@gmail.com")
-						.setPassword("Andrienko")
-						.setConfirmPassword("Andrienko")
-						.setAssosiateToWebsite("Main Website")
-						.setGroup(Group.GENERAL)
-						.build())
-				.build();
-	}
+
 	public ICustomerUser User_DT_PASSWORD7() {
 		return CustomerUser.get().
 				setPersonalInfo(PersonalInfo_User.get()
@@ -912,6 +913,45 @@ public class CustomerUserRepository {
 						.setEmail("OlyaFedorova@gmail.com")
 						.setPassword("OlyaFedorova123")
 						.setConfirmPassword("OlyaFedorova123")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+	// for sing in test functional
+	public ICustomerUser User_DT_SingIn_1() {
+		return CustomerUserRepository.get().UserYaryna();
+	}
+	public ICustomerUser User_DT_SingIn_2() {
+		return CustomerUserRepository.get().invalidUser();
+	}
+	public ICustomerUser User_DT_SingIn_3() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Yaryna")
+						.setLastname("Kharko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("ya.kharko@nltu.lviv.ua")
+						.setPassword("")
+						.setConfirmPassword("")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+	public ICustomerUser User_DT_SingIn_4() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Yaryna")
+						.setLastname("Kharko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("ya.kharko")
+						.setPassword("25263004Ya")
+						.setConfirmPassword("25263004Ya")
 						.setAssosiateToWebsite("Main Website")
 						.setGroup(Group.GENERAL)
 						.build())

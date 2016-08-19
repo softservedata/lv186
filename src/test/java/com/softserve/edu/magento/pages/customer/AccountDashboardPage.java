@@ -14,8 +14,8 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 
 	public static enum InformNewslettersList {
 		//TODO
-		SUBSCRIBE("email"),
-		NO_SUBSCRIBE("pass");
+		SUBSCRIBE("You subscribe to \"General Subscription\"."),
+		NO_SUBSCRIBE("You don't subscribe to our newsletter.");
 
 		//
 		private String field;
@@ -203,8 +203,12 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 
 		public boolean confirmAccountInfCorrect (ICustomerUser customerUser) {
 			boolean isAccountInfCorrect = false;
-			String contInformAccount = customerUser.getPersonalInfo().getFullName()+" " +
+			String contInformAccount = customerUser.getPersonalInfo().getFullName()+"\n" +
 					customerUser.getSigninInfo().getEmail();
+			System.out.println(contInformAccount);
+
+			System.out.println(this.getNameEmaiText());
+			System.out.println(this.getInform_NewslettersText());
 
 			if( this.getNameEmaiText().trim().equals(contInformAccount)) {
 				if ( customerUser.getPersonalInfo().getSignUpNewsletter() == true ) {

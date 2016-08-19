@@ -11,6 +11,8 @@ public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 		ERROR_PASSWORD_FORMAT("Minimum of different classes of characters"+
 		" in password is 3. Classes of characters: Lower Case, Upper Case,"+
 				" Digits, Special Characters."),
+		ERROR_PASSWORD_FORMAT_MIN_LENGHT("Minimum length of this field must be equal"+
+				" or greater than 8 symbols. Leading and trailing spaces will be ignored."),
 		ERROR_EMAIL_FORMAT("Please enter a valid email address (Ex: johndoe@domain.com)."),
 		FIELD_IS_REQUIRED("This is a required field.");
 		//

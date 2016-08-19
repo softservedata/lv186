@@ -31,14 +31,14 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 
 	 @AfterMethod
 	  public void afterMethod() {
-		 testCustomerUser.get().returnToPrevCreateAccount();
+		 TestCustomerUser.get().returnToPrevCreateAccount();
 	 	ApplicationCustomer.quitAll();
 	  }
 	 @DataProvider 
 	  public Object[][] ApplicationParametersUnSuccess(ITestContext context) {
 	     return ListUtils.get().toMultiArrayNumber(
 	    		 ParameterUtils.get().updateParametersAll(
-	                      ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
+	                      ApplicationSourcesRepository.getChromeLocalhostCustomer(), context),
 	    		 UserParametersUnSuccess()
 	    		 );
 
@@ -46,6 +46,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 	 public List<ICustomerUser> UserParametersUnSuccess() {
 			List<ICustomerUser> users = new ArrayList<ICustomerUser>();
 			users.add(CustomerUserRepository.get().User_BV1());
+			users.add(CustomerUserRepository.get().User_BV3());
 			//users.add(CustomerUserRepository.get().User_BV3());
 			//users.add(CustomerUserRepository.get().User_BV4());
 			return users;
@@ -57,6 +58,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  // Prepare our application
 		  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 		  HomePageLogout homePageLogout = applicationCustomer.load();
+		 TestCustomerUser.get().setCustomerUser(customerUser);
 		  // Test step
 		  // 1. Go to the create account page
 		  CreateAccountPage createAccountPage = homePageLogout.clickCreateAccountLink();
@@ -66,9 +68,9 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  // 3.Confirm that error message appear with right text
 		  Assert.assertTrue(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.PASSWORD));
 		  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorValidatorText(ErrorValidatorName.PASSWORD),
-				  ErrorMessage.ERROR_PASSWORD_FORMAT.toString());
+				  ErrorMessage.ERROR_PASSWORD_FORMAT_MIN_LENGHT.toString());
 		  // 4.Go to  the admin page
-		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostMacAdmin());
 		  // 5. Log in admin
 		  // 6. Go to the all customer page
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
@@ -77,13 +79,13 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  // 7. Confirm that already exist customer account is not created
 		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
-		  allCustomersPage.clickSignOut();
+		 applicationAdmin.logout();
 	 }
 	 @DataProvider 
 	  public Object[][] ApplicationParametersUnSuccess2(ITestContext context) {
 	     return ListUtils.get().toMultiArray(
 	    		 ParameterUtils.get().updateParametersAll(
-	                      ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
+	                      ApplicationSourcesRepository.getChromeLocalhostCustomer(), context),
 	    		 CustomerUserRepository.get().User_BV2()
 	    		 );
 
@@ -94,6 +96,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  // Prepare our application
 		  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 		  HomePageLogout homePageLogout = applicationCustomer.load();
+		 TestCustomerUser.get().setCustomerUser(customerUser);
 		  // Test step
 		  // 1. Go to the create account page
 		  CreateAccountPage createAccountPage = homePageLogout.clickCreateAccountLink();
@@ -105,7 +108,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorValidatorText(ErrorValidatorName.PASSWORD),
 				  ErrorMessage.FIELD_IS_REQUIRED.toString());
 		  // 4.Go to  the admin page
-		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostMacAdmin());
 		  // 5. Log in admin
 		  // 6. Go to the all customer page
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
@@ -114,21 +117,20 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  // 7. Confirm that already exist customer account is not created
 		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
-		  allCustomersPage.clickSignOut();
+		 applicationAdmin.logout();
 	 }
 	 
 	 @DataProvider 
 	  public Object[][] ApplicationParametersSuccess(ITestContext context) {
 	     return ListUtils.get().toMultiArrayNumber(
 	    		 ParameterUtils.get().updateParametersAll(
-	                      ApplicationSourcesRepository.getFirefoxLocalhostCustomer(), context),
+	                      ApplicationSourcesRepository.getChromeLocalhostCustomer(), context),
 	    		 UserParametersSuccess()
 	    		 );
 
 	  }
 	 public List<ICustomerUser> UserParametersSuccess() {
 			List<ICustomerUser> users = new ArrayList<ICustomerUser>();
-			users.add(CustomerUserRepository.get().User_BV3());
 			users.add(CustomerUserRepository.get().User_BV4());
 			return users;
 	 }
@@ -139,6 +141,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  // Prepare our application
 		  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
 		  HomePageLogout homePageLogout = applicationCustomer.load();
+		 TestCustomerUser.get().setCustomerUser(customerUser);
 		  // Test step
 		  // 1. Go to the create account page
 		  CreateAccountPage createAccountPage = homePageLogout.clickCreateAccountLink();
@@ -152,19 +155,15 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  // 6. Sign Out user
 		  accountDashboardPage.clickSignOutButton();
 		  // 7.Go to  the admin page
-		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getFirefoxLocalhostAdmin());
+		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostMacAdmin());
 		  // 8. Log in admin
 		  // 9. Go to the all customer page
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
-		  // 10. Confirm that already exist customer account is not created
-		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
-		  // Return to the previous state
-		  // 5. Delete currently created user
-		  allCustomersPage = allCustomersPage.deleteCustomerUser(customerUser);
-		  // 6. Log out admin
-		  allCustomersPage.clickSignOut();
+		  // 10. Confirm that already exist customer account is created
+		  Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		 applicationAdmin.logout();
 	 }
 
 	

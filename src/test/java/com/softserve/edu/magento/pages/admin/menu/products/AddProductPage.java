@@ -38,7 +38,7 @@ public class AddProductPage extends VerticalMenu {
 		saveAndCloseButton = Search.id("save_and_close");
 		backButton = Search.id("back");
 		addAttributeButton = Search.id("addAttribute");
-		enableProductButton = Search.xpath("//*[@id='container']/div/div[2]/div[1]/div/fieldset/div[1]/div/div");
+		enableProductButton = Search.xpath("(//div[@class='admin__actions-switch'])[1]");
 		attributeSetInput = Search.xpath("//*[@id='container']/div/div[2]/div[1]/div/fieldset/div[2]");
 		productNameInput = Search.cssSelector("input[name='product[name]']");
 		skuInput = Search.cssSelector("input[name='product[sku]']");

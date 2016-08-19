@@ -75,6 +75,13 @@ public final class ApplicationSourcesRepository {
                 new String());
     }
 
+    public static ApplicationSources getChromeRemoteAdmin() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "C:\\Users\\ynevitc\\Downloads\\chromedriver.exe", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento/admin",
+                new String());
+    }
+
     public static List<ApplicationSources> getListBrowsersLocalhostCustomer() {
         List<ApplicationSources> result = new ArrayList<ApplicationSources>();
         result.add(getFirefoxLocalhostCustomer());

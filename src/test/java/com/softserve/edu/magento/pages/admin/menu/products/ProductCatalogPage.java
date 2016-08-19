@@ -3,6 +3,9 @@ package com.softserve.edu.magento.pages.admin.menu.products;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.base.Predicate;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.admin.products.Filter;
@@ -25,6 +28,8 @@ public class ProductCatalogPage extends VerticalMenu {
 	private WebElement actionsDropdown;
 	private WebElement deleteProductButton;
 	private WebElement changeProductStatusButton;
+	private WebElement enableProduct;
+	private WebElement disableProduct;
 	private WebElement updateProductAttributesButton;
 
 	private WebElement filterButton;
@@ -45,6 +50,9 @@ public class ProductCatalogPage extends VerticalMenu {
 		actionsDropdown = Search.xpath("(//div[@class='action-select-wrap'])[1]");
 		deleteProductButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]");
 		changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
+		enableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Enable')])[1]");
+		disableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Disable')])[1]");
+
 		updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
 		nextPageButton = Search.cssSelector("button[title='Next Page']");
 		productRows = new ArrayList<ProductRow>();
@@ -100,6 +108,14 @@ public class ProductCatalogPage extends VerticalMenu {
 
 	public WebElement getChangeStatusProductAction() {
 		return this.changeProductStatusButton;
+	}
+
+	public WebElement getEnableProductStatus() {
+		return this.enableProduct;
+	}
+
+	public WebElement getDisableProductStatus() {
+		return this.disableProduct;
 	}
 
 	public WebElement getUpdateProductAttributesAction() {
@@ -163,6 +179,16 @@ public class ProductCatalogPage extends VerticalMenu {
 		getChangeStatusProductAction().click();
 	}
 
+	public void setEnableProductStatus() {
+		clickChangeStatusProductAction();
+		getEnableProductStatus().click();
+	}
+
+	public void setDisableProduct() {
+		clickChangeStatusProductAction();
+		getDisableProductStatus().click();
+	}
+
 	public void clickUpdateProductAttributesAction() {
 		clickActionsDropdown();
 		getUpdateProductAttributesAction().click();
@@ -223,18 +249,18 @@ public class ProductCatalogPage extends VerticalMenu {
 		private WebElement noProductFound;
 
 		private ProductRow(WebElement row) {
-			productCheckbox = Search.cssSelector("td:first-child");
-			productId = Search.cssSelector("td:nth-child(2)");
-			productName = Search.cssSelector("td:nth-child(4)");
-			productType = Search.cssSelector("td:nth-child(5)");
-			productAttributeSet = Search.cssSelector("td:nth-child(6)");
-			productSku = Search.cssSelector("td:nth-child(7)");
-			productPrice = Search.cssSelector("td:nth-child(8)");
-			productQuantity = Search.cssSelector("td:nth-child(9)");
-			productVisibility = Search.cssSelector("td:nth-child(10)");
-			productStatus = Search.cssSelector("td:nth-child(11)");
-			productWebsites = Search.cssSelector("td:nth-child(12)");
-			productActions = Search.cssSelector("td:nth-child(13)");
+			productCheckbox = Search.cssSelector(("td:first-child"), row);
+			productId = Search.cssSelector(("td:nth-child(2)"), row);
+			productName = Search.cssSelector(("td:nth-child(4)"), row);
+			productType = Search.cssSelector(("td:nth-child(5)"), row);
+			productAttributeSet = Search.cssSelector(("td:nth-child(6)"), row);
+			productSku = Search.cssSelector(("td:nth-child(7)"), row);
+			productPrice = Search.cssSelector(("td:nth-child(8)"), row);
+			productQuantity = Search.cssSelector(("td:nth-child(9)"), row);
+			productVisibility = Search.cssSelector(("td:nth-child(10)"), row);
+			productStatus = Search.cssSelector(("td:nth-child(11)"), row);
+			productWebsites = Search.cssSelector(("td:nth-child(12)"), row);
+			productActions = Search.cssSelector(("td:nth-child(13)"), row);
 		}
 
 		// Getters
@@ -523,6 +549,13 @@ public class ProductCatalogPage extends VerticalMenu {
 
 		public ProductCatalogPage clickDeleteConfirmationButton() {
 			getDeleteConfirmationButton().click();
+			Search.waitUntil(new Predicate<WebDriver>() {
+				@Override
+				public boolean apply(WebDriver input) {
+					List<WebElement> foundRows = Search.cssSelectors("tbody tr");
+					return foundRows.size() > 0;
+				}
+			});
 			return new ProductCatalogPage();
 		}
 
@@ -532,6 +565,18 @@ public class ProductCatalogPage extends VerticalMenu {
 
 		public void clickCloseDeletePopupButton() {
 			getCloseDeletePopupButton().click();
+		}
+	}
+
+	private class NoItemSelectedPopup {
+		private WebElement noItemSelectedPopupTitle;
+		private WebElement noItemSelectedPopupConfirmButton;
+		private WebElement noItemSelectedPopupCloseButton;
+
+		public NoItemSelectedPopup() {
+			noItemSelectedPopupTitle = Search.xpath("//header[@class='modal-header']/h1[contains(text(), 'Attention')]");
+			noItemSelectedPopupConfirmButton = Search.className("action-accept");
+			//getNoItemSelectedPopupCloseButton = Search.
 		}
 	}
 }

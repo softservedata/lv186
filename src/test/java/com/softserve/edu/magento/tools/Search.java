@@ -2,8 +2,13 @@ package com.softserve.edu.magento.tools;
 
 import java.util.List;
 
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 interface ISearchStrategy {
     ASearch getStrategy(Application<?> application);
@@ -177,5 +182,8 @@ public class Search {
     	return getinstance().getSearch().tagNames(tagName);
     }
 
+    public static void waitUntil(Predicate<WebDriver> predicate){
+        getinstance().getSearch().waitUntil(predicate);
+    }
 
 }

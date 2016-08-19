@@ -21,6 +21,7 @@ public class Product implements IProductName, ISku, IPrice, IBuild, IProduct {
 	private String sku;
 	private String price;
 	private String attributeSet;
+	private String quantity;
 
 	private Product() {
 	}
@@ -51,6 +52,9 @@ public class Product implements IProductName, ISku, IPrice, IBuild, IProduct {
 	public void setAttributeSet(String attributeSet) {
 		this.attributeSet = attributeSet;
 	}
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
 
 	// Getters
 
@@ -68,6 +72,10 @@ public class Product implements IProductName, ISku, IPrice, IBuild, IProduct {
 
 	public String getAttributeSet() {
 		return attributeSet;
+	}
+
+	public String getQuantity() {
+		return quantity;
 	}
 
 }

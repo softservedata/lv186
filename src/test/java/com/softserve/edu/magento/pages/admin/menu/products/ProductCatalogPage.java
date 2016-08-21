@@ -214,6 +214,14 @@ public class ProductCatalogPage extends VerticalMenu {
 		return null;
 	}
 
+	public ProductRow getRowWithDuplicatedProduct(String productName,String sku) {
+		for (ProductRow row : productRows) {
+			if (row.getProductNameText().equals(productName) && row.getProductSkuText().equals(sku)) {
+				return row;
+			}
+		}
+		return null;
+	}
 	public ProductCatalogPage moveToNextPage() {
 		nextPageButton.click();
 		return new ProductCatalogPage();

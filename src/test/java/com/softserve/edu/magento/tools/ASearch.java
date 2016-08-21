@@ -81,7 +81,9 @@ public abstract class ASearch {
     public abstract List<WebElement> names(String name);
 
     public abstract List<WebElement> xpaths(String xpath);
-    
+
+    public abstract List<WebElement> xpaths(String xpath, WebElement fromWebElement);
+
     public abstract List<WebElement> cssSelectors(String cssSelector);
 
     public abstract List<WebElement> classNames(String className);

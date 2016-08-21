@@ -9,7 +9,13 @@
 				<methods>
 					<include name="checkProductSaved" />
 					<include name="checkProductSaveValidation" />
-					<include name="checkFilters" />
+					<include name="checkProductSaveWithInvalidPrice" />
+					<include name="checkProductSaveWithNonRequiredFields" />
+					<include name="checkProductExists" />
+					<include name="checkProductSaveAndNew" />
+					<include name="checkProductSaveAndDuplicate" />
+					<include name="checkProductSaveAndClose" />
+
 				</methods>
 			</class>
 		</classes>

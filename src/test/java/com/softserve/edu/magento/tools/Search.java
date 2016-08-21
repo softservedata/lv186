@@ -161,7 +161,11 @@ public class Search {
     public  static List<WebElement> xpaths(String xpath) {
         return getinstance().getSearch().xpaths(xpath);
     }
-    
+
+    public  static List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return getinstance().getSearch().xpaths(xpath, fromWebElement);
+    }
+
     public  static List<WebElement> cssSelectors(String cssSelector) {
         return getinstance().getSearch().cssSelectors(cssSelector);
     }

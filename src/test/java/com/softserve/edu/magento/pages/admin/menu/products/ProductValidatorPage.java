@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,9 +10,7 @@ import com.softserve.edu.magento.tools.Search;
 
 public class ProductValidatorPage extends AddProductPage {
 
-	private List<WebElement> productNameValidators;
-	private List<WebElement> skuValidators;
-	private List<WebElement> priceValidators;
+//	private List<WebElement>fieldValidators;
 
 	private WebElement productNameValidator;
 	private WebElement skuValidator;
@@ -19,9 +18,12 @@ public class ProductValidatorPage extends AddProductPage {
 
 	public ProductValidatorPage() {
 
-		productNameValidators = Search.xpaths("(//label[@class='admin__field-error'])[1]");
-		skuValidators = Search.xpaths("(//label[@class='admin__field-error'])[2]");
-		priceValidators = Search.xpaths("(//label[@class='admin__field-error'])[3]");
+		WebElement productNameContainer = Search.xpath("//div[@data-index='name']");
+		List<WebElement> productNameValidators = Search.xpaths("(//label[@class='admin__field-error'])", productNameContainer);
+		WebElement skuContainer = Search.xpath("//div[@data-index='sku']");
+		List<WebElement> skuValidators = Search.xpaths("(//label[@class='admin__field-error'])", skuContainer);
+		WebElement priceContainer = Search.xpath("//fieldset[@data-index='container_price']");
+		List<WebElement> priceValidators = Search.xpaths("(//label[@class='admin__field-error'])", priceContainer);
 
 		if (productNameValidators.size() > 0) {
 			this.productNameValidator = productNameValidators.get(0);

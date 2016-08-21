@@ -42,6 +42,15 @@ public class SearchExplicit extends ASearch {
           return result;
     }
 
+    private List<WebElement> getVisibleWebElements(By by, WebElement fromWebElement) {
+        List<WebElement> result;
+        getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
+        result = fromWebElement.findElements(by);
+        getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
+        return result;
+    }
+
+
     private List<WebElement> getVisibleWebElements(By by) {
         return new WebDriverWait(this.getWebDriver(),
                 getApplication().getApplicationSources().getExplicitTimeOut())
@@ -99,10 +108,15 @@ public class SearchExplicit extends ASearch {
     public  WebElement name(String name, WebElement fromWebElement) {
     	return getVisibleWebElement(By.name(name), fromWebElement);
     }
-    
+
     @Override
     public  WebElement xpath(String xpath, WebElement fromWebElement) {
-    	return getVisibleWebElement(By.xpath(xpath), fromWebElement);
+        return getVisibleWebElement(By.xpath(xpath), fromWebElement);
+    }
+
+    @Override
+    public  List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return getVisibleWebElements(By.xpath(xpath), fromWebElement);
     }
     @Override
     public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {

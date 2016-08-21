@@ -3,6 +3,7 @@ package com.softserve.edu.magento.pages.admin.menu.products;
 import java.util.List;
 
 import org.apache.http.util.TextUtils;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,10 +40,10 @@ public class AddProductPage extends VerticalMenu {
 		backButton = Search.id("back");
 		addAttributeButton = Search.id("addAttribute");
 		enableProductButton = Search.xpath("(//div[@class='admin__actions-switch'])[1]");
-		attributeSetInput = Search.xpath("//*[@id='container']/div/div[2]/div[1]/div/fieldset/div[2]");
+		attributeSetInput = Search.xpath("//div[@data-index='attribute_set_id']//div[@class='admin__action-multiselect-text']");
 		productNameInput = Search.cssSelector("input[name='product[name]']");
 		skuInput = Search.cssSelector("input[name='product[sku]']");
-		priceInput = Search.cssSelector("input[name='product[price]']");
+		priceInput = Search.xpath("//div[@data-index='price']//div[@class='admin__control-addon']");
 		quantityInput = Search.cssSelector(".admin__field-small input[name='product[quantity_and_stock_status][qty]']");
 	}
 
@@ -105,19 +106,19 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public String getProductNameInputText() {
-		return this.getProductNameInput().getText().trim();
+		return this.getProductNameInput().getAttribute("value").trim();
 	}
 
 	public String getSkuInputText() {
-		return this.getSkuInput().getText().trim();
+		return this.getSkuInput().getAttribute("value").trim();
 	}
 
 	public String getPriceInputText() {
-		return this.getPriceInput().getText().trim();
+		return this.getPriceInput().getAttribute("value").trim();
 	}
 
 	public String getQuantityInputText() {
-		return this.getQuantityInput().getText().trim();
+		return this.getQuantityInput().getAttribute("value").trim();
 	}
 
 	// Setters
@@ -192,16 +193,34 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public void setProductNameInputWithClear(String productName) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        getProductNameInput().click();
 		clearProductNameInput();
 		setProductName(productName);
 	}
 
 	public void setSkuInputWithClear(String sku) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		getSkuInput().click();
 		clearSkuInput();
 		setSku(sku);
 	}
 
 	public void setPriceInputWithClear(String price) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		getPriceInput().click();
 		clearPriceInput();
 		setPrice(price);
 	}
@@ -244,6 +263,7 @@ public class AddProductPage extends VerticalMenu {
 
 	public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
 		clickSaveButton();
+        System.out.println("before create");
 		return new SuccessProductSavePage();
 	}
 
@@ -253,11 +273,11 @@ public class AddProductPage extends VerticalMenu {
 	}
 
 	public SuccessProductSaveAndDuplicatePage gotoSuccessProductSaveAndDuplicatePage() {
-		clickSaveButton();
+		clickSaveAndDuplicateButton();
 		return new SuccessProductSaveAndDuplicatePage();
 	}
 
-	public ProductCatalogPage gotoProductCatalogPage() {
+	public ProductCatalogPage gotoProductCatalogPageAfterSaveClose() {
 		clickSaveAndCloseButton();
 		return new ProductCatalogPage();
 	}

@@ -12,4 +12,6 @@ public class Constants {
     public static final String ENABLE_PRODUCT_STATUS = "Enable";
     public static final String DISABLE_PRODUCT_STATUS = "Disable";
 
+    public static final String ATTRIBUTE_SET_DEFAULT_VALUE = "Default";
+
 }

@@ -6,26 +6,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 interface ISearchStrategy {
-    ASearch getStrategy(Application<?> application);
+    ASearch getStrategy();
 }
 
 public class Search {
 
     static class ImplicitStrategy implements ISearchStrategy {
-        public ASearch getStrategy(Application<?> application) {
-            return new SearchImplicit(application);
+        public ASearch getStrategy() {
+            return new SearchImplicit();
         }
     }
 
-    static class ExplicitStrategy implements ISearchStrategy {
-        public ASearch getStrategy(Application<?> application) {
-            return new SearchExplicit(application);
+    static class ExplicitStrategyVisible implements ISearchStrategy {
+        public ASearch getStrategy() {
+            return new SearchExplicitVisible();
+        }
+    }
+
+    static class ExplicitStrategyPresent implements ISearchStrategy {
+        public ASearch getStrategy() {
+            return new SearchExplicitPresent();
         }
     }
 
     public static enum SearchStrategyList {
         IMPLICIT_STRATEGY(new ImplicitStrategy(), "SearchImplicitStrategy"),
-        EXPLICIT_STRATEGY(new ExplicitStrategy(), "SearchExplicitStrategy");
+        EXPLICIT_STRATEGY_VISIBLE(new ExplicitStrategyVisible(), "SearchExplicitStrategyVisible"),
+        EXPLICIT_STRATEGY_PRESENT(new ExplicitStrategyPresent(), "SearchExplicitStrategyPresent");
         private ISearchStrategy searchStrategy;
         private String searchStrategyName;
 
@@ -34,8 +41,8 @@ public class Search {
             this.searchStrategyName = searchStrategyName;
         }
 
-        public ASearch getSearchStrategy(Application<?> application) {
-            return searchStrategy.getStrategy(application);
+        public ASearch getSearchStrategy() {
+            return searchStrategy.getStrategy();
         }
 
         @Override

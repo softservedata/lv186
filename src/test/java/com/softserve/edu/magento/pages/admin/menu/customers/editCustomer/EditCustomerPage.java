@@ -2,11 +2,15 @@ package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.util.List;
 
+import com.softserve.edu.magento.tools.Search;
+import com.softserve.edu.magento.tools.SearchExplicitPresent;
+import com.softserve.edu.magento.tools.SearchExplicitVisible;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.tools.Search;
+import com.softserve.edu.magento.tools.Search.SearchStrategyList;
+
 
 /**
  * Class that represents the EditCustomerPage with all the AJAX components in
@@ -16,7 +20,7 @@ import com.softserve.edu.magento.tools.Search;
 public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustomer {
 
 	private static volatile ICustommerView custommerViewAjax;
-	private static volatile IAccountInformation accountInformationAjax = null;
+	private static volatile IAccountInformation accountInformationAjax;
 	private static volatile IAdresses adressesAjax;
 	private static volatile IOrders ordersAjax;
 	private WebElement successMessage;
@@ -111,7 +115,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	}
 	
 	/**
-	 * Saves Customer and goes bacl to 
+	 * Saves Customer and goes back to
 	 * AllCustomersPage.
 	 * @return
 	 * 		new AllCustomersPage.
@@ -155,6 +159,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 							.xpath("//th[contains(text(), 'Account Lock')]//following-sibling::td");
 			this.ConfirmedEmailInfo = Search
 							.xpath("//th[contains(text(), 'Confirmed email')]//following-sibling::td");
+			//Search.setStrategy(SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
 			this.AccountCreatedInfo = Search
 							.xpath("//th[contains(text(), 'Account Created')]//following-sibling::td");
 			this.AccountCreatedInInfo = Search

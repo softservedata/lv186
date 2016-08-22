@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-<parameter name="browserName" value="Firefox" />
+  <parameter name="browser" value="Chrome" />
+  <parameter name="driverPath" value="/Applications/Google Chrome.app/Contents/chromedriver" />
   <test name="Test">
     <classes>
-      <class name="com.softserve.edu.magento.tests.PreSmokeTestSignIn"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest1"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest2"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest3"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest4"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountStateTest1"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountDesicionTable1"/>
+      <class name="com.softserve.edu.magento.tests.SignInTestDesicionTable1"/>
+      <class name="com.softserve.edu.magento.tests.SignInTestStateTransicion1"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

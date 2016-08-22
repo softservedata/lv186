@@ -10,10 +10,10 @@ public class SearchImplicit extends ASearch {
 
     public SearchImplicit(Application<?> application) {
         super(application);
-        getWebDriver().manage().timeouts().implicitlyWait(getApplication().getApplicationSources().getImplicitTimeOut(), TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().implicitlyWait(0/*getApplication().getApplicationSources().getImplicitTimeOut()*/, TimeUnit.SECONDS);
         // TODO setup waits
-        getWebDriver().manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
-        getWebDriver().manage().timeouts().setScriptTimeout(30L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().pageLoadTimeout(180L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().setScriptTimeout(180L, TimeUnit.SECONDS);
         //System.out.println("***SearchImplicit");
     }
 
@@ -27,6 +27,10 @@ public class SearchImplicit extends ASearch {
 
     private List<WebElement> getWebElements(By by) {
         return this.getWebDriver().findElements(by);
+    }
+
+    private List<WebElement> getWebElements(By by, WebElement fromWebElement) {
+        return fromWebElement.findElements(by);
     }
 
     @Override
@@ -122,7 +126,13 @@ public class SearchImplicit extends ASearch {
     public  List<WebElement> xpaths(String xpath) {
         return getWebElements(By.xpath(xpath));
     }
-    
+
+    @Override
+    public  List<WebElement> xpaths(String xpath, WebElement fromWebelement) {
+        return getWebElements(By.xpath(xpath), fromWebelement);
+    }
+
+
     @Override
     public  List<WebElement> cssSelectors(String cssSelector) {
         return getWebElements(By.cssSelector(cssSelector));

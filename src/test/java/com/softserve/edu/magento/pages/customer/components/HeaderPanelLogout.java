@@ -6,6 +6,7 @@ import com.softserve.edu.magento.pages.customer.CreateAccountPage;
 import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.pages.customer.SignInPage;
 import com.softserve.edu.magento.tools.Search;
+import ss.af.reporting.annotations.ServiceReport;
 
 
 public abstract class HeaderPanelLogout extends Header{

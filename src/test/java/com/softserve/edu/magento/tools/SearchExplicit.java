@@ -3,7 +3,9 @@ package com.softserve.edu.magento.tools;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.google.common.base.Predicate;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,6 +41,15 @@ public class SearchExplicit extends ASearch {
           getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
           return result;
     }
+
+    private List<WebElement> getVisibleWebElements(By by, WebElement fromWebElement) {
+        List<WebElement> result;
+        getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
+        result = fromWebElement.findElements(by);
+        getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
+        return result;
+    }
+
 
     private List<WebElement> getVisibleWebElements(By by) {
         return new WebDriverWait(this.getWebDriver(),
@@ -97,10 +108,15 @@ public class SearchExplicit extends ASearch {
     public  WebElement name(String name, WebElement fromWebElement) {
     	return getVisibleWebElement(By.name(name), fromWebElement);
     }
-    
+
     @Override
     public  WebElement xpath(String xpath, WebElement fromWebElement) {
-    	return getVisibleWebElement(By.xpath(xpath), fromWebElement);
+        return getVisibleWebElement(By.xpath(xpath), fromWebElement);
+    }
+
+    @Override
+    public  List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return getVisibleWebElements(By.xpath(xpath), fromWebElement);
     }
     @Override
     public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {

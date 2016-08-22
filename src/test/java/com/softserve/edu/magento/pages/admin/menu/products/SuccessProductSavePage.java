@@ -11,8 +11,9 @@ public class SuccessProductSavePage extends AddProductPage {
 	WebElement successfulProductSaveMessage;
 
 	public SuccessProductSavePage() {
+		successfulProductSaveMessage = Search.cssSelector("#messages > div > div > div");
 
-		successfulProductSaveMessage = Search.cssSelector("#messages .message-success:first-child");
+//		successfulProductSaveMessage = Search.cssSelector("#messages .message-success:first-child");
 	}
 
 	// Getters

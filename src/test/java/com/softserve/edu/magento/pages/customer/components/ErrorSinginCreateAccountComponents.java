@@ -11,7 +11,7 @@ public  class ErrorSinginCreateAccountComponents {
 	private List<WebElement> errorValidators;
 	public ErrorSinginCreateAccountComponents() {
 		this.errorMessage = Search.cssSelectors("div.message-error.error.message div");
-		this.errorValidators = Search.classNames("mage-error");
+		this.errorValidators = Search.cssSelectors("div.mage-error");
 	}
 	public List<WebElement> getErrorMessage() {
 		return errorMessage;
@@ -43,5 +43,16 @@ public  class ErrorSinginCreateAccountComponents {
 		} else {
 			return null;
 		}
+	}
+	public boolean isErrorValidator (String validatorFor) {
+		boolean isErrorValidator = false;
+		for(int i=0;i<errorValidators.size();i++) {
+			System.out.println(errorValidators.get(i).getAttribute("for"));
+			if( errorValidators.get(i).getAttribute("for").equals(validatorFor) ) {
+				isErrorValidator = true;
+				break;
+			}
+		}
+		return isErrorValidator;
 	}
 }

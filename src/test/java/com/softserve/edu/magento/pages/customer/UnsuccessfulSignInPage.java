@@ -6,14 +6,14 @@ import com.softserve.edu.magento.pages.customer.components.ErrorSinginCreateAcco
 
 public class UnsuccessfulSignInPage extends SignInPage {
 	
-	public static enum ErrorValidatorName {
+	public static enum ErrorValidatorNameSingIn {
 		EMAIL("email"),
 		PASSWORD("pass");
 		;
 		//
 		private String field;
 
-		private ErrorValidatorName(String field) {
+		private ErrorValidatorNameSingIn(String field) {
 			this.field = field;
 		}
 
@@ -50,7 +50,7 @@ public class UnsuccessfulSignInPage extends SignInPage {
 	public String getErrorMessageText() {
 		return this.getErrorSinginComponents().getErrorMessageText();
 	}
-	public String getErrorValidatorText(ErrorValidatorName ErrorValidatorName) {
-		return this.getErrorSinginComponents().getErrorValidatorText(ErrorValidatorName.toString());
+	public String getErrorValidatorText(ErrorValidatorNameSingIn ErrorValidatorNameSingIn) {
+		return this.getErrorSinginComponents().getErrorValidatorText(ErrorValidatorNameSingIn.toString());
 	}
 }

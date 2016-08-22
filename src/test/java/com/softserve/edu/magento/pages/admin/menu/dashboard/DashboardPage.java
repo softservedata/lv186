@@ -104,10 +104,10 @@ public class DashboardPage extends VerticalMenu {
         System.out.println("\tConstructor DashboardPage(WebDriver driver) Start02");
         this.lastOrdersRecords = Search.cssSelectors("#lastOrdersGrid_table tbody tr");
         this.lastSearchTerms = Search
-        		.xpath("//div[contains(text(),'Last SearchRecords Terms')]");
+        		.xpath("//div[contains(text(),'Last Search Terms')]");
         this.lastSearchTermsRecords = Search.cssSelectors("#lastSearchGrid_table tbody tr");
         this.topSearchTerms = Search
-        		.xpath("//div[contains(text(),'Top SearchRecords Terms')]");
+        		.xpath("//div[contains(text(),'Top Search Terms')]");
         this.topSearchTermsRecords = Search.cssSelectors("#topSearchGrid_table tbody tr");
         this.revenue = Search
         		.xpath("//span[contains(text(),'Revenue')]");

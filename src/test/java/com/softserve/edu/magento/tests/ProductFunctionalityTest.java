@@ -82,7 +82,7 @@ public class ProductFunctionalityTest extends TestBase {
         catalogPage.logout();
     }
 
-    @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveValidation(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -105,7 +105,7 @@ public class ProductFunctionalityTest extends TestBase {
         productValidatorPage.logout();
     }
 
-    @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveWithInvalidPrice(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -124,8 +124,7 @@ public class ProductFunctionalityTest extends TestBase {
         Assert.assertTrue(productValidatorPage.isSkuValidatorPresent());
         Assert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.INVALID_PRICE_FIELD_MESSAGE);
     }
-
-   @Test(dataProvider = "parameters")
+//@Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveWithNonRequiredFields(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -150,7 +149,7 @@ public class ProductFunctionalityTest extends TestBase {
         productValidatorPage.logout();
     }
 
-    @Test(dataProvider = "parameters")
+   // @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductExists(ApplicationSources applicationSources, IAdminUser adminUser) {
     /* Log in and go to AddProductPage */
@@ -171,7 +170,7 @@ public class ProductFunctionalityTest extends TestBase {
         productExistsPage.logout();
     }
 
-    @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveAndClose(ApplicationSources applicationSources, IAdminUser adminUser) {
     /* Log in and go to AddProductPage */

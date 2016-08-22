@@ -2,9 +2,12 @@ package com.softserve.edu.magento.pages.admin.menu.products;
 
 import java.util.List;
 
+import com.google.common.base.Predicate;
+import com.softserve.edu.magento.data.admin.products.Constants;
 import org.apache.http.util.TextUtils;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -266,6 +269,16 @@ public class AddProductPage extends VerticalMenu {
 
     public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
         clickSaveButton();
+		Search.waitUntil(new Predicate<WebDriver>() {
+			@Override
+			public boolean apply(WebDriver input) {
+				WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
+				if(successMessage != null){
+					return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
+				}
+				return false;
+			}
+		});
         System.out.println("before create");
         return new SuccessProductSavePage();
     }

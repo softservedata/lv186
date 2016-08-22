@@ -55,6 +55,12 @@ public class ProductCatalogPage extends VerticalMenu {
 		updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
 		nextPageButton = Search.cssSelector("button[title='Next Page']");
 		filterButton = Search.xpath("(//button[@class='action-default'])[1]");
+		List<WebElement> productRowsSource = Search.cssSelectors("tbody tr");
+		productRows = new ArrayList<ProductRow>();
+		for (WebElement row1 : productRowsSource) {
+			ProductRow productRow = new ProductRow(row1);
+			productRows.add(productRow);
+		}
 	}
 
 	// Getters
@@ -262,12 +268,6 @@ public class ProductCatalogPage extends VerticalMenu {
 			productStatus = Search.cssSelector(("td:nth-child(11)"), row);
 			productWebsites = Search.cssSelector(("td:nth-child(12)"), row);
 			productActions = Search.cssSelector(("td:nth-child(13)"), row);
-			List<WebElement> productRowsSource = Search.cssSelectors("tbody tr");
-			productRows = new ArrayList<ProductRow>();
-			for (WebElement row1 : productRowsSource) {
-				ProductRow productRow = new ProductRow(row1);
-				productRows.add(productRow);
-			}
 		}
 
 		// Getters
@@ -281,47 +281,47 @@ public class ProductCatalogPage extends VerticalMenu {
 		}
 
 		public String getProductIdText() {
-			return productId.getAttribute("value");
+			return productId.getText();
 		}
 
 		public String getProductNameText() {
-			return productName.getAttribute("value");
+			return productName.getText();
 		}
 
 		public String getProductTypeText() {
-			return productType.getAttribute("value");
+			return productType.getText();
 		}
 
 		public String getProductAttributeSetText() {
-			return productAttributeSet.getAttribute("value");
+			return productAttributeSet.getText();
 		}
 
 		public String getProductSkuText() {
-			return productSku.getAttribute("value");
+			return productSku.getText();
 		}
 
 		public String getProductPriceText() {
-			return productPrice.getAttribute("value");
+			return productPrice.getText();
 		}
 
 		public String getProductQuantityText() {
-			return productQuantity.getAttribute("value");
+			return productQuantity.getText();
 		}
 
 		public String getProductVisibilityText() {
-			return productVisibility.getAttribute("value");
+			return productVisibility.getText();
 		}
 
 		public String getProductStatusText() {
-			return productStatus.getAttribute("value");
+			return productStatus.getText();
 		}
 
 		public String getProductWebsitesText() {
-			return productWebsites.getAttribute("value");
+			return productWebsites.getText();
 		}
 
 		public String getNoProductFoundMessage() {
-			return noProductFound.getAttribute("value");
+			return noProductFound.getText();
 		}
 		// Functional
 

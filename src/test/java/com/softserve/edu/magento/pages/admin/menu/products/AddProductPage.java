@@ -43,7 +43,7 @@ public class AddProductPage extends VerticalMenu {
 		attributeSetInput = Search.xpath("//div[@data-index='attribute_set_id']//div[@class='admin__action-multiselect-text']");
 		productNameInput = Search.cssSelector("input[name='product[name]']");
 		skuInput = Search.cssSelector("input[name='product[sku]']");
-		priceInput = Search.xpath("//div[@data-index='price']//div[@class='admin__control-addon']");
+		priceInput = Search.cssSelector("input[name='product[price]']");
 		quantityInput = Search.cssSelector(".admin__field-small input[name='product[quantity_and_stock_status][qty]']");
 	}
 
@@ -237,6 +237,9 @@ public class AddProductPage extends VerticalMenu {
 		setProductNameInputWithClear(productData.getProductName());
 		setSkuInputWithClear(productData.getSku());
 		setPriceInputWithClear(productData.getPrice());
+		if (!TextUtils.isEmpty(productData.getQuantity())) {
+			setQuantity(productData.getQuantity());
+		}
 	}
 
 	public void setAttributeSet(String attributeSet) {

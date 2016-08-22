@@ -35,7 +35,6 @@ public class ProductCatalogPage extends VerticalMenu {
 	private WebElement filterButton;
 	private WebElement nextPageButton;
 	private List<ProductRow> productRows;
-	List<WebElement> productRowsSource;
 
 	public ProductCatalogPage() {
 
@@ -55,12 +54,6 @@ public class ProductCatalogPage extends VerticalMenu {
 
 		updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
 		nextPageButton = Search.cssSelector("button[title='Next Page']");
-		productRows = new ArrayList<ProductRow>();
-		productRowsSource = Search.cssSelectors("tbody tr");
-		for (WebElement row : productRowsSource) {
-			ProductRow productRow = new ProductRow(row);
-			productRows.add(productRow);
-		}
 		filterButton = Search.xpath("(//button[@class='action-default'])[1]");
 	}
 
@@ -269,6 +262,12 @@ public class ProductCatalogPage extends VerticalMenu {
 			productStatus = Search.cssSelector(("td:nth-child(11)"), row);
 			productWebsites = Search.cssSelector(("td:nth-child(12)"), row);
 			productActions = Search.cssSelector(("td:nth-child(13)"), row);
+			List<WebElement> productRowsSource = Search.cssSelectors("tbody tr");
+			productRows = new ArrayList<ProductRow>();
+			for (WebElement row1 : productRowsSource) {
+				ProductRow productRow = new ProductRow(row1);
+				productRows.add(productRow);
+			}
 		}
 
 		// Getters
@@ -282,47 +281,47 @@ public class ProductCatalogPage extends VerticalMenu {
 		}
 
 		public String getProductIdText() {
-			return productId.getText();
+			return productId.getAttribute("value");
 		}
 
 		public String getProductNameText() {
-			return productName.getText();
+			return productName.getAttribute("value");
 		}
 
 		public String getProductTypeText() {
-			return productType.getText();
+			return productType.getAttribute("value");
 		}
 
 		public String getProductAttributeSetText() {
-			return productAttributeSet.getText();
+			return productAttributeSet.getAttribute("value");
 		}
 
 		public String getProductSkuText() {
-			return productSku.getText();
+			return productSku.getAttribute("value");
 		}
 
 		public String getProductPriceText() {
-			return productPrice.getText();
+			return productPrice.getAttribute("value");
 		}
 
 		public String getProductQuantityText() {
-			return productQuantity.getText();
+			return productQuantity.getAttribute("value");
 		}
 
 		public String getProductVisibilityText() {
-			return productVisibility.getText();
+			return productVisibility.getAttribute("value");
 		}
 
 		public String getProductStatusText() {
-			return productStatus.getText();
+			return productStatus.getAttribute("value");
 		}
 
 		public String getProductWebsitesText() {
-			return productWebsites.getText();
+			return productWebsites.getAttribute("value");
 		}
 
 		public String getNoProductFoundMessage() {
-			return noProductFound.getText();
+			return noProductFound.getAttribute("value");
 		}
 		// Functional
 

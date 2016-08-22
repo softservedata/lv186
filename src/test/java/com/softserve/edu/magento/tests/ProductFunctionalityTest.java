@@ -28,11 +28,11 @@ public class ProductFunctionalityTest extends TestBase {
     public Object[][] parameters(ITestContext context) {
         return ListUtils.get()
                 .toMultiArray(ParameterUtils.get()
-                                .updateParametersAll(ApplicationSourcesRepository.getChromeRemoteAdmin(), context),
+                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
                         AdminUserRepository.get().adminYulia());
     }
 
-    //@Test(dataProvider = "parameters")
+    @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -47,7 +47,7 @@ public class ProductFunctionalityTest extends TestBase {
         SuccessProductSavePage savePage = addProductPage.gotoSuccessProductSavePageAfterSave();
 
 		/* Check if message appeared and data are present in the fields */
-        Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
+        //Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(savePage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
         Assert.assertEquals(savePage.getSkuInputText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(savePage.getPriceInputText(), ProductRepository.VALID_PRICE);
@@ -82,7 +82,7 @@ public class ProductFunctionalityTest extends TestBase {
         catalogPage.logout();
     }
 
-    //@Test(dataProvider = "parameters")
+    @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveValidation(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -105,7 +105,7 @@ public class ProductFunctionalityTest extends TestBase {
         productValidatorPage.logout();
     }
 
-    //@Test(dataProvider = "parameters")
+    @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveWithInvalidPrice(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -125,7 +125,7 @@ public class ProductFunctionalityTest extends TestBase {
         Assert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.INVALID_PRICE_FIELD_MESSAGE);
     }
 
-    //@Test(dataProvider = "parameters")
+   @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveWithNonRequiredFields(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -150,7 +150,7 @@ public class ProductFunctionalityTest extends TestBase {
         productValidatorPage.logout();
     }
 
-    //@Test(dataProvider = "parameters")
+    @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductExists(ApplicationSources applicationSources, IAdminUser adminUser) {
     /* Log in and go to AddProductPage */
@@ -171,7 +171,7 @@ public class ProductFunctionalityTest extends TestBase {
         productExistsPage.logout();
     }
 
-    //@Test(dataProvider = "parameters")
+    @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveAndClose(ApplicationSources applicationSources, IAdminUser adminUser) {
     /* Log in and go to AddProductPage */
@@ -260,7 +260,7 @@ public class ProductFunctionalityTest extends TestBase {
         catalogPage.logout();
     }
 
-    @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveAndDuplicate(ApplicationSources applicationSources, IAdminUser adminUser) {
     /* Log in and go to AddProductPage */

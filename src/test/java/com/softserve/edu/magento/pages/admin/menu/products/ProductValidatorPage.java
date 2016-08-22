@@ -10,8 +10,6 @@ import com.softserve.edu.magento.tools.Search;
 
 public class ProductValidatorPage extends AddProductPage {
 
-//	private List<WebElement>fieldValidators;
-
 	private WebElement productNameValidator;
 	private WebElement skuValidator;
 	private WebElement priceValidator;

@@ -17,8 +17,8 @@ public abstract class ASearch {
 
     private static final String TAKES_SCREENSHOT_ERROR = "TakesScreenshot Save File Error";
     //added timeouts.
-    protected static final long IMPLICIT_WAIT_TIMEOUT = 30l;
-    protected static final long EXPLICIT_WAIT_TIMEOUT = 30l;
+    protected static final long IMPLICIT_WAIT_TIMEOUT = 5l;
+    protected static final long EXPLICIT_WAIT_TIMEOUT = 5l;
 
     //removed Application from constructor params.
     public ASearch() {

@@ -74,7 +74,8 @@ public class SmokeTestsDashboard extends TestBase {
 	@ServiceReport
 	public void findCustomerFromLastOrders(ApplicationSources applicationSources, IAdminUser adminUser,
 			ICustomerUser customerUser) {
-		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+		applicationSources.setSearchStrategy("SearchExplicitStrategyPresent");
+	    ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		List<String> result = dashboardPage.getCustomersFromLastOrdersRecords();
 		String searchCheck = customerUser.getPersonalInfo().getFirstname() + " "

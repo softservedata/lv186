@@ -20,19 +20,19 @@ public class ApplicationSources {
         }
     }
  
-    static class ImplicitTimeOut implements IUpdateApplicationSources {
-        public void setProperty(ApplicationSources applicationSources, String propertyText) {
-            //ApplicationSources.this.setBrowserName(propertyText);
-            applicationSources.setImplicitTimeOut(Long.valueOf(propertyText));
-        }
-    }
- 
-    static class ExplicitTimeOut implements IUpdateApplicationSources {
-        public void setProperty(ApplicationSources applicationSources, String propertyText) {
-            //ApplicationSources.this.setBrowserName(propertyText);
-            applicationSources.setExplicitTimeOut(Long.valueOf(propertyText));
-        }
-    }
+//    static class ImplicitTimeOut implements IUpdateApplicationSources {
+//        public void setProperty(ApplicationSources applicationSources, String propertyText) {
+//            //ApplicationSources.this.setBrowserName(propertyText);
+//            applicationSources.setImplicitTimeOut(Long.valueOf(propertyText));
+//        }
+//    }
+//
+//    static class ExplicitTimeOut implements IUpdateApplicationSources {
+//        public void setProperty(ApplicationSources applicationSources, String propertyText) {
+//            //ApplicationSources.this.setBrowserName(propertyText);
+//            applicationSources.setExplicitTimeOut(Long.valueOf(propertyText));
+//        }
+//    }
 
     static class SearchStrategy implements IUpdateApplicationSources {
         public void setProperty(ApplicationSources applicationSources, String propertyText) {
@@ -58,9 +58,9 @@ public class ApplicationSources {
     public static enum ApplicationSourcesFields {
         BROWSER_NAME(new BrowserName(), "browserName"),
         DRIVER_PATH(new DriverPath(), "driverPath"),
-        IMPLICIT_TIMEOUT(new ImplicitTimeOut(), "implicitTimeOut"),
-        EXPLICIT_TIMEOUT(new ExplicitTimeOut(), "explicitTimeOut"),
-        SEARCH_STRATEGY(new ExplicitTimeOut(), "searchStrategy"),
+      //  IMPLICIT_TIMEOUT(new ImplicitTimeOut(), "implicitTimeOut"),
+      //  EXPLICIT_TIMEOUT(new ExplicitTimeOut(), "explicitTimeOut"),
+        SEARCH_STRATEGY(new SearchStrategy(), "searchStrategy"),
         LOAD_URL(new LoadUrl(), "loadUrl"),
         LOGOUT_URL(new LogoutUrl(), "logoutUrl");
         private IUpdateApplicationSources updateApplicationSources;

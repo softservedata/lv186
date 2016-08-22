@@ -49,23 +49,23 @@ public abstract class Application<TStartPage> {
             setSearchStrategy();
         }
     }
-    
+    //removed "this" from setStrategy
     protected void setSearchStrategy() {
         boolean isDefaultStrategy = true;
         for (SearchStrategyList searchStrategy : SearchStrategyList.values()) {
             if (searchStrategy.toString().toLowerCase()
                     .contains(applicationSources.getSearchStrategy().toLowerCase())) {
-                Search.setStrategy(searchStrategy.getSearchStrategy(this));
+                Search.setStrategy(searchStrategy.getSearchStrategy());
                 isDefaultStrategy = false;
                 break;
             }
         }
         if (isDefaultStrategy) {
-            Search.setStrategy(SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy(this));
+            Search.setStrategy(SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
         }
     }
-
-    protected WebDriver getWebDriver() {
+    //made method static
+    protected static WebDriver getWebDriver() {
         return drivers.get(Thread.currentThread().getId());
     }
 

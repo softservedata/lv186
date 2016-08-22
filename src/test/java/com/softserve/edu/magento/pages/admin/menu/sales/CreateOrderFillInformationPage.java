@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.pages.admin.menu.sales;
 
+import com.softserve.edu.magento.tools.Search;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -10,9 +11,17 @@ public class CreateOrderFillInformationPage {
 
     // ----------------------------
     private class ProductsComponent {
-      //  public final WebElement listOfProducts;
-      //  public final WebElement searchByProductName;
-      //  public final WebElement searchById;
+        public final WebElement listOfProducts;
+        public final WebElement searchByProductName;
+        public final WebElement searchById;
+        public final WebElement addProductsToOrder;
+
+        ProductsComponent(){
+            this.listOfProducts = Search.cssSelector("#sales_order_create_search_grid_table > tbody");
+            this.searchByProductName = Search.cssSelector("#sales_order_create_search_grid_filter_name");
+            this.searchById = Search.cssSelector("#sales_order_create_search_grid_filter_entity_id");
+            this.addProductsToOrder = Search.cssSelector("[onclick='order.productGridAddSelected()']");
+        }
     }
 
     private WebElement cancel;

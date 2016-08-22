@@ -9,7 +9,7 @@
 				<methods>
 					<include name="findCustomerFromLastOrders" />
 					<include name="checkReloadMessage" />
-					<include name="checkSearchResults" />
+	<!--				<include name="checkSearchResults" />-->
 				</methods>
 			</class>
 		</classes>

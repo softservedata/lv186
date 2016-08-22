@@ -234,6 +234,8 @@
 							<suiteXmlFiles>
 								<!--<suiteXmlFile>testng.xml</suiteXmlFile>-->
 								<!--<file>testng.xml</file>-->
+								<!--<file>testngyYarynaKharko.xml</file>-->
+								<!--<file>product.xml</file>-->
 								<file>testNgCustomer.xml</file>
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>

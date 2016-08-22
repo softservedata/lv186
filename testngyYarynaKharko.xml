@@ -5,9 +5,6 @@
   <parameter name="driverPath" value="/Applications/Google Chrome.app/Contents/chromedriver" />
   <test name="Test">
     <classes>
-      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest1"/>
-      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest2"/>
-      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest3"/>
       <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest4"/>
       <class name="com.softserve.edu.magento.tests.CreateCustomerAccountStateTest1"/>
       <class name="com.softserve.edu.magento.tests.CreateCustomerAccountDesicionTable1"/>

@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import com.google.common.base.Predicate;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public abstract class ASearch {
@@ -78,7 +80,9 @@ public abstract class ASearch {
     public abstract List<WebElement> names(String name);
 
     public abstract List<WebElement> xpaths(String xpath);
-    
+
+    public abstract List<WebElement> xpaths(String xpath, WebElement fromWebElement);
+
     public abstract List<WebElement> cssSelectors(String cssSelector);
 
     public abstract List<WebElement> classNames(String className);
@@ -89,5 +93,7 @@ public abstract class ASearch {
     
     public abstract List<WebElement> tagNames(String tagName);
 
-
+    public void waitUntil(Predicate<WebDriver> predicate) {
+        new WebDriverWait(getWebDriver(), 10).until(predicate);
+    }
 }

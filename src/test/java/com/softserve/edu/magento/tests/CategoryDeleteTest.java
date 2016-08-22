@@ -9,18 +9,18 @@ import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.admin.menu.products.categories.CategoriesPage;
 import com.softserve.edu.magento.tools.ParameterUtils;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import static com.softserve.edu.magento.data.admin.products.CategoryRepository.CATEGORY_NAME;
+import org.testng.asserts.SoftAssert;
 
 /**
  * Created by Olia on 25.07.2016.
  */
 public class CategoryDeleteTest {
+    private SoftAssert softAccert = new SoftAssert();
+
     @DataProvider(parallel = true)
     public Object[][] parameters(ITestContext context) {
         return new Object[][] {
@@ -37,12 +37,13 @@ public class CategoryDeleteTest {
 
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
-        page.selectCategory(CategoryRepository.CATEGORY_NAME);
+        /*page.selectCategory(CategoryRepository.CATEGORY_NAME);
         page = page.refresh();
         page.clickDelete();
         page.clickOkButton();
-        page = page.refresh();
-        Assert.assertEquals(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME), false);
+        page = page.refresh();*/
+        page.deleteCategory(CategoryRepository.CATEGORY_NAME);
+        softAccert.assertFalse(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
 
     }
 

@@ -38,7 +38,7 @@ public class CategoryPageSmokeTest {
         page = page.refresh();
         page.clickAddRootCategory();
         page = page.refresh();
-        page.clickAddSubcategory();
+        page.clickAddSubCategory();
         page = page.refresh();
         page.clickEnabledCategory();
         page.clickIncludeInMenu();

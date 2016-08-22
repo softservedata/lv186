@@ -13,49 +13,56 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-/**
- * Created by Olia on 22.07.2016.
- */
 public class CategoryAddNewTest {
-    @DataProvider(parallel = true)
+    private SoftAssert softAccert = new SoftAssert();
+
+    @DataProvider
     public Object[][] parameters(ITestContext context) {
         return new Object[][] {
-                { ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
-                        context), AdminUserRepository.get().adminOlya() }/*,
+                /*{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
+                        context), AdminUserRepository.get().adminOlya() },*/
                 { ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(),
-                        context), AdminUserRepository.get().adminOlya() }*/ };
+                        context), AdminUserRepository.get().adminOlya() } };
+                /*{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getLocalChromeAdmin(),
+                context), AdminUserRepository.get().localadminOlya() } };*/
 
     }
 
-    @Test(dataProvider = "parameters")
-    public void addRootCategory(ApplicationSources applicationSources, IAdminUser adminUser){
+    @Test(dataProvider = "parameters", priority = 1)
+    public void addRootCategory(ApplicationSources applicationSources, IAdminUser adminUser) throws InterruptedException {
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
 
 
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
-        page.clickAddRootCategory();
-        page = page.refresh();
-        page.setCategoryName(CategoryRepository.CATEGORY_NAME);
-        page.clickContent();
-        page.saveCategory();
-        page.checkCategoryByName(CategoryRepository.CATEGORY_NAME);
+        page.addNewCategory(CategoryRepository.CATEGORY_NAME);
+        softAccert.assertTrue(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
+
 
     }
 
-    @Test (dataProvider = "parameters")
+    @Test (dataProvider = "parameters", priority = 2)
     public void addSubCategory(ApplicationSources applicationSources, IAdminUser adminUser) {
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
 
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
-        page.clickAddSubcategory();
+        /*page.clickAddSubCategory();
         page = page.refresh();
         page.setCategoryName(CategoryRepository.SUBCATEGORY_NAME);
         page.clickContent();
-        page.saveCategory();
-        page.checkCategoryByName(CategoryRepository.SUBCATEGORY_NAME);
+        page.saveCategory();*/
+        page.addNewSubCategory(CategoryRepository.SUBCATEGORY_PARENT_NAME, CategoryRepository.SUBCATEGORY_NAME);
+        softAccert.assertTrue(page.checkCategoryByName(CategoryRepository.SUBCATEGORY_NAME));
+    }
+
+    //@Test(dataProvider = "parameters")
+    public void proba (ApplicationSources applicationSources, IAdminUser adminUser) throws InterruptedException {
+        ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
+        DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
+        CategoriesPage page = dashboardPage.gotoCategoriesPage();
     }
 
     @AfterClass

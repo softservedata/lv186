@@ -7,6 +7,14 @@ import org.openqa.selenium.support.ui.Select;
  * Created by bohdan on 16.08.16.
  */
 public class CreateOrderFillInformationPage {
+
+    // ----------------------------
+    private class ProductsComponent {
+      //  public final WebElement listOfProducts;
+      //  public final WebElement searchByProductName;
+      //  public final WebElement searchById;
+    }
+
     private WebElement cancel;
     private WebElement submitOrder;
     private WebElement addProducts;
@@ -21,4 +29,19 @@ public class CreateOrderFillInformationPage {
     private Select billingAdressStateSelect;
     private WebElement billingAdressPostalCode;
     private WebElement billingAdressPhoneNumber;
+    private WebElement shippingMethod;
+    private Select shippingAdressCustomerAdresses;
+    private WebElement shippingAdressPrefix;
+    private WebElement shippingAdressFirstName;
+    private WebElement shippingAdressLastName;
+    private WebElement shippingAdressStreetAddress;
+    private WebElement shippingAdressCity;
+    private Select shippingAdressCountry;
+    private WebElement shippingAdressStateElement;
+    private Select shippingAdressStateSelect;
+    private WebElement shippingAdressPostalCode;
+    private WebElement shippingAdressPhoneNumber;
+    private WebElement subTotal;
+    private WebElement shippingAndHandling;
+
 }

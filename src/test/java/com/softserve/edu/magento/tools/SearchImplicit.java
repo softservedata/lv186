@@ -10,10 +10,10 @@ public class SearchImplicit extends ASearch {
 
     public SearchImplicit(Application<?> application) {
         super(application);
-        getWebDriver().manage().timeouts().implicitlyWait(0/*getApplication().getApplicationSources().getImplicitTimeOut()*/, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().implicitlyWait(5L/*getApplication().getApplicationSources().getImplicitTimeOut()*/, TimeUnit.SECONDS);
         // TODO setup waits
-        getWebDriver().manage().timeouts().pageLoadTimeout(180L, TimeUnit.SECONDS);
-        getWebDriver().manage().timeouts().setScriptTimeout(180L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().pageLoadTimeout(10L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().setScriptTimeout(10L, TimeUnit.SECONDS);
         //System.out.println("***SearchImplicit");
     }
 

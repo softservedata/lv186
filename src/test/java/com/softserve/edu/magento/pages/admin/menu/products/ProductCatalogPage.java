@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.base.Predicate;
+import com.softserve.edu.magento.data.admin.products.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -57,11 +58,6 @@ public class ProductCatalogPage extends VerticalMenu {
         nextPageButton = Search.cssSelector("button[title='Next Page']");
         filterButton = Search.xpath("(//button[@class='action-default'])[1]");
         productRowsSource = Search.cssSelectors("tbody tr");
-        //productRows = new ArrayList<ProductRow>();
-//		for (WebElement row : productRowsSource) {
-//			ProductRow productRow = new ProductRow(row);
-//			productRows.add(productRow);
-//		}
     }
 
     // Getters
@@ -330,6 +326,7 @@ public class ProductCatalogPage extends VerticalMenu {
         public String getNoProductFoundMessage() {
             return noProductFound.getText();
         }
+
         // Functional
 
         public void editProduct() {
@@ -566,6 +563,17 @@ public class ProductCatalogPage extends VerticalMenu {
             Search.waitUntil(new Predicate<WebDriver>() {
                 @Override
                 public boolean apply(WebDriver input) {
+                    WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
+                    if (successMessage != null) {
+                        return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
+                    }
+                    return false;
+                }
+            });
+
+            Search.waitUntil(new Predicate<WebDriver>() {
+                @Override
+                public boolean apply(WebDriver input) {
                     List<WebElement> foundRows = Search.cssSelectors("tbody tr");
                     return foundRows.size() > 0;
                 }
@@ -590,7 +598,6 @@ public class ProductCatalogPage extends VerticalMenu {
         public NoItemSelectedPopup() {
             noItemSelectedPopupTitle = Search.xpath("//header[@class='modal-header']/h1[contains(text(), 'Attention')]");
             noItemSelectedPopupConfirmButton = Search.className("action-accept");
-            //getNoItemSelectedPopupCloseButton = Search.
         }
     }
 }

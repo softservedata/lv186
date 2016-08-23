@@ -1,20 +1,16 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
-import java.util.List;
-
 import com.google.common.base.Predicate;
 import com.softserve.edu.magento.data.admin.products.Constants;
-import org.apache.http.util.TextUtils;
-import org.omg.PortableServer.THREAD_POLICY_ID;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.softserve.edu.magento.data.admin.products.IProduct;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
+import org.apache.http.util.TextUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class AddProductPage extends VerticalMenu {
 
@@ -279,7 +275,6 @@ public class AddProductPage extends VerticalMenu {
 				return false;
 			}
 		});
-        System.out.println("before create");
         return new SuccessProductSavePage();
     }
 
@@ -293,7 +288,7 @@ public class AddProductPage extends VerticalMenu {
         return new SuccessProductSaveAndDuplicatePage();
     }
 
-    public ProductCatalogPage gotoProductCatalogPageAfterSaveClose() {
+    public ProductCatalogPage gotoCatalogPageAfterSaveClose() {
         clickSaveAndCloseButton();
         return new ProductCatalogPage();
     }

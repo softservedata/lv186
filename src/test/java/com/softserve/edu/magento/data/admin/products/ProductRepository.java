@@ -3,8 +3,8 @@ package com.softserve.edu.magento.data.admin.products;
 public class ProductRepository {
 
     public final static String ATTRIBUTE_SET = "Test Attribute Set";
-    public final static String VALID_PRODUCT_NAME = "Samsung Tablet";
-    public final static String VALID_SKU = "Tablet";
+    public final static String VALID_PRODUCT_NAME = "Samsung Tablet1";
+    public final static String VALID_SKU = "Tablet1";
     public final static String VALID_SKU_DUPLICATED = "Tablet-1";
     public final static String VALID_PRICE = "700.00";
     public final static String VALID_PRICE_FOR_CHECK = "$700.00";
@@ -34,6 +34,7 @@ public class ProductRepository {
         IProduct product = Product.get().setProductName(VALID_PRODUCT_NAME).setSku(VALID_SKU).setPrice(INVALID_PRICE)
                 .build();
         product.setAttributeSet(ATTRIBUTE_SET);
+        product.setQuantity(QUANTITY);
         return product;
     }
 

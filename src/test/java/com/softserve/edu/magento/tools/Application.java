@@ -39,10 +39,10 @@ public abstract class Application<TStartPage> {
             if (driver == null) {
                 driver = BrowsersList.FIREFOX_DEFAULT.getWebDriver(null);
             }
-            driver.manage().timeouts().implicitlyWait(/*applicationSources.getImplicitTimeOut()*/180, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5/*applicationSources.getImplicitTimeOut()*/, TimeUnit.SECONDS);
             // TODO setup waits
-            driver.manage().timeouts().pageLoadTimeout(180L, TimeUnit.SECONDS);
-            driver.manage().timeouts().setScriptTimeout(180L, TimeUnit.SECONDS);
+            //driver.manage().timeouts().pageLoadTimeout(180L, TimeUnit.SECONDS);
+            //driver.manage().timeouts().setScriptTimeout(180L, TimeUnit.SECONDS);
             //
             // Save browser
             drivers.put(Thread.currentThread().getId(), driver);

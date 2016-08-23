@@ -100,15 +100,20 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		createOrder.click();
 		return new OrdersPage();
 	}
-	
+
+    /**
+     * Sends email to customer with
+     * link to reset the password.
+     */
 	public void resetPassword() {
 		resetPassword.click();
-		// TODO
 	}
 
+    /**
+     * Force login customer with tokens.
+     */
 	public void forceSignIn() {
 		forceSignIn.click();
-		// TODO
 	}
 	
 	/**

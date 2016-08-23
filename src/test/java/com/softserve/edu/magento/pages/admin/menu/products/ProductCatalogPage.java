@@ -57,7 +57,14 @@ public class ProductCatalogPage extends VerticalMenu {
         updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
         nextPageButton = Search.cssSelector("button[title='Next Page']");
         filterButton = Search.xpath("(//button[@class='action-default'])[1]");
+        productRows = new ArrayList<>();
         productRowsSource = Search.cssSelectors("tbody tr");
+        if(productRowsSource != null && !productRowsSource.isEmpty()){
+            for (WebElement row : productRowsSource) {
+                ProductRow productRow = new ProductRow(row);
+                productRows.add(productRow);
+            }
+        }
     }
 
     // Getters
@@ -202,11 +209,6 @@ public class ProductCatalogPage extends VerticalMenu {
     }
 
     public ProductRow getRowWithProductName(String productName) {
-        productRows = new ArrayList<>();
-        for (WebElement row : productRowsSource) {
-            ProductRow productRow = new ProductRow(row);
-            productRows.add(productRow);
-        }
         for (ProductRow row : productRows) {
             if (row.getProductNameText().equals(productName)) {
                 return row;

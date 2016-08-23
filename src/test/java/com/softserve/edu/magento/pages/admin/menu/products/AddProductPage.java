@@ -192,33 +192,18 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public void setProductNameInputWithClear(String productName) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         getProductNameInput().click();
         clearProductNameInput();
         setProductName(productName);
     }
 
     public void setSkuInputWithClear(String sku) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         getSkuInput().click();
         clearSkuInput();
         setSku(sku);
     }
 
     public void setPriceInputWithClear(String price) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         getPriceInput().click();
         clearPriceInput();
         setPrice(price);
@@ -260,21 +245,28 @@ public class AddProductPage extends VerticalMenu {
 
     public ProductCatalogPage returnToProductPage() {
         clickBackButton();
+        Search.waitUntil(new Predicate<WebDriver>() {
+            @Override
+            public boolean apply(WebDriver webDriver) {
+                ProductCatalogPage catalogPage = new ProductCatalogPage();
+                return (catalogPage.getProducts().size() > 0);
+            }
+        });
         return new ProductCatalogPage();
     }
 
     public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
         clickSaveButton();
-		Search.waitUntil(new Predicate<WebDriver>() {
-			@Override
-			public boolean apply(WebDriver input) {
-				WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
-				if(successMessage != null){
-					return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
-				}
-				return false;
-			}
-		});
+        Search.waitUntil(new Predicate<WebDriver>() {
+            @Override
+            public boolean apply(WebDriver input) {
+                WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
+                if (successMessage != null) {
+                    return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
+                }
+                return false;
+            }
+        });
         return new SuccessProductSavePage();
     }
 

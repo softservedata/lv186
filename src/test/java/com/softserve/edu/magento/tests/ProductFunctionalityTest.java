@@ -56,7 +56,7 @@ public class ProductFunctionalityTest extends TestBase {
 
 		/* Go to page with catalog and find row with needed name */
         ProductCatalogPage catalogPage = savePage.returnToProductPage();
-        catalogPage = new ProductCatalogPage();
+//        catalogPage = new ProductCatalogPage();
         ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
         while (row == null) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {

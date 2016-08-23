@@ -35,6 +35,7 @@ public class ProductFunctionalityTest extends TestBase {
     @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) {
+        //applicationSources.setSearchStrategy("SearchExplicitStrategy");
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -47,7 +48,7 @@ public class ProductFunctionalityTest extends TestBase {
         SuccessProductSavePage savePage = addProductPage.gotoSuccessProductSavePageAfterSave();
 
 		/* Check if message appeared and data are present in the fields */
-        //Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
+        Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(savePage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
         Assert.assertEquals(savePage.getSkuInputText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(savePage.getPriceInputText(), ProductRepository.VALID_PRICE);
@@ -105,7 +106,7 @@ public class ProductFunctionalityTest extends TestBase {
         productValidatorPage.logout();
     }
 
-    //@Test(dataProvider = "parameters")
+   // @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveWithInvalidPrice(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -124,7 +125,8 @@ public class ProductFunctionalityTest extends TestBase {
         Assert.assertTrue(productValidatorPage.isSkuValidatorPresent());
         Assert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.INVALID_PRICE_FIELD_MESSAGE);
     }
-//@Test(dataProvider = "parameters")
+
+    //@Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveWithNonRequiredFields(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -149,7 +151,7 @@ public class ProductFunctionalityTest extends TestBase {
         productValidatorPage.logout();
     }
 
-   // @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductExists(ApplicationSources applicationSources, IAdminUser adminUser) {
     /* Log in and go to AddProductPage */

@@ -36,9 +36,9 @@ public class CategoryAddNewTest {
 
 
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
-        CategoriesPage page = dashboardPage.gotoCategoriesPage();
-        page.addNewCategory(CategoryRepository.CATEGORY_NAME);
-        softAccert.assertTrue(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
+//        CategoriesPage page = dashboardPage.gotoCategoriesPage();
+//        page.addNewCategory(CategoryRepository.CATEGORY_NAME);
+//        softAccert.assertTrue(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
 
 
     }

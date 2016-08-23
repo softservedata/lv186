@@ -514,6 +514,32 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		return new AllCustomersPageAfterSuccesRegistration();
 	}
 
+	public RegistrationNewCustomerErrorPage setRingerDataInLoginForm(ICustomerUser customer){
+		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
+		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
+		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
+		setDataInLastnameField(customer.getPersonalInfo().getLastname());
+		setDataInSufixField(customer.getPersonalInfo().getSuffix());
+		setDataInEmailField(customer.getSigninInfo().getEmail());
+		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
+		saveCustomerButtonClick();
+		return new RegistrationNewCustomerErrorPage();
+	}
+
+	public RegistrationNewCustomerErrorFieldsPage setInvalidFirstnameLastNameEmailDataInLoginForm(ICustomerUser customer){
+		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
+		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
+		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
+		setDataInLastnameField(customer.getPersonalInfo().getLastname());
+		setDataInSufixField(customer.getPersonalInfo().getSuffix());
+		setDataInEmailField(customer.getSigninInfo().getEmail());
+		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
+		saveCustomerButtonClick();
+		return new RegistrationNewCustomerErrorFieldsPage();
+	}
+
 	public void setCustomerDataInAddressesForm(ICustomerUser customer) {
 		setDataInStateFieldAddresses(customer.getContactInfo().getState());
 		setDataInprefixInputFieldAddresses(customer.getPersonalInfo().getPrefix());

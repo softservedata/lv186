@@ -32,10 +32,11 @@ public class ProductFunctionalityTest extends TestBase {
                         AdminUserRepository.get().adminYulia());
     }
 
-    //@Test(dataProvider = "parameters")
+    @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
+        applicationSources.setSearchStrategy("SearchExplicitStrategyPresent");
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
         ProductCatalogPage productCatalogPage = dashboardPage.gotoProductCatalogPage();

@@ -27,7 +27,7 @@ public class SignInTestDesicionTable1 extends TestBase{
   	ApplicationCustomer.quitAll();
   }
 
-  @DataProvider (parallel = true)
+  @DataProvider
   public Object[][] smokeParameters(ITestContext context) {
      return new Object[][] {
 			  { ParameterUtils.get().updateParametersAll(

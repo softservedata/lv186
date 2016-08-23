@@ -972,13 +972,13 @@ public class AllCustomersPage extends VerticalMenu {
 		private WebElement exit;
 
 		public ConfirmDeleteWindow() {
-			//WebDriverWait wait = new WebDriverWait(driver, 10);
-			//this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
-			//Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY.getSearchStrategy());
+			Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
 			this.window = Search.className("modal-inner-wrap");
+			Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
 			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
 			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
 			this.exit = Search.cssSelector("header.modal-header button.action-close");
+
 		}
 
 		public WebElement getWindow() {

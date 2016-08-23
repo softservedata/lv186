@@ -2,6 +2,7 @@ package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.util.List;
 
+import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
@@ -94,12 +95,11 @@ public interface IEditCustomer {
 		
 	public AllCustomersPage back();
 
-	public void deleteCustomer();
+	public AllCustomersPage deleteCustomer();
 	
 	public EditCustomerPage reset();
 
-	// TODO CreateOrder PAge
-	public void createOrder();
+	public OrdersPage createOrder();
 		
 	public void resetPassword();
 

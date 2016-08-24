@@ -113,7 +113,7 @@ public class SmokeProductTest extends TestBase {
 		AddProductPage addProductPage = productCatalogPage.gotoAddProductPage();
 
 		/* Get invalid data from Product Repository and set them */
-		IProduct product = ProductRepository.get().getNewProductWithEmptyInvalidData();
+		IProduct product = ProductRepository.get().getNewProductWithEmptyData();
 		addProductPage.setProductData(product);
 		ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSaveAndClose();
 

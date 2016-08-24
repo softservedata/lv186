@@ -958,6 +958,63 @@ public class CustomerUserRepository {
 				.build();
 	}
 
+	// CYRYLIC SYMB
+
+	public ICustomerUser UserSingIn_Cyrylic_Symb() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Юрій")
+						.setLastname("Андрієнко")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("юрійандр@gmail.com")
+						.setPassword("юрійандрієнко1234")
+						.setConfirmPassword("юрійандрієнко1234")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+
+
+	// LATIN SYMBL
+
+	public ICustomerUser UserSingIn_Latin_Symb() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Yuriy")
+						.setLastname("Andrienko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("Yuriy@gmail.com")
+						.setPassword("Yuriy12345")
+						.setConfirmPassword("Yuriy12345")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+	// DIGIT SYMB
+
+	public ICustomerUser UserSingIn_Digit_Symb() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("12345678")
+						.setLastname("12345678")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("12345678@gmail.com")
+						.setPassword("123456789Ya")
+						.setConfirmPassword("123456789Ya")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+
 }
 
 //    public List<IUser> getExistUsersCVS() {

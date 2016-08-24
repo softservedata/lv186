@@ -6,7 +6,7 @@ public class ProductRepository {
     public final static String VALID_PRODUCT_NAME = "Samsung Tablet";
     public final static String VALID_SKU = "Tablet";
     public final static String VALID_SKU_DUPLICATED = "Tablet-1";
-    public final static String VALID_PRICE = "700";
+    public final static String VALID_PRICE = "700.00";
     public final static String VALID_PRICE_FOR_CHECK = "$700.00";
     public final static String INVALID_PRICE = "Big Price";
     public final static String EXISTING_PRODUCT_NAME = "Gigabyte";
@@ -37,8 +37,8 @@ public class ProductRepository {
         return product;
     }
 
-    public IProduct getNewProductWithEmptyInvalidData() {
-        IProduct product = Product.get().setProductName("").setSku("").setPrice(INVALID_PRICE).build();
+    public IProduct getNewProductWithEmptyData() {
+        IProduct product = Product.get().setProductName("").setSku("").setPrice("").build();
         return product;
     }
 

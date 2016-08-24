@@ -60,6 +60,13 @@ public final class ApplicationSourcesRepository {
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
+    public static ApplicationSources getChromeJSDisableLocalhostCustomer() {
+        return new ApplicationSources("ChromeDriverJSDisable",
+                "/Applications/Google Chrome.app/Contents/chromedriver", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento",
+                "http://192.168.195.210/magento/customer/account/logout/");
+    }
+
 
     public static ApplicationSources getChromeLocalhostCustomerLinux() {
         return new ApplicationSources("ChromeDriverTemporary",

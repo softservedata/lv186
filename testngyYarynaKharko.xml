@@ -5,11 +5,7 @@
   <parameter name="driverPath" value="/Applications/Google Chrome.app/Contents/chromedriver" />
   <test name="Test">
     <classes>
-      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest4"/>
-      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountStateTest1"/>
-      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountDesicionTable1"/>
-      <class name="com.softserve.edu.magento.tests.SignInTestDesicionTable1"/>
-      <class name="com.softserve.edu.magento.tests.SignInTestStateTransicion1"/>
+      <class name="com.softserve.edu.magento.tests.SignInTestFields1"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

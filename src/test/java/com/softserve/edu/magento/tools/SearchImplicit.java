@@ -6,33 +6,58 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Class for searching visible elements with
+ * implicit timeout.
+ */
 public class SearchImplicit extends ASearch {
 
-    public SearchImplicit(Application<?> application) {
-        super(application);
-        getWebDriver().manage().timeouts().implicitlyWait(5L/*getApplication().getApplicationSources().getImplicitTimeOut()*/, TimeUnit.SECONDS);
+    public SearchImplicit() {
+        getWebDriver().manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
         // TODO setup waits
-        getWebDriver().manage().timeouts().pageLoadTimeout(10L, TimeUnit.SECONDS);
-        getWebDriver().manage().timeouts().setScriptTimeout(10L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().setScriptTimeout(30L, TimeUnit.SECONDS);
         //System.out.println("***SearchImplicit");
     }
 
+    /**
+     * Method to implicitly wait for visibility of
+     * specific element.
+     * @param by locator for element.
+     * @return visible webelement.
+     */
     private WebElement getWebElement(By by) {
         return this.getWebDriver().findElement(by);
     }
 
+    /**
+     * Method to implicitly wait for visibility of
+     * specific element, located from already
+     * located webelement.
+     * @param by locator for element.
+     * @param fromWebElement located webelement to start
+     *                       searching from.
+     * @return visible webelement.
+     */
     private WebElement getWebElement(By by, WebElement fromWebElement) {
         return fromWebElement.findElement(by);
     }
 
+    /**
+     * Method to implicitly wait for visibility of
+     * specific elements.
+     * @param by locator for elements.
+     * @return
+     *       visible webelements.
+     */
     private List<WebElement> getWebElements(By by) {
         return this.getWebDriver().findElements(by);
     }
 
-    private List<WebElement> getWebElements(By by, WebElement fromWebElement) {
-        return fromWebElement.findElements(by);
-    }
-
+    /*
+   Methods, used by Search entity.
+    */
+    //Element
     @Override
     public WebElement id(String id) {
         return getWebElement(By.id(id));
@@ -57,34 +82,34 @@ public class SearchImplicit extends ASearch {
     public WebElement className(String className) {
         return getWebElement(By.className(className));
     }
-    
+
     @Override
     public  WebElement partialLinkText(String partialLinkText) {
     	return getWebElement(By.partialLinkText(partialLinkText));
     }
-    
+
     @Override
     public  WebElement linkText(String linkText) {
     	return getWebElement(By.linkText(linkText));
     }
-    
+
     @Override
     public  WebElement tagName(String tagName) {
     	return getWebElement(By.tagName(tagName));
     }
-    
+
     // From Elements
-    
+
     @Override
     public  WebElement id(String id, WebElement fromWebElement) {
         return getWebElement(By.id(id), fromWebElement);
     }
-    
+
     @Override
     public  WebElement name(String name, WebElement fromWebElement) {
     	return getWebElement(By.name(name), fromWebElement);
     }
-    
+
     @Override
     public  WebElement xpath(String xpath, WebElement fromWebElement) {
     	return getWebElement(By.xpath(xpath), fromWebElement);
@@ -109,9 +134,9 @@ public class SearchImplicit extends ASearch {
     public  WebElement tagName(String tagName, WebElement fromWebElement) {
     	return getWebElement(By.tagName(tagName),fromWebElement);
     }
-    
+
     // List
-    
+
     @Override
     public  List<WebElement> ids(String id) {
     	return getWebElements(By.id(id));
@@ -121,23 +146,22 @@ public class SearchImplicit extends ASearch {
     public List<WebElement> names(String name) {
         return getWebElements(By.name(name));
     }
-    
+
     @Override
     public  List<WebElement> xpaths(String xpath) {
         return getWebElements(By.xpath(xpath));
     }
 
     @Override
-    public  List<WebElement> xpaths(String xpath, WebElement fromWebelement) {
-        return getWebElements(By.xpath(xpath), fromWebelement);
+    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return null;
     }
-
 
     @Override
     public  List<WebElement> cssSelectors(String cssSelector) {
         return getWebElements(By.cssSelector(cssSelector));
     }
-    
+
     @Override
     public  List<WebElement> classNames(String className) {
         return getWebElements(By.className(className));
@@ -147,12 +171,12 @@ public class SearchImplicit extends ASearch {
     public  List<WebElement> partialLinkTexts(String partialLinkText) {
         return getWebElements(By.partialLinkText(partialLinkText));
     }
-    
-    @Override  
+
+    @Override
     public  List<WebElement> linkTexts(String linkText) {
         return getWebElements(By.linkText(linkText));
     }
-    
+
     @Override
     public  List<WebElement> tagNames(String tagName) {
     	return getWebElements(By.tagName(tagName));

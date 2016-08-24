@@ -12,21 +12,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 public abstract class ASearch {
 
     private static final String TAKES_SCREENSHOT_ERROR = "TakesScreenshot Save File Error";
-    private Application<?> application;
+    //added timeouts.
+    protected static final long IMPLICIT_WAIT_TIMEOUT = 5L;
+    protected static final long EXPLICIT_WAIT_TIMEOUT = 10L;
 
-    public ASearch(Application<?> application) {
-        this.application = application;
+    //removed Application from constructor params.
+    public ASearch() {
     }
-
-    Application<?> getApplication() {
-        return application;
-    }
-
+    //remove Application from method params
     WebDriver getWebDriver() {
-        return application.getWebDriver();
+        return Application.getWebDriver();
     }
 
     public void takeScreenShort(String fileName) {

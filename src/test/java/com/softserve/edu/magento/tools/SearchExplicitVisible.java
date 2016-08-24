@@ -3,26 +3,30 @@ package com.softserve.edu.magento.tools;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.google.common.base.Predicate;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SearchExplicit extends ASearch {
+/**
+ * Class for searching present elements with
+ * explicit timeout.
+ */
+public class SearchExplicitVisible extends ASearch {
 
-    public SearchExplicit(Application<?> application) {
-        super(application);
+    public SearchExplicitVisible() {
         getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
-        //getWebDriver().manage().timeouts().pageLoadTimeout(0L, TimeUnit.SECONDS);
-        //getWebDriver().manage().timeouts().setScriptTimeout(0L, TimeUnit.SECONDS);
-        //System.out.println("***SearchExplicit");
     }
-    
+
+    /**
+     * Method to explicitly wait for visibility of
+     * specific element.
+     * @param by locator for element.
+     * @return
+     *       present webelement.
+     */
     private WebElement getVisibleWebElement(By by) {
-        return new WebDriverWait(this.getWebDriver(),
-                getApplication().getApplicationSources().getExplicitTimeOut())
+        return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
             .until(ExpectedConditions.visibilityOfElementLocated(by));
     }
     
@@ -42,21 +46,22 @@ public class SearchExplicit extends ASearch {
           return result;
     }
 
-    private List<WebElement> getVisibleWebElements(By by, WebElement fromWebElement) {
-        List<WebElement> result;
-        getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
-        result = fromWebElement.findElements(by);
-        getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
-        return result;
-    }
-
-
+    /**
+     * Method to explicitly wait for visibility of
+     * specific elements.
+     * @param by locator for elements.
+     * @return
+     *       present webelements.
+     */
     private List<WebElement> getVisibleWebElements(By by) {
-        return new WebDriverWait(this.getWebDriver(),
-                getApplication().getApplicationSources().getExplicitTimeOut())
+        return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
             .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
     }
 
+    /*
+   Methods, used by Search entity.
+    */
+    //Element
     @Override
     public WebElement id(String id) {
         return getVisibleWebElement(By.id(id));
@@ -81,29 +86,29 @@ public class SearchExplicit extends ASearch {
     public WebElement className(String className) {
         return getVisibleWebElement(By.className(className));
     }
-    
+
     @Override
     public  WebElement partialLinkText(String partialLinkText) {
     	return getVisibleWebElement(By.partialLinkText(partialLinkText));
     }
-    
+
     @Override
     public  WebElement linkText(String linkText) {
     	return getVisibleWebElement(By.linkText(linkText));
     }
-    
+
     @Override
     public  WebElement tagName(String tagName) {
     	return getVisibleWebElement(By.tagName(tagName));
     }
-    
+
 // From Elements
-    
+
     @Override
     public  WebElement id(String id, WebElement fromWebElement) {
     	return getVisibleWebElement(By.id(id), fromWebElement);
     }
-    
+
     @Override
     public  WebElement name(String name, WebElement fromWebElement) {
     	return getVisibleWebElement(By.name(name), fromWebElement);
@@ -111,12 +116,7 @@ public class SearchExplicit extends ASearch {
 
     @Override
     public  WebElement xpath(String xpath, WebElement fromWebElement) {
-        return getVisibleWebElement(By.xpath(xpath), fromWebElement);
-    }
-
-    @Override
-    public  List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
-        return getVisibleWebElements(By.xpath(xpath), fromWebElement);
+    	return getVisibleWebElement(By.xpath(xpath), fromWebElement);
     }
     @Override
     public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
@@ -134,14 +134,14 @@ public class SearchExplicit extends ASearch {
     public  WebElement linkText(String linkText, WebElement fromWebElement) {
     	return getVisibleWebElement(By.linkText(linkText), fromWebElement);
     }
-    
+
     @Override
     public  WebElement tagName(String tagName, WebElement fromWebElement) {
     	return getVisibleWebElement(By.tagName(tagName),fromWebElement);
     }
-    
+
  // List
-    
+
     @Override
     public  List<WebElement> ids(String id) {
     	 return getVisibleWebElements(By.id(id));
@@ -151,17 +151,22 @@ public class SearchExplicit extends ASearch {
     public List<WebElement> names(String name) {
     	 return getVisibleWebElements(By.name(name));
     }
-    
+
     @Override
     public  List<WebElement> xpaths(String xpath) {
     	 return getVisibleWebElements(By.xpath(xpath));
     }
-    
+
+    @Override
+    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return null;
+    }
+
     @Override
     public  List<WebElement> cssSelectors(String cssSelector) {
     	 return getVisibleWebElements(By.cssSelector(cssSelector));
     }
-    
+
     @Override
     public  List<WebElement> classNames(String className) {
     	 return getVisibleWebElements(By.className(className));
@@ -171,12 +176,12 @@ public class SearchExplicit extends ASearch {
     public  List<WebElement> partialLinkTexts(String partialLinkText) {
     	 return getVisibleWebElements(By.partialLinkText(partialLinkText));
     }
-    
-    @Override  
+
+    @Override
     public  List<WebElement> linkTexts(String linkText) {
     	 return getVisibleWebElements(By.linkText(linkText));
     }
-    
+
     @Override
     public  List<WebElement> tagNames(String tagName) {
     	return getVisibleWebElements(By.tagName(tagName));

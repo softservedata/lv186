@@ -101,6 +101,9 @@
 			<version>0.0.2</version>
 		</dependency>
 
+		<!-- JMeter API-->
+
+
 		<!-- - - - Logging - - - -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -236,7 +239,7 @@
 								<!--<file>testng.xml</file>-->
 								<!--<file>testngyYarynaKharko.xml</file>-->
 								<!--<file>product.xml</file>-->
-								<file>testNgCustomer.xml</file>
+								<file>testngDashboardAdmin.xml</file>
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>

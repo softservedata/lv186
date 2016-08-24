@@ -9,6 +9,7 @@ public class ProductRepository {
     public final static String VALID_PRICE = "700.00";
     public final static String VALID_PRICE_FOR_CHECK = "$700.00";
     public final static String INVALID_PRICE = "Big Price";
+    public final static String INVALID_MIXED_PRICE = "12qwerty34";
     public final static String EXISTING_PRODUCT_NAME = "Gigabyte";
     public final static String EXISTING_PRODUCT_SKU = "Gigabyte";
     public final static String EXISTING_PRICE = "100";

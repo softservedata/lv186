@@ -239,7 +239,8 @@
 								<!--<file>testng.xml</file>-->
 								<!--<file>testngyYarynaKharko.xml</file>-->
 								<!--<file>product.xml</file>-->
-								<file>testngDashboardAdmin.xml</file>
+								<!--<file>testngDashboardAdmin.xml</file>-->
+								<file>TestngEditCustomer.xml</file>
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>
@@ -302,7 +303,7 @@
 							</systemPropertyVariables>
 							<suiteXmlFiles>
 								<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
-								<file>testNgCustomer.xml</file>
+								<!--<file>TestngEditCustomer.xml</file>-->
 
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>

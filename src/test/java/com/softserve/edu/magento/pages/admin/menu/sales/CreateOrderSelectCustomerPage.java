@@ -67,9 +67,10 @@ public class CreateOrderSelectCustomerPage {
         clickCustomerFilterName();
         String fullName = user.getPersonalInfo().getFirstname() + " " + user.getPersonalInfo().getLastname();
         getCustomerFilterName().sendKeys(fullName);
-        //clickSearchButton();
-        //searchedUser = Search.cssSelector("._clickable  td.col-name");
+        clickSearchButton();
+        searchedUser = Search.xpath("//*[@id='sales_order_create_customer_grid_table']/tbody/tr/td[2]");
         if (searchedUser.getText().equals(fullName)) {
+            searchedUser.click();
             return new CreateOrderFillInformationPage();
         }
         return gotoCreateOrderFillInformationPage();

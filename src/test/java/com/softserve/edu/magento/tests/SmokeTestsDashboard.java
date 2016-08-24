@@ -77,7 +77,6 @@ public class SmokeTestsDashboard extends TestBase {
     @Test(dataProvider = "smokeParameters")
     @ServiceReport
     public void testOrdersPages(ApplicationSources applicationSources, IAdminUser adminUser, ICustomerUser customerUser) {
-        applicationSources.setSearchStrategy("SearchExplicitStrategyPresent");
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
         OrdersPage ordersPage = dashboardPage.gotoOrdersPage();

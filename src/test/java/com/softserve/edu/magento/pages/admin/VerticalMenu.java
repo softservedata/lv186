@@ -28,7 +28,7 @@ public abstract class VerticalMenu extends ATopPage {
 		public SalesComponent() {
 			this.title = Search.xpath("//strong[text()='Sales']");
 			this.groupTitle = Search.xpath("//span[text()='Operations']");
-			this.orders = Search.linkText("Orders");
+			this.orders = Search.cssSelector("li.item-sales-order.level-2");
 			this.invoices = Search.linkText("Invoices");
 			this.shipments = Search.linkText("Shipments");
 			this.creditMemos = Search.linkText("Credit Memos");
@@ -1111,6 +1111,7 @@ public abstract class VerticalMenu extends ATopPage {
 	// -----------------Sales---------------
 
 	public void clickMenuSalesOrders() {
+
 		getMenuSalesOrders().click();
 	}
 

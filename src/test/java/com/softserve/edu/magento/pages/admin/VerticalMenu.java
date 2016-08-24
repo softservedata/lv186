@@ -33,7 +33,7 @@ public abstract class VerticalMenu extends ATopPage {
 			this.shipments = Search.linkText("Shipments");
 			this.creditMemos = Search.linkText("Credit Memos");
 			this.billingAgreements = Search.linkText("Billing Agreements");
-			this.transactions = Search.linkText("Transcations");
+			this.transactions = Search.linkText("Transactions");
 			this.close = Search.cssSelector("#menu-magento-sales-sales > div > a");
 		}
 

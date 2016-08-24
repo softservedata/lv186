@@ -58,6 +58,7 @@ public class AddProductPage extends VerticalMenu {
 
     public WebElement getProductNameInput() {
         return this.productNameInput;
+
     }
 
     public WebElement getSkuInput() {
@@ -183,8 +184,9 @@ public class AddProductPage extends VerticalMenu {
         getSaveAndCloseButton().click();
     }
 
-    public void clickBackButton() {
+    public ProductCatalogPage clickBackButton() {
         getBackButton().click();
+        return new ProductCatalogPage();
     }
 
     public void clickAddAttributeButton() {
@@ -214,7 +216,7 @@ public class AddProductPage extends VerticalMenu {
         setQuantity(quantity);
     }
 
-    public void setProductData(IProduct productData) {
+    public void setProductData(IProduct productData)  {
         if (!TextUtils.isEmpty(productData.getAttributeSet())) {
             setAttributeSet(productData.getAttributeSet());
         }
@@ -245,13 +247,13 @@ public class AddProductPage extends VerticalMenu {
 
     public ProductCatalogPage returnToProductPage() {
         clickBackButton();
-        Search.waitUntil(new Predicate<WebDriver>() {
-            @Override
-            public boolean apply(WebDriver webDriver) {
-                ProductCatalogPage catalogPage = new ProductCatalogPage();
-                return (catalogPage.getProducts().size() > 0);
-            }
-        });
+//        Search.waitUntil(new Predicate<WebDriver>() {
+//            @Override
+//            public boolean apply(WebDriver webDriver) {
+//                ProductCatalogPage catalogPage = new ProductCatalogPage();
+//                return (catalogPage.getProducts().size() > 0);
+//            }
+//        });
         return new ProductCatalogPage();
     }
 

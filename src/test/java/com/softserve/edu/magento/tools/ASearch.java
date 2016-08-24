@@ -96,4 +96,5 @@ public abstract class ASearch {
     public void waitUntil(Predicate<WebDriver> predicate) {
         new WebDriverWait(getWebDriver(), 10).until(predicate);
     }
+
 }

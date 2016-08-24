@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.softserve.edu.magento.pages.admin.menu.products.AddProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.RefreshPage;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,7 +46,7 @@ public class Search {
         IMPLICIT_STRATEGY(new ImplicitStrategy(), "SearchImplicitStrategy"),
         EXPLICIT_STRATEGY_VISIBLE(new ExplicitStrategyVisible(), "SearchExplicitStrategyVisible"),
         EXPLICIT_STRATEGY_PRESENT(new ExplicitStrategyPresent(), "SearchExplicitStrategyPresent"),
-        EXPLICIT_STRATEGY_CLICKABLE(new ExplicitStrategyClickable(), "SearchExplicitStrategyPresent");
+        EXPLICIT_STRATEGY_CLICKABLE(new ExplicitStrategyClickable(), "SearchExplicitStrategyClickable");
         private ISearchStrategy searchStrategy;
         private String searchStrategyName;
 

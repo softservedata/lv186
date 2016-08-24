@@ -16,7 +16,11 @@
 					<include name="checkProductSaveAndNew" />
 					<include name="checkProductSaveAndDuplicate" />
 					<include name="checkProductSaveAndClose" />
-
+				</methods>
+			</class>
+		<class name="com.softserve.edu.magento.tests.ProductFieldsTest">
+				<methods>
+					<include name="checkFieldsValidation" />
 				</methods>
 			</class>
 		</classes>

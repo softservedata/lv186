@@ -33,7 +33,7 @@ public class ProductFieldsTest extends TestBase {
 
     @Test(dataProvider = "parameters")
     @ServiceReport
-    public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) {
+    public void checkFieldsValidation(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -41,22 +41,37 @@ public class ProductFieldsTest extends TestBase {
         AddProductPage addProductPage = productCatalogPage.gotoAddProductPage();
 
         addProductPage.setProductNameInputWithClear(ProductFieldRepository.VALID_PRODUCT_NAME);
-        ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSave();
-        Assert.assertEquals(productValidatorPage.getProductNameValidatorText(), "");
+        //ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSave();
+        addProductPage.gotoProductValidatorPageAfterSave();
+        ProductValidatorPage productValidatorPage = new ProductValidatorPage();
+        Assert.assertFalse(productValidatorPage.isProductNameValidatorPresent());
+        productValidatorPage.clearProductNameInput();
 
         productValidatorPage.setProductNameInputWithClear(ProductFieldRepository.INVALID_PRODUCT_NAME);
+        productValidatorPage = new ProductValidatorPage();
         Assert.assertEquals(productValidatorPage.getProductNameValidatorText(), Constants.TOO_LONG_PRODUCT_NAME_MESSAGE);
+        productValidatorPage.clearProductNameInput();
 
+        productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setSkuInputWithClear(ProductFieldRepository.VALID_SKU);
-        Assert.assertEquals(productValidatorPage.getSkuValidatorText(), "");
+        Assert.assertFalse(productValidatorPage.isSkuValidatorPresent());
+        productValidatorPage.clearSkuInput();
 
+        productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setSkuInputWithClear(ProductFieldRepository.INVALID_SKU);
         Assert.assertEquals(productValidatorPage.getSkuValidatorText(), Constants.TOO_LONG_SKU_MESSAGE);
+        productValidatorPage.clearSkuInput();
 
+        productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setPriceInputWithClear(ProductFieldRepository.VALID_PRICE);
-        Assert.assertEquals(productValidatorPage.getSkuValidatorText(), "");
+        Assert.assertFalse(productValidatorPage.isPriceValidatorPresent());
+        productValidatorPage.clearPriceInput();
 
+        productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setSkuInputWithClear(ProductFieldRepository.INVALID_PRICE);
         Assert.assertEquals(productValidatorPage.getSkuValidatorText(), Constants.TOO_BIG_PRICE_MESSAGE);
+        productValidatorPage.clearPriceInput();
+
+        productValidatorPage.logout();
     }
 }

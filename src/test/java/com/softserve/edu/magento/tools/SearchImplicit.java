@@ -54,6 +54,10 @@ public class SearchImplicit extends ASearch {
         return this.getWebDriver().findElements(by);
     }
 
+    private List<WebElement> getWebElements(By by, WebElement fromWebElement) {
+        return this.getWebDriver().findElements(by);
+    }
+
     /*
    Methods, used by Search entity.
     */
@@ -159,7 +163,7 @@ public class SearchImplicit extends ASearch {
 
     @Override
     public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
-        return null;
+        return getWebElements(By.xpath(xpath));
     }
 
     @Override

@@ -47,7 +47,6 @@ public class ProductFunctionalityTest extends TestBase {
         SuccessProductSavePage savePage = addProductPage.gotoSuccessProductSavePageAfterSave();
 
 		/* Check if message appeared and data are present in the fields */
-        Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(savePage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
         Assert.assertEquals(savePage.getSkuInputText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(savePage.getPriceInputText(), ProductRepository.VALID_PRICE);
@@ -55,8 +54,8 @@ public class ProductFunctionalityTest extends TestBase {
         Assert.assertEquals(savePage.getSuccessfulProductSaveMessageText().trim(), Constants.PRODUCT_SAVED_MESSAGE);
 
 		/* Go to page with catalog and find row with needed name */
-        ProductCatalogPage catalogPage = savePage.returnToProductPage();
-//        catalogPage = new ProductCatalogPage();
+        savePage.clickBackButton();
+        ProductCatalogPage catalogPage = new ProductCatalogPage();
         ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
         while (row == null) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
@@ -69,7 +68,6 @@ public class ProductFunctionalityTest extends TestBase {
 
 		/* Check if saved product is present in catalog */
         Assert.assertNotNull(row);
-        Assert.assertEquals(row.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
         Assert.assertEquals(row.getProductQuantityText(), ProductRepository.QUANTITY_FOR_CHECK);
@@ -121,9 +119,9 @@ public class ProductFunctionalityTest extends TestBase {
         ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSave();
 
     /* Check if error messages for price input appeared */
-        Assert.assertTrue(productValidatorPage.isProductNameValidatorPresent());
+        Assert.assertFalse(productValidatorPage.isProductNameValidatorPresent());
         Assert.assertEquals(productValidatorPage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
-        Assert.assertTrue(productValidatorPage.isSkuValidatorPresent());
+        Assert.assertFalse(productValidatorPage.isSkuValidatorPresent());
         Assert.assertEquals(productValidatorPage.getSkuInputText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.INVALID_PRICE_FIELD_MESSAGE);
     }
@@ -143,7 +141,6 @@ public class ProductFunctionalityTest extends TestBase {
         ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSaveAndClose();
 
 		/* Check if error messages appeared */
-        Assert.assertEquals(productValidatorPage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(productValidatorPage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
         Assert.assertEquals(productValidatorPage.getSkuInputText(), "");
         Assert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.REQUIRED_EMPTY_FIELD_MESSAGE);
@@ -188,12 +185,10 @@ public class ProductFunctionalityTest extends TestBase {
        /* Get valid data from Product Repository and set them */
         IProduct product = ProductRepository.get().getNewValidProduct();
         addProductPage.setProductData(product);
-        ProductCatalogPage catalogPage = addProductPage.gotoCatalogPageAfterSaveClose();
+        addProductPage.gotoCatalogPageAfterSaveClose();
+        ProductCatalogPage catalogPage = new ProductCatalogPage();
 
         /* Find row with newly saved product */
-        System.out.println("\t*****Check");
-        Thread.sleep(5000);
-        catalogPage = new ProductCatalogPage();
         ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
         while (row == null) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
@@ -206,7 +201,6 @@ public class ProductFunctionalityTest extends TestBase {
 
         /* Check if new product is present in catalog */
         Assert.assertNotNull(row);
-        Assert.assertEquals(row.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
 
@@ -231,10 +225,10 @@ public class ProductFunctionalityTest extends TestBase {
        /* Get valid data from Product Repository and set them */
         IProduct product = ProductRepository.get().getNewValidProduct();
         addProductPage.setProductData(product);
-        SuccessProductSavePage savePage = addProductPage.gotoSuccessProductSavePageAfterSaveAndNew();
+        addProductPage.gotoSuccessProductSavePageAfterSaveAndNew();
+        SuccessProductSavePage savePage = new SuccessProductSavePage();
 
         /* Check if message appeared and fields are reset */
-        Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(savePage.getProductNameInputText(), "");
         Assert.assertEquals(savePage.getSkuInputText(), "");
         Assert.assertEquals(savePage.getPriceInputText(), "");
@@ -242,9 +236,8 @@ public class ProductFunctionalityTest extends TestBase {
         Assert.assertEquals(savePage.getSuccessfulProductSaveMessageText().trim(), Constants.PRODUCT_SAVED_MESSAGE);
 
         /* Find row with newly saved product */
-        savePage = new SuccessProductSavePage();
-        ProductCatalogPage catalogPage = savePage.gotoProductCatalogPage();
-        catalogPage = new ProductCatalogPage();
+        savePage.clickBackButton();
+        ProductCatalogPage catalogPage = new ProductCatalogPage();
         ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
         while (row == null) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
@@ -257,7 +250,7 @@ public class ProductFunctionalityTest extends TestBase {
 
         /* Check if new product is present in catalog */
         Assert.assertNotNull(row);
-        Assert.assertEquals(row.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
+        //Assert.assertEquals(row.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
 
@@ -270,7 +263,7 @@ public class ProductFunctionalityTest extends TestBase {
         catalogPage.logout();
     }
 
-    //@Test(dataProvider = "parameters")
+    @Test(dataProvider = "parameters")
     @ServiceReport
     public void checkProductSaveAndDuplicate(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
@@ -286,7 +279,7 @@ public class ProductFunctionalityTest extends TestBase {
 
         /* Check if messages appeared and data are present in the fields */
         //Is product enabled
-        Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
+        //Assert.assertEquals(savePage.getAttributeSetInputText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(savePage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
         Assert.assertEquals(savePage.getSkuInputText(), ProductRepository.VALID_SKU_DUPLICATED);
         Assert.assertEquals(savePage.getPriceInputText(), ProductRepository.VALID_PRICE);
@@ -310,7 +303,7 @@ public class ProductFunctionalityTest extends TestBase {
 
         /* Check if new product is present in catalog */
         Assert.assertNotNull(row1);
-        Assert.assertEquals(row1.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
+        //Assert.assertEquals(row1.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(row1.getProductSkuText(), ProductRepository.VALID_SKU);
         Assert.assertEquals(row1.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
         Assert.assertEquals(row1.getProductQuantityText(), ProductRepository.QUANTITY_FOR_CHECK);
@@ -328,7 +321,7 @@ public class ProductFunctionalityTest extends TestBase {
 
         /* Check if duplicated product is present in catalog */
         Assert.assertNotNull(row2);
-        Assert.assertEquals(row2.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
+        //Assert.assertEquals(row2.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
         Assert.assertEquals(row2.getProductSkuText(), ProductRepository.VALID_SKU_DUPLICATED);
         Assert.assertEquals(row2.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
         Assert.assertEquals(row2.getProductQuantityText(), "");

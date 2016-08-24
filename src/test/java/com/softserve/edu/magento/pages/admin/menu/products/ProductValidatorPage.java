@@ -16,12 +16,16 @@ public class ProductValidatorPage extends AddProductPage {
 
 	public ProductValidatorPage() {
 
-		WebElement productNameContainer = Search.xpath("//div[@data-index='name']");
-		List<WebElement> productNameValidators = Search.xpaths("(//label[@class='admin__field-error'])", productNameContainer);
-		WebElement skuContainer = Search.xpath("//div[@data-index='sku']");
-		List<WebElement> skuValidators = Search.xpaths("(//label[@class='admin__field-error'])", skuContainer);
-		WebElement priceContainer = Search.xpath("//fieldset[@data-index='container_price']");
-		List<WebElement> priceValidators = Search.xpaths("(//label[@class='admin__field-error'])", priceContainer);
+//		WebElement productNameContainer = Search.xpath("//div[@data-index='name']");
+//		List<WebElement> productNameValidators = Search.xpaths("//label[@class='admin__field-error']", productNameContainer);
+//		WebElement skuContainer = Search.xpath("//div[@data-index='sku']");
+//		List<WebElement> skuValidators = Search.xpaths("(//label[@class='admin__field-error'])", skuContainer);
+//		WebElement priceContainer = Search.xpath("//fieldset[@data-index='container_price']");
+//		List<WebElement> priceValidators = Search.xpaths("(//label[@class='admin__field-error'])", priceContainer);
+
+		List<WebElement> productNameValidators = Search.xpaths("//div[@data-index='name']//label[@class='admin__field-error']");
+		List<WebElement> skuValidators = Search.xpaths("(//div[@data-index='sku']//label[@class='admin__field-error'])");
+		List<WebElement> priceValidators = Search.xpaths("(//fieldset[@data-index='container_price']//label[@class='admin__field-error'])");
 
 		if (productNameValidators.size() > 0) {
 			this.productNameValidator = productNameValidators.get(0);

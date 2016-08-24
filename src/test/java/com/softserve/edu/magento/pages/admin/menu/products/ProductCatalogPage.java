@@ -35,8 +35,8 @@ public class ProductCatalogPage extends VerticalMenu {
 
     private WebElement filterButton;
     private WebElement nextPageButton;
+    List<WebElement> productRowsSource;
     private List<ProductRow> productRows;
-    private List<WebElement> productRowsSource;
 
     public ProductCatalogPage() {
 
@@ -53,18 +53,18 @@ public class ProductCatalogPage extends VerticalMenu {
         changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
         enableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Enable')])[1]");
         disableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Disable')])[1]");
-
         updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
         nextPageButton = Search.cssSelector("button[title='Next Page']");
         filterButton = Search.xpath("(//button[@class='action-default'])[1]");
         productRows = new ArrayList<>();
         productRowsSource = Search.cssSelectors("tbody tr");
-        if(productRowsSource != null && !productRowsSource.isEmpty()){
-            for (WebElement row : productRowsSource) {
-                ProductRow productRow = new ProductRow(row);
-                productRows.add(productRow);
-            }
-        }
+
+//        if(productRowsSource != null && !productRowsSource.isEmpty()){
+//            for (WebElement row : productRowsSource) {
+//                ProductRow productRow = new ProductRow(row);
+//                productRows.add(productRow);
+//            }
+//        }
     }
 
     // Getters
@@ -173,7 +173,9 @@ public class ProductCatalogPage extends VerticalMenu {
 
     public DeleteConfirmationPopup clickDeleteProductAction() {
         clickActionsDropdown();
+        Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
         getDeleteProductAction().click();
+        Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
         return new DeleteConfirmationPopup();
     }
 
@@ -209,13 +211,19 @@ public class ProductCatalogPage extends VerticalMenu {
     }
 
     public ProductRow getRowWithProductName(String productName) {
-        for (ProductRow row : productRows) {
-            if (row.getProductNameText().equals(productName)) {
-                return row;
+        System.out.println("row.getProductNameText() = " + productRows.size());
+        System.out.println(" productName = " + productName);
+        for (WebElement row1 : productRowsSource) {
+                ProductRow productRow = new ProductRow(row1);
+                productRows.add(productRow);
             }
+            for (ProductRow row2 : productRows) {
+                if (row2.getProductNameText().equals(productName)) {
+                    return row2;
+                }
+            }
+            return null;
         }
-        return null;
-    }
 
     public ProductRow getRowWithDuplicatedProduct(String productName, String sku) {
         for (ProductRow row : productRows) {
@@ -262,9 +270,13 @@ public class ProductCatalogPage extends VerticalMenu {
 
         private ProductRow(WebElement row) {
             productCheckbox = Search.cssSelector("td:first-child", row);
+            System.out.println("row = " + row);
             productId = Search.cssSelector("td:nth-child(2)", row);
+            System.out.println("row = " + row);
             productName = Search.cssSelector("td:nth-child(4)", row);
+            System.out.println("row = " + row);
             productType = Search.cssSelector("td:nth-child(5)", row);
+            System.out.println("row = " + row);
             productAttributeSet = Search.cssSelector("td:nth-child(6)", row);
             productSku = Search.cssSelector("td:nth-child(7)", row);
             productPrice = Search.cssSelector("td:nth-child(8)", row);
@@ -562,24 +574,24 @@ public class ProductCatalogPage extends VerticalMenu {
 
         public ProductCatalogPage clickDeleteConfirmationButton() {
             getDeleteConfirmationButton().click();
-            Search.waitUntil(new Predicate<WebDriver>() {
-                @Override
-                public boolean apply(WebDriver input) {
-                    WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
-                    if (successMessage != null) {
-                        return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
-                    }
-                    return false;
-                }
-            });
-
-            Search.waitUntil(new Predicate<WebDriver>() {
-                @Override
-                public boolean apply(WebDriver input) {
-                    List<WebElement> foundRows = Search.cssSelectors("tbody tr");
-                    return foundRows.size() > 0;
-                }
-            });
+//            Search.waitUntil(new Predicate<WebDriver>() {
+//                @Override
+//                public boolean apply(WebDriver input) {
+//                    WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
+//                    if (successMessage != null) {
+//                        return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
+//                    }
+//                    return false;
+//                }
+//            });
+//
+//            Search.waitUntil(new Predicate<WebDriver>() {
+//                @Override
+//                public boolean apply(WebDriver input) {
+//                    List<WebElement> foundRows = Search.cssSelectors("tbody tr");
+//                    return foundRows.size() > 0;
+//                }
+//            });
             return new ProductCatalogPage();
         }
 

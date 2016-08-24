@@ -26,7 +26,6 @@ public class ProductRepository {
     public IProduct getNewValidProduct() {
         IProduct product = Product.get().setProductName(VALID_PRODUCT_NAME).setSku(VALID_SKU).setPrice(VALID_PRICE)
                 .build();
-        product.setAttributeSet(ATTRIBUTE_SET);
         product.setQuantity(QUANTITY);
         return product;
     }
@@ -34,7 +33,6 @@ public class ProductRepository {
     public IProduct getNewProductWithInvalidPrice() {
         IProduct product = Product.get().setProductName(VALID_PRODUCT_NAME).setSku(VALID_SKU).setPrice(INVALID_PRICE)
                 .build();
-        product.setAttributeSet(ATTRIBUTE_SET);
         product.setQuantity(QUANTITY);
         return product;
     }
@@ -51,7 +49,6 @@ public class ProductRepository {
 
     public IProduct getNewProductWithNonRequiredFields() {
         IProduct product = Product.get().setProductName(VALID_PRODUCT_NAME).setSku("").setPrice("").build();
-        product.setAttributeSet(ATTRIBUTE_SET);
         product.setQuantity(QUANTITY);
         return product;
     }

@@ -39,33 +39,33 @@ public abstract class Application<TStartPage> {
             if (driver == null) {
                 driver = BrowsersList.FIREFOX_DEFAULT.getWebDriver(null);
             }
-            driver.manage().timeouts().implicitlyWait(applicationSources.getImplicitTimeOut(), TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(/*applicationSources.getImplicitTimeOut()*/180, TimeUnit.SECONDS);
             // TODO setup waits
-            //driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
-            //driver.manage().timeouts().setScriptTimeout(30L, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(180L, TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(180L, TimeUnit.SECONDS);
             //
             // Save browser
             drivers.put(Thread.currentThread().getId(), driver);
             setSearchStrategy();
         }
     }
-    
+    //removed "this" from setStrategy
     protected void setSearchStrategy() {
         boolean isDefaultStrategy = true;
         for (SearchStrategyList searchStrategy : SearchStrategyList.values()) {
             if (searchStrategy.toString().toLowerCase()
                     .contains(applicationSources.getSearchStrategy().toLowerCase())) {
-                Search.setStrategy(searchStrategy.getSearchStrategy(this));
+                Search.setStrategy(searchStrategy.getSearchStrategy());
                 isDefaultStrategy = false;
                 break;
             }
         }
         if (isDefaultStrategy) {
-            Search.setStrategy(SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy(this));
+            Search.setStrategy(SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
         }
     }
-
-    protected WebDriver getWebDriver() {
+    //made method static
+    protected static WebDriver getWebDriver() {
         return drivers.get(Thread.currentThread().getId());
     }
 

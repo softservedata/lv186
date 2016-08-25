@@ -8,6 +8,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.Arrays;
+
 interface IBrowser {
     WebDriver getBrowser(String driverPath);
 }
@@ -24,6 +26,17 @@ public class BrowserRepository {
         public WebDriver getBrowser(String driverPath) {
             System.setProperty("webdriver.chrome.driver", driverPath);
             return new ChromeDriver();
+        }
+    }
+    static class ChromeJSDisable implements IBrowser {
+        public WebDriver getBrowser(String driverPath) {
+            System.setProperty("webdriver.chrome.driver", driverPath);
+            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+            //capabilities.setCapability("chrome.switches", Arrays.asList("--disable-javascript"));
+            capabilities.setJavascriptEnabled(false);
+            System.out.println("ChromeJSDisable");
+            System.out.println(capabilities.isJavascriptEnabled());
+            return new ChromeDriver(capabilities);
         }
     }
 
@@ -69,6 +82,7 @@ public class BrowserRepository {
         FIREFOX_DEFAULT(new FirefoxTemporary(), "FirefoxDriverDefault"),
         IE_TEMPORARY(new IETemporary(), "InternetExplorerDriver"),
         CHROME_TEMPORARY(new ChromeTemporary(), "ChromeDriverTemporary"),
+        CHROME_JS_DISABLE(new ChromeJSDisable(), "ChromeDriverJSDisable"),
         HTMLUNIT_TEMPORARY(new HtmlUnitTemporary(), "HtmlUnitDriver"),
         PHANTOMJS_TEMPORARY(new PhantomJSTemporary(), "PhantomJSTemporary");
         private IBrowser browser;

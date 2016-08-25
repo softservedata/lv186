@@ -15,7 +15,7 @@ import org.testng.annotations.*;
 /**
  * Created by Olia on 22.07.2016.
  */
-public class CategoryPageSmokeTest {
+public class CategoryPageSmokeTest extends TestBase{
 
     @DataProvider(parallel = true)
     public Object[][] parameters(ITestContext context) {
@@ -35,11 +35,11 @@ public class CategoryPageSmokeTest {
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
 
         page.saveCategory();
-        page = page.refresh();
+//        page = page.refresh();
         page.clickAddRootCategory();
-        page = page.refresh();
-        page.clickAddSubcategory();
-        page = page.refresh();
+//        page = page.refresh();
+        page.clickAddSubCategory();
+//        page = page.refresh();
         page.clickEnabledCategory();
         page.clickIncludeInMenu();
         page.setCategoryName(CategoryRepository.CATEGORY_NAME);

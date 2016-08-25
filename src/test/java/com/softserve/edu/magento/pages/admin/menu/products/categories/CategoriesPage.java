@@ -1,10 +1,8 @@
 package com.softserve.edu.magento.pages.admin.menu.products.categories;
 
-import com.softserve.edu.magento.tools.Search;
-
-import org.openqa.selenium.WebElement;
-
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
+import com.softserve.edu.magento.tools.Search;
+import org.openqa.selenium.WebElement;
 
 public class CategoriesPage extends VerticalMenu{
 
@@ -13,18 +11,16 @@ public class CategoriesPage extends VerticalMenu{
 
     private class ContentComponent{
         public WebElement upload;
-        public Description description;
+        public WebElement description;
         public WebElement wysiwygEditor;
         public WebElement cmsBlock;
 
         public ContentComponent(){
             this.upload = Search.xpath("//input[@name='image']");
-            this.description = new Description();
+            this.description = Search.id("category_form_description");
             this.wysiwygEditor = Search.xpath("//button[@title='WYSIWYG Editor']");
             this.cmsBlock = Search.xpath("//select[@class='admin__control-select' and @name='landing_page']");
         }
-
-
 
     }
     private class Description{}
@@ -56,17 +52,54 @@ public class CategoriesPage extends VerticalMenu{
             String path = "//li[@class='x-tree-node']//*[contains( text(),'" + name + "')]";
             if(checkCategoryByName(name)){
                 return Search.xpath(path);
-            }
+            } else System.out.println("There is no category named: " + name);
             return null;
+        }
+    }
+    private class Nothification{
+        private WebElement ok;
+        private WebElement cancel;
+        private WebElement close;
+
+        public Nothification(){
+            this.ok = Search.xpath("//button[@class='action-primary action-accept']");
+            this.cancel = Search.xpath("//button[@class='action-secondary action-dismiss']");
+            this.close = Search.xpath("//button[@class='action-close']");
+        }
+
+        public WebElement getOk(){
+            return ok;
+        }
+
+        public WebElement getCancel() {
+            return cancel;
+        }
+
+        public WebElement getClose() {
+            return close;
+        }
+
+        public CategoriesPage clickOk(){
+            getOk().click();
+            return new CategoriesPage();
+        }
+
+        public CategoriesPage clickCancel(){
+            getCancel().click();
+            return new CategoriesPage();
+        }
+
+        public CategoriesPage clickClose(){
+            getClose().click();
+            return new CategoriesPage();
         }
     }
 
     //------------ Elements ----------------------
 
-    private WebElement title;
     private WebElement save;
     private WebElement addRootCategory;
-    private WebElement addSubcategory;
+    private WebElement addSubCategory;
     private WebElement enabledCategory;
     private WebElement includeInMenu;
     private WebElement categoryName;
@@ -88,39 +121,28 @@ public class CategoriesPage extends VerticalMenu{
     private ProductsInCategoryComponent productsInCategoryComponent;
     private DesignComponent designComponent;
     private ScheduleDesignUpdateComponent scheduleDesignUpdateComponent;
+    private Nothification nothificationComponent;
 
 
     public CategoriesPage(){
-        this.title = Search.xpath("//h1[@class='page-title']");
         this.save = Search.id("save");
         this.addRootCategory = Search.id("add_root_category_button");
-        this.addSubcategory = Search.id("add_subcategory_button");
+        this.addSubCategory = Search.id("add_subcategory_button");
         this.treeComponent = new CategoryTree();
         this.enabledCategory = Search.xpath("//input[@type='checkbox' and @name='is_active']");
         this.includeInMenu = Search.xpath("//input[@type='checkbox' and @name='include_in_menu']");
         this.categoryName = Search.xpath("//input[@type='text' and @name='name' and @class='admin__control-text']");
         this.content = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Content')]/../..");
         this.displaySettings = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Display Settings')]/../..");
-        this.searchEngineOptimization = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'SearchRecords Engine Optimization')]/../..");
+        this.searchEngineOptimization = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Search Engine Optimization')]/../..");
         this.productsInCategory = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Products in Category')]/../..");
         this.design = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Design')]/../..");
         this.scheduleDesignUpdate = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Schedule Design Update')]/../..");
-        this.delete = null;
-        this.message = null;
-
+        this.nothificationComponent = null;
     }
-
 
     // Page Object
     //------------ Get Data PageObject -----------
-
-    public CategoriesPage refresh(){
-        return new CategoriesPage();
-    }
-
-    public WebElement getTitle() {
-        return title;
-    }
 
     public WebElement getSave() {
         return save;
@@ -130,8 +152,8 @@ public class CategoriesPage extends VerticalMenu{
         return addRootCategory;
     }
 
-    public WebElement getAddSubcategory() {
-        return addSubcategory;
+    public WebElement getAddSubCategory() {
+        return addSubCategory;
     }
 
     public WebElement getEnabledCategory() {
@@ -178,11 +200,60 @@ public class CategoriesPage extends VerticalMenu{
         return message;
     }
 
+    public CategoryTree getTreeComponent() {
+        return treeComponent;
+    }
+
+    public ContentComponent getContentComponent() {
+        return contentComponent;
+    }
+
+    public DisplaySettingsComponent getDisplaysettingsComponent() {
+        return displaysettingsComponent;
+    }
+
+    public SearchEngineOptimizationComponent getSearchEngineOptimizationComponent() {
+        return searchEngineOptimizationComponent;
+    }
+
+    public ProductsInCategoryComponent getProductsInCategoryComponent() {
+        return productsInCategoryComponent;
+    }
+
+    public DesignComponent getDesignComponent() {
+        return designComponent;
+    }
+
+    public ScheduleDesignUpdateComponent getScheduleDesignUpdateComponent() {
+        return scheduleDesignUpdateComponent;
+    }
+
+    public Nothification getNothificationComponent() {
+        return nothificationComponent;
+    }
+
+//    public CategoriesPage refresh(){
+//        return new CategoriesPage();
+//    }
+     public void refresh(){
+         this.save = Search.id("save");
+         this.addRootCategory = Search.id("add_root_category_button");
+         this.addSubCategory = Search.id("add_subcategory_button");
+         this.treeComponent = new CategoryTree();
+         this.enabledCategory = Search.xpath("//input[@type='checkbox' and @name='is_active']");
+         this.includeInMenu = Search.xpath("//input[@type='checkbox' and @name='include_in_menu']");
+         this.categoryName = Search.xpath("//input[@type='text' and @name='name' and @class='admin__control-text']");
+         this.content = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Content')]/../..");
+         this.displaySettings = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Display Settings')]/../..");
+         this.searchEngineOptimization = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Search Engine Optimization')]/../..");
+         this.productsInCategory = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Products in Category')]/../..");
+         this.design = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Design')]/../..");
+         this.scheduleDesignUpdate = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Schedule Design Update')]/../..");
+     }
+
+
     //------------ Get Data Business Logic -----------------
 
-    public String getTitleText() {
-        return title.getText();
-    }
 
     public String getSaveText() {
         return save.getText();
@@ -193,7 +264,7 @@ public class CategoriesPage extends VerticalMenu{
     }
 
     public String getAddSubcategoryText() {
-        return addSubcategory.getText();
+        return addSubCategory.getText();
     }
 
     public String getEnabledCategoryText() {
@@ -244,18 +315,23 @@ public class CategoriesPage extends VerticalMenu{
         this.delete = Search.id("delete");
     }
 
+
     //------------ Set Data PageObject -----------------
+
 
     public void clickSave(){
         getSave().click();
+        refresh();
     }
 
     public void clickAddRootCategory() {
         getAddRootCategory().click();
+        refresh();
     }
 
-    public void clickAddSubcategory() {
-        getAddSubcategory().click();
+    public void clickAddSubCategory() {
+        getAddSubCategory().click();
+        refresh();
     }
 
     public void clickEnabledCategory() {
@@ -277,48 +353,58 @@ public class CategoriesPage extends VerticalMenu{
 
     public void clickDisplaySettings() {
         getDisplaySettings().click();
-        new DisplaySettingsComponent();
+        this.displaysettingsComponent = new DisplaySettingsComponent();
     }
 
     public void clickSearchEngineOptimization() {
         getSearchEngineOptimization().click();
-        new SearchEngineOptimizationComponent();
+        this.searchEngineOptimizationComponent = new SearchEngineOptimizationComponent();
     }
 
     public void clickProductsInCategory() {
         getProductsInCategory().click();
-        new ProductsInCategoryComponent();
+        this.productsInCategoryComponent = new ProductsInCategoryComponent();
     }
 
     public void clickDesign() {
         getDesign().click();
-        new DesignComponent();
+        this.designComponent = new DesignComponent();
     }
 
     public void clickScheduleDesignUpdate() {
         getScheduleDesignUpdate().click();
-        new ScheduleDesignUpdateComponent();
+        this.scheduleDesignUpdateComponent = new ScheduleDesignUpdateComponent();
     }
 
-    public void clickDelete() {
-        //driver.findElement(By.id("delete")).click();
-        Search.id("delete").click();
-        //getDelete().click();
+    public void clickDelete(){
+        getDelete().click();
+        this.nothificationComponent = new Nothification();
     }
 
-    public void clickOkButton(){
-        //driver.findElement(By.xpath("//button[@class='action-primary action-accept']")).click();
-        Search.xpath("//button[@class='action-primary action-accept']").click();
+    public void clickOkNothification(){
+        nothificationComponent.clickOk();
+        refresh();
+    }
+
+    public void clickCanselNothification(){
+        nothificationComponent.clickCancel();
+        refresh();
+    }
+
+    public void clickCloseNothification(){
+        nothificationComponent.clickClose();
+        refresh();
     }
 
 
     //------------------ Content Component --------------
 
+
     public WebElement getUpload() {
         return contentComponent.upload;
     }
 
-    public Description getDescription() {
+    public WebElement getDescription() {
         return contentComponent.description;
     }
 
@@ -342,7 +428,29 @@ public class CategoriesPage extends VerticalMenu{
         getCmsBlock().click();
     }
 
+    public void selectImageFile(String path){
+        this.getUpload().sendKeys(path);
+    }
+
+
+    //------------------ Tree Component --------------
+
+
+    public boolean checkCategoryByName (String name){
+        return treeComponent.checkCategoryByName(name);
+    }
+
+    public void selectCategory (String name){
+        if (checkCategoryByName(name)){
+            treeComponent.findCategoryByName(name).click();
+            refresh();
+            initDeleteButton();
+        }else System.out.println("There is no category named: " + name);
+    }
+
+
     //------------------ Business Logic -----------------
+
 
     public void setCategoryName (String name){
         getCategoryName().click();
@@ -353,27 +461,30 @@ public class CategoriesPage extends VerticalMenu{
         this.clickSave();
     }
 
-    public void selectImageFile(String path){
-        this.getUpload().sendKeys(path);
+    public void addNewCategory (String name){
+        if (!checkCategoryByName(name)){
+            clickAddRootCategory();
+            setCategoryName(name);
+            clickSave();
+        } else System.out.print("Category with this name already exists");
     }
 
-    public boolean checkCategoryByName (String name){
-        return treeComponent.checkCategoryByName(name);
+    public void addNewSubCategory (String parent, String name){
+        if (!checkCategoryByName(name)){
+            selectCategory(parent);
+            clickAddSubCategory();
+            setCategoryName(name);
+            clickSave();
+        } else System.out.print("Category with this name already exists");
+
     }
 
-    public WebElement findCategoryByName (String name){
+    public void deleteCategory (String name){
         if (checkCategoryByName(name)){
-            return treeComponent.findCategoryByName(name);
-        }
-        return null;
-    }
-
-    public void selectCategory (String name){
-        if (checkCategoryByName(name)){
-            treeComponent.findCategoryByName(name).click();
-            initDeleteButton();
-        }
-
+            selectCategory(name);
+            clickDelete();
+            clickOkNothification();
+        } else System.out.print("Category with this name don't exist");
     }
 
 }

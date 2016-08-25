@@ -2,6 +2,7 @@ package com.softserve.edu.magento.tests;
 
 //import core.WebDriverManager;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
+import com.softserve.edu.magento.pages.customer.ApplicationCustomer;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -95,6 +96,7 @@ public class TestBase extends AutoTestWithReporting {
         AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
         //WebDriverManager.getDriver().quit();
         ApplicationAdmin.quitAll();
+        ApplicationCustomer.quitAll();
     }
     /*
     * TestNG specific implementation of abstract method from AutoTestWithReporting class

@@ -17,13 +17,13 @@ import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class EditCustomerTest {
+public class EditCustomerTest extends TestBase {
 	@DataProvider(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		return ListUtils.get()
 				.toMultiArray(
 						ParameterUtils.get()
-								.updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
+								.updateParametersAll(ApplicationSourcesRepository.getChromeHomeHostAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 
@@ -32,13 +32,13 @@ public class EditCustomerTest {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-
+		System.out.println("luck DashboardPage!");
 		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-
+		System.out.println("luck EditCustomerPage!");
 		ediCustomerPage.navToAccountInfo();
 
 		Assert.assertTrue(ediCustomerPage
-				.compareFields(ediCustomerPage.getCustomerAllData().get(8)));
+				.compareFields(ediCustomerPage.getCustomerAllData().get(0)));
 		applicationAdmin.quit();
 	}
 
@@ -78,13 +78,13 @@ public class EditCustomerTest {
 		applicationAdmin.quit();
 	}
 
-	@AfterMethod(alwaysRun = true)
+	//@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
 		ApplicationAdmin.signout();
 		// ApplicationAdmin.quitAll();
 	}
 
-	@AfterClass(alwaysRun = true)
+	//@AfterClass(alwaysRun = true)
 	void tearDown() throws Exception {
 		ApplicationAdmin.quitAll();
 	}

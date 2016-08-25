@@ -19,6 +19,12 @@ public final class ApplicationSourcesRepository {
                 "http://192.168.195.210/magento/admin",
                 new String());
     }
+    public static ApplicationSources getChromeLocalhostMacAdmin() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "/Applications/Google Chrome.app/Contents/chromedriver", 30L, 30L, "Implicit",
+                "http://192.168.195.210/magento/admin",
+                new String());
+    }
     public static ApplicationSources getChromeLocalhostAdminLinux() {
         return new ApplicationSources("ChromeDriverTemporary",
                 "/home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
@@ -50,10 +56,17 @@ public final class ApplicationSourcesRepository {
 
     public static ApplicationSources getChromeLocalhostCustomer() {
         return new ApplicationSources("ChromeDriverTemporary",
-        		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
+        		"/Applications/Google Chrome.app/Contents/chromedriver", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento",
                 "http://192.168.195.210/magento/customer/account/logout/");
     }
+    public static ApplicationSources getChromeJSDisableLocalhostCustomer() {
+        return new ApplicationSources("ChromeDriverJSDisable",
+                "/Applications/Google Chrome.app/Contents/chromedriver", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento",
+                "http://192.168.195.210/magento/customer/account/logout/");
+    }
+
 
     public static ApplicationSources getChromeLocalhostCustomerLinux() {
         return new ApplicationSources("ChromeDriverTemporary",
@@ -66,6 +79,13 @@ public final class ApplicationSourcesRepository {
         return new ApplicationSources("ChromeDriverTemporary",
                 "C:\\Program Files (x86)\\Google\\Chrome\\chromedriver.exe", 5L, 5L, "Explicit",
                 "http://127.0.0.1/Magento/admin/",
+                new String());
+    }
+
+    public static ApplicationSources getChromeRemoteAdmin() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "C:\\Users\\ynevitc\\Downloads\\chromedriver.exe", 5L, 5L, "Implicit",
+                "http://192.168.195.210/magento/admin",
                 new String());
     }
 
@@ -86,5 +106,12 @@ public final class ApplicationSourcesRepository {
                 "/home/bohdan/Downloads/chromedriver", 5L, 5L, "Implicit",
                 "http://localhost/magento2",
                 "http://localhost/magento2/customer/account/logout/");
+    }
+
+    public static ApplicationSources getChromeHomeHostAdmin() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
+                "http://127.0.0.1/Magento/admin",
+                new String());
     }
 }

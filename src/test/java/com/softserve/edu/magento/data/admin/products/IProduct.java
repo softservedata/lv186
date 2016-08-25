@@ -5,6 +5,8 @@ public interface IProduct {
 	String getProductName();
 	String getSku();
 	String getPrice();
+	String getQuantity();
 	void setAttributeSet(String attributeSet);
+	void setQuantity(String quantity);
 }
 

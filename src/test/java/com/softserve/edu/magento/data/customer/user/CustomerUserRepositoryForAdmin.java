@@ -156,6 +156,23 @@ public class CustomerUserRepositoryForAdmin {
         				.setVatNumber("111115412")
         				);
     }
+	public ICustomerUser getVeronicaCostello(){
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Veronica")
+						.setLastname("Costello")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("roni_cost@example.com")
+						.setPassword("qwerty-1")
+						.setConfirmPassword("qwerty-1")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+
+	}
     }
 
 //    public List<IUser> getExistUsersCVS() {

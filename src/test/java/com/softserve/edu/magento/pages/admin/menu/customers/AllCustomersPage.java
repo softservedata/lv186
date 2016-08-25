@@ -370,7 +370,7 @@ public class AllCustomersPage extends VerticalMenu {
 
 	// main page constructor
 	public AllCustomersPage() {
-
+		System.out.println("AllCustomersPage");
 		this.customersLabel = Search.xpath(".//*[@class='page-title-wrapper']");
 		this.addNewCustomerButton = Search.id("add");
 		this.searchField = Search.xpath("(.//*[@id='fulltext'])[1]");
@@ -407,6 +407,7 @@ public class AllCustomersPage extends VerticalMenu {
 		this.actionsdropdownmenu = new ActionsDropDownMenu();
 		this.defaultdropdownmenu = new DefaultViewDropdownMenu();
 		this.filtersdropdownmenu = new FiltersDropDownMenu();
+		System.out.println("AllCustomersPage done");
 	}
 
 	// ------------System logic get page components--------------------//
@@ -971,12 +972,13 @@ public class AllCustomersPage extends VerticalMenu {
 		private WebElement exit;
 
 		public ConfirmDeleteWindow() {
-			//WebDriverWait wait = new WebDriverWait(driver, 10);
-			//this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
-
+			Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
+			this.window = Search.className("modal-inner-wrap");
+			Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
 			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
 			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
 			this.exit = Search.cssSelector("header.modal-header button.action-close");
+
 		}
 
 		public WebElement getWindow() {
@@ -1018,9 +1020,9 @@ public class AllCustomersPage extends VerticalMenu {
 		WebElement email;
 
 		RowCustomerUser(WebElement row) {
-			this.check = row.findElement(By.className("data-grid-checkbox-cell"));
-			this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
-			this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
+			this.check = Search.className("data-grid-checkbox-cell",row);
+			this.name = Search.cssSelector("td:nth-child(3)",row);
+			this.email = Search.cssSelector("td:nth-child(4)",row);
 		}
 
 		public WebElement getCheck() {
@@ -1036,12 +1038,12 @@ public class AllCustomersPage extends VerticalMenu {
 		}
 
 		public String getNameText() {
-			String nameText = getName().findElement(By.className("data-grid-cell-content")).getText();
+			String nameText = Search.className("data-grid-cell-content",getName()).getText();
 			return nameText;
 		}
 
 		public String getEmailText() {
-			String emailText = getEmail().findElement(By.className("data-grid-cell-content")).getText();
+			String emailText = Search.className("data-grid-cell-content",getEmail()).getText();
 			return emailText;
 		}
 	}

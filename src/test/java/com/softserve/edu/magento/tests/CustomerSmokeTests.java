@@ -39,7 +39,7 @@ public class CustomerSmokeTests extends TestBase{
 						AdminUserRepository.get().adminMykhaylo());
 	}
 
-	@Test(dataProvider = "smokeParameters", priority = 1)
+	//@Test(dataProvider = "smokeParameters", priority = 1)
 	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		// Precondition
@@ -56,7 +56,7 @@ public class CustomerSmokeTests extends TestBase{
 		applicationAdmin.quit();
 	}
 
-	//@Test(dataProvider = "smokeParameters", priority = 2)
+	@Test(dataProvider = "smokeParameters", priority = 2)
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources,
 			IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -82,6 +82,9 @@ public class CustomerSmokeTests extends TestBase{
 				.findCustomerInTheList(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide()));
 		// deleting registered Customer
 		allCustAfter.deleteCustomerUser(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide());
+		Thread.sleep(2000);
+		allCustAfter.clickClearAllButton();
+		Thread.sleep(2000);
 		// Sign Out Admin
 		applicationAdmin.quit();
 	}

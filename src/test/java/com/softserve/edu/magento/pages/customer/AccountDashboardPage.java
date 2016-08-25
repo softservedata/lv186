@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.pages.customer;
 
+import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.customer.components.HeaderPanelCustomerAccount;
@@ -10,6 +11,24 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 	
 	private ContactInformationForm contactInformationForm;
 	private AddressBookDashboardForm addressBookDashboardForm;
+
+	public static enum InformNewslettersList {
+		//TODO
+		SUBSCRIBE("You subscribe to \"General Subscription\"."),
+		NO_SUBSCRIBE("You don't subscribe to our newsletter.");
+
+		//
+		private String field;
+
+		private InformNewslettersList(String field) {
+			this.field = field;
+		}
+
+		@Override
+		public String toString() {
+			return this.field;
+		}
+	}
 	
 	//----------------------ContactInformationForm---------------------------------
 	private class ContactInformationForm {
@@ -180,6 +199,29 @@ public class AccountDashboardPage extends HeaderPanelCustomerAccount {
 		}
 		public void clickEditLink_shippingAddress() {
 			getEditLink_shippingAddress().click();
+		}
+
+		public boolean confirmAccountInfCorrect (ICustomerUser customerUser) {
+			boolean isAccountInfCorrect = false;
+			String contInformAccount = customerUser.getPersonalInfo().getFullName()+"\n" +
+					customerUser.getSigninInfo().getEmail();
+			System.out.println(contInformAccount);
+
+			System.out.println(this.getNameEmaiText());
+			System.out.println(this.getInform_NewslettersText());
+
+			if( this.getNameEmaiText().trim().equals(contInformAccount)) {
+				if ( customerUser.getPersonalInfo().getSignUpNewsletter() == true ) {
+					if ( this.getInform_NewslettersText().equals(InformNewslettersList.SUBSCRIBE.toString()) ) {
+						isAccountInfCorrect = true;
+					}
+				} else if ( customerUser.getPersonalInfo().getSignUpNewsletter() == false ) {
+					if ( this.getInform_NewslettersText().equals(InformNewslettersList.NO_SUBSCRIBE.toString()) ) {
+						isAccountInfCorrect = true;
+					}
+				}
+			}
+			return isAccountInfCorrect;
 		}
 	
 }

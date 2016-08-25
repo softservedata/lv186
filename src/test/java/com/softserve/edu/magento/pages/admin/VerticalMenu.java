@@ -28,12 +28,12 @@ public abstract class VerticalMenu extends ATopPage {
 		public SalesComponent() {
 			this.title = Search.xpath("//strong[text()='Sales']");
 			this.groupTitle = Search.xpath("//span[text()='Operations']");
-			this.orders = Search.linkText("Orders");
+			this.orders = Search.cssSelector("li.item-sales-order.level-2");
 			this.invoices = Search.linkText("Invoices");
 			this.shipments = Search.linkText("Shipments");
 			this.creditMemos = Search.linkText("Credit Memos");
 			this.billingAgreements = Search.linkText("Billing Agreements");
-			this.transactions = Search.linkText("Transcations");
+			this.transactions = Search.linkText("Transactions");
 			this.close = Search.cssSelector("#menu-magento-sales-sales > div > a");
 		}
 
@@ -1111,6 +1111,7 @@ public abstract class VerticalMenu extends ATopPage {
 	// -----------------Sales---------------
 
 	public void clickMenuSalesOrders() {
+
 		getMenuSalesOrders().click();
 	}
 

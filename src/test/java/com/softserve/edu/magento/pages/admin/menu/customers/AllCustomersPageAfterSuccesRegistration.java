@@ -384,6 +384,16 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 //			this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
 //		}
 
+		public ConfirmDeleteWindow() {
+			//WebDriverWait wait = new WebDriverWait(driver, 10);
+			//this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
+			//Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY.getSearchStrategy());
+			this.window = Search.className("modal-inner-wrap");
+			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
+			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
+			this.exit = Search.cssSelector("header.modal-header button.action-close");
+		}
+
 		public WebElement getWindow() {
 			return window;
 		}
@@ -1039,5 +1049,11 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	public ConfirmDeleteWindow getConfirmDeleteWindow() {
 		return new ConfirmDeleteWindow();
 	}
+
+	public void clickClearAllButton(){
+	    WebElement clearAll = Search.xpaths(".//*[@class='action-tertiary action-clear']").get(0);
+		if(clearAll.isDisplayed())
+			clearAll.click();
+    }
 
 }

@@ -11,6 +11,9 @@ public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 		ERROR_PASSWORD_FORMAT("Minimum of different classes of characters"+
 		" in password is 3. Classes of characters: Lower Case, Upper Case,"+
 				" Digits, Special Characters."),
+		ERROR_PASSWORD_FORMAT_MIN_LENGHT("Minimum length of this field must be equal"+
+				" or greater than 8 symbols. Leading and trailing spaces will be ignored."),
+		ERROR_EMAIL_FORMAT("Please enter a valid email address (Ex: johndoe@domain.com)."),
 		FIELD_IS_REQUIRED("This is a required field.");
 		//
 		private String field;
@@ -25,6 +28,8 @@ public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 		}
 	}
 	public static enum ErrorValidatorName {
+		FIRSTNAME("firstname"),
+		LASTNAME("lastname"),
 		EMAIL("email_address"),
 		PASSWORD("password"),
 		CONFIRMPASSWORD("password-confirmation"),
@@ -53,6 +58,12 @@ public class Unsuccessful_CreateAccountPage extends CreateAccountPage{
 	}
 	public String getErrorValidatorText(ErrorValidatorName ErrorValidatorName) {
 		return this.getErrorCreateAccountComponents().getErrorValidatorText(ErrorValidatorName.toString());
+	}
+	public boolean isErrorValidator (ErrorValidatorName ErrorValidatorName) {
+		System.out.println("isErrorValidator");
+		boolean isErrorValidator = false;
+		isErrorValidator =  getErrorCreateAccountComponents().isErrorValidator(ErrorValidatorName.toString());
+		return isErrorValidator;
 	}
 
 	

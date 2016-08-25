@@ -6,8 +6,9 @@ package com.softserve.edu.magento.data.admin.products;
 public class CategoryRepository {
 
     private static volatile CategoryRepository instance = null;
-    public static final String CATEGORY_NAME = "Name";
-    public static final String SUBCATEGORY_NAME = "Sub";
+    public static final String CATEGORY_NAME = "Testing name";
+    public static final String SUBCATEGORY_NAME = "Subcategory testing name";
+    public static final String SUBCATEGORY_PARENT_NAME = CATEGORY_NAME;
 
     private CategoryRepository() {
     }

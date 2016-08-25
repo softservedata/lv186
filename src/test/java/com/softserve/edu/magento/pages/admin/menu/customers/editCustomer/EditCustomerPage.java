@@ -2,11 +2,16 @@ package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.util.List;
 
+import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
+import com.softserve.edu.magento.tools.Search;
+import com.softserve.edu.magento.tools.SearchExplicitPresent;
+import com.softserve.edu.magento.tools.SearchExplicitVisible;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.tools.Search;
+import com.softserve.edu.magento.tools.Search.SearchStrategyList;
+
 
 /**
  * Class that represents the EditCustomerPage with all the AJAX components in
@@ -16,7 +21,7 @@ import com.softserve.edu.magento.tools.Search;
 public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustomer {
 
 	private static volatile ICustommerView custommerViewAjax;
-	private static volatile IAccountInformation accountInformationAjax = null;
+	private static volatile IAccountInformation accountInformationAjax;
 	private static volatile IAdresses adressesAjax;
 	private static volatile IOrders ordersAjax;
 	private WebElement successMessage;
@@ -60,23 +65,26 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	
 	/**
 	 * Navigates to AllCustomerPage.
-	 * @return
-	 * 		new AllCustomerPage.
+	 * @return new AllCustomerPage.
 	 */
 	public AllCustomersPage back() {
 		back.click();
 		return new AllCustomersPage();
 	}
 
-	public void deleteCustomer() {
-		// TODO stub
+	/**
+	 * Deletes the current customer from DB.
+	 * @return new AllCustomerPage
+	 */
+	public AllCustomersPage deleteCustomer() {
+		deleteCustomer.click();
+		return new AllCustomersPage();
 	}
 	
 	/**
-	 * resets all the changes made 
+	 * Resets all the changes made
 	 * to Customer data.
-	 * @return
-	 * 		new EditCustomerPage
+	 * @return new EditCustomerPage
 	 */
 	public EditCustomerPage reset() {
 		reset.click();
@@ -84,26 +92,33 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		return new EditCustomerPage();
 	}
 
-	// TODO CreateOrder PAge
-	public void createOrder() {
-		// stub
-	}
-	
-	public void resetPassword() {
-		resetPassword.click();
-		// TODO
+	/**
+	 * Navigates to Orders page.
+	 * @return new OrdersPage.
+	 */
+	public OrdersPage createOrder() {
+		createOrder.click();
+		return new OrdersPage();
 	}
 
+    /**
+     * Sends email to customer with
+     * link to reset the password.
+     */
+	public void resetPassword() {
+		resetPassword.click();
+	}
+
+    /**
+     * Force login customer with tokens.
+     */
 	public void forceSignIn() {
 		forceSignIn.click();
-		// TODO
 	}
 	
 	/**
-	 * Saves all changes made to Customer
-	 * data.
-	 * @return
-	 * 		new EditCustomerPage.
+	 * Saves all changes made to Customer data.
+	 * @return new EditCustomerPage.
 	 */
 	public EditCustomerPage saveAndContinueEdit() {
 		saveAndContinueEdit.click();
@@ -111,10 +126,9 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	}
 	
 	/**
-	 * Saves Customer and goes bacl to 
+	 * Saves Customer and goes back to
 	 * AllCustomersPage.
-	 * @return
-	 * 		new AllCustomersPage.
+	 * @return new AllCustomersPage.
 	 */
 	public AllCustomersPage saveCustomer() {
 		saveCustomer.click();
@@ -133,7 +147,6 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 
 	/**
 	 * Component for CustommerView.
-	 * 
 	 * @author Andrew
 	 */
 	private class CustommerView implements ICustommerView {

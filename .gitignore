@@ -24,6 +24,7 @@ hs_err_pid*
 /.project
 /.checkstyle
 /reports
+/af.reporting
 .idea/
 *.iml
 

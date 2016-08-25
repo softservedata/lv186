@@ -56,9 +56,7 @@ public class SmokeProductTest extends TestBase {
 	@Test(dataProvider = "parameters")
     @ServiceReport
 	public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser)  {
-//Search.setStrategy(adminUser.g);
 		/* Log in and go to AddProductPage */
-		applicationSources.setSearchStrategy("SearchExplicitStrategy");
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		ProductCatalogPage productCatalogPage = dashboardPage.gotoProductCatalogPage();
@@ -115,7 +113,7 @@ public class SmokeProductTest extends TestBase {
 		AddProductPage addProductPage = productCatalogPage.gotoAddProductPage();
 
 		/* Get invalid data from Product Repository and set them */
-		IProduct product = ProductRepository.get().getNewProductWithEmptyInvalidData();
+		IProduct product = ProductRepository.get().getNewProductWithEmptyData();
 		addProductPage.setProductData(product);
 		ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSaveAndClose();
 

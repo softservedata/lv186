@@ -11,62 +11,75 @@ import com.softserve.edu.magento.pages.admin.menu.products.categories.Categories
 import com.softserve.edu.magento.tools.ParameterUtils;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import ss.af.reporting.annotations.ServiceReport;
 
-public class CategoryAddNewTest {
+public class CategoryAddDeleteTest extends TestBase{
     private SoftAssert softAccert = new SoftAssert();
 
     @DataProvider
     public Object[][] parameters(ITestContext context) {
         return new Object[][] {
-                /*{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
-                        context), AdminUserRepository.get().adminOlya() },*/
+                { ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
+                        context), AdminUserRepository.get().adminOlya() },
                 { ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(),
                         context), AdminUserRepository.get().adminOlya() } };
-                /*{ ParameterUtils.get().updateParametersAll(ApplicationSourcesRepository.getLocalChromeAdmin(),
-                context), AdminUserRepository.get().localadminOlya() } };*/
 
     }
 
     @Test(dataProvider = "parameters", priority = 1)
-    public void addRootCategory(ApplicationSources applicationSources, IAdminUser adminUser) throws InterruptedException {
+    @ServiceReport
+    public void addRootCategory(ApplicationSources applicationSources, IAdminUser adminUser){
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
 
-
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
-//        CategoriesPage page = dashboardPage.gotoCategoriesPage();
-//        page.addNewCategory(CategoryRepository.CATEGORY_NAME);
-//        softAccert.assertTrue(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
-
-
+        CategoriesPage page = dashboardPage.gotoCategoriesPage();
+        page.addNewCategory(CategoryRepository.CATEGORY_NAME);
+        System.out.println(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
+        softAccert.assertTrue(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
+        System.out.println("addRootCategory done");
     }
 
     @Test (dataProvider = "parameters", priority = 2)
+    @ServiceReport
     public void addSubCategory(ApplicationSources applicationSources, IAdminUser adminUser) {
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
 
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
-        /*page.clickAddSubCategory();
-        page = page.refresh();
-        page.setCategoryName(CategoryRepository.SUBCATEGORY_NAME);
-        page.clickContent();
-        page.saveCategory();*/
         page.addNewSubCategory(CategoryRepository.SUBCATEGORY_PARENT_NAME, CategoryRepository.SUBCATEGORY_NAME);
+        System.out.println(page.checkCategoryByName(CategoryRepository.SUBCATEGORY_NAME));
         softAccert.assertTrue(page.checkCategoryByName(CategoryRepository.SUBCATEGORY_NAME));
+        System.out.println("addSubCategory done");
     }
 
-    //@Test(dataProvider = "parameters")
-    public void proba (ApplicationSources applicationSources, IAdminUser adminUser) throws InterruptedException {
+    @Test(dataProvider = "parameters", priority = 3)
+    @ServiceReport
+    public void deleteCategoryTest(ApplicationSources applicationSources, IAdminUser adminUser) {
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
+
         DashboardPage dashboardPage = admin.load().successAdminLogin(adminUser);
         CategoriesPage page = dashboardPage.gotoCategoriesPage();
+        page.deleteCategory(CategoryRepository.SUBCATEGORY_NAME);
+        page.deleteCategory(CategoryRepository.CATEGORY_NAME);
+        System.out.println(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
+        System.out.println(page.checkCategoryByName(CategoryRepository.SUBCATEGORY_NAME));
+        softAccert.assertFalse(page.checkCategoryByName(CategoryRepository.CATEGORY_NAME));
+        softAccert.assertFalse(page.checkCategoryByName(CategoryRepository.SUBCATEGORY_NAME));
+        System.out.println("deleteCategory done");
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        ApplicationAdmin.signout();
     }
 
     @AfterClass
     void tearDown() throws Exception {
         ApplicationAdmin.quitAll();
+        softAccert.assertAll();
     }
 }

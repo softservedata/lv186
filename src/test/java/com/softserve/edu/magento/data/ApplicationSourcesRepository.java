@@ -107,4 +107,11 @@ public final class ApplicationSourcesRepository {
                 "http://localhost/magento2",
                 "http://localhost/magento2/customer/account/logout/");
     }
+
+    public static ApplicationSources getChromeHomeHostAdmin() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
+                "http://127.0.0.1/Magento/admin",
+                new String());
+    }
 }

@@ -10,6 +10,7 @@ import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCus
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,7 +24,7 @@ public class EditCustomerTestProper extends  TestBase {
         return ListUtils.get()
                 .toMultiArray(
                         ParameterUtils.get()
-                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+                                .updateParametersAll(ApplicationSourcesRepository.getChromeHomeHostAdmin(), context),
                         AdminUserRepository.get().adminAndrii());
     }
 
@@ -34,6 +35,19 @@ public class EditCustomerTestProper extends  TestBase {
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
         AllCustomersPage allCustomersPage = dashboardPage.gotoAllCustomersPage();
         EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
-        //
+
+        //click Account Information tab.
+        editCustomerPage.navToAccountInfo();
+
+        //enter values into field
+        editCustomerPage.enterValuesIntoFields(editCustomerPage.stringFromFile(""));
+
+        //click 'Save & Continue Edit' button.
+        editCustomerPage.saveAndContinueEdit();
+
+        //Verify changes has been made.
+        Assert.assertTrue(editCustomerPage
+                .compareFields(editCustomerPage.getCustomerAllData().get(0)));
+        applicationAdmin.quit();
     }
 }

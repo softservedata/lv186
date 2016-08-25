@@ -558,7 +558,7 @@ public class AllCustomersPage extends VerticalMenu {
 
 	// written by Andrii
 	public EditCustomerPage getEditCustomerPage() {
-		getEditLink(3).click();
+		getEditLink(0).click();
 		return new EditCustomerPage();
 	}
 

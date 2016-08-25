@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
+import java.io.*;
 import java.util.List;
 
 import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
@@ -11,6 +12,9 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.tools.Search.SearchStrategyList;
+
+import static java.nio.file.Files.readAllBytes;
+import static java.nio.file.Paths.get;
 
 
 /**
@@ -692,6 +696,24 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		accountInformationAjax.getSendWelcomeEmailFrom().selectByValue(website
 				.toString());
 	}
+    //Account Information business logic.
+	public void enterValueIntoPrefix (String value){
+	    getAccountInformation().getPrefix().sendKeys(value);
+    }
+
+    public void enterValueIntoFirstname (String value){
+        getAccountInformation().getFirstname().sendKeys(value);
+    }
+
+    public void enterValueIntoLastname (String value){
+        getAccountInformation().getLastname().sendKeys(value);
+    }
+
+	public void enterValuesIntoFields (String value) {
+        enterValueIntoPrefix(value);
+        enterValueIntoFirstname(value);
+        enterValueIntoLastname(value);
+    }
 
 	/**
 	 * Cheks if changes in AccountInformation fields are made.
@@ -766,4 +788,26 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		String saved = getCustomerAllData().get(index).getText();
 		return saved.equals(changed);
 	}
+
+//    public boolean compareFields() {
+//        String changed = null;
+//        WebElement temp = getCustomerAllData().get(index);
+//            temp.sendKeys("blah-blah-blah");
+//            changed = temp.getText();
+//        }
+//        AllCustomersPage custPage = saveCustomer();
+//        custPage.getEditCustomerPage().navToAccountInfo();
+//        String saved = getCustomerAllData().get(index).getText();
+//        return saved.equals(changed);
+//    }
+
+	public String stringFromFile(String file) {
+        String result = null;
+        try {
+            result = new String(readAllBytes(get(file)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

@@ -240,7 +240,8 @@
 								<!--<file>testngyYarynaKharko.xml</file>-->
 								<!--<file>product.xml</file>-->
 								<!--<file>testngDashboardAdmin.xml</file>-->
-								<file>TestngEditCustomer.xml</file>
+								<!--<file>TestngEditCustomer.xml</file>-->
+								<file>TestngEditCustomerProper.xml</file>
 								<!-- <file>testng1.xml</file> -->
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>

@@ -24,7 +24,7 @@ public class EditCustomerTest extends TestBase {
 		return ListUtils.get()
 				.toMultiArray(
 						ParameterUtils.get()
-								.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+								.updateParametersAll(ApplicationSourcesRepository.getChromeHomeHostAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 

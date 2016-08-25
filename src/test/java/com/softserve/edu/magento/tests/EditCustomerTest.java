@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.tests;
 
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -18,27 +19,29 @@ import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
 public class EditCustomerTest extends TestBase {
-	@DataProvider(parallel = true)
+	@DataProvider//(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		return ListUtils.get()
 				.toMultiArray(
 						ParameterUtils.get()
-								.updateParametersAll(ApplicationSourcesRepository.getChromeHomeHostAdmin(), context),
+								.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	@Test(dataProvider = "smokeParameters", groups = "EditTest")
+	@Test(dataProvider = "smokeParameters")// groups = "EditTest")
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
 		System.out.println("luck DashboardPage!");
-		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
+		AllCustomersPage allCustomersPage = dashboardPage.gotoAllCustomersPage();
+		System.out.println("luck AllCustomersPage!");
+		EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
 		System.out.println("luck EditCustomerPage!");
-		ediCustomerPage.navToAccountInfo();
+		editCustomerPage.navToAccountInfo();
 
-		Assert.assertTrue(ediCustomerPage
-				.compareFields(ediCustomerPage.getCustomerAllData().get(0)));
+		Assert.assertTrue(editCustomerPage
+				.compareFields(editCustomerPage.getCustomerAllData().get(0)));
 		applicationAdmin.quit();
 	}
 

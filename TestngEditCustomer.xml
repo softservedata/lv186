@@ -4,11 +4,11 @@
 	<parameter name="browser" value="Chrome" />
 	<parameter name="driverPath" value="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe" />
 	<test name="Clickg the 'Duplicate' link">
-		<groups>
-			<run>
-				<include name="EditTest" />
-			</run>
-		</groups>
+		<!--<groups>-->
+			<!--<run>-->
+				<!--<include name="EditTest" />-->
+			<!--</run>-->
+		<!--</groups>-->
 		<classes>
 			<class name="com.softserve.edu.magento.tests.EditCustomerTest" />
 		</classes>

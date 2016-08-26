@@ -3,6 +3,7 @@ package com.softserve.edu.magento.tests;
 
 import java.util.List;
 
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.sales.CreateOrderFillInformationPage;
 import com.softserve.edu.magento.pages.admin.menu.sales.CreateOrderSelectCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;

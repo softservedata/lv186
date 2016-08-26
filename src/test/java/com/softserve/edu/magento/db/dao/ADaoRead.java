@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.softserve.edu.magento.db.dao.IDaoCRUD.DaoQueries;
+import com.softserve.edu.magento.db.entity.IEntity.QueryNames;
 import com.softserve.edu.magento.db.services.ConnectionManager;
 
 abstract class ADaoInit {
@@ -42,12 +42,12 @@ abstract class ADaoRead<TEntity> extends ADaoInit implements IDaoRead<TEntity> {
 		TEntity entity = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
-		String query = sqlQueries.get(DaoQueries.GET_BY_ID).toString();
+		String query = sqlQueries.get(QueryNames.GET_BY_ID).toString();
 		String[] queryResult;
 		int i;
 		if (query == null) {
 			//throw new GeneralCustomException(String.format(QUERY_NOT_FOUND, "GET_BY_ID"));
-			 throw new RuntimeException(String.format(QUERY_NOT_FOUND, DaoQueries.GET_BY_ID.name()));
+			 throw new RuntimeException(String.format(QUERY_NOT_FOUND, QueryNames.GET_BY_ID.name()));
 		}
 		try {
 			statement = ConnectionManager.getInstance().getConnection().createStatement();
@@ -88,12 +88,12 @@ abstract class ADaoRead<TEntity> extends ADaoInit implements IDaoRead<TEntity> {
 		List<TEntity> all = new ArrayList<TEntity>();
 		Statement statement = null;
 		ResultSet resultSet = null;
-		String query = sqlQueries.get(DaoQueries.GET_BY_FIELD).toString();
+		String query = sqlQueries.get(QueryNames.GET_BY_FIELD).toString();
 		String[] queryResult;
 		int i;
 		if (query == null) {
 			//throw new GeneralCustomException(String.format(QUERY_NOT_FOUND, "GET_BY_FIELD"));
-			throw new RuntimeException(String.format(QUERY_NOT_FOUND, DaoQueries.GET_BY_FIELD.name()));
+			throw new RuntimeException(String.format(QUERY_NOT_FOUND, QueryNames.GET_BY_FIELD.name()));
 		}
 		try {
 			statement = ConnectionManager.getInstance().getConnection().createStatement();
@@ -138,12 +138,12 @@ abstract class ADaoRead<TEntity> extends ADaoInit implements IDaoRead<TEntity> {
 		List<TEntity> all = new ArrayList<TEntity>();
 		Statement statement = null;
 		ResultSet resultSet = null;
-		String query = sqlQueries.get(DaoQueries.GET_ALL).toString();
+		String query = sqlQueries.get(QueryNames.GET_ALL).toString();
 		String[] queryResult;
 		int i;
 		if (query == null) {
 			//throw new GeneralCustomException(String.format(QUERY_NOT_FOUND, "GET_ALL"));
-			throw new RuntimeException(String.format(QUERY_NOT_FOUND, DaoQueries.GET_ALL.name()));
+			throw new RuntimeException(String.format(QUERY_NOT_FOUND, QueryNames.GET_ALL.name()));
 		}
 		try {
 			statement = ConnectionManager.getInstance().getConnection().createStatement();

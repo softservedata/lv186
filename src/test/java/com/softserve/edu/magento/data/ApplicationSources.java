@@ -55,6 +55,13 @@ public class ApplicationSources {
         }
     }
     
+    static class DataSourceName implements IUpdateApplicationSources {
+        public void setProperty(ApplicationSources applicationSources, String propertyText) {
+            //ApplicationSources.this.setBrowserName(propertyText);
+            applicationSources.setDataSourceName(propertyText);
+        }
+    }
+
     public static enum ApplicationSourcesFields {
         BROWSER_NAME(new BrowserName(), "browserName"),
         DRIVER_PATH(new DriverPath(), "driverPath"),
@@ -62,7 +69,8 @@ public class ApplicationSources {
       //  EXPLICIT_TIMEOUT(new ExplicitTimeOut(), "explicitTimeOut"),
         SEARCH_STRATEGY(new SearchStrategy(), "searchStrategy"),
         LOAD_URL(new LoadUrl(), "loadUrl"),
-        LOGOUT_URL(new LogoutUrl(), "logoutUrl");
+        LOGOUT_URL(new LogoutUrl(), "logoutUrl"),
+        DATASOURCE_NAME(new DataSourceName(), "dataSourceName");
         private IUpdateApplicationSources updateApplicationSources;
         private String propertyName;
 
@@ -112,12 +120,18 @@ public class ApplicationSources {
     // private String serverUri;
     //
     // Connect to DB
+    // private String jdbcDriverName;
+    // private String connectionUrl;
+    // private String usernameDB;
+    // private String passwordDB;
+    private String dataSourceName;
+
     
     // Constructor
     // TODO Develop Fluent interface, Builder
     public ApplicationSources(String browserName, String driverPath,
             long implicitTimeOut, long explicitTimeOut, String searchStrategy, 
-            String loadUrl, String logoutUrl) {
+            String loadUrl, String logoutUrl, String dataSourceName) {
         this.browserName = browserName;
         this.driverPath = driverPath;
         this.implicitTimeOut = implicitTimeOut;
@@ -125,6 +139,7 @@ public class ApplicationSources {
         this.searchStrategy = searchStrategy;
         this.loadUrl = loadUrl;
         this.logoutUrl = logoutUrl;
+        this.dataSourceName = dataSourceName;
     }
 
     // TODO clone
@@ -159,6 +174,10 @@ public class ApplicationSources {
         return logoutUrl;
     }
 
+    public String getDataSourceName() {
+        return dataSourceName;
+    }
+
     // setters
     
     public void setBrowserName(String browserName) {
@@ -187,6 +206,10 @@ public class ApplicationSources {
 
     public void setLogoutUrl(String logoutUrl) {
         this.logoutUrl = logoutUrl;
+    }
+
+    public void setDataSourceName(String dataSourceName) {
+        this.dataSourceName = dataSourceName;
     }
 
 }

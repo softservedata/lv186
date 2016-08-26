@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+    <parameter name="browser" value="Chrome" />
+    <parameter name="driverPath" value="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe" />
+    <test name="Test">
+        <!--<groups>-->
+        <!--<run>-->
+        <!--<include name="EditTest" />-->
+        <!--</run>-->
+        <!--</groups>-->
+        <classes>
+            <class name="com.softserve.edu.magento.tests.EditCustomerTestProper" />
+        </classes>
+    </test>
+
+    <!-- 	<test name="Saving the dublicate comment">
+            <groups>
+                <run>
+                    <include name="Saving the dublicate comment" />
+                </run>
+            </groups>
+            <classes>
+                <class name="gmail.com.demo.CommentsTestDemo1" />
+            </classes>
+        </test>
+    -->
+</suite>

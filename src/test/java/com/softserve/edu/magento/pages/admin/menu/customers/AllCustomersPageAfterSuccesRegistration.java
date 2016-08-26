@@ -17,6 +17,7 @@ import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.tools.Search;
+import ss.af.reporting.annotations.ServiceReport;
 
 public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
@@ -917,7 +918,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 		return isNameFieldSorted;
 	}
-
+	@ServiceReport
 	public boolean findCustomerInTheList(ICustomerUser customerUser) {
 		String userName = customerUser.getPersonalInfo().getPrefix() + " "
 				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
@@ -1008,7 +1009,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		// build.moveToElement(getDelete()).build().perform();
 		goToActionsDropDownMenu().getDelete().click();
 	}
-
+	@ServiceReport
 	public void deleteCustomerUser(ICustomerUser customerUser) throws InterruptedException {
 		AllCustomersPageAfterSuccesRegistration CustomersPage = doCustomerSearch(
 				customerUser.getPersonalInfo().getFullName());

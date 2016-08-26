@@ -30,7 +30,7 @@ import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.LoggerUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class PreSmokeTest {//extends TestBase{
+public class PreSmokeTest extends TestBase {
 
 	//@Test//(dataProvider = "driverParameters")
 	public void checkAdminLogon1() throws Exception { // (BrowsersList browser)
@@ -88,6 +88,26 @@ public class PreSmokeTest {//extends TestBase{
 	}
 
 	@Test(dataProvider = "smokeParameters")
+	public void checkAdminLogon21(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
+        SoftAssert softAssert = new SoftAssert(); 
+	    ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);	    
+	    //DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+	    //
+	    //AdminUserService.get().insertUser(adminUser);
+	    //AdminUserService.get().delete(adminUser);
+	    //AdminUserService.get().deleteUsersByLogin(adminUser.getUsername());
+//	    for (IAdminUser currentUser : AdminUserService.get().getAdminUsers()) {
+//	        System.out.println("firstaname = " + currentUser.getFirstname());
+//	        System.out.println("username = " + currentUser.getUsername());
+//	    }
+        for (IAdminUser currentUser : AdminUserRepository.get().getAdminUsersFromDB()) {
+            System.out.println("firstaname = " + currentUser.getFirstname());
+            System.out.println("username = " + currentUser.getUsername());
+        }
+        System.out.println("firstaname(tttt)  = " + AdminUserRepository.get().getAdminUserFromDB("tttt").getFirstname());
+	}
+	
+	//@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) test START");
         LoggerUtils.get().infoLog("Class PreSmokeTest, method checkAdminLogon2(...) test START");

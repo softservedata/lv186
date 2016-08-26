@@ -1,5 +1,10 @@
 package com.softserve.edu.magento.data.admin;
 
+import java.util.List;
+
+import com.softserve.edu.magento.db.entity.AdminUserDB;
+import com.softserve.edu.magento.db.services.AdminUserService;
+
 public class AdminUserRepository {
 
     private static volatile AdminUserRepository instance = null;
@@ -95,6 +100,24 @@ public class AdminUserRepository {
                .setMail("olya.lutsiv@gmail.com")
                .setPassword("qwerty-1")
                .build();
+   }
+
+   public IAdminUser adminUserConvert(AdminUserDB adminUserDB) {
+       return AdminUser.get()
+               .setUsername(adminUserDB.getUsername())
+               .setFirstname(adminUserDB.getFirstname())
+               .setLastname(adminUserDB.getLastname())
+               .setMail(adminUserDB.getEmail())
+               .setPassword(adminUserDB.getPassword())
+               .build();
+   }
+
+   public IAdminUser getAdminUserFromDB(String adminUserName) {
+       return AdminUserService.get().getAdminUserByLogin(adminUserName); 
+   }
+
+   public List<IAdminUser> getAdminUsersFromDB() {
+       return AdminUserService.get().getAdminUsers(); 
    }
 
 }

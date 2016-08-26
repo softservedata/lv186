@@ -18,6 +18,7 @@ import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
+import ss.af.reporting.annotations.ServiceReport;
 
 public class CustomerSmokeTests extends TestBase{
 	@DataProvider
@@ -54,7 +55,8 @@ public class CustomerSmokeTests extends TestBase{
 		applicationAdmin.quit();
 	}
 
-	//@Test(dataProvider = "smokeParameters", priority = 2)
+	@Test(dataProvider = "smokeParameters", priority = 2)
+	@ServiceReport
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources,
 			IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -87,7 +89,7 @@ public class CustomerSmokeTests extends TestBase{
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", priority = 4)
+	//@Test(dataProvider = "smokeParameters", priority = 4)
 	public void invalidErrorMessageRegistrationNewCustomer(ApplicationSources applicationSources,
 															  IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -111,7 +113,7 @@ public class CustomerSmokeTests extends TestBase{
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", priority = 5)
+	//@Test(dataProvider = "smokeParameters", priority = 5)
 	public void invalidErrorFieldsRegistrationNewCustomer(ApplicationSources applicationSources,
 														   IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -151,6 +153,33 @@ public class CustomerSmokeTests extends TestBase{
 		Assert.assertTrue(acp.findCustomerInTheListAfterSearch(CustomerUserRepositoryForAdmin.get().SteveRinger()));
 		// Sign Out Admin
 		applicationAdmin.quit();
+	}
+
+	//@Test(dataProvider = "smokeParameters", priority = 6)
+	public void checkResetButton(ApplicationSources applicationSources,
+								 IAdminUser adminUser) throws Exception {
+		// Precondition
+		// login and go to DashboardPage
+		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		// go to AllCustomersPage
+		AllCustomersPage acp = dashboardPage.gotoAllCustomersPage();
+		// Verify that AllCustomersPage is opened
+		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
+		// go to RegistrationNewCustomerPage
+		RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
+		// Verify that RegistrationNewCustomerPage is opened
+		Assert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
+		// setting data to login form
+		regNewCust.setRingerDataInLoginFormAndClickResetButton(CustomerUserRepositoryForAdmin.get().SteveRinger());
+		// Verify that it is immpossible to registrate existed customer
+		Assert.assertTrue(regNewCust.getFirstnameInput().getText().isEmpty(), "Firstname field isn't empty!");
+		Assert.assertTrue(regNewCust.getLastnameInput().getText().isEmpty(), "Lastname field isn't empty!");
+		Assert.assertTrue(regNewCust.getEmailInput().getText().isEmpty(), "Email field isn't empty!");
+		Thread.sleep(2000);
+		applicationAdmin.quit();
+
+
 	}
 
 	@AfterMethod

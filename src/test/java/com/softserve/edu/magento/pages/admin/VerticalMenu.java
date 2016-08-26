@@ -1480,7 +1480,6 @@ public abstract class VerticalMenu extends ATopPage {
 
 
 	// -----------------Customers---------------
-	@ServiceReport
 	public AllCustomersPage gotoAllCustomersPage() {
 		clickMenuCustomersAllCustomers();
 		return new AllCustomersPage();

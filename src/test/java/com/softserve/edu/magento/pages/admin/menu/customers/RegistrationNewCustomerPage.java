@@ -8,11 +8,13 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
+import ss.af.reporting.annotations.ServiceReport;
 
 public class RegistrationNewCustomerPage extends VerticalMenu {
 	public final static String PAGE_TITLE = "New Customer";
 	private Addresses addresses;
 	private Countries countries;
+
 	// header and vertical labels/buttons
 
 	private WebElement newCustomerLabel;
@@ -37,6 +39,7 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	private WebElement taxVatInput;
 	private WebElement genderButton;
 	private WebElement addNewAddressesButton;
+
 
 	public RegistrationNewCustomerPage() {
 		this.newCustomerLabel = Search.cssSelector(".page-title");
@@ -500,7 +503,7 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	}
 
 	// functional createNewCustomer
-
+	@ServiceReport
 	public AllCustomersPageAfterSuccesRegistration setCustomerDataInLoginForm(ICustomerUser customer) {
 		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
 		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
@@ -512,6 +515,19 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		saveCustomerButtonClick();
 		return new AllCustomersPageAfterSuccesRegistration();
+	}
+
+	public void setRingerDataInLoginFormAndClickResetButton(ICustomerUser customer){
+		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
+		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
+		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
+		setDataInLastnameField(customer.getPersonalInfo().getLastname());
+		setDataInSufixField(customer.getPersonalInfo().getSuffix());
+		setDataInEmailField(customer.getSigninInfo().getEmail());
+		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
+		resetButtonClick();
+
 	}
 
 	public RegistrationNewCustomerErrorPage setRingerDataInLoginForm(ICustomerUser customer){

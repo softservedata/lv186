@@ -2,11 +2,13 @@ package com.softserve.edu.magento.tools;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.SystemClock;
 
 import java.util.Arrays;
 
@@ -25,7 +27,9 @@ public class BrowserRepository {
     static class ChromeTemporary implements IBrowser {
         public WebDriver getBrowser(String driverPath) {
             System.setProperty("webdriver.chrome.driver", driverPath);
-            return new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-maximized");
+            return new ChromeDriver(options);
         }
     }
     static class ChromeJSDisable implements IBrowser {

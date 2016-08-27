@@ -1,12 +1,14 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
 import com.softserve.edu.magento.tools.Search;
 import com.softserve.edu.magento.tools.SearchExplicitPresent;
 import com.softserve.edu.magento.tools.SearchExplicitVisible;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -29,16 +31,45 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	private static volatile IAdresses adressesAjax;
 	private static volatile IOrders ordersAjax;
 	private WebElement successMessage;
-	
-	/**
-	 * Constructor
-	 * Initializes the one component, visible on page load.
-	 */
-	public EditCustomerPage() {
-		this.custommerViewAjax = new CustommerView();
-	}
-	
+	private WebElement errorLabel;
+
+
+
+
 	/*
+	Constants
+	 */
+	public enum Constants {
+        PREFIX (""),
+        FIRSTNAME("Yaroslav"),
+        LASTNAME ("Harasym"),
+        PAGE_TITLE (null),
+        DEFAULT_BILLING_ADDRESS("");
+        String value;
+
+        Constants(String value){
+            this.value = value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+    }
+
+    /**
+     * Constructor
+     * Initializes the one component, visible on page load.
+     */
+    public EditCustomerPage() {
+        this.custommerViewAjax = new CustommerView();
+    }
+
+    /*
 	 * Getters for the Page components.
 	 */
 	public ICustommerView getCustommerView() {
@@ -58,7 +89,24 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	public WebElement getSuccessMessage() {
 		return this.successMessage;
 	}
-	
+
+	public EditCustomerPage getEditCustomerPage () {
+        return  new EditCustomerPage();
+    }
+
+    public WebElement locateErrorLabel() {
+        try{
+            this.errorLabel = Search.cssSelector("label.admin__field-error");
+        } catch (NoSuchElementException e){
+            this.errorLabel = null;
+        }
+        return  this.errorLabel;
+    }
+
+    public WebElement getErrorLabel() {
+        return  this.errorLabel;
+    }
+
 	/**
 	 * Locates the message and inits it.
 	 */
@@ -178,7 +226,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 							.xpath("//th[contains(text(), 'Account Created in')]//following-sibling::td");
 			this.CustomerGroupInfo = Search
 							.xpath("//th[contains(text(), 'Customer Group')]//following-sibling::td");
-			this.DefaultBillingAddress = Search.cssSelector("address");
+			this.DefaultBillingAddress = Search.cssSelector("div.fieldset-wrapper.customer-information address");
 		}
 
 		public WebElement getLastLoggedInfo() {
@@ -365,7 +413,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		public WebElement getStreetAdressSecond();
 		public WebElement getCity();
 		public Select getCountry();
-		public WebElement getState();
+		public Select getState();
 		public WebElement getZip();
 		public WebElement getPhone();
 		public WebElement getVat();
@@ -390,7 +438,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		private WebElement streetAdressSecond;
 		private WebElement city;
 		private Select country;
-		private WebElement state;
+		private Select state;
 		private WebElement zip;
 		private WebElement phone;
 		private WebElement vat;
@@ -437,8 +485,8 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input");
 			this.country = new Select(Search
 							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select"));
-			this.state = Search
-							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select");
+			this.state = new Select(Search
+							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select"));
 			this.zip = Search
 							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input");
 			this.phone = Search
@@ -510,7 +558,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			return country;
 		}
 
-		public WebElement getState() {
+		public Select getState() {
 			return state;
 		}
 
@@ -630,7 +678,8 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public IAccountInformation navToAccountInfo() {
 		accountInfo.click();
-		return this.accountInformationAjax = initAccountInfo();
+        accountInformationAjax = null;
+		return accountInformationAjax = initAccountInfo();
 	}
 	
 	/**
@@ -639,6 +688,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public IAdresses navToadresses() {
 		adresses.click();
+        adressesAjax = null;
 		return this.adressesAjax = initAdresses();
 	}
 	
@@ -668,6 +718,12 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	public String getSelectedWebsiteText() {
 		navToAccountInfo();
 		return accountInformationAjax.getSelectedWebsite().getText();
+	}
+
+	public String getEditCustomerTitle() {
+		String result;
+		result = Search.cssSelector(".page-title-wrapper h1").getText();
+		return  result;
 	}
 
 	public void setAssocietedWebsite(AssosieteWebsites website) {
@@ -713,6 +769,25 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
         enterValueIntoPrefix(value);
         enterValueIntoFirstname(value);
         enterValueIntoLastname(value);
+    }
+    //Addresses business logic.
+    public void createNewAddress(String values){
+        String[] result = values.split(" ");
+        getAdressesAjax().getAddNewAddresses().click();
+        getAdressesAjax().getStreetAdressFirst().sendKeys(result[0]);
+        getAdressesAjax().getCity().sendKeys(result[1]);
+        getAdressesAjax().getCountry().selectByValue(result[2]);
+        getAdressesAjax().getState().selectByValue(result[3]);
+        getAdressesAjax().getZip().sendKeys(result[4]);
+        getAdressesAjax().getPhone().sendKeys(result[5]);
+    }
+
+    public void checkNewDefaultBillingAddress() {
+        getAdressesAjax().getDefaultBillingCHK().click();
+    }
+
+    public String getAddressValues () {
+        return new String(getAdressesAjax().getAddress().getText());
     }
 
 	/**
@@ -789,17 +864,22 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		return saved.equals(changed);
 	}
 
-//    public boolean compareFields() {
-//        String changed = null;
-//        WebElement temp = getCustomerAllData().get(index);
-//            temp.sendKeys("blah-blah-blah");
-//            changed = temp.getText();
-//        }
-//        AllCustomersPage custPage = saveCustomer();
-//        custPage.getEditCustomerPage().navToAccountInfo();
-//        String saved = getCustomerAllData().get(index).getText();
-//        return saved.equals(changed);
-//    }
+	public WebElement getPrefix(){
+	    return getAccountInformation().getPrefix();
+    }
+
+    public WebElement getFirstname(){
+        return getAccountInformation().getFirstname();
+    }
+
+    public WebElement getLastname(){
+        return getAccountInformation().getLastname();
+    }
+
+    public String saveFieldText(WebElement field) {
+    	String result = field.getText();
+    	return result;
+	}
 
 	public String stringFromFile(String file) {
         String result = null;
@@ -809,5 +889,9 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
             e.printStackTrace();
         }
         return result;
+    }
+
+    public void clickAccountInfo() {
+        this.accountInfo.click();
     }
 }

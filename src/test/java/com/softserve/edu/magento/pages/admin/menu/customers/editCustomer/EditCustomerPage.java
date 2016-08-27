@@ -37,8 +37,19 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	public EditCustomerPage() {
 		this.custommerViewAjax = new CustommerView();
 	}
-	
+
+	public EditCustomerPage getEditCustomerPage () {
+	    return  new EditCustomerPage();
+    }
+
 	/*
+	Constants
+	 */
+	public final String PREFIX = "";
+    public final String FIRSTNAME = "Yaroslav";
+    public final String LASTNAME = "Harasym";
+
+    /*
 	 * Getters for the Page components.
 	 */
 	public ICustommerView getCustommerView() {
@@ -630,7 +641,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public IAccountInformation navToAccountInfo() {
 		accountInfo.click();
-		return this.accountInformationAjax = initAccountInfo();
+		return accountInformationAjax = initAccountInfo();
 	}
 	
 	/**
@@ -639,6 +650,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 */
 	public IAdresses navToadresses() {
 		adresses.click();
+        adressesAjax = null;
 		return this.adressesAjax = initAdresses();
 	}
 	
@@ -789,17 +801,22 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		return saved.equals(changed);
 	}
 
-//    public boolean compareFields() {
-//        String changed = null;
-//        WebElement temp = getCustomerAllData().get(index);
-//            temp.sendKeys("blah-blah-blah");
-//            changed = temp.getText();
-//        }
-//        AllCustomersPage custPage = saveCustomer();
-//        custPage.getEditCustomerPage().navToAccountInfo();
-//        String saved = getCustomerAllData().get(index).getText();
-//        return saved.equals(changed);
-//    }
+	public WebElement getPrefix(){
+	    return getAccountInformation().getPrefix();
+    }
+
+    public WebElement getFirstname(){
+        return getAccountInformation().getFirstname();
+    }
+
+    public WebElement getLastname(){
+        return getAccountInformation().getLastname();
+    }
+
+    public String saveFieldText(WebElement field) {
+    	String result = field.getText();
+    	return result;
+	}
 
 	public String stringFromFile(String file) {
         String result = null;
@@ -809,5 +826,9 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
             e.printStackTrace();
         }
         return result;
+    }
+
+    public void clickAccountInfo() {
+        this.accountInfo.click();
     }
 }

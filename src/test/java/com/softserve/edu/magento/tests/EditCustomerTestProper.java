@@ -40,14 +40,17 @@ public class EditCustomerTestProper extends  TestBase {
         editCustomerPage.navToAccountInfo();
 
         //enter values into field
-        editCustomerPage.enterValuesIntoFields(editCustomerPage.stringFromFile(""));
+        editCustomerPage.enterValuesIntoFields(editCustomerPage.stringFromFile("SpecialSymbols.txt"));
 
         //click 'Save & Continue Edit' button.
         editCustomerPage.saveAndContinueEdit();
+        editCustomerPage = editCustomerPage.getEditCustomerPage();
+
+        //click Account Information tab.
+        editCustomerPage.navToAccountInfo();
 
         //Verify changes has been made.
-        Assert.assertTrue(editCustomerPage
-                .compareFields(editCustomerPage.getCustomerAllData().get(0)));
+        Assert.assertEquals(editCustomerPage.PREFIX, editCustomerPage.getPrefix().getText());
         applicationAdmin.quit();
     }
 }

@@ -24,7 +24,19 @@ public class CategoryRepository {
         return instance;
     }
 
-    public ICategory addRootCategoryCompetur(){
+    public static enum ValidRootCategoryNames{
+        CATEGORY_NAME ("Testing name"),
+        SUBCATEGORY_NAME ("Subcategory testing name"),
+        SUBCATEGORY_PARENT_NAME ("Testing name");
+
+        private String name;
+
+        private ValidRootCategoryNames(String name) {
+            this.name = name;
+        }
+    }
+
+    public ICategory RootCategoryCompetur(){
         return Category.get()
                 .setName("Computers")
                 .setParent(null)
@@ -34,7 +46,7 @@ public class CategoryRepository {
 
     }
 
-    public ICategory addSubcategoryMotherboard(){
+    public ICategory SubcategoryMotherboard(){
         return Category.get()
                 .setName("Motherboard")
                 .setParent("Computers")
@@ -44,7 +56,9 @@ public class CategoryRepository {
 
     }
 
-    public String getValues (){
-        return CATEGORY_NAME;
-    }
+    //public
+
+//    public String getValues (){
+//        return CATEGORY_NAME;
+//    }
 }

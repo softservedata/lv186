@@ -44,7 +44,7 @@ public class Search {
         IMPLICIT_STRATEGY(new ImplicitStrategy(), "SearchImplicitStrategy"),
         EXPLICIT_STRATEGY_VISIBLE(new ExplicitStrategyVisible(), "SearchExplicitStrategyVisible"),
         EXPLICIT_STRATEGY_PRESENT(new ExplicitStrategyPresent(), "SearchExplicitStrategyPresent"),
-        EXPLICIT_STRATEGY_CLICKABLE(new ExplicitStrategyClickable(), "SearchExplicitStrategyPresent");
+        EXPLICIT_STRATEGY_CLICKABLE(new ExplicitStrategyClickable(), "SearchExplicitStrategyClickable");
         private ISearchStrategy searchStrategy;
         private String searchStrategyName;
 
@@ -112,7 +112,9 @@ public class Search {
     public static WebElement cssSelector(String cssSelector) {
         return getinstance().getSearch().cssSelector(cssSelector);
     } 
-
+    public static boolean stalenessOf(WebElement webElement){
+        return getinstance().getSearch().stalenessOf(webElement);
+    }
     public static WebElement className(String className) {
         return getinstance().getSearch().className(className);
     }

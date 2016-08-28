@@ -83,6 +83,12 @@ public class SearchExplicitVisible extends ASearch {
     }
 
     @Override
+    public boolean stalenessOf(WebElement webElement) {
+        return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
+                .until(ExpectedConditions.stalenessOf(webElement));
+    }
+
+    @Override
     public WebElement className(String className) {
         return getVisibleWebElement(By.className(className));
     }

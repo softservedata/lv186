@@ -5,8 +5,13 @@ import org.apache.jmeter.config.gui.ArgumentsPanel;
 import org.apache.jmeter.control.LoopController;
 import org.apache.jmeter.control.gui.LoopControlPanel;
 import org.apache.jmeter.control.gui.TestPlanGui;
+import org.apache.jmeter.engine.JMeterEngine;
 import org.apache.jmeter.engine.StandardJMeterEngine;
+import org.apache.jmeter.protocol.http.control.*;
+import org.apache.jmeter.protocol.http.control.gui.RecordController;
 import org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui;
+import org.apache.jmeter.protocol.http.gui.CacheManagerGui;
+import org.apache.jmeter.protocol.http.gui.CookiePanel;
 import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
 import org.apache.jmeter.reporters.ResultCollector;
 import org.apache.jmeter.reporters.Summariser;
@@ -16,6 +21,7 @@ import org.apache.jmeter.testelement.TestPlan;
 import org.apache.jmeter.threads.ThreadGroup;
 import org.apache.jmeter.threads.gui.ThreadGroupGui;
 import org.apache.jmeter.util.JMeterUtils;
+import org.apache.jmeter.visualizers.ViewResultsFullVisualizer;
 import org.apache.jorphan.collections.HashTree;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -24,7 +30,6 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 
 /**
@@ -59,13 +64,13 @@ public class JMeterMagentoTestLinux {
         JMeterUtils.loadJMeterProperties(jmeterProperties.getPath());
         JMeterUtils.initLogging();// you can comment this line out to see extra log messages of i.e. DEBUG level
         JMeterUtils.initLocale();
-
+        JMeterUtils.getPropDefault("jmeterengine.startlistenerslater", false);
         // JMeter Test Plan, basically JOrphan HashTree
         testPlanTree = new HashTree();
     }
 
     @Test
-    public void testMagento() throws IOException {
+    public void testMagento() throws Exception {
         // First HTTP Sampler - open google.com
         HTTPSamplerProxy examplecomSampler = new HTTPSamplerProxy();
         examplecomSampler.setDomain("http://localhost/magento2/admin/");
@@ -77,10 +82,22 @@ public class JMeterMagentoTestLinux {
         examplecomSampler.setArguments(arguments);
         examplecomSampler.setProperty(TestElement.TEST_CLASS, HTTPSamplerProxy.class.getName());
         examplecomSampler.setProperty(TestElement.GUI_CLASS, HttpTestSampleGui.class.getName());
-
+        // Cache Manager
+        CacheManager cacheManager = new CacheManager();
+        cacheManager.setName("cache");
+        cacheManager.setMaxSize(5000);
+        cacheManager.setProperty(TestElement.TEST_CLASS, CacheManager.class.getName());
+        cacheManager.setProperty(TestElement.GUI_CLASS, CacheManagerGui.class.getName());
+        // Cookie Manager
+        CookieManager cookieManager = new CookieManager();
+        cookieManager.setName("cookie");
+        cookieManager.setImplementation("HC4CookieHandler");
+        cookieManager.setClearEachIteration(false);
+        cookieManager.setCookiePolicy("standard");
+        cookieManager.setProperty(TestElement.TEST_CLASS, CookieManager.class.getName());
+        cookieManager.setProperty(TestElement.GUI_CLASS, CookiePanel.class.getName());
         // Loop Controller
         LoopController loopController = new LoopController();
-        loopController.setLoops(3);
         loopController.setFirst(true);
         loopController.setProperty(TestElement.TEST_CLASS, LoopController.class.getName());
         loopController.setProperty(TestElement.GUI_CLASS, LoopControlPanel.class.getName());
@@ -103,6 +120,8 @@ public class JMeterMagentoTestLinux {
         // Construct Test Plan from previously initialized elements
         testPlanTree.add(testPlan);
         HashTree threadGroupHashTree = testPlanTree.add(testPlan, threadGroup);
+        threadGroupHashTree.add(cacheManager);
+        threadGroupHashTree.add(cookieManager);
         threadGroupHashTree.add(examplecomSampler);
 
         // save generated test plan to JMeter's .jmx file format

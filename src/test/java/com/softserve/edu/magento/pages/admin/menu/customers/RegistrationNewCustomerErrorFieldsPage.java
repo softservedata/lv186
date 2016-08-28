@@ -22,17 +22,14 @@ public class RegistrationNewCustomerErrorFieldsPage extends VerticalMenu{
     }
 
     public String getFirstnameErrorLabelText(){
-        System.out.println("++++++++++Label was found, assert works!!!!!");
         return firstnameErrorLabel.getText();
 
     }
     public String getLastnameErrorLabelText(){
-        System.out.println("++++++++++Label was found, assert works!!!!!");
         return lastnameErrorLabel.getText();
 
     }
     public String getEmailErrorLabelText(){
-        System.out.println("++++++++++Label was found, assert works!!!!!");
         return emailErrorLabel.getText();
 
     }

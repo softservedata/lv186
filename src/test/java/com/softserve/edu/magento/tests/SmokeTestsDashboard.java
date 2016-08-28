@@ -1,13 +1,17 @@
 package com.softserve.edu.magento.tests;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.softserve.edu.magento.data.admin.products.IProduct;
+import com.softserve.edu.magento.data.admin.products.ProductRepository;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.sales.CreateOrderFillInformationPage;
 import com.softserve.edu.magento.pages.admin.menu.sales.CreateOrderSelectCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
 import com.softserve.edu.magento.tools.Application;
+import com.softserve.edu.magento.tools.Search;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -43,7 +47,20 @@ public class SmokeTestsDashboard extends TestBase {
                 {ParameterUtils.get().updateParametersAll(
                         ApplicationSourcesRepository.getChromeMyHostAdminLinux(),
                         context), AdminUserRepository.get().adminBohdan(),
-                        CustomerUserRepositoryForAdmin.get().getVeronicaCostello()}};
+                        CustomerUserRepositoryForAdmin.get().getVeronicaCostello(), ProductRepository.get().getListProducts( new IProduct[] {ProductRepository.get().getErikaRunningShort32Purple()})}};
+
+    }
+    @DataProvider(parallel = true)
+    public Object[][] smokeParameters4(ITestContext context) {
+        return new Object[][]{
+                /*{ ParameterUtils.get().updateParametersAll(
+						ApplicationSourcesRepository.getFirefoxLocalhostAdmin(),
+						context), AdminUserRepository.get().adminTest(),
+						CustomerUserRepositoryForAdmin.get().getTeodorDrayzer() },*/
+                {ParameterUtils.get().updateParametersAll(
+                        ApplicationSourcesRepository.getChromeMyHostAdminLinux(),
+                        context), AdminUserRepository.get().adminBohdan(),
+                        CustomerUserRepository.get().UserYaryna(), ProductRepository.get().getListProducts( new IProduct[] {ProductRepository.get().getErikaRunningShort32Purple()})}};
 
     }
 
@@ -75,15 +92,35 @@ public class SmokeTestsDashboard extends TestBase {
 
     }
 
-    @Test(dataProvider = "smokeParameters")
+    //@Test(dataProvider = "smokeParameters")
     @ServiceReport
-    public void testOrdersPages(ApplicationSources applicationSources, IAdminUser adminUser, ICustomerUser customerUser) {
+    public void tc1(ApplicationSources applicationSources, IAdminUser adminUser, ICustomerUser customerUser, List<IProduct> products) {
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
         OrdersPage ordersPage = dashboardPage.gotoOrdersPage();
         CreateOrderSelectCustomerPage createOrderSelectCustomerPage = ordersPage.gotoCreateOrderSelectCustomerPage();
         CreateOrderFillInformationPage createOrderFillInformationPage = createOrderSelectCustomerPage.gotoCreateOrderFillInformationPage(customerUser);
-        System.out.println("OK");
+        createOrderFillInformationPage.addProducts(products);
+        createOrderFillInformationPage.clickAddProductsToOrder();
+        createOrderFillInformationPage.clickShippingMethod();
+        createOrderFillInformationPage.clickFixedRate();
+        createOrderFillInformationPage.clickSubmitOrder();
+    }
+
+    @Test(dataProvider = "smokeParameters4")
+    @ServiceReport
+    public void tc2(ApplicationSources applicationSources, IAdminUser adminUser, ICustomerUser customerUser, List<IProduct> products) {
+        ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+        DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+        OrdersPage ordersPage = dashboardPage.gotoOrdersPage();
+        CreateOrderSelectCustomerPage createOrderSelectCustomerPage = ordersPage.gotoCreateOrderSelectCustomerPage();
+        CreateOrderFillInformationPage createOrderFillInformationPage = createOrderSelectCustomerPage.gotoCreateOrderFillInformationPage();
+        createOrderFillInformationPage.addProducts(products);
+        createOrderFillInformationPage.clickAddProductsToOrder();
+        createOrderFillInformationPage.fillUserRequiredInformation(customerUser);
+        createOrderFillInformationPage.clickShippingMethod();
+        createOrderFillInformationPage.clickFixedRate();
+        createOrderFillInformationPage.clickSubmitOrder();
     }
 
     //@Test(dataProvider = "smokeParameters")

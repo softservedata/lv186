@@ -29,7 +29,7 @@ public class SearchExplicitVisible extends ASearch {
         return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
             .until(ExpectedConditions.visibilityOfElementLocated(by));
     }
-    
+
     // Must be Selenium version 2.53.1
 //    private WebElement getVisibleWebElement(By by, WebElement fromWebElement) {
 //        return new WebDriverWait(this.getWebDriver(),
@@ -41,7 +41,7 @@ public class SearchExplicitVisible extends ASearch {
       private WebElement getVisibleWebElement(By by, WebElement fromWebElement) {
           WebElement result;
           getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
-          result = fromWebElement.findElement(by); 
+          result = fromWebElement.findElement(by);
           getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
           return result;
     }
@@ -82,11 +82,7 @@ public class SearchExplicitVisible extends ASearch {
         return getVisibleWebElement(By.cssSelector(cssSelector));
     }
 
-    @Override
-    public boolean stalenessOf(WebElement webElement) {
-        return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
-                .until(ExpectedConditions.stalenessOf(webElement));
-    }
+
 
     @Override
     public WebElement className(String className) {

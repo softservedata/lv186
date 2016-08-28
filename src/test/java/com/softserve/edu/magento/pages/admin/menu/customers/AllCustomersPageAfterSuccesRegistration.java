@@ -26,14 +26,14 @@ import ss.af.reporting.annotations.ServiceReport;
 
 public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
-	/**
+	/*
 	 * Daclarating constats form using them in aseerts methods
 	 */
 	public final static String PAGE_TITLE = "Customers";
 	public final static String REGISTERED_CUSTOMER_TITLE = "You saved the customer.";
 	private boolean isWebElementFound = false;
 
-	/**
+	/*
 	 * Initializing componets to have access to inner classes
 	 */
 	private ColumnsMenuDropdown columnsmenudropdown;
@@ -42,7 +42,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	private FiltersDropDownMenu filtersdropdownmenu;
 	private GroupsButton groupsButton;
 
-	/**
+	/*
 	* Initializing fields in main class
     */
 	private WebElement customersLabel;

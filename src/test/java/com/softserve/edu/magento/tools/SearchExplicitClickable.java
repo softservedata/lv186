@@ -70,11 +70,7 @@ public class SearchExplicitClickable extends ASearch {
         return getClickableWebElement(By.cssSelector(cssSelector));
     }
 
-    @Override
-    public boolean stalenessOf(WebElement webElement) {
-        return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
-                .until(ExpectedConditions.stalenessOf(webElement));
-    }
+
 
     @Override
     public WebElement className(String className) {

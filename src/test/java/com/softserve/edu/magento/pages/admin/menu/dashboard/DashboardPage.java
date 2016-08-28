@@ -88,20 +88,17 @@ public class DashboardPage extends VerticalMenu {
 
     
     public DashboardPage() {
-		System.out.println("\tConstructor DashboardPage(WebDriver driver) Start");
         this.storeView = Search.id("store-change-button");
         this.lifeTimeSales = Search
         		.xpath("//div[contains(text(),'Lifetime Sales')]");
         this.lifeTimeSalesValue = Search
         		.xpath("//div[contains(text(),'Lifetime Sales')]/following-sibling::div//span[@class='price']");
-        System.out.println("\tConstructor DashboardPage(WebDriver driver) Start01");
         this.averageOrder = Search
         		.xpath("//div[contains(text(),'Average Order')]");
         this.averageOrderValue = Search
         		.xpath("//div[contains(text(),'Average Order')]/following-sibling::div//span[@class='price']");
         this.lastOrders = Search
-        		.xpath("//div[contains(text(),'Last Orders')]");
-        System.out.println("\tConstructor DashboardPage(WebDriver driver) Start02");
+        		.xpath("//div[contains(text(),'Last Orders')]");;
         this.lastOrdersRecords = Search.cssSelectors("#lastOrdersGrid_table tbody tr");
         this.lastSearchTerms = Search
         		.xpath("//div[contains(text(),'Last Search Terms')]");
@@ -111,7 +108,6 @@ public class DashboardPage extends VerticalMenu {
         this.topSearchTermsRecords = Search.cssSelectors("#topSearchGrid_table tbody tr");
         this.revenue = Search
         		.xpath("//span[contains(text(),'Revenue')]");
-        System.out.println("\tConstructor DashboardPage(WebDriver driver) Start03");
         this.revenueValue = Search
         		.xpath("//span[contains(text(),'Revenue')]/following-sibling::strong//span[@class='price']");
         this.tax = Search
@@ -122,7 +118,6 @@ public class DashboardPage extends VerticalMenu {
         		.xpath("//span[@class='dashboard-totals-label'][contains(text(),'Shipping')]");
         this.shippingValue = Search
         		.xpath("//span[contains(text(),'Shipping')]/following-sibling::strong//span[@class='price']");
-        System.out.println("\tConstructor DashboardPage(WebDriver driver) Start04");
         this.quantity = Search
         		.xpath("//span[@class='dashboard-totals-label'][contains(text(),'Quantity')]");
         this.quantityValue = Search
@@ -134,7 +129,6 @@ public class DashboardPage extends VerticalMenu {
         this.bestsellersRecords = Search.cssSelectors("#productsOrderedGrid_table tbody tr");
         this.mostViewedProductsTab = Search
         		.id("grid_tab_reviewed_products");
-        System.out.println("\tConstructor DashboardPage(WebDriver driver) Start05");
         this.newCustomersTab = Search
         		.id("grid_tab_new_customers");
         this.customersTab = Search
@@ -148,21 +142,15 @@ public class DashboardPage extends VerticalMenu {
         //this.amountPeriod = new Select(Search
         //		.id("order_amounts_period"));
         //
-        System.out.println("\tConstructor DashboardPage(WebDriver driver) Start06");
         saveLogoutUrl();
-        System.out.println("\tConstructor DashboardPage(WebDriver driver) DONE");
     }
     private void saveLogoutUrl() {
-        System.out.println("\t    saveLogoutUrl() Start");
         if ((ApplicationAdmin.getCurrentApplicationSources() != null) 
                 && ((ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl() == null)
                         || (ApplicationAdmin.getCurrentApplicationSources().getLogoutUrl().isEmpty()))) {
-            System.out.println("\t    saveLogoutUrl() Start if ..");
             ApplicationAdmin.getCurrentApplicationSources()
                 .setLogoutUrl(getSignOut().getAttribute(HREF_ATTRIBUTE));
-            System.out.println("\t    saveLogoutUrl() setLogoutUrl DONE");
             getPageTitle().click();
-            System.out.println("\t    saveLogoutUrl() getPageTitle().click() DONE");
         }
     }
     

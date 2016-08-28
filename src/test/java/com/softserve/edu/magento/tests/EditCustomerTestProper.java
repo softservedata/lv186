@@ -140,16 +140,16 @@ public class EditCustomerTestProper extends  TestBase {
 
         Assert.assertTrue(editCustomerPage.getAddressValues().contains(editCustomerPage.stringFromFile("NewAddress.txt")));
 
-        applicationAdmin.quit();
+       // applicationAdmin.quit();
     }
 
-    @AfterMethod(alwaysRun = true)
+   // @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         ApplicationAdmin.signout();
         // ApplicationAdmin.quitAll();
     }
 
-    @AfterClass(alwaysRun = true)
+   // @AfterClass(alwaysRun = true)
     void tearDown() throws Exception {
         ApplicationAdmin.quitAll();
     }

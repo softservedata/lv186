@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Class for searching visible elements with
@@ -76,6 +78,12 @@ public class SearchImplicit extends ASearch {
     @Override
     public WebElement cssSelector(String cssSelector) {
         return getWebElement(By.cssSelector(cssSelector));
+    }
+
+    @Override
+    public boolean stalenessOf(WebElement webElement) {
+        return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
+                .until(ExpectedConditions.stalenessOf(webElement));
     }
 
     @Override

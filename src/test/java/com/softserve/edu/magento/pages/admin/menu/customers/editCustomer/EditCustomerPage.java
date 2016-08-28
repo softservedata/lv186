@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
+import com.softserve.edu.magento.tools.ASearch;
 import com.softserve.edu.magento.tools.Search;
 import com.softserve.edu.magento.tools.SearchExplicitPresent;
 import com.softserve.edu.magento.tools.SearchExplicitVisible;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
@@ -772,7 +774,13 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
     }
     //Addresses business logic.
     public void createNewAddress(String values){
-        String[] result = values.split(" ");
+        String[] result = values.split(";");
+		for(int i=0; i<result.length; i++){
+		System.out.println(result[i]);
+		}
+        //Actions action  = new Actions();
+
+        getAdressesAjax().getAddNewAddresses();
         getAdressesAjax().getAddNewAddresses().click();
         getAdressesAjax().getStreetAdressFirst().sendKeys(result[0]);
         getAdressesAjax().getCity().sendKeys(result[1]);
@@ -787,7 +795,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
     }
 
     public String getAddressValues () {
-        return new String(getAdressesAjax().getAddress().getText());
+        return new String(getCustommerView().getDefaultBillingAddress().getText());
     }
 
 	/**

@@ -1,7 +1,10 @@
 package com.softserve.edu.magento.pages.admin.menu.sales;
 
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
+import com.softserve.edu.magento.tools.ASearch;
 import com.softserve.edu.magento.tools.Search;
+import com.sun.glass.ui.Application;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -54,7 +57,10 @@ public class CreateOrderSelectCustomerPage {
     }
 
     public void clickSearchButton() {
+        searchedUser = Search.cssSelector("#sales_order_create_customer_grid_table > tbody > tr > td.col-name");
         getSearchButton().click();
+
+
     }
     // Business Logic
 
@@ -68,7 +74,9 @@ public class CreateOrderSelectCustomerPage {
         String fullName = user.getPersonalInfo().getFirstname() + " " + user.getPersonalInfo().getLastname();
         getCustomerFilterName().sendKeys(fullName);
         clickSearchButton();
-        searchedUser = Search.xpath("//*[@id='sales_order_create_customer_grid_table']/tbody/tr/td[2]");
+        if (Search.stalenessOf(searchedUser)) {
+            searchedUser = Search.cssSelector("#sales_order_create_customer_grid_table > tbody > tr > td.col-name");
+        }
         if (searchedUser.getText().equals(fullName)) {
             searchedUser.click();
             return new CreateOrderFillInformationPage();

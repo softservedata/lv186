@@ -126,6 +126,7 @@ public class EditCustomerTestProper extends  TestBase {
         EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
 
         DEFAULT_BILLING_ADDRESS.setValue(editCustomerPage.getAddressValues());
+        System.out.println(DEFAULT_BILLING_ADDRESS.toString());
         //click Account Information tab.
         editCustomerPage.navToadresses();
 

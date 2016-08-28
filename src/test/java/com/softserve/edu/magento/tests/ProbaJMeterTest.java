@@ -46,7 +46,7 @@ public class ProbaJMeterTest {//extends TestBase{
             if (jmeterProperties.exists()) {
 
                 //JMeter Engine
-                StandardJMeterEngine jmeter = new StandardJMeterEngine();
+                jmeter = new StandardJMeterEngine();
             }
         }
 

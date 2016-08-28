@@ -28,7 +28,7 @@ public abstract class ASearch {
     }
 
     //remove Application from method params
-   public WebDriver getWebDriver() {
+   public static WebDriver getWebDriver() {
         return Application.getWebDriver();
     }
 

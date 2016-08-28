@@ -102,6 +102,16 @@ public class AdminUserRepository {
                .build();
    }
 
+    public IAdminUser adminlocalOlya() {
+        return AdminUser.get()
+                .setUsername("olala")
+                .setFirstname("Olya")
+                .setLastname("Lutsiv")
+                .setMail("olya.lutsiv@gmail.com")
+                .setPassword("life-1s-good")
+                .build();
+    }
+
    public IAdminUser adminUserConvert(AdminUserDB adminUserDB) {
        return AdminUser.get()
                .setUsername(adminUserDB.getUsername())

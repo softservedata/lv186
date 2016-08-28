@@ -241,8 +241,8 @@
 								<!--<file>product.xml</file>-->
 								<!--<file>testngDashboardAdmin.xml</file>-->
 								<!--<file>TestngEditCustomer.xml</file>-->
-								<file>TestngEditCustomerProper.xml</file>
-								<!--<file>testNgCustomer.xml</file>-->
+								<!--<file>TestngEditCustomerProper.xml</file>-->
+								<file>testNgCustomer.xml</file>
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>
 						</configuration>

@@ -25,10 +25,12 @@ public class SearchImplicit extends ASearch {
     /**
      * Method to implicitly wait for visibility of
      * specific element.
+     *
      * @param by locator for element.
      * @return visible webelement.
      */
     private WebElement getWebElement(By by) {
+
         return this.getWebDriver().findElement(by);
     }
 
@@ -36,7 +38,8 @@ public class SearchImplicit extends ASearch {
      * Method to implicitly wait for visibility of
      * specific element, located from already
      * located webelement.
-     * @param by locator for element.
+     *
+     * @param by             locator for element.
      * @param fromWebElement located webelement to start
      *                       searching from.
      * @return visible webelement.
@@ -48,9 +51,9 @@ public class SearchImplicit extends ASearch {
     /**
      * Method to implicitly wait for visibility of
      * specific elements.
+     *
      * @param by locator for elements.
-     * @return
-     *       visible webelements.
+     * @return visible webelements.
      */
     private List<WebElement> getWebElements(By by) {
         return this.getWebDriver().findElements(by);
@@ -92,62 +95,67 @@ public class SearchImplicit extends ASearch {
     }
 
     @Override
-    public  WebElement partialLinkText(String partialLinkText) {
-    	return getWebElement(By.partialLinkText(partialLinkText));
+    public WebElement partialLinkText(String partialLinkText) {
+        return getWebElement(By.partialLinkText(partialLinkText));
     }
 
     @Override
-    public  WebElement linkText(String linkText) {
-    	return getWebElement(By.linkText(linkText));
+    public WebElement linkText(String linkText) {
+        return getWebElement(By.linkText(linkText));
     }
 
     @Override
-    public  WebElement tagName(String tagName) {
-    	return getWebElement(By.tagName(tagName));
+    public WebElement tagName(String tagName) {
+        return getWebElement(By.tagName(tagName));
     }
 
     // From Elements
 
     @Override
-    public  WebElement id(String id, WebElement fromWebElement) {
+    public WebElement id(String id, WebElement fromWebElement) {
         return getWebElement(By.id(id), fromWebElement);
     }
 
     @Override
-    public  WebElement name(String name, WebElement fromWebElement) {
-    	return getWebElement(By.name(name), fromWebElement);
+    public WebElement name(String name, WebElement fromWebElement) {
+        return getWebElement(By.name(name), fromWebElement);
     }
 
     @Override
-    public  WebElement xpath(String xpath, WebElement fromWebElement) {
-    	return getWebElement(By.xpath(xpath), fromWebElement);
+    public WebElement xpath(String xpath, WebElement fromWebElement) {
+        return getWebElement(By.xpath(xpath), fromWebElement);
     }
+
     @Override
-    public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
-    	return getWebElement(By.cssSelector(cssSelector), fromWebElement);
+    public WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
+        return getWebElement(By.cssSelector(cssSelector), fromWebElement);
     }
+
     @Override
-    public  WebElement className(String className, WebElement fromWebElement) {
-    	return getWebElement(By.className(className), fromWebElement);
+    public WebElement className(String className, WebElement fromWebElement) {
+        return getWebElement(By.className(className), fromWebElement);
     }
+
     @Override
-    public  WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
-    	return getWebElement(By.partialLinkText(partialLinkText), fromWebElement);
+    public WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
+        return getWebElement(By.partialLinkText(partialLinkText), fromWebElement);
     }
+
     @Override
-    public  WebElement linkText(String linkText, WebElement fromWebElement) {
-    	return getWebElement(By.linkText(linkText), fromWebElement);
+    public WebElement linkText(String linkText, WebElement fromWebElement) {
+        return getWebElement(By.linkText(linkText), fromWebElement);
     }
+
     @Override
-    public  WebElement tagName(String tagName, WebElement fromWebElement) {
-    	return getWebElement(By.tagName(tagName),fromWebElement);
+    public WebElement tagName(String tagName, WebElement fromWebElement) {
+        return getWebElement(By.tagName(tagName), fromWebElement);
     }
 
     // List
 
     @Override
-    public  List<WebElement> ids(String id) {
-    	return getWebElements(By.id(id));
+    public List<WebElement> ids(String id) {
+        return getWebElements(By.id(id));
     }
 
     @Override
@@ -156,7 +164,7 @@ public class SearchImplicit extends ASearch {
     }
 
     @Override
-    public  List<WebElement> xpaths(String xpath) {
+    public List<WebElement> xpaths(String xpath) {
         return getWebElements(By.xpath(xpath));
     }
 
@@ -166,28 +174,28 @@ public class SearchImplicit extends ASearch {
     }
 
     @Override
-    public  List<WebElement> cssSelectors(String cssSelector) {
+    public List<WebElement> cssSelectors(String cssSelector) {
         return getWebElements(By.cssSelector(cssSelector));
     }
 
     @Override
-    public  List<WebElement> classNames(String className) {
+    public List<WebElement> classNames(String className) {
         return getWebElements(By.className(className));
     }
 
     @Override
-    public  List<WebElement> partialLinkTexts(String partialLinkText) {
+    public List<WebElement> partialLinkTexts(String partialLinkText) {
         return getWebElements(By.partialLinkText(partialLinkText));
     }
 
     @Override
-    public  List<WebElement> linkTexts(String linkText) {
+    public List<WebElement> linkTexts(String linkText) {
         return getWebElements(By.linkText(linkText));
     }
 
     @Override
-    public  List<WebElement> tagNames(String tagName) {
-    	return getWebElements(By.tagName(tagName));
+    public List<WebElement> tagNames(String tagName) {
+        return getWebElements(By.tagName(tagName));
     }
 
 }

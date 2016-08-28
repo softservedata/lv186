@@ -1,16 +1,18 @@
 package com.softserve.edu.magento.pages.admin.menu.sales;
 
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
-import com.softserve.edu.magento.tools.ASearch;
+import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
-import com.sun.glass.ui.Application;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
  * Created by bohdan on 15.08.16.
  */
-public class CreateOrderSelectCustomerPage {
+public class CreateOrderSelectCustomerPage extends VerticalMenu {
+    //Fields
+    public final static String DATA_NOT_FOUND_MESSAGE = "We couldn't find any records.";
+
+    // Elements
     private WebElement createNewCustomer;
     private WebElement customerFilterName;
     private WebElement back;
@@ -42,7 +44,11 @@ public class CreateOrderSelectCustomerPage {
     public WebElement getSearchButton() {
         return searchButton;
     }
-    // set Data PageObject
+
+    public WebElement getSearchedUser() {
+        return searchedUser;
+    }
+// set Data PageObject
 
     public void clickCustomerFilterName() {
         getCustomerFilterName().click();
@@ -57,12 +63,31 @@ public class CreateOrderSelectCustomerPage {
     }
 
     public void clickSearchButton() {
-        searchedUser = Search.cssSelector("#sales_order_create_customer_grid_table > tbody > tr > td.col-name");
         getSearchButton().click();
+    }
 
-
+    public void clickSearchedUser(){
+        getSearchedUser().click();
     }
     // Business Logic
+    public boolean findCustomer(ICustomerUser user) {
+        if (!Search.checkDOMForText(DATA_NOT_FOUND_MESSAGE)) {
+            searchedUser = Search.cssSelector("#sales_order_create_customer_grid_table > tbody > tr > td.col-name");
+            clickCustomerFilterName();
+            String fullName = user.getPersonalInfo().getFirstname() + " " + user.getPersonalInfo().getLastname();
+            getCustomerFilterName().sendKeys(fullName);
+            clickSearchButton();
+            if (!Search.checkDOMForText(DATA_NOT_FOUND_MESSAGE)) {
+                if (Search.stalenessOf(searchedUser)) {
+                    searchedUser = Search.cssSelector("#sales_order_create_customer_grid_table > tbody > tr > td.col-name");
+                }
+                if (searchedUser.getText().equals(fullName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public CreateOrderFillInformationPage gotoCreateOrderFillInformationPage() {
         clickCreateNewCustomer();
@@ -70,15 +95,8 @@ public class CreateOrderSelectCustomerPage {
     }
 
     public CreateOrderFillInformationPage gotoCreateOrderFillInformationPage(ICustomerUser user) {
-        clickCustomerFilterName();
-        String fullName = user.getPersonalInfo().getFirstname() + " " + user.getPersonalInfo().getLastname();
-        getCustomerFilterName().sendKeys(fullName);
-        clickSearchButton();
-        if (Search.stalenessOf(searchedUser)) {
-            searchedUser = Search.cssSelector("#sales_order_create_customer_grid_table > tbody > tr > td.col-name");
-        }
-        if (searchedUser.getText().equals(fullName)) {
-            searchedUser.click();
+        if (findCustomer(user)) {
+            clickSearchedUser();
             return new CreateOrderFillInformationPage();
         }
         return gotoCreateOrderFillInformationPage();

@@ -10,6 +10,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -19,13 +21,14 @@ public abstract class ASearch {
     //added timeouts.
     protected static final long IMPLICIT_WAIT_TIMEOUT = 5L;
     protected static final long EXPLICIT_WAIT_TIMEOUT = 10L;
+    protected static final long DISAPPEAR_WAIT_TIMEOUT = 10L;
 
     //removed Application from constructor params.
     public ASearch() {
     }
 
     //remove Application from method params
-    public static WebDriver getWebDriver() {
+    WebDriver getWebDriver() {
         return Application.getWebDriver();
     }
 
@@ -48,7 +51,10 @@ public abstract class ASearch {
 
     public abstract WebElement cssSelector(String cssSelector);
 
-    public abstract boolean stalenessOf(WebElement webElement);
+    public  boolean stalenessOf(WebElement webElement){
+        return new WebDriverWait(this.getWebDriver(), DISAPPEAR_WAIT_TIMEOUT)
+                .until(ExpectedConditions.stalenessOf(webElement));
+    }
 
     public abstract WebElement className(String className);
 
@@ -98,5 +104,16 @@ public abstract class ASearch {
 
     public void waitUntil(Predicate<WebDriver> predicate) {
         new WebDriverWait(getWebDriver(), 10).until(predicate);
+    }
+    public boolean checkDOMForText (String text){
+        return getWebDriver().getPageSource().contains(text);
+    }
+    public  void moveToElement(WebElement webElement){
+        Actions actions = new Actions(this.getWebDriver());
+        actions.moveToElement(webElement);
+    }
+    public void clickElement(WebElement webElement){
+        Actions actions = new Actions(this.getWebDriver());
+        actions.moveToElement(webElement).click();
     }
 }

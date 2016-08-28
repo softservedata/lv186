@@ -15,7 +15,6 @@ public class RegistrationNewCustomerErrorPage extends VerticalMenu{
     }
 
     public String getExistEmailErrorTextLabel(){
-        System.out.println("++++++++++Label was found, assert works!!!!!");
         return existEmailErrorLabel.getText();
 
     }

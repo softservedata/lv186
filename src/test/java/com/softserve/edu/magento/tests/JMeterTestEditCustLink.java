@@ -53,7 +53,7 @@ public class JMeterTestEditCustLink {
 
     @BeforeMethod
     public void setupMethod() {
-        //JMeter initialization (properties, log levels, locale, etc)
+        //JMeter initialization
         JMeterUtils.setJMeterHome(jmeterHome.getPath());
         JMeterUtils.loadJMeterProperties(jmeterProperties.getPath());
         JMeterUtils.initLogging();// you can comment this line out to see extra log messages of i.e. DEBUG level
@@ -64,11 +64,11 @@ public class JMeterTestEditCustLink {
     }
 
     @Test
-    public void testMagento() throws IOException {
+    public void testMagentoEditCustomer() throws IOException {
         // First HTTP Sampler - open Magento
         HTTPSamplerProxy examplecomSampler = new HTTPSamplerProxy();
         examplecomSampler.setDomain("http://192.168.195.210/magento/admin");
-        examplecomSampler.setPort(80);
+        examplecomSampler.setPort(90);
         examplecomSampler.setName("Open magento");
 
         Arguments arguments = new Arguments();
@@ -114,7 +114,7 @@ public class JMeterTestEditCustLink {
         }
         // Store execution results into a .jtl file, we can save file as csv also
         String reportFile = "report\\report.jtl";
-        String csvFile = "report\\report.jtl";
+        String csvFile = "report\\report.csv";
         ResultCollector logger = new ResultCollector(summer);
         logger.setFilename(reportFile);
         ResultCollector csvlogger = new ResultCollector(summer);

@@ -5,32 +5,21 @@
     <parameter name="driverPath" value="D:\Application\chromedriver.exe" />
     <test name="Test">
         <!--<groups>-->
-        <!--<run>-->
-        <!--<include name="EditTest" />-->
-        <!--</run>-->
+            <!--<run>-->
+                <!--<include name="positive" />-->
+                <!--&lt;!&ndash;<include name="negative" />&ndash;&gt;-->
+            <!--</run>-->
         <!--</groups>-->
         <classes>
             <class name="com.softserve.edu.magento.tests.EditCustomerTestProper">
                 <methods>
                     <include name="verifyInputSymbols" />
-                    <include name="verifySymbolsMaxCountMandatoryField" />
-                    <include name="verifySymbolsMaxCountDisplayed"/>
-                    <include name="verifySymbolsMaxCountRegularField" />
+                    <!--<include name="verifySymbolsMaxCountMandatoryField" />-->
+                    <!--<include name="verifySymbolsMaxCountDisplayed"/>-->
+                    <!--<include name="verifySymbolsMaxCountRegularField" />-->
                     <include name="pickNewDefaultBillingAddress"/>
                 </methods>
             </class>
         </classes>
     </test>
-
-    <!-- 	<test name="Saving the dublicate comment">
-            <groups>
-                <run>
-                    <include name="Saving the dublicate comment" />
-                </run>
-            </groups>
-            <classes>
-                <class name="gmail.com.demo.CommentsTestDemo1" />
-            </classes>
-        </test>
-    -->
 </suite>

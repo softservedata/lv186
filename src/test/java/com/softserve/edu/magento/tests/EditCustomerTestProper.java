@@ -8,7 +8,6 @@ import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
-import com.softserve.edu.magento.tools.ASearch;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 import org.testng.Assert;
@@ -36,7 +35,7 @@ public class EditCustomerTestProper extends  TestBase {
                         AdminUserRepository.get().adminAndrii());
     }
 
-    //@Test (dataProvider = "smokeParameters")
+    @Test (dataProvider = "smokeParameters",  groups = "positive")
     public  void verifyInputSymbols(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -62,7 +61,7 @@ public class EditCustomerTestProper extends  TestBase {
         applicationAdmin.quit();
     }
 
-    //@Test (dataProvider = "smokeParameters")
+    @Test (dataProvider = "smokeParameters",  groups = "positive")
     public  void verifySymbolsMaxCountMandatoryField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -87,7 +86,7 @@ public class EditCustomerTestProper extends  TestBase {
         applicationAdmin.quit();
     }
 
-    //@Test (dataProvider = "smokeParameters", groups = "negative")
+    @Test (dataProvider = "smokeParameters", groups = "negative")
     public  void verifySymbolsMaxCountRegularField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         SoftAssert softAssert = new SoftAssert();
@@ -105,8 +104,10 @@ public class EditCustomerTestProper extends  TestBase {
         //click 'Save & Continue Edit' button.
         editCustomerPage = editCustomerPage.saveAndContinueEdit();
 
-        editCustomerPage.locateErrorLabel();
         //get error message if present
+        editCustomerPage.locateErrorLabel();
+
+        //verify that validator appears
         softAssert.assertNotNull(editCustomerPage.getErrorLabel());
 
         //click Account Information tab.
@@ -137,18 +138,17 @@ public class EditCustomerTestProper extends  TestBase {
         //click 'Save & Continue Edit' button.
         editCustomerPage = editCustomerPage.saveAndContinueEdit();
 
-        //get error message if present
-
+        //get page title value
         PAGE_TITLE.setValue(editCustomerPage.getEditCustomerTitle());
 
-        //Verify changes has been made.
-        Assert.assertTrue(PAGE_TITLE.toString()
-                .contains(editCustomerPage.stringFromFile("SymbolsMaxCount.txt").substring(0, 200)));
+        //Verify that page title contains entered data.
+        assertTrue(PAGE_TITLE.toString()
+                .contains(editCustomerPage.stringFromFile("SymbolsMaxCount.txt")));
 
         applicationAdmin.quit();
     }
 
-   // @Test (dataProvider = "smokeParameters")
+    @Test (dataProvider = "smokeParameters", groups = "positive")
     public  void pickNewDefaultBillingAddress(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -174,13 +174,13 @@ public class EditCustomerTestProper extends  TestBase {
         applicationAdmin.quit();
     }
 
-    @AfterMethod//(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         ApplicationAdmin.signout();
-        // ApplicationAdmin.quitAll();
+       //ApplicationAdmin.quitAll();
     }
 
-    @AfterClass//(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     void tearDown() throws Exception {
         ApplicationAdmin.quitAll();
     }

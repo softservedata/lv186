@@ -9,10 +9,9 @@ import com.softserve.edu.magento.tools.ASearch;
 import com.softserve.edu.magento.tools.Search;
 import com.softserve.edu.magento.tools.SearchExplicitPresent;
 import com.softserve.edu.magento.tools.SearchExplicitVisible;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
@@ -778,35 +777,21 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
         enterValueIntoLastname(value);
     }
     //Addresses business logic.
-    public void createNewAddress (String values) {
-        String[] result = values.split(";");
-		for(int i=0; i<result.length; i++){
-		System.out.println(result[i]);
-		}
-        Actions action  = new Actions(ASearch.getWebDriver());
-       // getAdressesAjax().getAddNewAddresses().click();
-        action.moveToElement(Search.cssSelector("input[name='address[8][street][0]']")).click().sendKeys(result[0]).perform();
-
-        action.moveToElement(Search.cssSelector("input[name='address[8][city]']")).click().sendKeys(result[1]).perform();
-
-
-
-        action.moveToElement(Search.cssSelector("input[name='address[8][postcode]']")).click().sendKeys(result[4]).perform();
-
-       // getAdressesAjax().getCountry().selectByIndex(1);
+	public void createNewAddress(String values) {
+		String[] result = values.split(";");
+		Actions action = new Actions(ASearch.getWebDriver());
+		getAdressesAjax().getAddNewAddresses().click();
+		action.moveToElement(Search.cssSelector("input[name='address[new_0][street][0]']")).click().sendKeys(result[0]).perform();
+		action.moveToElement(Search.cssSelector("input[name='address[new_0][city]']")).click().sendKeys(result[1]).perform();
+		action.moveToElement(Search.cssSelector("input[name='address[new_0][postcode]']")).click().sendKeys(result[2]).perform();
 //        ((JavascriptExecutor)ASearch.getWebDriver()).executeScript
 //                ("document.querySelector('[name=\"address[new_0][country_id]\"], [value=\"' + \"US\" + '\"])').selected = true;", Search.cssSelector("select[name='address[new_0][country_id]']"));
-
-
-        action.moveToElement(Search.cssSelector("input[name='address[8][telephone]']")).click().sendKeys(result[4]).perform();
-       // action.moveToElement(Search.cssSelector("select[name='address[new_0][country_id]']")).click().perform();
-      // Search.cssSelector("select[name='address[new_0][country_id]']").click();
-
-      //  action.moveToElement(Search.cssSelector("option[value='BS']")).click().perform();
-       // getAdressesAjax().getState().selectByVisibleText(result[3]);
-        action.moveToElement(Search.cssSelector("input[name='address[8][prefix]']"));
-
-    }
+		action.moveToElement(Search.cssSelector("input[name='address[new_0][telephone]']")).click().sendKeys(result[3]).perform();
+		Search.cssSelector("select[name='address[new_0][country_id]']").click();
+		ASearch.getWebDriver().switchTo().activeElement().sendKeys(Keys.ARROW_DOWN);
+		ASearch.getWebDriver().switchTo().activeElement().click();
+		action.moveToElement(Search.cssSelector("input[name='address[new_0][prefix]']"));
+	}
 
     public void checkNewDefaultBillingAddress() {
         Search

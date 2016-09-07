@@ -102,9 +102,12 @@ public class PreSmokeTest extends TestBase {
 //	    }
         for (IAdminUser currentUser : AdminUserRepository.get().getAdminUsersFromDB()) {
             System.out.println("firstaname = " + currentUser.getFirstname());
+            System.out.println("lastname = " + currentUser.getLastname());
+            System.out.println("mail = " + currentUser.getMail());
             System.out.println("username = " + currentUser.getUsername());
+            System.out.println();
         }
-        System.out.println("firstaname(tttt)  = " + AdminUserRepository.get().getAdminUserFromDB("tttt").getFirstname());
+        System.out.println("firstaname for olutsitc = " + AdminUserRepository.get().getAdminUserFromDB("olutsitc").getFirstname());
 	}
 	
 	//@Test(dataProvider = "smokeParameters")

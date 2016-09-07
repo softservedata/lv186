@@ -20,30 +20,28 @@ import org.testng.asserts.SoftAssert;
 
 import static com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Constants.DEFAULT_BILLING_ADDRESS;
 import static com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Constants.PAGE_TITLE;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by ayaremctc on 25.08.2016.
  */
 public class EditCustomerTestProper extends  TestBase {
-    @DataProvider//(parallel = true)
+    @DataProvider
     public Object[][] smokeParameters(ITestContext context) {
         return ListUtils.get()
                 .toMultiArray(
                         ParameterUtils.get()
-                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+                                .updateParametersAll(ApplicationSourcesRepository.getNewChromeLocalHostAdmin(), context),
                         AdminUserRepository.get().adminAndrii());
     }
 
-    //@Test (dataProvider = "smokeParameters")
+    @Test (dataProvider = "smokeParameters",  groups = "positive")
     public  void verifyInputSymbols(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
         AllCustomersPage allCustomersPage = dashboardPage.gotoAllCustomersPage();
         EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
-
-        //save page title.
-       PAGE_TITLE.setValue(editCustomerPage.getEditCustomerTitle());
 
         //click Account Information tab.
         editCustomerPage.navToAccountInfo();
@@ -54,13 +52,16 @@ public class EditCustomerTestProper extends  TestBase {
         //click 'Save & Continue Edit' button.
         editCustomerPage = editCustomerPage.saveAndContinueEdit();
 
+        //save page title.
+        PAGE_TITLE.setValue(editCustomerPage.getEditCustomerTitle());
+
         //Verify changes has been made.
-        Assert.assertTrue(PAGE_TITLE.toString()
-                .contains(editCustomerPage.stringFromFile("SpecialSymbols.txt")) );
+        assertTrue(PAGE_TITLE.toString()
+                .contains(editCustomerPage.stringFromFile("SpecialSymbols.txt").substring(0, 5)) );
         applicationAdmin.quit();
     }
 
-    //@Test (dataProvider = "smokeParameters")
+    @Test (dataProvider = "smokeParameters",  groups = "positive")
     public  void verifySymbolsMaxCountMandatoryField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -81,11 +82,11 @@ public class EditCustomerTestProper extends  TestBase {
         editCustomerPage.locateErrorLabel();
 
         //Verify changes has been made.
-        Assert.assertTrue(editCustomerPage.getErrorLabel().isDisplayed());
+        assertTrue(editCustomerPage.getErrorLabel().isDisplayed());
         applicationAdmin.quit();
     }
 
-    //@Test (dataProvider = "smokeParameters")
+    @Test (dataProvider = "smokeParameters", groups = "negative")
     public  void verifySymbolsMaxCountRegularField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         SoftAssert softAssert = new SoftAssert();
@@ -103,8 +104,10 @@ public class EditCustomerTestProper extends  TestBase {
         //click 'Save & Continue Edit' button.
         editCustomerPage = editCustomerPage.saveAndContinueEdit();
 
-        editCustomerPage.locateErrorLabel();
         //get error message if present
+        editCustomerPage.locateErrorLabel();
+
+        //verify that validator appears
         softAssert.assertNotNull(editCustomerPage.getErrorLabel());
 
         //click Account Information tab.
@@ -117,7 +120,35 @@ public class EditCustomerTestProper extends  TestBase {
         applicationAdmin.quit();
     }
 
-    @Test (dataProvider = "smokeParameters")
+    @Test (dataProvider = "smokeParameters", groups = "negative")
+    public  void verifySymbolsMaxCountDisplayed(ApplicationSources applicationSources, IAdminUser adminUser) {
+        // precondition
+        ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
+        DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+        AllCustomersPage allCustomersPage = dashboardPage.gotoAllCustomersPage();
+        EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
+
+        //click Account Information tab.
+        editCustomerPage.navToAccountInfo();
+
+        //enter values into field
+        editCustomerPage.enterValueIntoFirstname(editCustomerPage
+                .stringFromFile("SymbolsMaxCount.txt").substring(0, 200));
+
+        //click 'Save & Continue Edit' button.
+        editCustomerPage = editCustomerPage.saveAndContinueEdit();
+
+        //get page title value
+        PAGE_TITLE.setValue(editCustomerPage.getEditCustomerTitle());
+
+        //Verify that page title contains entered data.
+        assertTrue(PAGE_TITLE.toString()
+                .contains(editCustomerPage.stringFromFile("SymbolsMaxCount.txt")));
+
+        applicationAdmin.quit();
+    }
+
+    @Test (dataProvider = "smokeParameters", groups = "positive")
     public  void pickNewDefaultBillingAddress(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -137,20 +168,19 @@ public class EditCustomerTestProper extends  TestBase {
         //click 'Save & Continue Edit' button.
         editCustomerPage = editCustomerPage.saveAndContinueEdit();
         DEFAULT_BILLING_ADDRESS.setValue(editCustomerPage.getAddressValues());
-        System.out.println(DEFAULT_BILLING_ADDRESS);
-        System.out.println("\n" + editCustomerPage.stringFromFile("NewAddress.txt"));
-        Assert.assertTrue(DEFAULT_BILLING_ADDRESS.toString().contains(editCustomerPage.stringFromFile("NewAddress.txt").substring(0, 20)));
 
-       // applicationAdmin.quit();
+        assertTrue(DEFAULT_BILLING_ADDRESS.toString().contains(editCustomerPage.stringFromFile("NewAddress.txt").substring(0, 19)));
+
+        applicationAdmin.quit();
     }
 
-   // @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         ApplicationAdmin.signout();
-        // ApplicationAdmin.quitAll();
+       //ApplicationAdmin.quitAll();
     }
 
-   // @AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     void tearDown() throws Exception {
         ApplicationAdmin.quitAll();
     }

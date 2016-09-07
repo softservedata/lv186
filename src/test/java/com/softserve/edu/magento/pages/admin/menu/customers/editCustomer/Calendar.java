@@ -1,10 +1,12 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
+import com.softserve.edu.magento.tools.ASearch;
 import com.softserve.edu.magento.tools.Search;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +37,7 @@ public class Calendar {
     /**
      * Threadsafe initializer.
      */
-    public static Calendar initOrders() {
+    public static Calendar initCalendar() {
         if (instance == null) {
             synchronized (Calendar.class) {
                 instance = new Calendar();
@@ -65,6 +67,28 @@ public class Calendar {
 
     public WebElement getClose() {
         return this.close;
+    }
+
+    public String setStringData (String day, String month, String year) {
+        String result = new String();
+        return result = String.format("%s/%s/%s", day, month, year);
+    }
+
+    public void setData (String day, String month, String year){
+        Search.cssSelector("button.ui-datepicker-trigger.v-middle").click();
+        Select monthSelect = new Select(Search.cssSelector("select.ui-datepicker-month"));
+        Search.cssSelector("select.ui-datepicker-month").click();
+        List<WebElement> months = Search.cssSelectors("select.ui-datepicker-month option");
+        System.out.println(months.size());
+        List<String> monthsString = new ArrayList<String>();
+        for (WebElement e : months){
+            monthsString.add(e.getText());
+        }
+        System.out.println(monthsString.size());
+        int index = monthsString.indexOf(month);
+        System.out.println(index);
+        ASearch.getWebDriver().switchTo().activeElement();
+        monthSelect.selectByVisibleText(monthsString.get(index));
     }
 
 }

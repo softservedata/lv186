@@ -89,7 +89,7 @@ public final class DataSourceRepository {
             // TODO Develop Custom Exception
             throw new RuntimeException(FAILED_JDBC_DRIVER);
         }
-        return new DataSource(jdbcDriver, "jdbc:mysql://localhost:3306/magento", "root", "root");
+        return new DataSource(jdbcDriver, "jdbc:mysql://192.168.195.210:3306/magento", "monty", "Monty#186");
     }
 
 }

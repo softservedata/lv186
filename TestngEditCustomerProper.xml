@@ -9,7 +9,7 @@
         <!--<include name="EditTest" />-->
         <!--</run>-->
         <!--</groups>-->
-        <class>
+        <classes>
             <class name="com.softserve.edu.magento.tests.EditCustomerTestProper" >
                 <methods>
                 <!--<include name="findCustomerFromLastOrders" />-->

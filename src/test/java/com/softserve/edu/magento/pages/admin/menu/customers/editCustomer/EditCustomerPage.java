@@ -9,6 +9,8 @@ import com.softserve.edu.magento.tools.ASearch;
 import com.softserve.edu.magento.tools.Search;
 import com.softserve.edu.magento.tools.SearchExplicitPresent;
 import com.softserve.edu.magento.tools.SearchExplicitVisible;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -55,6 +57,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 
         public void setValue(String value) {
             this.value = value;
+            Search.takeScreenShort("scr1");
         }
 
         @Override
@@ -96,8 +99,12 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
         return  new EditCustomerPage();
     }
 
+    /**
+     * Finds validator and inits it.
+     * @return new errorLabel
+     */
     public WebElement locateErrorLabel() {
-        try{
+    	try{
             this.errorLabel = Search.cssSelector("label.admin__field-error");
         } catch (NoSuchElementException e){
             this.errorLabel = null;
@@ -457,7 +464,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 			/*
 			 * Initialization depends on customer information.
 			 */
-			if (!Search.cssSelector("address").isDisplayed()) {
+			if (!Search.cssSelectors("address").get(0).isDisplayed()) {
 				addNewAddresses.click();
 			}
 			this.address = Search.cssSelector("address");
@@ -575,6 +582,10 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 		public WebElement getVat() {
 			return vat;
 		}
+
+		public void setDefaultBillingCHK(WebElement element) {
+		  this.defaultBillingCHK = element;
+        }
 	}
 
 	interface IOrders {
@@ -755,43 +766,80 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 				.toString());
 	}
     //Account Information business logic.
+
+	/**
+	 * Enter sptcific valie into Prefix
+	 * field.
+	 * @param value value to be entered.
+	 */
 	public void enterValueIntoPrefix (String value){
 	    getAccountInformation().getPrefix().sendKeys(value);
     }
 
+    /**
+     * Enter sptcific valie into Firstname
+     * field.
+     * @param value value to be entered.
+     */
     public void enterValueIntoFirstname (String value){
         getAccountInformation().getFirstname().sendKeys(value);
     }
 
+    /**
+     * Enter sptcific valie into Lastname
+     * field.
+     * @param value value to be entered.
+     */
     public void enterValueIntoLastname (String value){
         getAccountInformation().getLastname().sendKeys(value);
     }
 
+    /**
+     * Enter sptcific valie into concrete
+     * fields.
+     * @param value value to be entered.
+     */
 	public void enterValuesIntoFields (String value) {
         enterValueIntoPrefix(value);
         enterValueIntoFirstname(value);
         enterValueIntoLastname(value);
     }
     //Addresses business logic.
-    public void createNewAddress(String values){
-        String[] result = values.split(";");
-		for(int i=0; i<result.length; i++){
-		System.out.println(result[i]);
-		}
-        //Actions action  = new Actions();
 
-        getAdressesAjax().getAddNewAddresses();
+    /**
+     * Createsthe new address and enters
+     * values into mandatory fields.
+     * @param values
+     */
+    public void createNewAddress (String values) {
+        String[] result = values.split(";");
+        Actions action = new Actions(ASearch.getWebDriver());
         getAdressesAjax().getAddNewAddresses().click();
-        getAdressesAjax().getStreetAdressFirst().sendKeys(result[0]);
-        getAdressesAjax().getCity().sendKeys(result[1]);
-        getAdressesAjax().getCountry().selectByValue(result[2]);
-        getAdressesAjax().getState().selectByValue(result[3]);
-        getAdressesAjax().getZip().sendKeys(result[4]);
-        getAdressesAjax().getPhone().sendKeys(result[5]);
+        action.moveToElement(Search.cssSelector("input[name='address[new_0][street][0]']")).click().sendKeys(result[0]).perform();
+
+        action.moveToElement(Search.cssSelector("input[name='address[new_0][city]']")).click().sendKeys(result[1]).perform();
+
+        action.moveToElement(Search.cssSelector("input[name='address[new_0][postcode]']")).click().sendKeys(result[2]).perform();
+
+//        ((JavascriptExecutor)ASearch.getWebDriver()).executeScript
+//                ("document.querySelector('[name=\"address[new_0][country_id]\"], [value=\"' + \"US\" + '\"])').selected = true;", Search.cssSelector("select[name='address[new_0][country_id]']"));
+
+        action.moveToElement(Search.cssSelector("input[name='address[new_0][telephone]']")).click().sendKeys(result[3]).perform();
+        Search.cssSelector("select[name='address[new_0][country_id]']").click();
+        ASearch.getWebDriver().switchTo().activeElement().sendKeys(Keys.ARROW_DOWN);
+        ASearch.getWebDriver().switchTo().activeElement().click();
+
+        action.moveToElement(Search.cssSelector("input[name='address[new_0][prefix]']"));
     }
 
+    /**
+     * Checks the new address as
+     * Default billing address.
+     */
     public void checkNewDefaultBillingAddress() {
-        getAdressesAjax().getDefaultBillingCHK().click();
+        Search
+                .xpaths("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]")
+                .get(1).click();
     }
 
     public String getAddressValues () {
@@ -889,6 +937,11 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
     	return result;
 	}
 
+    /**
+     * Generates rhe string from file
+     * @param file File to get chars from.
+     * @return String of chars from file.
+     */
 	public String stringFromFile(String file) {
         String result = null;
         try {

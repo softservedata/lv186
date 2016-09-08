@@ -89,7 +89,8 @@ public class JMeterAPISampleTest {
                 threadGroupHashTree.add(examplecomSampler);
 
                 // save generated test plan to JMeter's .jmx file format
-                SaveService.saveTree(testPlanTree, new FileOutputStream("report\\jmeter_api_sample.jmx"));
+                FileOutputStream out  = new FileOutputStream("report\\jmeter_api_sample.jmx");
+                SaveService.saveTree(testPlanTree, out);
 
                 Summariser summer = null;
                 String summariserName = JMeterUtils.getPropDefault("summariser.name", "summary");

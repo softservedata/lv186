@@ -10,6 +10,7 @@ import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPageAfterSuccesRegistration;
 import com.softserve.edu.magento.pages.admin.menu.customers.RegistrationNewCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.Calendar;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.ICalendar;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
@@ -61,7 +62,7 @@ public class TestCalendar {
 
         // setting data to login form
         Calendar calendar = Calendar.initCalendar();
-        calendar.setData("10", "Aug", "2016");
+        calendar.setData("10", Calendar.Months.AUGUST, "2005");
         Thread.sleep(8000);
         applicationAdmin.quit();
     }

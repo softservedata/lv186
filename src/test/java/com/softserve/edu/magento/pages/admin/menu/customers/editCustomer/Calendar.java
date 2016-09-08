@@ -12,7 +12,7 @@ import java.util.List;
 /**
  *
  */
-public class Calendar {
+public class Calendar implements ICalendar {
     private static volatile Calendar instance;
 
     private Select month;
@@ -25,13 +25,16 @@ public class Calendar {
      * Constructor.
      */
     private Calendar() {
+        Search.cssSelector("button.ui-datepicker-trigger.v-middle").click();
+
         this.month = new Select(
-                Search.cssSelector("select[data-handler='selectMonth']"));
+                Search.cssSelector("select.ui-datepicker-month"));
         this.year = new Select(
-                Search.cssSelector("select[data-handler='selectYear']"));
+                Search.cssSelector("select.ui-datepicker-year"));
         this.day = Search.cssSelectors("table.ui-datepicker-calendar a");
         this.goToday = Search.cssSelector("button[data-handler='today']");
         this.close = Search.cssSelector("button[data-handler='hide']");
+        System.out.println("Constructor done!");
     }
 
     /**
@@ -69,52 +72,49 @@ public class Calendar {
         return this.close;
     }
 
+    public void setMonth(Select month) {
+        this.month = month;
+    }
+
+    public void setYear(Select year) {
+        this.year = year;
+    }
+
+    public void setDay(List<WebElement> day) {
+        this.day = day;
+    }
+
     public String setStringData (String day, String month, String year) {
         String result = new String();
         return result = String.format("%s/%s/%s", day, month, year);
     }
 
-    public void setData (String day, String month, String year){
-        Search.cssSelector("button.ui-datepicker-trigger.v-middle").click();
-        //-------------------------------- MONTH -----------------------------
-//       Select monthSelect = new Select(Search.cssSelector("select.ui-datepicker-month"));
-//        Search.cssSelector("select.ui-datepicker-month").click();
-//        List<WebElement> months = Search.cssSelectors("select.ui-datepicker-month option");
-//        System.out.println(months.size());
-//        List<String> monthsString = new ArrayList<String>();
-//        for (WebElement e : months){
-//            monthsString.add(e.getText());
-//        }
-//        System.out.println(monthsString.size());
-//        int indexMonths = monthsString.indexOf(month);
-//        System.out.println(index);
-//        ASearch.getWebDriver().switchTo().activeElement();
-//        monthSelect.selectByVisibleText(monthsString.get(indexMonths));
-//-------------------------------- YEAR -----------------------------
-        Select yearsSelect = new Select(Search.cssSelector("select.ui-datepicker-year"));
+    public void setData (String day, Calendar.Months month, String year){
+       // -------------------------------- MONTH -----------------------------
+        Search.cssSelector("select.ui-datepicker-month").click();
+        /*
+        Month select options.
+         */
+        List<WebElement> months = Search.cssSelectors("select.ui-datepicker-month option");
+        List<String> monthsString = new ArrayList<>();
+        for (WebElement e : months){
+            monthsString.add(e.getText());
+        }
+        ASearch.getWebDriver().switchTo().activeElement();
+        getMonth().selectByVisibleText(monthsString.get(monthsString.indexOf(month.toString())));
+        //-------------------------------- YEAR -----------------------------
+        setYear(new Select(Search.cssSelector("select.ui-datepicker-year")));
         Search.cssSelector("select.ui-datepicker-year").click();
         List<WebElement> years = Search.cssSelectors("select.ui-datepicker-year option");
-        System.out.println(years.size());
-        List<String> yearsString = new ArrayList<String>();
-        for(WebElement w : years){
-            yearsString.add(w.getText());
+        List<String> yearsString = new ArrayList<>();
+        for(WebElement e : years){
+            yearsString.add(e.getText());
         }
-        int indexYear = yearsString.indexOf(year);
         ASearch.getWebDriver().switchTo().activeElement();
-        yearsSelect.selectByVisibleText(yearsString.get(indexYear));
-
+        getYear().selectByVisibleText(yearsString.get(yearsString.indexOf(year)));
 //-------------------------------- DAY -----------------------------
-//        List<WebElement> listDays = Search.xpaths(".//*[@id='ui-datepicker-div']/table/tbody");
-//        for(WebElement w : listDays){
-//            System.out.println(w.getText());
-//        }
-//        List<String> listStringDays = new ArrayList<>();
-//        for(WebElement elem : listDays){
-//            listStringDays.add(elem.getText());
-//        }
-//        int indexDays = listStringDays.indexOf(day);
-//        monthSelect.selectByVisibleText(listStringDays.get(indexDays));
-
+        setDay(Search.cssSelectors("table.ui-datepicker-calendar a"));
+        getDay().get(Integer.parseInt(day)-1).click();
     }
 
 }

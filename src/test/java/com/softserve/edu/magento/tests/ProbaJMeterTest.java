@@ -39,7 +39,7 @@ public class ProbaJMeterTest {//extends TestBase{
 
     @BeforeClass
     public void beforeClass() {
-        jmeterHome = new File("C:\\Program Files (x86)\\JMeter\\apache-jmeter-3.0");
+        jmeterHome = new File("C:\\JMeter");
         slash = System.getProperty("file.separator");
         if (jmeterHome.exists()) {
             jmeterProperties = new File(jmeterHome.getPath() + slash + "bin" + slash + "jmeter.properties");
@@ -68,7 +68,7 @@ public class ProbaJMeterTest {//extends TestBase{
         // First HTTP Sampler - open google.com
         HTTPSamplerProxy examplecomSampler = new HTTPSamplerProxy();
 //        examplecomSampler.setDomain("localhost/Magento/admin_7c8dts");
-        examplecomSampler.setDomain("google.com");
+        examplecomSampler.setDomain("http://192.168.195.210/magento/admin");
         examplecomSampler.setPort(80);
 //        examplecomSampler.setName("Open Magento");
         examplecomSampler.setName("Open google.com");

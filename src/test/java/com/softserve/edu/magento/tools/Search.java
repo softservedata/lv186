@@ -220,4 +220,8 @@ public class Search {
     public static void clickElement(WebElement webElement) {
         getinstance().getSearch().clickElement(webElement);
     }
+
+    public static boolean waitForLoaderDone( ) {
+        return getinstance().getSearch().waitForLoaderDone();
+    }
 }

@@ -5,11 +5,7 @@
 	<parameter name="driverPath" value="/home/bohdan/Downloads/chromedriver" />
 	<test name="Test">
 		<classes>
-			<class name="com.softserve.edu.magento.tests.SmokeTestsDashboard">
-				<methods>
-					<include name="testOrdersPages"/>
-				</methods>
-			</class>
+			<class name="com.softserve.edu.magento.tests.OrdersTests"/>
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

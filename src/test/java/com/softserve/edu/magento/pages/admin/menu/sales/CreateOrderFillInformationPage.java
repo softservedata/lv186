@@ -1,13 +1,14 @@
 package com.softserve.edu.magento.pages.admin.menu.sales;
 
 import com.softserve.edu.magento.data.admin.products.IProduct;
-import com.softserve.edu.magento.data.admin.products.ProductRepository;
 import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import ss.af.reporting.annotations.ServiceReport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.softserve.edu.magento.pages.admin.menu.sales.CreateOrderSelectCustomerPage.DATA_NOT_FOUND_MESSAGE;
@@ -16,8 +17,18 @@ import static com.softserve.edu.magento.pages.admin.menu.sales.CreateOrderSelect
  * Created by bohdan on 16.08.16.
  */
 public class CreateOrderFillInformationPage extends VerticalMenu {
+    public final static String VALIDATION_MESSAGE = "This is a required field.";
+    public final static String SUCCESS_MESSAGE = "You created the order.";
 
     // ----------------------------
+    private class CancelComponent {
+        public WebElement okButton;
+
+        public CancelComponent() {
+            this.okButton = Search.cssSelector(".action-primary.action-accept");
+        }
+    }
+
     private class ProductsComponent {
 
         public WebElement searchedProductName;
@@ -51,12 +62,15 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
 
         public ShippingMethodComponent() {
             this.fixedRate = Search.cssSelector("[for='s_method_flatrate_flatrate']");
-           // this.tableRate = Search.cssSelector("[for='s_method_tablerate_bestway']");
+            // this.tableRate = Search.cssSelector("[for='s_method_tablerate_bestway']");
         }
     }
 
-    //Elements
 
+    //Elements
+    private WebElement successMessage;
+    private WebElement invalidMessage;
+    private List<WebElement> invalidMessages;
     private WebElement cancel;
     private WebElement submitOrder;
     private WebElement addProducts;
@@ -71,7 +85,6 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
     private WebElement billingAdressPostalCode;
     private WebElement billingAdressPhoneNumber;
     private WebElement shippingMethod;
-    private WebElement shippingAdressCustomerAdresses;
     private WebElement shippingAdressFirstName;
     private WebElement shippingAdressLastName;
     private WebElement shippingAdressStreetAddress;
@@ -86,8 +99,10 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
     private ProductsComponent productsComponent;
     private ItemsOrderedComponent itemsOrderedComponent;
     private ShippingMethodComponent shippingMethodComponent;
+    private CancelComponent cancelComponent;
 
     public CreateOrderFillInformationPage() {
+        Search.waitForLoaderDone();
         cancel = Search.cssSelector("#reset_order_top_button");
         submitOrder = Search.cssSelector("#submit_order_top_button");
         addProducts = Search.cssSelector("[class='action-secondary action-add']");
@@ -101,7 +116,6 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
         billingAdressStateSelect = Search.cssSelector("#order-billing_address_region_id");
         billingAdressPostalCode = Search.cssSelector("#order-billing_address_postcode");
         billingAdressPhoneNumber = Search.cssSelector("#order-billing_address_telephone");
-        shippingAdressCustomerAdresses = Search.cssSelector("#order-shipping_address_customer_address_id");
         shippingAdressFirstName = Search.cssSelector("#order-shipping_address_firstname");
         shippingAdressLastName = Search.cssSelector("#order-shipping_address_lastname");
         shippingAdressStreetAddress = Search.cssSelector("#order-shipping_address_street0");
@@ -111,22 +125,31 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
         shippingAdressStateSelect = Search.cssSelector("#order-shipping_address_region_id");
         shippingAdressPostalCode = Search.cssSelector("#order-shipping_address_postcode");
         shippingAdressPhoneNumber = Search.cssSelector("#order-shipping_address_telephone");
-        if (Search.checkDOMForText("Get shipping methods and rates")) {
-            shippingMethod = Search.linkText("Get shipping methods and rates");
-        }
-        shippingAdressCustomerAdresses = Search.cssSelector("#order-shipping_address_customer_address_id");
+        shippingMethod = Search.linkText("Get shipping methods and rates");
     }
 
     // Page Object
     //  Data PageObject
 
+    public WebElement getSuccessMessage() {
+        return successMessage;
+    }
+
+    public WebElement getInvalidMessage() {
+        return invalidMessage;
+    }
+
+    public List<WebElement> getInvalidMessages() {
+        return invalidMessages;
+    }
+
+    public WebElement getOkButton() {
+        return cancelComponent.okButton;
+    }
+
     public WebElement getFixedRate() {
         return shippingMethodComponent.fixedRate;
     }
-
-//    public WebElement getTableRate() {
-//        return shippingMethodComponent.tableRate;
-//    }
 
     public WebElement getUpdateItems() {
         return itemsOrderedComponent.updateItems;
@@ -212,10 +235,6 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
         return shippingMethod;
     }
 
-    public WebElement getShippingAdressCustomerAdresses() {
-        return shippingAdressCustomerAdresses;
-    }
-
     public WebElement getShippingAdressFirstName() {
         return shippingAdressFirstName;
     }
@@ -254,19 +273,16 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
 
     // set Data PageObject
 
+    public void clickOkButton() {
+        Search.clickElement(getOkButton());
+        getOkButton().click();
+    }
+
     public void clickFixedRate() {
         Search.moveToElement(getFixedRate());
         getFixedRate().click();
-        Search.stalenessOf(getFixedRate());
-        new CreateOrderFillInformationPage();
+        Search.waitForLoaderDone();
     }
-
-//    public void clickTableRate() {
-//        Search.moveToElement(getTableRate());
-//        getTableRate().click();
-//        Search.stalenessOf(getTableRate());
-//        new CreateOrderFillInformationPage();
-//    }
 
     public void clickUpdateItems() {
         Search.moveToElement(getUpdateItems());
@@ -304,24 +320,23 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
     public void clickAddProductsToOrder() {
         Search.moveToElement(getAddProductsToOrder());
         getAddProductsToOrder().click();
+        Search.waitForLoaderDone();
         itemsOrderedComponent = new ItemsOrderedComponent();
-        new CreateOrderFillInformationPage();
     }
 
     public void clickCancel() {
-        new CreateOrderFillInformationPage();
+        cancel = Search.cssSelector("#reset_order_top_button");
         Search.moveToElement(getCancel());
         getCancel().click();
     }
 
-    public void clickSubmitOrder() {
+    private void clickSubmitOrder() {
         submitOrder = Search.cssSelector("[class='action-default scalable save primary']");
         Search.moveToElement(getSubmitOrder());
         getSubmitOrder().click();
     }
 
     public void clickAddProducts() {
-        new CreateOrderFillInformationPage();
         addProducts = Search.cssSelector("[class='action-secondary action-add']");
         Search.moveToElement(getAddProducts());
         getAddProducts().click();
@@ -379,23 +394,13 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
     }
 
     public void clickShippingMethod() {
-        new CreateOrderFillInformationPage();
         shippingMethod = Search.linkText("Get shipping methods and rates");
         Search.moveToElement(getShippingMethod());
         getShippingMethod().click();
-        if (Search.checkDOMForText("Get shipping methods and rates")) {
-            Search.stalenessOf(getShippingMethod());
-            new CreateOrderFillInformationPage();
-            shippingMethod = Search.linkText("Get shipping methods and rates");
-            getShippingMethod().click();
-        }
         shippingMethodComponent = new ShippingMethodComponent();
+
     }
 
-    public void clickShippingAdressCustomerAdresses() {
-        Search.moveToElement(getShippingAdressCustomerAdresses());
-        getShippingAdressCustomerAdresses().click();
-    }
 
     public void clickShippingAdressFirstName() {
         Search.moveToElement(getShippingAdressFirstName());
@@ -441,6 +446,7 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
         Search.moveToElement(getShippingAdressPhoneNumber());
         getShippingAdressPhoneNumber().click();
     }
+
     //  Set data Business Logic
 
     public void typeSearchForProductByName(String name) {
@@ -451,75 +457,72 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
 
 
     public void typeBillingAdressFirstName(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressFirstName();
-        new CreateOrderFillInformationPage();
         getBillingAdressFirstName().clear();
         getBillingAdressFirstName().sendKeys(name);
+        this.shippingAdressFirstName = Search.cssSelector("#order-shipping_address_firstname");
+        clickShippingAdressFirstName();
+        Search.waitForLoaderDone();
     }
 
     public void typeBillingAdressLastName(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressLastName();
-        new CreateOrderFillInformationPage();
         getBillingAdressLastName().clear();
         getBillingAdressLastName().sendKeys(name);
+        this.shippingAdressLastName = Search.cssSelector("#order-shipping_address_lastname");
+        clickShippingAdressLastName();
+        Search.waitForLoaderDone();
     }
 
     public void typeBillingAdressStreetAddress(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressStreetAddress();
-        new CreateOrderFillInformationPage();
         getBillingAdressStreetAddress().clear();
         getBillingAdressStreetAddress().sendKeys(name);
+        this.shippingAdressStreetAddress = Search.cssSelector("#order-shipping_address_street0");
+        clickShippingAdressStreetAddress();
+        Search.waitForLoaderDone();
     }
 
     public void typeBillingAdressCity(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressCity();
-        new CreateOrderFillInformationPage();
         getBillingAdressCity().clear();
         getBillingAdressCity().sendKeys(name);
+        this.shippingAdressCity = Search.cssSelector("#order-shipping_address_city");
+        clickShippingAdressCity();
+        Search.waitForLoaderDone();
     }
 
     public void typeBillingAdressCountry(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressCountry();
-        new CreateOrderFillInformationPage();
-        billingAdressCountry.findElement(By.xpath("//select[@id='order-billing_address_country_id']/option[text()='"+name+"']")).click();
-        new CreateOrderFillInformationPage();
+        billingAdressCountry.findElement(By.xpath("//select[@id='order-billing_address_country_id']/option[text()='" + name + "']")).click();
+        Search.waitForLoaderDone();
     }
 
     public void typeBillingAdressState(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressStateElement();
-        new CreateOrderFillInformationPage();
         getBillingAdressStateElement().clear();
         getBillingAdressStateElement().sendKeys(name);
+        shippingAdressPostalCode = Search.cssSelector("#order-shipping_address_postcode");
+        clickShippingAdressPostalCode();
+        Search.waitForLoaderDone();
     }
 
     public void typeBillingAdressPostalCode(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressPostalCode();
-        new CreateOrderFillInformationPage();
         getBillingAdressPostalCode().clear();
         getBillingAdressPostalCode().sendKeys(name);
+        shippingAdressPostalCode = Search.cssSelector("#order-shipping_address_postcode");
+        clickShippingAdressPostalCode();
+        Search.waitForLoaderDone();
     }
 
     public void typeBillingAdressPhoneNumber(String name) {
-        new CreateOrderFillInformationPage();
-        new CreateOrderFillInformationPage();
         clickBillingAdressPhoneNumber();
-        new CreateOrderFillInformationPage();
         getBillingAdressPhoneNumber().clear();
         getBillingAdressPhoneNumber().sendKeys(name);
+        shippingAdressPhoneNumber = Search.cssSelector("#order-shipping_address_telephone");
+        clickShippingAdressPhoneNumber();
+        Search.waitForLoaderDone();
     }
     //  Business Logic
 
@@ -544,5 +547,31 @@ public class CreateOrderFillInformationPage extends VerticalMenu {
         typeBillingAdressState(customerUser.getContactInfo().getState());
         typeBillingAdressPostalCode(customerUser.getContactInfo().getPostalCode());
         typeBillingAdressPhoneNumber(customerUser.getContactInfo().getPhoneNumber());
+    }
+
+    @ServiceReport
+    public CreateOrderSelectCustomerPage cancelCreateOrder() {
+        clickCancel();
+        cancelComponent = new CancelComponent();
+        clickOkButton();
+        return new CreateOrderSelectCustomerPage();
+    }
+
+    @ServiceReport
+    public void invalidSubmitOrderShippingMethod() {
+        clickSubmitOrder();
+        invalidMessage = Search.cssSelector("[for='order[has_shipping]']");
+    }
+
+    @ServiceReport
+    public void invalidSubmitOrderUserInfo() {
+        clickSubmitOrder();
+        invalidMessages = Search.cssSelectors(".mage-error");
+    }
+
+    @ServiceReport
+    public void successfulSubmitOrder() {
+        clickSubmitOrder();
+        successMessage = Search.cssSelector("[class='message message-success success']");
     }
 }

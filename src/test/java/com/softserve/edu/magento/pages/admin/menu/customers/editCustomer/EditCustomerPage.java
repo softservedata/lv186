@@ -1,15 +1,15 @@
 package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
+import com.softserve.edu.magento.data.customer.user.CustomerAccountInfo;
+import com.softserve.edu.magento.data.customer.user.CustomerAddressesInfo;
+import com.softserve.edu.magento.data.customer.user.IAccountInformation;
+import com.softserve.edu.magento.data.customer.user.IAdresses;
 import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
 import com.softserve.edu.magento.tools.ASearch;
 import com.softserve.edu.magento.tools.Search;
-import com.softserve.edu.magento.tools.SearchExplicitPresent;
-import com.softserve.edu.magento.tools.SearchExplicitVisible;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -17,7 +17,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.tools.Search.SearchStrategyList;
 
 import static java.nio.file.Files.readAllBytes;
 import static java.nio.file.Paths.get;
@@ -270,323 +269,323 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	/**
 	 *Inner class that represents the AccountInformation component.
 	 */
-	interface IAccountInformation {
-		public Select getAssociateToWebsite();
-		public Select getGroup();
-		public WebElement getChekboxForGroup();
-		public WebElement getLastname();
-		public WebElement getSelectedWebsite();
-		public WebElement getSelectGroup();
-		public WebElement getPrefix();
-		public WebElement getFirstname();
-		public WebElement getMiddlename();
-		public WebElement geLastname();
-		public WebElement getSuffix();
-		public WebElement getEmail();
-		public WebElement getDateOfBirth();
-		public Select getGender();
-		public Select getSendWelcomeEmailFrom();
-		public WebElement getTax();
-	}
+//	interface IAccountInformation {
+//		public Select getAssociateToWebsite();
+//		public Select getGroup();
+//		public WebElement getChekboxForGroup();
+//		public WebElement getLastname();
+//		public WebElement getSelectedWebsite();
+//		public WebElement getSelectGroup();
+//		public WebElement getPrefix();
+//		public WebElement getFirstname();
+//		public WebElement getMiddlename();
+//		public WebElement geLastname();
+//		public WebElement getSuffix();
+//		public WebElement getEmail();
+//		public WebElement getDateOfBirth();
+//		public Select getGender();
+//		public Select getSendWelcomeEmailFrom();
+//		public WebElement getTax();
+//	}
+//
+//	private class AccountInformation implements IAccountInformation {
+//		private Select associateToWebsite;
+//		private Select group;
+//		private WebElement chekboxForGroup;
+//		private WebElement prefix;
+//		private WebElement firstname;
+//		private WebElement middlename;
+//		private WebElement lastname;
+//		private WebElement suffix;
+//		private WebElement email;
+//		private WebElement dateOfBirth;
+//		private WebElement tax;
+//		private Select gender;
+//		private Select sendWelcomeEmailFrom;
+//
+//		/**
+//		 * Constructor - inits the elements for component
+//		 * on wake up.
+//		 */
+//		private AccountInformation() {
+//			this.associateToWebsite = new Select(Search
+//					.cssSelector("select[name='customer[website_id]']"));
+//			this.group = new Select(Search
+//					.cssSelector("select[name='customer[group_id]']"));
+//			this.chekboxForGroup = Search
+//					.cssSelector("input[name='customer[disable_auto_group_change]'");
+//			this.prefix =Search
+//					.cssSelector("input[name='customer[prefix]']");
+//			this.firstname = Search
+//					.cssSelector("input[name='customer[firstname]']");
+//			this.middlename = Search
+//					.cssSelector("input[name='customer[middlename]']");
+//			this.lastname = Search
+//					.cssSelector("input[name='customer[lastname]']");
+//			this.suffix = Search
+//					.cssSelector("input[name='customer[suffix]']");
+//			this.email = Search
+//					.cssSelector("input[name='customer[email]']");
+//			this.dateOfBirth = Search
+//					.cssSelector("input[name='customer[dob]']");
+//			this.tax = Search
+//					.cssSelector("input[name='customer[taxvat]']");
+//			this.gender = new Select(Search
+//					.cssSelector("select[name='customer[gender]']"));
+//			this.sendWelcomeEmailFrom = new Select(
+//					Search
+//							.cssSelector("select[name='customer[sendemail_store_id]']"));
+//		}
+//
+//		/*
+//		 * Getters for AccountInformation component
+//		 */
+//		public Select getAssociateToWebsite() {
+//			return associateToWebsite;
+//		}
+//
+//		public Select getGroup() {
+//			return group;
+//		}
+//
+//		public WebElement getChekboxForGroup() {
+//			return chekboxForGroup;
+//		}
+//
+//		public WebElement getLastname() {
+//			return lastname;
+//		}
+//
+//		public WebElement getSelectedWebsite() {
+//			return this.associateToWebsite.getFirstSelectedOption();
+//		}
+//
+//		public WebElement getSelectGroup() {
+//			return this.group.getFirstSelectedOption();
+//		}
+//
+//		public WebElement getPrefix() {
+//			return this.prefix;
+//		}
+//
+//		public WebElement getFirstname() {
+//			return this.firstname;
+//		}
+//
+//		public WebElement getMiddlename() {
+//			return this.middlename;
+//		}
+//
+//		public WebElement geLastname() {
+//			return this.lastname;
+//		}
+//
+//		public WebElement getSuffix() {
+//			return this.suffix;
+//		}
+//
+//		public WebElement getEmail() {
+//			return this.email;
+//		}
+//
+//		public WebElement getDateOfBirth() {
+//			return this.dateOfBirth;
+//		}
+//
+//		public Select getGender() {
+//			return this.gender;
+//		}
+//
+//		public Select getSendWelcomeEmailFrom() {
+//			return this.sendWelcomeEmailFrom;
+//		}
+//
+//		public WebElement getTax() {
+//			return this.tax;
+//		}
+//	}
 
-	private class AccountInformation implements IAccountInformation {
-		private Select associateToWebsite;
-		private Select group;
-		private WebElement chekboxForGroup;
-		private WebElement prefix;
-		private WebElement firstname;
-		private WebElement middlename;
-		private WebElement lastname;
-		private WebElement suffix;
-		private WebElement email;
-		private WebElement dateOfBirth;
-		private WebElement tax;
-		private Select gender;
-		private Select sendWelcomeEmailFrom;
-
-		/**
-		 * Constructor - inits the elements for component
-		 * on wake up.
-		 */
-		private AccountInformation() {
-			this.associateToWebsite = new Select(Search
-					.cssSelector("select[name='customer[website_id]']"));
-			this.group = new Select(Search
-					.cssSelector("select[name='customer[group_id]']"));
-			this.chekboxForGroup = Search
-					.xpath("//label[contains(text(),'Disable Automatic ')]");
-			this.prefix =Search
-					.cssSelector("input[name='customer[prefix]']");
-			this.firstname = Search
-					.cssSelector("input[name='customer[firstname]']");
-			this.middlename = Search
-					.cssSelector("input[name='customer[middlename]']");
-			this.lastname = Search
-					.cssSelector("input[name='customer[lastname]']");
-			this.suffix = Search
-					.cssSelector("input[name='customer[suffix]']");
-			this.email = Search
-					.cssSelector("input[name='customer[email]']");
-			this.dateOfBirth = Search
-					.cssSelector("input[name='customer[dob]']");
-			this.tax = Search
-					.cssSelector("input[name='customer[taxvat]']");
-			this.gender = new Select(Search
-					.cssSelector("select[name='customer[gender]']"));
-			this.sendWelcomeEmailFrom = new Select(
-					Search
-							.cssSelector("select[name='customer[sendemail_store_id]']"));
-		}
-
-		/*
-		 * Getters for AccountInformation component
-		 */
-		public Select getAssociateToWebsite() {
-			return associateToWebsite;
-		}
-
-		public Select getGroup() {
-			return group;
-		}
-
-		public WebElement getChekboxForGroup() {
-			return chekboxForGroup;
-		}
-
-		public WebElement getLastname() {
-			return lastname;
-		}
-
-		public WebElement getSelectedWebsite() {
-			return this.associateToWebsite.getFirstSelectedOption();
-		}
-
-		public WebElement getSelectGroup() {
-			return this.group.getFirstSelectedOption();
-		}
-
-		public WebElement getPrefix() {
-			return this.prefix;
-		}
-
-		public WebElement getFirstname() {
-			return this.firstname;
-		}
-
-		public WebElement getMiddlename() {
-			return this.middlename;
-		}
-
-		public WebElement geLastname() {
-			return this.lastname;
-		}
-
-		public WebElement getSuffix() {
-			return this.suffix;
-		}
-
-		public WebElement getEmail() {
-			return this.email;
-		}
-
-		public WebElement getDateOfBirth() {
-			return this.dateOfBirth;
-		}
-
-		public Select getGender() {
-			return this.gender;
-		}
-
-		public Select getSendWelcomeEmailFrom() {
-			return this.sendWelcomeEmailFrom;
-		}
-
-		public WebElement getTax() {
-			return this.tax;
-		}
-	}
-
-	interface IAdresses {
-		public WebElement getAddNewAddresses();
-		public WebElement getAddress();
-		public WebElement getDeleteButton();
-		public WebElement getDefaultBillingCHK();
-		public WebElement getDefaultShippingCHK();
-		public WebElement getPrefix();
-		public WebElement getFirstname();
-		public WebElement getMiddlename();
-		public WebElement getLastname();
-		public WebElement getSuffix();
-		public WebElement getCompany();
-		public WebElement getStreetAdressFirst();
-		public WebElement getStreetAdressSecond();
-		public WebElement getCity();
-		public Select getCountry();
-		public Select getState();
-		public WebElement getZip();
-		public WebElement getPhone();
-		public WebElement getVat();
-	}
-
-	/**
-	 * Inner class that represents the Addresses component.
-	 */
-	private class Adresses implements IAdresses {
-		private WebElement addNewAddresses;
-		private WebElement address;
-		private WebElement deleteButton;
-		private WebElement defaultBillingCHK;
-		private WebElement defaultShippingCHK;
-		private WebElement prefix;
-		private WebElement firstname;
-		private WebElement middlename;
-		private WebElement lastname;
-		private WebElement suffix;
-		private WebElement company;
-		private WebElement streetAdressFirst;
-		private WebElement streetAdressSecond;
-		private WebElement city;
-		private Select country;
-		private Select state;
-		private WebElement zip;
-		private WebElement phone;
-		private WebElement vat;
-
-		/*
-		 * Constructor
-		 * Initializes the only button at first, but only,
-		 * when no AJAX component that represents the addresses is
-		 * present.
-		 */
-		private Adresses() {
-			this.addNewAddresses = Search
-							.xpath("//span[contains(text(),'Add New Addresses')]/parent::button");
-			/*
-			 * Initialization depends on customer information.
-			 */
-			if (!Search.cssSelectors("address").get(0).isDisplayed()) {
-				addNewAddresses.click();
-			}
-			this.address = Search.cssSelector("address");
-			this.deleteButton = Search
-					.cssSelector(".action-delete");
-			this.defaultBillingCHK = Search
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]");
-			this.defaultShippingCHK = Search
-							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]");
-			this.prefix = Search
-							.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]");
-			this.firstname = Search
-							.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]");
-			this.middlename = Search
-							.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]");
-			this.lastname = Search
-							.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]");
-			this.suffix = Search
-							.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]");
-			this.company = Search
-							.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input");
-			this.streetAdressFirst = Search
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input");
-			this.streetAdressSecond = Search
-							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]");
-			this.city = Search
-							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input");
-			this.country = new Select(Search
-							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select"));
-			this.state = new Select(Search
-							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select"));
-			this.zip = Search
-							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input");
-			this.phone = Search
-							.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input");
-			this.vat = Search
-							.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input");
-		}
-		
-		/*
-		 * Getters for the component.
-		 */
-		public WebElement getAddNewAddresses() {
-			return addNewAddresses;
-		}
-
-		public WebElement getAddress() {
-			return address;
-		}
-
-		public WebElement getDeleteButton() {
-			return deleteButton;
-		}
-
-		public WebElement getDefaultBillingCHK() {
-			return defaultBillingCHK;
-		}
-
-		public WebElement getDefaultShippingCHK() {
-			return defaultShippingCHK;
-		}
-
-		public WebElement getPrefix() {
-			return prefix;
-		}
-
-		public WebElement getFirstname() {
-			return firstname;
-		}
-
-		public WebElement getMiddlename() {
-			return middlename;
-		}
-
-		public WebElement getLastname() {
-			return lastname;
-		}
-
-		public WebElement getSuffix() {
-			return suffix;
-		}
-
-		public WebElement getCompany() {
-			return company;
-		}
-
-		public WebElement getStreetAdressFirst() {
-			return streetAdressFirst;
-		}
-
-		public WebElement getStreetAdressSecond() {
-			return streetAdressSecond;
-		}
-
-		public WebElement getCity() {
-			return city;
-		}
-
-		public Select getCountry() {
-			return country;
-		}
-
-		public Select getState() {
-			return state;
-		}
-
-		public WebElement getZip() {
-			return zip;
-		}
-
-		public WebElement getPhone() {
-			return phone;
-		}
-
-		public WebElement getVat() {
-			return vat;
-		}
-
-		public void setDefaultBillingCHK(WebElement element) {
-		  this.defaultBillingCHK = element;
-        }
-	}
+//	interface IAdresses {
+//		public WebElement getAddNewAddresses();
+//		public WebElement getAddress();
+//		public WebElement getDeleteButton();
+//		public WebElement getDefaultBillingCHK();
+//		public WebElement getDefaultShippingCHK();
+//		public WebElement getPrefix();
+//		public WebElement getFirstname();
+//		public WebElement getMiddlename();
+//		public WebElement getLastname();
+//		public WebElement getSuffix();
+//		public WebElement getCompany();
+//		public WebElement getStreetAdressFirst();
+//		public WebElement getStreetAdressSecond();
+//		public WebElement getCity();
+//		public Select getCountry();
+//		public Select getState();
+//		public WebElement getZip();
+//		public WebElement getPhone();
+//		public WebElement getVat();
+//	}
+//
+//	/**
+//	 * Inner class that represents the Addresses component.
+//	 */
+//	private class Adresses implements IAdresses {
+//		private WebElement addNewAddresses;
+//		private WebElement address;
+//		private WebElement deleteButton;
+//		private WebElement defaultBillingCHK;
+//		private WebElement defaultShippingCHK;
+//		private WebElement prefix;
+//		private WebElement firstname;
+//		private WebElement middlename;
+//		private WebElement lastname;
+//		private WebElement suffix;
+//		private WebElement company;
+//		private WebElement streetAdressFirst;
+//		private WebElement streetAdressSecond;
+//		private WebElement city;
+//		private Select country;
+//		private Select state;
+//		private WebElement zip;
+//		private WebElement phone;
+//		private WebElement vat;
+//
+//		/*
+//		 * Constructor
+//		 * Initializes the only button at first, but only,
+//		 * when no AJAX component that represents the addresses is
+//		 * present.
+//		 */
+//		private Adresses() {
+//			this.addNewAddresses = Search
+//							.xpath("//span[contains(text(),'Add New Addresses')]/parent::button");
+//			/*
+//			 * Initialization depends on customer information.
+//			 */
+//			if (!Search.cssSelectors("address").get(0).isDisplayed()) {
+//				addNewAddresses.click();
+//			}
+//			this.address = Search.cssSelector("address");
+//			this.deleteButton = Search
+//					.cssSelector(".action-delete");
+//			this.defaultBillingCHK = Search
+//							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Billing Address')]");
+//			this.defaultShippingCHK = Search
+//							.xpath("//input[@class='admin__control-checkbox']/following::label[contains(text(), 'Default Shipping Address')]");
+//			this.prefix = Search
+//							.xpath("//span[contains(text(), 'Prefix')]/parent::label/following-sibling::div/input[1]");
+//			this.firstname = Search
+//							.xpath("//span[contains(text(), 'First Name')]/parent::label/following-sibling::div/input[1]");
+//			this.middlename = Search
+//							.xpath("//span[contains(text(), 'Initial')]/parent::label/following-sibling::div/input[1]");
+//			this.lastname = Search
+//							.xpath("//span[contains(text(), 'Last Name')]/parent::label/following-sibling::div/input[1]");
+//			this.suffix = Search
+//							.xpath("//span[contains(text(), 'Suffix')]/parent::label/following-sibling::div/input[1]");
+//			this.company = Search
+//							.xpath("//span[contains(text(), 'Company')]/parent::label/following-sibling::div/input");
+//			this.streetAdressFirst = Search
+//							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input");
+//			this.streetAdressSecond = Search
+//							.xpath("//span[contains(text(), 'Street Address')]/parent::legend/following-sibling::div/div/div/input[1]");
+//			this.city = Search
+//							.xpath("//span[contains(text(), 'City')]/parent::label/following-sibling::div/input");
+//			this.country = new Select(Search
+//							.xpath("//span[contains(text(), 'Country')]/parent::label/following-sibling::div/select"));
+//			this.state = new Select(Search
+//							.xpath("//span[contains(text(), 'State')]/parent::label/following-sibling::div/select"));
+//			this.zip = Search
+//							.xpath("//span[contains(text(), 'Zip')]/parent::label/following-sibling::div/input");
+//			this.phone = Search
+//							.xpath("//span[contains(text(), 'Phone')]/parent::label/following-sibling::div/input");
+//			this.vat = Search
+//							.xpath("//span[contains(text(), 'VAT')]/parent::label/following-sibling::div/input");
+//		}
+//
+//		/*
+//		 * Getters for the component.
+//		 */
+//		public WebElement getAddNewAddresses() {
+//			return addNewAddresses;
+//		}
+//
+//		public WebElement getAddress() {
+//			return address;
+//		}
+//
+//		public WebElement getDeleteButton() {
+//			return deleteButton;
+//		}
+//
+//		public WebElement getDefaultBillingCHK() {
+//			return defaultBillingCHK;
+//		}
+//
+//		public WebElement getDefaultShippingCHK() {
+//			return defaultShippingCHK;
+//		}
+//
+//		public WebElement getPrefix() {
+//			return prefix;
+//		}
+//
+//		public WebElement getFirstname() {
+//			return firstname;
+//		}
+//
+//		public WebElement getMiddlename() {
+//			return middlename;
+//		}
+//
+//		public WebElement getLastname() {
+//			return lastname;
+//		}
+//
+//		public WebElement getSuffix() {
+//			return suffix;
+//		}
+//
+//		public WebElement getCompany() {
+//			return company;
+//		}
+//
+//		public WebElement getStreetAdressFirst() {
+//			return streetAdressFirst;
+//		}
+//
+//		public WebElement getStreetAdressSecond() {
+//			return streetAdressSecond;
+//		}
+//
+//		public WebElement getCity() {
+//			return city;
+//		}
+//
+//		public Select getCountry() {
+//			return country;
+//		}
+//
+//		public Select getState() {
+//			return state;
+//		}
+//
+//		public WebElement getZip() {
+//			return zip;
+//		}
+//
+//		public WebElement getPhone() {
+//			return phone;
+//		}
+//
+//		public WebElement getVat() {
+//			return vat;
+//		}
+//
+//		public void setDefaultBillingCHK(WebElement element) {
+//		  this.defaultBillingCHK = element;
+//        }
+//	}
 
 	interface IOrders {
 
@@ -660,7 +659,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	public static IAccountInformation initAccountInfo() {
 		if (accountInformationAjax == null) {
 			synchronized (IAccountInformation.class) {
-				accountInformationAjax = new EditCustomerPage().new AccountInformation();
+				accountInformationAjax = new CustomerAccountInfo();
 			}
 		}
 		return accountInformationAjax;
@@ -669,7 +668,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	public static IAdresses initAdresses() {
 		if (adressesAjax == null) {
 			synchronized (IAccountInformation.class) {
-				adressesAjax = new EditCustomerPage().new Adresses();
+				adressesAjax = new CustomerAddressesInfo();
 			}
 		}
 		return adressesAjax;

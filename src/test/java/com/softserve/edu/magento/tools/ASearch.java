@@ -3,15 +3,15 @@ package com.softserve.edu.magento.tools;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.google.common.base.Predicate;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -50,11 +50,6 @@ public abstract class ASearch {
     public abstract WebElement xpath(String xpath);
 
     public abstract WebElement cssSelector(String cssSelector);
-
-    public  boolean stalenessOf(WebElement webElement){
-        return new WebDriverWait(this.getWebDriver(), DISAPPEAR_WAIT_TIMEOUT)
-                .until(ExpectedConditions.stalenessOf(webElement));
-    }
 
     public abstract WebElement className(String className);
 
@@ -105,15 +100,54 @@ public abstract class ASearch {
     public void waitUntil(Predicate<WebDriver> predicate) {
         new WebDriverWait(getWebDriver(), 10).until(predicate);
     }
-    public boolean checkDOMForText (String text){
+
+    public boolean checkDOMForText(String text) {
         return getWebDriver().getPageSource().contains(text);
     }
-    public  void moveToElement(WebElement webElement){
+
+    public void moveToElement(WebElement webElement) {
         Actions actions = new Actions(this.getWebDriver());
         actions.moveToElement(webElement);
     }
-    public void clickElement(WebElement webElement){
+
+    public void clickElement(WebElement webElement) {
         Actions actions = new Actions(this.getWebDriver());
         actions.moveToElement(webElement).click();
+    }
+
+    public boolean stalenessOf(WebElement webElement) {
+        return new WebDriverWait(this.getWebDriver(), DISAPPEAR_WAIT_TIMEOUT)
+                .until(ExpectedConditions.stalenessOf(webElement));
+    }
+
+    private boolean checkForVisibilityLoader() {
+        return (Boolean)
+                ((JavascriptExecutor) this.getWebDriver())
+                        .executeScript("return jQuery('[data-role=\"loader\"]').is(\":visible\")");
+    }
+
+    private boolean waitForInvisibilityLoader() {
+        return new FluentWait<WebDriver>(this.getWebDriver())
+                .withTimeout(10, TimeUnit.SECONDS)
+                .pollingEvery(100, TimeUnit.MILLISECONDS)
+                .ignoring(TimeoutException.class).
+                        until(new ExpectedCondition<Boolean>() {
+                            @Override
+                            public Boolean apply(WebDriver webDriver) {
+                                return (Boolean) ((JavascriptExecutor) webDriver).executeScript("return jQuery('[data-role=\"loader\"]').is(\":hidden\")");
+                            }
+                        });
+    }
+
+    public boolean waitForLoaderDone() {
+        if (checkForVisibilityLoader()) {
+            waitForInvisibilityLoader();
+            if (checkForVisibilityLoader()) {
+                waitForInvisibilityLoader();
+                return true;
+            }
+            return true;
+        }
+        return false;
     }
 }

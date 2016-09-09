@@ -3,6 +3,7 @@ package com.softserve.edu.magento.pages.admin.menu.sales;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
 import org.openqa.selenium.WebElement;
+import ss.af.reporting.annotations.ServiceReport;
 
 /**
  * Created by bohdan on 15.08.16.
@@ -10,7 +11,6 @@ import org.openqa.selenium.WebElement;
 public class OrdersPage extends VerticalMenu {
     private WebElement createNewOrder;
     private WebElement ordersRecords;
-
 
     public OrdersPage() {
         this.createNewOrder = Search.id("add");
@@ -35,7 +35,7 @@ public class OrdersPage extends VerticalMenu {
     }
 
     // Business Logic
-
+    @ServiceReport
     public CreateOrderSelectCustomerPage gotoCreateOrderSelectCustomerPage() {
         clickCreateNewOrder();
         return new CreateOrderSelectCustomerPage();

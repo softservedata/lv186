@@ -92,36 +92,6 @@ public class SmokeTestsDashboard extends TestBase {
 
     }
 
-    //@Test(dataProvider = "smokeParameters")
-    @ServiceReport
-    public void tc1(ApplicationSources applicationSources, IAdminUser adminUser, ICustomerUser customerUser, List<IProduct> products) {
-        ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-        DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-        OrdersPage ordersPage = dashboardPage.gotoOrdersPage();
-        CreateOrderSelectCustomerPage createOrderSelectCustomerPage = ordersPage.gotoCreateOrderSelectCustomerPage();
-        CreateOrderFillInformationPage createOrderFillInformationPage = createOrderSelectCustomerPage.gotoCreateOrderFillInformationPage(customerUser);
-        createOrderFillInformationPage.addProducts(products);
-        createOrderFillInformationPage.clickAddProductsToOrder();
-        createOrderFillInformationPage.clickShippingMethod();
-        createOrderFillInformationPage.clickFixedRate();
-        createOrderFillInformationPage.clickSubmitOrder();
-    }
-
-    @Test(dataProvider = "smokeParameters4")
-    @ServiceReport
-    public void tc2(ApplicationSources applicationSources, IAdminUser adminUser, ICustomerUser customerUser, List<IProduct> products) {
-        ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
-        DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-        OrdersPage ordersPage = dashboardPage.gotoOrdersPage();
-        CreateOrderSelectCustomerPage createOrderSelectCustomerPage = ordersPage.gotoCreateOrderSelectCustomerPage();
-        CreateOrderFillInformationPage createOrderFillInformationPage = createOrderSelectCustomerPage.gotoCreateOrderFillInformationPage();
-        createOrderFillInformationPage.addProducts(products);
-        createOrderFillInformationPage.clickAddProductsToOrder();
-        createOrderFillInformationPage.fillUserRequiredInformation(customerUser);
-        createOrderFillInformationPage.clickShippingMethod();
-        createOrderFillInformationPage.clickFixedRate();
-        createOrderFillInformationPage.clickSubmitOrder();
-    }
 
     //@Test(dataProvider = "smokeParameters")
     @ServiceReport

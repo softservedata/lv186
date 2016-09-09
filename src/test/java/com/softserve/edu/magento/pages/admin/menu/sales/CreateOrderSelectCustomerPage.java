@@ -4,6 +4,7 @@ import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
 import org.openqa.selenium.WebElement;
+import ss.af.reporting.annotations.ServiceReport;
 
 /**
  * Created by bohdan on 15.08.16.
@@ -66,10 +67,12 @@ public class CreateOrderSelectCustomerPage extends VerticalMenu {
         getSearchButton().click();
     }
 
-    public void clickSearchedUser(){
+    public void clickSearchedUser() {
         getSearchedUser().click();
     }
+
     // Business Logic
+
     public boolean findCustomer(ICustomerUser user) {
         if (!Search.checkDOMForText(DATA_NOT_FOUND_MESSAGE)) {
             searchedUser = Search.cssSelector("#sales_order_create_customer_grid_table > tbody > tr > td.col-name");
@@ -94,6 +97,7 @@ public class CreateOrderSelectCustomerPage extends VerticalMenu {
         return new CreateOrderFillInformationPage();
     }
 
+    @ServiceReport
     public CreateOrderFillInformationPage gotoCreateOrderFillInformationPage(ICustomerUser user) {
         if (findCustomer(user)) {
             clickSearchedUser();
@@ -102,6 +106,7 @@ public class CreateOrderSelectCustomerPage extends VerticalMenu {
         return gotoCreateOrderFillInformationPage();
     }
 
+    @ServiceReport
     public OrdersPage gotoOrdersPage() {
         clickBack();
         return new OrdersPage();

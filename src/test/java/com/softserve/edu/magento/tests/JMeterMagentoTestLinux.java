@@ -1,5 +1,8 @@
 package com.softserve.edu.magento.tests;
 
+import com.sun.syndication.io.impl.PluginManager;
+import kg.apc.jmeter.reporters.LoadosophiaUploader;
+import kg.apc.jmeter.reporters.LoadosophiaUploaderGui;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.config.gui.ArgumentsPanel;
 import org.apache.jmeter.control.LoopController;
@@ -23,10 +26,12 @@ import org.apache.jmeter.threads.gui.ThreadGroupGui;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jmeter.visualizers.ViewResultsFullVisualizer;
 import org.apache.jorphan.collections.HashTree;
+import org.bouncycastle.jcajce.provider.symmetric.AES;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import sun.plugin.navig.motif.Plugin;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,6 +41,7 @@ import java.nio.file.NoSuchFileException;
  * Created by bohdan on 24.08.16.
  */
 public class JMeterMagentoTestLinux {
+    public final static String UPLOAD_TOKEN = "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ0KTUdJQ0FRQUNFUUNKNkFrYW9pNHY4aU1ZcmNWaXNlMGpBZ01CQUFFQ0VDRTVGY3hsU3VSQXdHS0tKTkEzdVhVQw0KQ1FDWmlyczJHTFVjN3dJSkFPWHVVU0hZTWRzTkFnZ1VKZmhiS1BMYlVRSUpBSUh4MDZ4YThLSXBBZ2hhS1hDQg0KTVNZZFB3PT0NCi0tLS0tRU5EIFJTQSBQUklW";
     private File jmeterProperties;
     private File jmeterHome;
     private String slash;
@@ -73,10 +79,11 @@ public class JMeterMagentoTestLinux {
     public void testMagento() throws Exception {
         // First HTTP Sampler - open google.com
         HTTPSamplerProxy examplecomSampler = new HTTPSamplerProxy();
-        examplecomSampler.setDomain("http://localhost/magento2/admin/");
+        examplecomSampler.setDomain("localhost/magento2/");
+        //examplecomSampler.setDomain("google.com");
         examplecomSampler.setPort(80);
+        examplecomSampler.setMethod("GET");
         examplecomSampler.setName("Open magento");
-
         Arguments arguments = new Arguments();
         arguments.setEnabled(true);
         examplecomSampler.setArguments(arguments);
@@ -98,16 +105,28 @@ public class JMeterMagentoTestLinux {
         cookieManager.setProperty(TestElement.GUI_CLASS, CookiePanel.class.getName());
         // Loop Controller
         LoopController loopController = new LoopController();
+        loopController.setLoops(3);
         loopController.setFirst(true);
         loopController.setProperty(TestElement.TEST_CLASS, LoopController.class.getName());
         loopController.setProperty(TestElement.GUI_CLASS, LoopControlPanel.class.getName());
         loopController.initialize();
+        // Loadsophia
+        LoadosophiaUploader loadosophiaUploader = new LoadosophiaUploader();
+        loadosophiaUploader.setName("bzm - BlazeMeter Sense Uploader");
+        loadosophiaUploader.setProject("DEFAULT");
+        loadosophiaUploader.setUploadToken(UPLOAD_TOKEN);
+        loadosophiaUploader.setStoreDir("/home/bohdan/Downloads/apache-jmeter-3.0/");
+        loadosophiaUploader.setColorFlag("red");
+        loadosophiaUploader.setTitle("Test 1");
+        loadosophiaUploader.setUseOnline(true);
+        loadosophiaUploader.setProperty(TestElement.TEST_CLASS, LoadosophiaUploader.class.getName());
+        loadosophiaUploader.setProperty(TestElement.GUI_CLASS, LoadosophiaUploaderGui.class.getName());
 
         // Thread Group
         ThreadGroup threadGroup = new ThreadGroup();
         threadGroup.setName("Sample Thread Group");
-        threadGroup.setNumThreads(1);
-        threadGroup.setRampUp(1);
+        threadGroup.setNumThreads(5);
+        threadGroup.setRampUp(5);
         threadGroup.setSamplerController(loopController);
         threadGroup.setProperty(TestElement.TEST_CLASS, ThreadGroup.class.getName());
         threadGroup.setProperty(TestElement.GUI_CLASS, ThreadGroupGui.class.getName());
@@ -116,13 +135,13 @@ public class JMeterMagentoTestLinux {
         testPlan.setProperty(TestElement.TEST_CLASS, TestPlan.class.getName());
         testPlan.setProperty(TestElement.GUI_CLASS, TestPlanGui.class.getName());
         testPlan.setUserDefinedVariables((Arguments) new ArgumentsPanel().createTestElement());
-
         // Construct Test Plan from previously initialized elements
         testPlanTree.add(testPlan);
         HashTree threadGroupHashTree = testPlanTree.add(testPlan, threadGroup);
         threadGroupHashTree.add(cacheManager);
         threadGroupHashTree.add(cookieManager);
         threadGroupHashTree.add(examplecomSampler);
+        threadGroupHashTree.add(loadosophiaUploader);
 
         // save generated test plan to JMeter's .jmx file format
         SaveService.saveTree(testPlanTree, new FileOutputStream("/home/bohdan/Downloads/apache-jmeter-3.0/jmeter_api_sample.jmx"));
@@ -144,14 +163,10 @@ public class JMeterMagentoTestLinux {
         // Run Test Plan
         jmeter.configure(testPlanTree);
         jmeter.run();
-
-    }
-
-    @AfterClass
-    public void afterTest() {
         System.out.println("Test completed. See " + jmeterHome + slash + "report.jtl file for results");
         System.out.println("JMeter .jmx script is available at " + jmeterHome + slash + "jmeter_api_sample.jmx");
         System.exit(0);
     }
+
 }
 

@@ -17,7 +17,7 @@ public final class ApplicationSourcesRepository {
         return new ApplicationSources("ChromeDriverTemporary",
                 "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento/admin",
-                new String(), "MySqlLocalHost");
+                new String(), "MySqlTrainingLocal");
     }
 
     public static ApplicationSources getChromeOlyaLocalhostAdmin() {
@@ -120,6 +120,13 @@ public final class ApplicationSourcesRepository {
         return new ApplicationSources("ChromeDriverTemporary",
                 "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 10L, 5L, "Implicit",
                 "http://127.0.0.1/Magento/admin",
+                new String(), "MySqlLocalHost");
+    }
+
+    public static ApplicationSources getNewChromeLocalHostAdmin() {
+        return new ApplicationSources("ChromeDriverTemporary",
+                "D:\\Application\\chromedriver.exe", 10L, 5L, "Implicit",
+                "http://192.168.195.210/magento/admin",
                 new String(), "MySqlLocalHost");
     }
 }

@@ -26,14 +26,14 @@ import ss.af.reporting.annotations.ServiceReport;
 
 public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
-	/**
+	/*
 	 * Daclarating constats form using them in aseerts methods
 	 */
 	public final static String PAGE_TITLE = "Customers";
 	public final static String REGISTERED_CUSTOMER_TITLE = "You saved the customer.";
 	private boolean isWebElementFound = false;
 
-	/**
+	/*
 	 * Initializing componets to have access to inner classes
 	 */
 	private ColumnsMenuDropdown columnsmenudropdown;
@@ -42,7 +42,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	private FiltersDropDownMenu filtersdropdownmenu;
 	private GroupsButton groupsButton;
 
-	/**
+	/*
 	* Initializing fields in main class
     */
 	private WebElement customersLabel;
@@ -905,7 +905,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -930,7 +930,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -948,7 +948,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		List<String> usernames = new ArrayList<String>();
 		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
 			usernames.add(rowsCustomerUserTable.get(i).getNameText());
-			System.out.println(rowsCustomerUserTable.get(i).getNameText());
+		//	System.out.println(rowsCustomerUserTable.get(i).getNameText());
 		}
 		return usernames;
 	}
@@ -987,7 +987,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -1022,7 +1022,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	public void checkCustomerUser(RowCustomerUser rowCustomerUser) {
 		rowCustomerUser.getName().click();
-		System.out.println("checked USER" + rowCustomerUser.getNameText());
 	}
 
 	public void checkCustomerUser(List<RowCustomerUser> rowsCustomerUser) {

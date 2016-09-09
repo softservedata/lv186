@@ -370,7 +370,6 @@ public class AllCustomersPage extends VerticalMenu {
 
 	// main page constructor
 	public AllCustomersPage() {
-		System.out.println("AllCustomersPage");
 		this.customersLabel = Search.xpath(".//*[@class='page-title-wrapper']");
 		this.addNewCustomerButton = Search.id("add");
 		this.searchField = Search.xpath("(.//*[@id='fulltext'])[1]");
@@ -407,7 +406,6 @@ public class AllCustomersPage extends VerticalMenu {
 		this.actionsdropdownmenu = new ActionsDropDownMenu();
 		this.defaultdropdownmenu = new DefaultViewDropdownMenu();
 		this.filtersdropdownmenu = new FiltersDropDownMenu();
-		System.out.println("AllCustomersPage done");
 	}
 
 	// ------------System logic get page components--------------------//
@@ -763,7 +761,7 @@ public class AllCustomersPage extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -788,7 +786,7 @@ public class AllCustomersPage extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -810,7 +808,7 @@ public class AllCustomersPage extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {

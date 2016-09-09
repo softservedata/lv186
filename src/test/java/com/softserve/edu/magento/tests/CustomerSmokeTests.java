@@ -75,7 +75,7 @@ public class CustomerSmokeTests extends TestBase{
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", priority = 2)
+	//@Test(dataProvider = "smokeParameters", priority = 2)
 	public void invalidErrorMessageRegistrationNewCustomer(ApplicationSources applicationSources,
 															  IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -99,7 +99,7 @@ public class CustomerSmokeTests extends TestBase{
 		applicationAdmin.quit();
 	}
 
-	@Test(dataProvider = "smokeParameters", priority = 3)
+	//@Test(dataProvider = "smokeParameters", priority = 3)
 	public void invalidErrorFieldsRegistrationNewCustomer(ApplicationSources applicationSources,
 														   IAdminUser adminUser) throws Exception {
 		// Precondition
@@ -126,7 +126,7 @@ public class CustomerSmokeTests extends TestBase{
 	}
 
 
-	@Test(dataProvider = "smokeParameters", priority = 4)
+	//@Test(dataProvider = "smokeParameters", priority = 4)
 	public void checkResetButton(ApplicationSources applicationSources,
 								 IAdminUser adminUser) throws Exception {
 		// Precondition

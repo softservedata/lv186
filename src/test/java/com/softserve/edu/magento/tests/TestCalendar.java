@@ -10,6 +10,7 @@ import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPageAfterSuccesRegistration;
 import com.softserve.edu.magento.pages.admin.menu.customers.RegistrationNewCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.Calendar;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.ICalendar;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
@@ -18,7 +19,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ss.af.reporting.annotations.ServiceReport;
-
+import static com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.ICalendar.Months.*;
 import static org.testng.Assert.*;
 
 /**
@@ -58,11 +59,13 @@ public class TestCalendar {
 
         // go to RegistrationNewCustomerPage
         RegistrationNewCustomerPage regNewCust = acp.goToRegistrationNewCustomerPage();
+//        EditCustomerPage ecp = acp.getEditCustomerPage();
+//         ecp.navToAccountInfo();
         // Verify that RegistrationNewCustomerPage is opened
 
         // setting data to login form
         Calendar calendar = Calendar.initCalendar();
-        calendar.setData("10", Calendar.Months.AUGUST, "2005");
+        calendar.setStringData("10", "5", "1999");
         Thread.sleep(8000);
         applicationAdmin.quit();
     }

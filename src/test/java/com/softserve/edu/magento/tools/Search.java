@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.server.handler.RefreshPage;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 interface ISearchStrategy {
@@ -130,7 +131,15 @@ public class Search {
     public  static WebElement tagName(String tagName) {
     	return getinstance().getSearch().tagName(tagName);
     }
-    
+
+    public static boolean stalnessOf(WebElement webElement) {
+        return getinstance().getSearch().stalenessOf(webElement);
+    }
+
+    public static WebElement elementClickable (WebElement webElement) {
+        return getinstance().getSearch().elementClickable(webElement);
+    }
+
  // From Elements
     
     public  static WebElement id(String id, WebElement fromWebElement) {

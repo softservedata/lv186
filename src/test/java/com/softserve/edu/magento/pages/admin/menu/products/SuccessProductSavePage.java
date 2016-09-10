@@ -6,17 +6,11 @@ import com.softserve.edu.magento.tools.Search;
 
 public class SuccessProductSavePage extends AddProductPage {
 
-	// Elements
-
 	WebElement successfulProductSaveMessage;
 
 	public SuccessProductSavePage() {
-		//successfulProductSaveMessage = Search.cssSelector("#messages > div > div > div");
-
 	successfulProductSaveMessage = Search.cssSelector("#messages .message-success:first-child");
 	}
-
-	// Getters
 
 	public WebElement getSuccessfulProductSaveMessage() {
 		return successfulProductSaveMessage;
@@ -26,10 +20,4 @@ public class SuccessProductSavePage extends AddProductPage {
 		return getSuccessfulProductSaveMessage().getText().trim();
 	}
 
-	// Business Logic
-
-	public SuccessProductSavePage gotoSuccessProductSavePage() {
-		clickSaveButton();
-		return new SuccessProductSavePage();
-	}
 }

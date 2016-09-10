@@ -17,4 +17,6 @@ public class Constants {
 
     public static final String ATTRIBUTE_SET_DEFAULT_VALUE = "Default";
 
+    public static final String CATALOG_PAGE_TITLE = "Catalog";
+
 }

@@ -3,10 +3,6 @@ package com.softserve.edu.magento.pages.admin.menu.products;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.base.Predicate;
-import com.softserve.edu.magento.data.admin.products.Constants;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.data.admin.products.Filter;
@@ -16,7 +12,7 @@ import com.softserve.edu.magento.tools.Search;
 public class ProductCatalogPage extends VerticalMenu {
 
     // Fields
-
+    private WebElement pageTitle;
     private WebElement addProductButton;
     private WebElement addProductToggleButton;
     private WebElement simpleProductButton;
@@ -33,13 +29,13 @@ public class ProductCatalogPage extends VerticalMenu {
     private WebElement disableProduct;
     private WebElement updateProductAttributesButton;
 
-    private WebElement filterButton;
+//    private WebElement filterButton;
     private WebElement nextPageButton;
     List<WebElement> productRowsSource;
     private List<ProductRow> productRows;
 
     public ProductCatalogPage() {
-
+        pageTitle = Search.className("page-title");
         addProductButton = Search.id("add_new_product-button");
         addProductToggleButton = Search.className("action-toggle");
         simpleProductButton = Search.cssSelector("span[title='Simple Product']");
@@ -55,19 +51,16 @@ public class ProductCatalogPage extends VerticalMenu {
         disableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Disable')])[1]");
         updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
         nextPageButton = Search.cssSelector("button[title='Next Page']");
-        filterButton = Search.xpath("(//button[@class='action-default'])[1]");
+//        filterButton = Search.xpath("(//button[@class='action-default'])[1]");
         productRows = new ArrayList<>();
         productRowsSource = Search.cssSelectors("tbody tr");
-
-//        if(productRowsSource != null && !productRowsSource.isEmpty()){
-//            for (WebElement row : productRowsSource) {
-//                ProductRow productRow = new ProductRow(row);
-//                productRows.add(productRow);
-//            }
-//        }
     }
 
     // Getters
+
+    public WebElement getPageTitle() {
+        return this.pageTitle;
+    }
 
     public WebElement getAddProductButton() {
         return this.addProductButton;
@@ -129,11 +122,13 @@ public class ProductCatalogPage extends VerticalMenu {
         return this.nextPageButton;
     }
 
-    public WebElement getFilterButton() {
-        return this.filterButton;
-    }
+//    public WebElement getFilterButton() {
+//        return this.filterButton;
+//    }
 
-    // Setters
+    public String getPageTitleText() {return pageTitle.getText();}
+
+    // PageObject Logic
 
     public void clickAddProductButton() {
         getAddProductButton().click();
@@ -173,9 +168,7 @@ public class ProductCatalogPage extends VerticalMenu {
 
     public DeleteConfirmationPopup clickDeleteProductAction() {
         clickActionsDropdown();
-        Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
         getDeleteProductAction().click();
-        Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
         return new DeleteConfirmationPopup();
     }
 
@@ -199,10 +192,10 @@ public class ProductCatalogPage extends VerticalMenu {
         getUpdateProductAttributesAction().click();
     }
 
-    public FilterObject clickFilterButton() {
-        getFilterButton().click();
-        return new FilterObject();
-    }
+//    public FilterObject clickFilterButton() {
+//        getFilterButton().click();
+//        return new FilterObject();
+//    }
 
     // Functional Business Logic
     public AddProductPage gotoAddProductPage() {
@@ -211,19 +204,17 @@ public class ProductCatalogPage extends VerticalMenu {
     }
 
     public ProductRow getRowWithProductName(String productName) {
-        System.out.println("row.getProductNameText() = " + productRows.size());
-        System.out.println(" productName = " + productName);
         for (WebElement row1 : productRowsSource) {
-                ProductRow productRow = new ProductRow(row1);
-                productRows.add(productRow);
-            }
-            for (ProductRow row2 : productRows) {
-                if (row2.getProductNameText().equals(productName)) {
-                    return row2;
-                }
-            }
-            return null;
+            ProductRow productRow = new ProductRow(row1);
+            productRows.add(productRow);
         }
+        for (ProductRow row2 : productRows) {
+            if (row2.getProductNameText().equals(productName)) {
+                return row2;
+            }
+        }
+        return null;
+    }
 
     public ProductRow getRowWithDuplicatedProduct(String productName, String sku) {
         for (ProductRow row : productRows) {
@@ -270,13 +261,9 @@ public class ProductCatalogPage extends VerticalMenu {
 
         private ProductRow(WebElement row) {
             productCheckbox = Search.cssSelector("td:first-child", row);
-            System.out.println("row = " + row);
             productId = Search.cssSelector("td:nth-child(2)", row);
-            System.out.println("row = " + row);
             productName = Search.cssSelector("td:nth-child(4)", row);
-            System.out.println("row = " + row);
             productType = Search.cssSelector("td:nth-child(5)", row);
-            System.out.println("row = " + row);
             productAttributeSet = Search.cssSelector("td:nth-child(6)", row);
             productSku = Search.cssSelector("td:nth-child(7)", row);
             productPrice = Search.cssSelector("td:nth-child(8)", row);
@@ -356,193 +343,7 @@ public class ProductCatalogPage extends VerticalMenu {
         }
     }
 
-    // -------- FilterObjectInnerClass ---------//
-
-    public class FilterObject {
-        private WebElement filterIdFromInput;
-        private WebElement filterIdToInput;
-        private WebElement filterPriceFromInput;
-        private WebElement filterPriceToInput;
-        private WebElement filterQuantityFromInput;
-        private WebElement filterQuantityToInput;
-        private WebElement filterNameInput;
-        private WebElement filterSkuInput;
-        private WebElement applyFiltersButton;
-        private WebElement cancelFiltersButton;
-
-        private FilterObject() {
-            filterIdFromInput = Search.cssSelector("input[name='entity_id[from]']");
-            filterIdToInput = Search.cssSelector("input[name='entity_id[to]']");
-            filterPriceFromInput = Search.cssSelector("input[name='price[from]']");
-            filterPriceToInput = Search.cssSelector("input[name='price[to]']");
-            filterQuantityFromInput = Search.cssSelector("input[name='qty[from]']");
-            filterQuantityToInput = Search.cssSelector("input[name='qty[to]']");
-            filterNameInput = Search.cssSelector("input[name='name']");
-            filterSkuInput = Search.cssSelector("input[name='sku']");
-            applyFiltersButton = Search.className("action-secondary");
-            cancelFiltersButton = Search.cssSelector(".admin__footer-main-actions .action-tertiary");
-        }
-
-        // Setters
-
-        public void clearFilterSkuInput() {
-            filterSkuInput.clear();
-        }
-
-        public void setFilterIdFromInput(String filterIdFrom) {
-            filterIdFromInput.sendKeys(filterIdFrom);
-        }
-
-        public void setFilterIdToInput(String filterIdTo) {
-            filterIdToInput.sendKeys(filterIdTo);
-        }
-
-        public void setFilterPriceFromInput(String filterPriceFrom) {
-            filterPriceFromInput.sendKeys(filterPriceFrom);
-        }
-
-        public void setFilterPriceToInput(String filterPriceTo) {
-            filterPriceToInput.sendKeys(filterPriceTo);
-        }
-
-        public void setFilterQuantityFromInput(String filterQuantityFrom) {
-            filterQuantityFromInput.sendKeys(filterQuantityFrom);
-        }
-
-        public void setFilterQuantityToInput(String filterQuantityTo) {
-            filterQuantityToInput.sendKeys(filterQuantityTo);
-        }
-
-        public void setFilterNameInput(String filterName) {
-            filterNameInput.sendKeys(filterName);
-        }
-
-        public void setFilterSkuInput(String filterSku) {
-            filterSkuInput.sendKeys(filterSku);
-        }
-
-        public void setFilterIdFromInputClear(String filterIdFrom) {
-            clearFilterIdFromInput();
-            setFilterIdFromInput(filterIdFrom);
-        }
-
-        public void setFilterIdToInputClear(String filterIdTo) {
-            clearFilterIdToInput();
-            setFilterIdToInput(filterIdTo);
-        }
-
-        public void setFilterPriceFromInputClear(String filterPriceFrom) {
-            clearFilterPriceFromInput();
-            setFilterPriceFromInput(filterPriceFrom);
-        }
-
-        public void setFilterPriceToInputClear(String filterPriceTo) {
-            clearFilterPriceToInput();
-            setFilterPriceToInput(filterPriceTo);
-        }
-
-        public void setFilterQuantityFromInputClear(String filterQuantityFrom) {
-            clearFilterQuantityFromInput();
-            setFilterQuantityFromInput(filterQuantityFrom);
-        }
-
-        public void setFilterQuantityToInputClear(String filterQuantityTo) {
-            clearFilterQuantityToInput();
-            setFilterQuantityToInput(filterQuantityTo);
-        }
-
-        public void setFilterNameInputClear(String filterName) {
-            clearFilterNameInput();
-            setFilterNameInput(filterName);
-        }
-
-        public void setFilterSkuInputClear(String filterSku) {
-            clearFilterSkuInput();
-            setFilterSkuInput(filterSku);
-        }
-
-        public void clickFilterIdFromInput() {
-            filterIdFromInput.click();
-        }
-
-        public void clickFilterIdToInput() {
-            filterIdToInput.click();
-        }
-
-        public void clickFilterPriceFromInput() {
-            filterPriceFromInput.click();
-        }
-
-        public void clickFilterPriceToInput() {
-            filterPriceToInput.click();
-        }
-
-        public void clickFilterQuantityFromInput() {
-            filterQuantityFromInput.click();
-        }
-
-        public void clickFilterQuantityToInput() {
-            filterQuantityToInput.click();
-        }
-
-        public void clickFilterNameInput() {
-            filterNameInput.click();
-        }
-
-        public void clickFilterSkuInput() {
-            filterSkuInput.click();
-        }
-
-        public ProductCatalogPage applyFilters() {
-            applyFiltersButton.click();
-            return new ProductCatalogPage();
-        }
-
-        public void clickCancelFiltersButton() {
-            cancelFiltersButton.click();
-        }
-
-        public void clearFilterIdFromInput() {
-            filterIdFromInput.clear();
-        }
-
-        public void clearFilterIdToInput() {
-            filterIdToInput.clear();
-        }
-
-        public void clearFilterPriceFromInput() {
-            filterPriceFromInput.clear();
-        }
-
-        public void clearFilterPriceToInput() {
-            filterPriceToInput.clear();
-        }
-
-        public void clearFilterQuantityFromInput() {
-            filterQuantityFromInput.clear();
-        }
-
-        public void clearFilterQuantityToInput() {
-            filterQuantityToInput.clear();
-        }
-
-        public void clearFilterNameInput() {
-            filterNameInput.clear();
-        }
-
-        // Functional
-
-        public void setFilter(Filter filter) {
-            setFilterIdFromInputClear(filter.getIdFrom());
-            setFilterIdToInputClear(filter.getIdTo());
-            setFilterPriceFromInputClear(filter.getPriceFrom());
-            setFilterPriceToInputClear(filter.getPriceTo());
-            setFilterQuantityFromInputClear(filter.getQuantityFrom());
-            setFilterQuantityToInputClear(filter.getQuantityTo());
-            setFilterNameInputClear(filter.getName());
-            setFilterSkuInputClear(filter.getSku());
-        }
-    }
+    // -------- DeletePopupInnerClass ---------//
 
     public class DeleteConfirmationPopup {
 
@@ -551,8 +352,8 @@ public class ProductCatalogPage extends VerticalMenu {
         private WebElement closeDeletePopupButton;
 
         public DeleteConfirmationPopup() {
-            deleteConfirmationButton = Search.className("action-accept");
-            cancelDeleteLink = Search.className("action-dismiss");
+            cancelDeleteLink = Search.xpath("//footer[@class='modal-footer']/button[1]");
+            deleteConfirmationButton = Search.xpath("//footer[@class='modal-footer']/button[2]");
             closeDeletePopupButton = Search.xpath("(//button[@data-role='closeBtn'])[2]");
         }
 
@@ -570,28 +371,11 @@ public class ProductCatalogPage extends VerticalMenu {
             return this.closeDeletePopupButton;
         }
 
-        // Setters
+        // PageObject Logic
 
         public ProductCatalogPage clickDeleteConfirmationButton() {
+            new DeleteConfirmationPopup();
             getDeleteConfirmationButton().click();
-//            Search.waitUntil(new Predicate<WebDriver>() {
-//                @Override
-//                public boolean apply(WebDriver input) {
-//                    WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
-//                    if (successMessage != null) {
-//                        return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
-//                    }
-//                    return false;
-//                }
-//            });
-//
-//            Search.waitUntil(new Predicate<WebDriver>() {
-//                @Override
-//                public boolean apply(WebDriver input) {
-//                    List<WebElement> foundRows = Search.cssSelectors("tbody tr");
-//                    return foundRows.size() > 0;
-//                }
-//            });
             return new ProductCatalogPage();
         }
 
@@ -604,6 +388,8 @@ public class ProductCatalogPage extends VerticalMenu {
         }
     }
 
+    // -------- NoItemSelectedPopupInnerClass ---------//
+
     private class NoItemSelectedPopup {
         private WebElement noItemSelectedPopupTitle;
         private WebElement noItemSelectedPopupConfirmButton;
@@ -614,4 +400,5 @@ public class ProductCatalogPage extends VerticalMenu {
             noItemSelectedPopupConfirmButton = Search.className("action-accept");
         }
     }
+
 }

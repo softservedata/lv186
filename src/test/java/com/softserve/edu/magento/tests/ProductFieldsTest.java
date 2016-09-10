@@ -41,33 +41,29 @@ public class ProductFieldsTest extends TestBase {
         AddProductPage addProductPage = productCatalogPage.gotoAddProductPage();
 
         addProductPage.setProductNameInputWithClear(ProductFieldRepository.VALID_PRODUCT_NAME);
-        //ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSave();
-        addProductPage.gotoProductValidatorPageAfterSave();
-        ProductValidatorPage productValidatorPage = new ProductValidatorPage();
+        ProductValidatorPage productValidatorPage = addProductPage.gotoProductValidatorPageAfterSave();
         Assert.assertFalse(productValidatorPage.isProductNameValidatorPresent());
         productValidatorPage.clearProductNameInput();
 
         productValidatorPage.setProductNameInputWithClear(ProductFieldRepository.INVALID_PRODUCT_NAME);
-        productValidatorPage = new ProductValidatorPage();
         Assert.assertEquals(productValidatorPage.getProductNameValidatorText(), Constants.TOO_LONG_PRODUCT_NAME_MESSAGE);
         productValidatorPage.clearProductNameInput();
 
-        productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setSkuInputWithClear(ProductFieldRepository.VALID_SKU);
         Assert.assertFalse(productValidatorPage.isSkuValidatorPresent());
         productValidatorPage.clearSkuInput();
 
-        productValidatorPage = new ProductValidatorPage();
+        //productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setSkuInputWithClear(ProductFieldRepository.INVALID_SKU);
         Assert.assertEquals(productValidatorPage.getSkuValidatorText(), Constants.TOO_LONG_SKU_MESSAGE);
         productValidatorPage.clearSkuInput();
 
-        productValidatorPage = new ProductValidatorPage();
+        //productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setPriceInputWithClear(ProductFieldRepository.VALID_PRICE);
         Assert.assertFalse(productValidatorPage.isPriceValidatorPresent());
         productValidatorPage.clearPriceInput();
 
-        productValidatorPage = new ProductValidatorPage();
+        //productValidatorPage = new ProductValidatorPage();
         productValidatorPage.setSkuInputWithClear(ProductFieldRepository.INVALID_PRICE);
         Assert.assertEquals(productValidatorPage.getSkuValidatorText(), Constants.TOO_BIG_PRICE_MESSAGE);
         productValidatorPage.clearPriceInput();

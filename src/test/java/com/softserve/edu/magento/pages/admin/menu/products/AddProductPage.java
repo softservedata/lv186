@@ -1,15 +1,13 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
-import com.google.common.base.Predicate;
-import com.softserve.edu.magento.data.admin.products.Constants;
 import com.softserve.edu.magento.data.admin.products.IProduct;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
 import org.apache.http.util.TextUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddProductPage extends VerticalMenu {
@@ -160,12 +158,10 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public void clickSaveButton() {
-        //(new WebDriverWait(SearchRecords, 10).until(ExpectedConditions.elementToBeClickable(getSaveButton());
         getSaveButton().click();
     }
 
     public void clickSaveDropdownToggle() {
-        //(new WebDriverWait(SearchRecords, 10).until(ExpectedConditions.elementToBeClickable(getSaveDropdownToggle());
         getSaveDropdownToggle().click();
     }
 
@@ -185,6 +181,7 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public ProductCatalogPage clickBackButton() {
+        backButton = Search.id("back");
         getBackButton().click();
         return new ProductCatalogPage();
     }
@@ -216,7 +213,9 @@ public class AddProductPage extends VerticalMenu {
         setQuantity(quantity);
     }
 
-    public void setProductData(IProduct productData)  {
+    public void setProductData(IProduct productData) {
+        //waitPageLoaded();
+        Search.elementClickable(productNameInput);
         if (!TextUtils.isEmpty(productData.getAttributeSet())) {
             setAttributeSet(productData.getAttributeSet());
         }
@@ -229,7 +228,7 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public void setAttributeSet(String attributeSet) {
-        attributeSetInput.click();
+        getAttributeSetInput().click();
         List<WebElement> listsOfDropdownItems = Search
                 .classNames("admin__action-multiselect-menu-inner");
         WebElement listOfAttributeSets = listsOfDropdownItems.get(0);
@@ -247,48 +246,39 @@ public class AddProductPage extends VerticalMenu {
 
     public ProductCatalogPage returnToProductPage() {
         clickBackButton();
-//        Search.waitUntil(new Predicate<WebDriver>() {
-//            @Override
-//            public boolean apply(WebDriver webDriver) {
-//                ProductCatalogPage catalogPage = new ProductCatalogPage();
-//                return (catalogPage.getProducts().size() > 0);
-//            }
-//        });
         return new ProductCatalogPage();
     }
 
     public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
         clickSaveButton();
-        Search.waitUntil(new Predicate<WebDriver>() {
-            @Override
-            public boolean apply(WebDriver input) {
-                WebElement successMessage = Search.cssSelector("#messages .message-success:first-child");
-                if (successMessage != null) {
-                    return Constants.PRODUCT_SAVED_MESSAGE.equals(successMessage.getText().trim());
-                }
-                return false;
-            }
-        });
+        Search.stalnessOf(getProductNameInput());
+        //waitPageLoaded();
         return new SuccessProductSavePage();
     }
 
     public SuccessProductSavePage gotoSuccessProductSavePageAfterSaveAndNew() {
         clickSaveAndNewButton();
+        Search.stalnessOf(getProductNameInput());
+        //waitPageLoaded();
         return new SuccessProductSavePage();
     }
 
     public SuccessProductSaveAndDuplicatePage gotoSuccessProductSaveAndDuplicatePage() {
         clickSaveAndDuplicateButton();
+        Search.stalnessOf(getProductNameInput());
+        //waitPageLoaded();
         return new SuccessProductSaveAndDuplicatePage();
     }
 
     public ProductCatalogPage gotoCatalogPageAfterSaveClose() {
         clickSaveAndCloseButton();
+        waitPageLoaded();
         return new ProductCatalogPage();
     }
 
     public ProductExistsPage gotoProductExistsPageAfterSave() {
         clickSaveButton();
+        Search.stalnessOf(getProductNameInput());
         return new ProductExistsPage();
     }
 
@@ -309,6 +299,8 @@ public class AddProductPage extends VerticalMenu {
 
     public ProductValidatorPage gotoProductValidatorPageAfterSave() {
         clickSaveButton();
+        Search.stalnessOf(getProductNameInput());
+        //waitPageLoaded();
         return new ProductValidatorPage();
     }
 
@@ -323,7 +315,19 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public ProductValidatorPage gotoProductValidatorPageAfterSaveAndClose() {
+        waitPageLoaded();
         clickSaveAndCloseButton();
         return new ProductValidatorPage();
     }
+
+    public void waitPageLoaded() {
+        List<WebElement> loaders = new ArrayList<>();
+        int currentSize = 0;
+        while (currentSize == loaders.size()) {
+            List<WebElement> blocker = Search.xpaths("//div[@class='loading-mask']");
+            loaders.addAll(blocker);
+            currentSize++;
+        }
+    }
+
 }

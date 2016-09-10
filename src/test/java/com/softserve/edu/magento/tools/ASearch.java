@@ -10,6 +10,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -19,6 +20,7 @@ public abstract class ASearch {
     //added timeouts.
     protected static final long IMPLICIT_WAIT_TIMEOUT = 5L;
     protected static final long EXPLICIT_WAIT_TIMEOUT = 10L;
+    protected static final long DISAPPEAR_WAIT_TIMEOUT = 10L;
 
     //removed Application from constructor params.
     public ASearch() {
@@ -95,6 +97,16 @@ public abstract class ASearch {
 
     public void waitUntil(Predicate<WebDriver> predicate) {
         new WebDriverWait(getWebDriver(), 10).until(predicate);
+    }
+
+    public  boolean stalenessOf(WebElement webElement){
+        return new WebDriverWait(this.getWebDriver(), DISAPPEAR_WAIT_TIMEOUT)
+                .until(ExpectedConditions.stalenessOf(webElement));
+    }
+
+    public  WebElement elementClickable(WebElement webElement){
+        return new WebDriverWait(this.getWebDriver(), DISAPPEAR_WAIT_TIMEOUT)
+                .until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
 }

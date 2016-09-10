@@ -94,9 +94,6 @@ public class TestBase extends AutoTestWithReporting {
     @AfterSuite
     public void suiteTearDown(){
         AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
-        //WebDriverManager.getDriver().quit();
-        ApplicationAdmin.quitAll();
-        ApplicationCustomer.quitAll();
     }
     /*
     * TestNG specific implementation of abstract method from AutoTestWithReporting class

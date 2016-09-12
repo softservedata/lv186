@@ -160,11 +160,6 @@ public class SearchExplicitVisible extends ASearch {
     }
 
     @Override
-    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
-        return null;
-    }
-
-    @Override
     public  List<WebElement> cssSelectors(String cssSelector) {
     	 return getVisibleWebElements(By.cssSelector(cssSelector));
     }
@@ -187,6 +182,16 @@ public class SearchExplicitVisible extends ASearch {
     @Override
     public  List<WebElement> tagNames(String tagName) {
     	return getVisibleWebElements(By.tagName(tagName));
+    }
+
+    @Override
+    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return null;
+    }
+
+    @Override
+    public List<WebElement> tagNames(String tagName, WebElement fromWebElement) {
+        return null;
     }
 
 }

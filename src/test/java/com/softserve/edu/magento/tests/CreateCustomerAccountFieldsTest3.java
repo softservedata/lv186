@@ -46,9 +46,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 	 public List<ICustomerUser> UserParametersUnSuccess() {
 			List<ICustomerUser> users = new ArrayList<ICustomerUser>();
 			users.add(CustomerUserRepository.get().User_BV1());
-			users.add(CustomerUserRepository.get().User_BV3());
 			//users.add(CustomerUserRepository.get().User_BV3());
-			//users.add(CustomerUserRepository.get().User_BV4());
 			return users;
 	 }
 
@@ -69,6 +67,10 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  Assert.assertTrue(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.PASSWORD));
 		  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorValidatorText(ErrorValidatorName.PASSWORD),
 				  ErrorMessage.ERROR_PASSWORD_FORMAT_MIN_LENGHT.toString());
+
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.FIRSTNAME));
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.LASTNAME));
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.EMAIL));
 		  // 4.Go to  the admin page
 		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostMacAdmin());
 		  // 5. Log in admin
@@ -77,11 +79,11 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 7. Confirm that already exist customer account is not created
-		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
 		 applicationAdmin.logout();
 	 }
-	 @DataProvider 
+	 @DataProvider
 	  public Object[][] ApplicationParametersUnSuccess2(ITestContext context) {
 	     return ListUtils.get().toMultiArray(
 	    		 ParameterUtils.get().updateParametersAll(
@@ -90,7 +92,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 	    		 );
 
 	  }
-	 @Test(dataProvider = "ApplicationParametersUnSuccess2")
+	 //@Test(dataProvider = "ApplicationParametersUnSuccess2")
 	  public void testCreateNewAccount2(ApplicationSources applicationSources,ICustomerUser customerUser) {
 		  //Precondition
 		  // Prepare our application
@@ -107,6 +109,10 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 		  Assert.assertTrue(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.PASSWORD));
 		  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorValidatorText(ErrorValidatorName.PASSWORD),
 				  ErrorMessage.FIELD_IS_REQUIRED.toString());
+
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.FIRSTNAME));
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.LASTNAME));
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.EMAIL));
 		  // 4.Go to  the admin page
 		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostMacAdmin());
 		  // 5. Log in admin
@@ -115,7 +121,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 7. Confirm that already exist customer account is not created
-		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
 		 applicationAdmin.logout();
 	 }
@@ -135,7 +141,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 			return users;
 	 }
 	 
-	 @Test(dataProvider = "ApplicationParametersSuccess")
+	 //@Test(dataProvider = "ApplicationParametersSuccess")
 	  public void testCreateNewAccount3(ApplicationSources applicationSources,ICustomerUser customerUser) {
 		  //Precondition
 		  // Prepare our application
@@ -162,7 +168,7 @@ public class CreateCustomerAccountFieldsTest3 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 10. Confirm that already exist customer account is created
-		  Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  //Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		 applicationAdmin.logout();
 	 }
 

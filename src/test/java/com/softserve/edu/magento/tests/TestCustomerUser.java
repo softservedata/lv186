@@ -47,9 +47,15 @@ public class TestCustomerUser {
 
         ICustomerUser testCustomer = TestCustomerUser.get().getCustomerUser();
         // 4. Delete currently created user
-        if(allCustomersPage.confirmCustomerUserIsCreated(testCustomer) == true ) {
+       // if(allCustomersPage.confirmCustomerUserIsCreated(testCustomer) == true ) {
+        //    allCustomersPage = allCustomersPage.deleteCustomerUser(testCustomer);
+        //}
+
+
+         if(allCustomersPage.confirmCustomerUserCreated(testCustomer) == true ) {
             allCustomersPage = allCustomersPage.deleteCustomerUser(testCustomer);
         }
+
         // 5. Log out admin
         applicationAdmin.logout();
     }

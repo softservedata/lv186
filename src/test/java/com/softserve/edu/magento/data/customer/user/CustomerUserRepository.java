@@ -958,6 +958,39 @@ public class CustomerUserRepository {
 				.build();
 	}
 
+	public ICustomerUser User_DT_SingIn_5() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Yaryna")
+						.setLastname("Kharko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("ya.kharko@nltu.lviv.ua25263004Ya")
+						.setPassword("")
+						.setConfirmPassword("")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+	public ICustomerUser User_DT_SingIn_6() {
+		return CustomerUser.get().
+				setPersonalInfo(PersonalInfo_User.get()
+						.setFirstname("Yaryna")
+						.setLastname("Kharko")
+						.setSignUpNewsletter(true)
+						.build())
+				.setSigninInfo(SigninInfo_User.get()
+						.setEmail("")
+						.setPassword("ya.kharko@nltu.lviv.ua25263004Ya")
+						.setConfirmPassword("")
+						.setAssosiateToWebsite("Main Website")
+						.setGroup(Group.GENERAL)
+						.build())
+				.build();
+	}
+
 	// CYRYLIC SYMB
 
 	public ICustomerUser UserSingIn_Cyrylic_Symb() {
@@ -969,8 +1002,8 @@ public class CustomerUserRepository {
 						.build())
 				.setSigninInfo(SigninInfo_User.get()
 						.setEmail("юрійандр@gmail.com")
-						.setPassword("юрійандрієнко1234")
-						.setConfirmPassword("юрійандрієнко1234")
+						.setPassword("ЮPIЙандрієнко1234")
+						.setConfirmPassword("ЮPIЙандрієнко1234")
 						.setAssosiateToWebsite("Main Website")
 						.setGroup(Group.GENERAL)
 						.build())

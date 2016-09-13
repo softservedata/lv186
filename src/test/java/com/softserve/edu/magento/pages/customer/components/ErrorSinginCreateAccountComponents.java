@@ -49,8 +49,10 @@ public  class ErrorSinginCreateAccountComponents {
 		for(int i=0;i<errorValidators.size();i++) {
 			System.out.println(errorValidators.get(i).getAttribute("for"));
 			if( errorValidators.get(i).getAttribute("for").equals(validatorFor) ) {
-				isErrorValidator = true;
-				break;
+				if(errorValidators.get(i).isDisplayed()) {
+					isErrorValidator = true;
+					break;
+				}
 			}
 		}
 		return isErrorValidator;

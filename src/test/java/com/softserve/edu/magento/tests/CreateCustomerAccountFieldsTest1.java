@@ -59,7 +59,7 @@ public class CreateCustomerAccountFieldsTest1 extends TestBase{
 		users.add(CustomerUserRepository.get().User_Special_Symb13());
 		users.add(CustomerUserRepository.get().User_Special_Symb14());*/
 		users.add(CustomerUserRepository.get().User_Special_Symb15());
-		users.add(CustomerUserRepository.get().User_Special_Symb16());
+		//users.add(CustomerUserRepository.get().User_Special_Symb16());
 		return users;
 			 
 	}
@@ -80,8 +80,9 @@ public class CreateCustomerAccountFieldsTest1 extends TestBase{
 		  Unsuccessful_CreateAccountPage unsuccessful_CreateAccountPage = 
 				  createAccountPage.unsuccessful_createNewAccount(customerUser);
 		  // 3.Confirm that error message appear with right text
-		  //Assert.assertTrue(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.FIRSTNAME));
-		  //Assert.assertTrue(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.LASTNAME));
+		  Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.FIRSTNAME));
+		  Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.LASTNAME));
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.PASSWORD));
 		  Assert.assertTrue(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.EMAIL));
 		  // 4.Go to  the admin page
 		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostMacAdmin());
@@ -91,7 +92,7 @@ public class CreateCustomerAccountFieldsTest1 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 7. Confirm that already exist customer account is not created
-		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+//		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
 		  allCustomersPage.clickSignOut();
 	 }

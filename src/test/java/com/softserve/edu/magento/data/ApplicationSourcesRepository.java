@@ -31,7 +31,7 @@ public final class ApplicationSourcesRepository {
         return new ApplicationSources("ChromeDriverTemporary",
                 "/Applications/Google Chrome.app/Contents/chromedriver", 30L, 30L, "Implicit",
                 "http://192.168.195.210/magento/admin",
-                new String(), "MySqlLocalHost");
+                new String(), "MySqlTrainingLocal");
     }
     public static ApplicationSources getChromeLocalhostAdminLinux() {
         return new ApplicationSources("ChromeDriverTemporary",

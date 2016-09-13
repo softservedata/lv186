@@ -102,7 +102,7 @@ public abstract class ASearch {
     public abstract List<WebElement> tagNames(String tagName, WebElement fromWebElement);
     
     public void waitUntil(Predicate<WebDriver> predicate) {
-        new WebDriverWait(getWebDriver(), 10).until(predicate);
+        new WebDriverWait(getWebDriver(), 20L).until(predicate);
     }
 
     public boolean checkDOMForText(String text) {

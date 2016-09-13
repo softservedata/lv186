@@ -3,6 +3,7 @@ package com.softserve.edu.magento.controls;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.tools.Search;
@@ -119,5 +120,12 @@ public final class Table implements ITable {
     public WebElement getCell(int rowIndex, int columnIndex) {
         return getTableBody().get(rowIndex).get(columnIndex);
     }
-    
+
+    public void clickEditLink (){
+        getColumnByValueOfHeader("Action")
+                .get(getRowIndexByValueInColumn("Yaroslav Harasym", getColumnIndexByValueOfHeader("Name")))
+                .findElement(By.cssSelector("a")).click();
+    }
+//    int columnIndex = getColumnIndexByValueOfHeader("Name");
+//    getRowByValueInColumn("Yaroslav Harasym", columnIndex).get(16).click();
 }

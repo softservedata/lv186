@@ -1,6 +1,5 @@
 package com.softserve.edu.magento.tests;
 
-import com.sun.syndication.io.impl.PluginManager;
 import kg.apc.jmeter.reporters.LoadosophiaUploader;
 import kg.apc.jmeter.reporters.LoadosophiaUploaderGui;
 import org.apache.jmeter.config.Arguments;
@@ -8,10 +7,8 @@ import org.apache.jmeter.config.gui.ArgumentsPanel;
 import org.apache.jmeter.control.LoopController;
 import org.apache.jmeter.control.gui.LoopControlPanel;
 import org.apache.jmeter.control.gui.TestPlanGui;
-import org.apache.jmeter.engine.JMeterEngine;
 import org.apache.jmeter.engine.StandardJMeterEngine;
 import org.apache.jmeter.protocol.http.control.*;
-import org.apache.jmeter.protocol.http.control.gui.RecordController;
 import org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui;
 import org.apache.jmeter.protocol.http.gui.CacheManagerGui;
 import org.apache.jmeter.protocol.http.gui.CookiePanel;
@@ -24,14 +21,10 @@ import org.apache.jmeter.testelement.TestPlan;
 import org.apache.jmeter.threads.ThreadGroup;
 import org.apache.jmeter.threads.gui.ThreadGroupGui;
 import org.apache.jmeter.util.JMeterUtils;
-import org.apache.jmeter.visualizers.ViewResultsFullVisualizer;
 import org.apache.jorphan.collections.HashTree;
-import org.bouncycastle.jcajce.provider.symmetric.AES;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import sun.plugin.navig.motif.Plugin;
 
 import java.io.File;
 import java.io.FileOutputStream;

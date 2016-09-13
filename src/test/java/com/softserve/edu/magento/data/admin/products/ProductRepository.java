@@ -9,6 +9,7 @@ public class ProductRepository {
     public final static String VALID_PRODUCT_NAME = "Samsung Tablet";
     public final static String INVALID_PRODUCT_NAME = "qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq333333";
     public final static String VALID_SKU = "Tablet";
+    public final static String VALID_SKU_DUPLICATED = "Tablet-1";
     public final static String INVALID_SKU = "qqqqqqqqqq2222222222qqqqqqqqqq2222222222qqqqqqqqqq2222222222aaaaa";
     public final static String VALID_PRICE = "700.00";
     public final static String VALID_PRICE_FOR_CHECK = "$700.00";
@@ -23,7 +24,6 @@ public class ProductRepository {
     public final static String VALID_SKU_2 = "A3";
     public final static String VALID_PRODUCT_NAME_3 = "Dell Laptop";
     public final static String VALID_SKU_3 = "Dell";
-    public final static String VALID_SKU_DUPLICATED = "Dell-1";
 
 
     private ProductRepository() {
@@ -36,6 +36,7 @@ public class ProductRepository {
     public IProduct getNewValidProduct() {
         IProduct product = Product.get().setProductName(VALID_PRODUCT_NAME).setSku(VALID_SKU).setPrice(VALID_PRICE)
                 .build();
+        product.setAttributeSet(ATTRIBUTE_SET);
         product.setQuantity(QUANTITY);
         return product;
     }

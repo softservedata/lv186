@@ -5,19 +5,23 @@
 	<parameter name="driverPath" value="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe" />
 	<test name="Test1">
 		<classes>
-			<class name="com.softserve.edu.magento.tests.ProductFunctionalityTest">
+			<class name="com.softserve.edu.magento.tests.ProductSaveTest">
 				<methods>
 					<include name="checkProductSaved" />
-					<!--<include name="checkProductSaveAndNew" />-->
-					<!--<include name="checkProductSaveAndDuplicate" />-->
-					<!--<include name="checkProductSaveAndClose"/>-->
+					<include name="checkProductSaveAndNew" />
+					<include name="checkProductSaveAndClose"/>
+					<include name="checkProductSaveAndDuplicate" />
+				</methods>
+			</class>
+			<!--<class name="com.softserve.edu.magento.tests.ProductValidationTest">-->
+				<!--<methods>-->
 					<!--<include name="checkProductExists" />-->
 					<!--<include name="checkProductSaveValidation" />-->
 					<!--<include name="checkProductSaveWithMixedPrice" />-->
 					<!--<include name="checkProductSaveWithInvalidName" />-->
 					<!--<include name="checkProductSaveWithInvalidSku" />-->
-				</methods>
-			</class>
+				<!--</methods>-->
+			<!--</class>-->
 		</classes>
 	</test>
 </suite>

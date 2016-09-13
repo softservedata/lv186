@@ -6,6 +6,7 @@ import com.softserve.edu.magento.tools.Search;
 import org.apache.http.util.TextUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.internal.seleniumemulation.WaitForPageToLoad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class AddProductPage extends VerticalMenu {
     private WebElement quantityInput;
 
     public AddProductPage() {
+        Search.waitForSimpleLoaderDone();
         saveButton = Search.id("save-button");
         saveDropdownToggle = Search.cssSelector("button[title=Save]:nth-child(2)");
         saveAndNewButton = Search.id("save_and_new");
@@ -191,6 +193,7 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public void setProductNameInputWithClear(String productName) {
+        //Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_CLICKABLE.getSearchStrategy());
         getProductNameInput().click();
         clearProductNameInput();
         setProductName(productName);
@@ -214,11 +217,10 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public void setProductData(IProduct productData) {
-        //waitPageLoaded();
-        Search.elementClickable(productNameInput);
         if (!TextUtils.isEmpty(productData.getAttributeSet())) {
             setAttributeSet(productData.getAttributeSet());
         }
+        Search.waitForLoaderDone();
         setProductNameInputWithClear(productData.getProductName());
         setSkuInputWithClear(productData.getSku());
         setPriceInputWithClear(productData.getPrice());
@@ -252,7 +254,6 @@ public class AddProductPage extends VerticalMenu {
     public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
         clickSaveButton();
         Search.stalnessOf(getProductNameInput());
-        //waitPageLoaded();
         return new SuccessProductSavePage();
     }
 
@@ -272,7 +273,7 @@ public class AddProductPage extends VerticalMenu {
 
     public ProductCatalogPage gotoCatalogPageAfterSaveClose() {
         clickSaveAndCloseButton();
-        waitPageLoaded();
+        Search.stalnessOf(getProductNameInput());
         return new ProductCatalogPage();
     }
 

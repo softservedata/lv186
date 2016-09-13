@@ -4,14 +4,87 @@ import com.softserve.edu.magento.tools.Search;
 import org.openqa.selenium.WebElement;
 
 /**
- * Created by Corwin on 05.09.2016.
+ * Created by Yulia Nevinglovskaya on 05.09.2016.
  */
-public class ActionsWithProductPage extends ProductCatalogPage {
+public class ActionsWithProductsPage extends ProductCatalogPage {
 
+    //private WebElement actionsDropdown;
+    private WebElement deleteProductButton;
+    private WebElement changeProductStatusButton;
+    private WebElement enableProduct;
+    private WebElement disableProduct;
+    private WebElement updateProductAttributesButton;
+
+    ActionsWithProductsPage() {
+        //actionsDropdown = Search.xpath("(//div[@class='action-select-wrap'])[1]");
+        deleteProductButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]");
+        changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
+        enableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Enable')])[1]");
+        disableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Disable')])[1]");
+        updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
+    }
+
+    // Getters
+
+//    public WebElement getActionsDropdown() {
+//        return this.actionsDropdown;
+//    }
+
+    public WebElement getDeleteProduct() {
+        return this.deleteProductButton;
+    }
+
+    public WebElement getChangeProductStatus() {
+        return this.changeProductStatusButton;
+    }
+
+    public WebElement getEnableProductStatus() {
+        return this.enableProduct;
+    }
+
+    public WebElement getDisableProductStatus() {
+        return this.disableProduct;
+    }
+
+    public WebElement getUpdateProductAttributes() {
+        return this.updateProductAttributesButton;
+    }
+
+    // PageObject Logic
+
+//    public void clickActionsDropdown() {
+//        getActionsDropdown().click();
+//    }
+
+    public DeleteConfirmationPopup clickDeleteProductButton() {
+        //clickActionsDropdown();
+        getDeleteProduct().click();
+        return new DeleteConfirmationPopup();
+    }
+
+    public void clickChangeProductStatus() {
+        //clickActionsDropdown();
+        getChangeProductStatus().click();
+    }
+
+    public void setEnableProductStatus() {
+        clickChangeProductStatus();
+        getEnableProductStatus().click();
+    }
+
+    public void setDisableProduct() {
+        clickChangeProductStatus();
+        getDisableProductStatus().click();
+    }
+
+    public void clickUpdateProductAttributesAction() {
+        clickActionsDropdown();
+        getUpdateProductAttributes().click();
+    }
 
     // -------- DeletePopupInnerClass ---------//
 
-    private class DeleteConfirmationPopup {
+    public class DeleteConfirmationPopup {
         private WebElement deleteConfirmationButton;
         private WebElement cancelDeleteLink;
         private WebElement closeDeletePopupButton;
@@ -37,14 +110,9 @@ public class ActionsWithProductPage extends ProductCatalogPage {
         }
 
         // PageObject Logic
-//    public DeleteProductPage clickDeleteProductAction() {
-//        clickActionsDropdown();
-//        getDeleteProductAction().click();
-//        return new DeleteProductPage();
-//    }
 
         public ProductCatalogPage clickDeleteConfirmationButton() {
-            new DeleteProductPage();
+            //Search.waitElementToBeClickable(getDeleteConfirmationButton());
             getDeleteConfirmationButton().click();
             return new ProductCatalogPage();
         }

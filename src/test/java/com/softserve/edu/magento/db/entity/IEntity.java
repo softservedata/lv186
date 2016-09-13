@@ -9,7 +9,9 @@ public interface IEntity {
         GET_ALL,
         UPDATE_BY_FIELD,
         DELETE_BY_ID,
-        DELETE_BY_FIELD;
+        DELETE_BY_FIELD,
+        DELETE_BY_SKU,
+        GET_BY_SKU;
     }
 
     Long getId();

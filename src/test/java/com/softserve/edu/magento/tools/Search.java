@@ -137,14 +137,9 @@ public class Search {
         return getinstance().getSearch().stalenessOf(webElement);
     }
 
-    public static WebElement elementClickable (WebElement webElement) {
-        return getinstance().getSearch().elementClickable(webElement);
+    public static WebElement waitElementToBeClickable (WebElement webElement) {
+       return getinstance().getSearch().waitElementToBeClickable(webElement);
     }
-
- // From Elements
-    
-    public  static WebElement id(String id, WebElement fromWebElement) {
-    	return getinstance().getSearch().id(id,fromWebElement);
 
     // From Elements
 
@@ -236,5 +231,9 @@ public class Search {
 
     public static boolean waitForLoaderDone( ) {
         return getinstance().getSearch().waitForLoaderDone();
+    }
+
+    public static boolean waitForSimpleLoaderDone( ) {
+        return getinstance().getSearch().waitForSimpleLoaderDone();
     }
 }

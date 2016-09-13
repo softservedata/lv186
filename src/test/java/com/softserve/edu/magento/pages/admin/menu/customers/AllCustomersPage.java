@@ -706,7 +706,7 @@ public class AllCustomersPage extends VerticalMenu {
 	public void nameFieldInListClick() {
 		//Actions actions = new Actions(driver);
 
-	//	actions.moveToElement(nameFieldInList).click().perform();
+	//actions.moveToElement(nameFieldInList).click().perform();
 		// getNameFieldInList().click();
 	}
 

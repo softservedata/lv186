@@ -23,11 +23,11 @@ public class ProductCatalogPage extends VerticalMenu {
     private WebElement downloadableProductButton;
 
     private WebElement actionsDropdown;
-    private WebElement deleteProductButton;
-    private WebElement changeProductStatusButton;
-    private WebElement enableProduct;
-    private WebElement disableProduct;
-    private WebElement updateProductAttributesButton;
+//    private WebElement deleteProductButton;
+//    private WebElement changeProductStatusButton;
+//    private WebElement enableProduct;
+//    private WebElement disableProduct;
+//    private WebElement updateProductAttributesButton;
 
 //    private WebElement filterButton;
     private WebElement nextPageButton;
@@ -37,6 +37,7 @@ public class ProductCatalogPage extends VerticalMenu {
     public ProductCatalogPage() {
         pageTitle = Search.className("page-title");
         addProductButton = Search.id("add_new_product-button");
+        //addProductButton = Search.xpath("//button[@data-ui-id='products-list-add-new-product-button']");
         addProductToggleButton = Search.className("action-toggle");
         simpleProductButton = Search.cssSelector("span[title='Simple Product']");
         configurableProductButton = Search.cssSelector("span[title='Configurable Product']");
@@ -44,12 +45,12 @@ public class ProductCatalogPage extends VerticalMenu {
         virtualProductButton = Search.cssSelector("span[title='Virtual Product']");
         bundleProductButton = Search.cssSelector("span[title='Bundle Product']");
         downloadableProductButton = Search.cssSelector("span[title='Downloadable Product']");
-        actionsDropdown = Search.xpath("(//div[@class='action-select-wrap'])[1]");
-        deleteProductButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]");
-        changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
-        enableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Enable')])[1]");
-        disableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Disable')])[1]");
-        updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
+        actionsDropdown = Search.xpath("(//button[@class='action-select'])[1]");
+//        deleteProductButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]");
+//        changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
+//        enableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Enable')])[1]");
+//        disableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Disable')])[1]");
+//        updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
         nextPageButton = Search.cssSelector("button[title='Next Page']");
 //        filterButton = Search.xpath("(//button[@class='action-default'])[1]");
         productRows = new ArrayList<>();
@@ -97,26 +98,26 @@ public class ProductCatalogPage extends VerticalMenu {
     public WebElement getActionsDropdown() {
         return this.actionsDropdown;
     }
-
-    public WebElement getDeleteProductAction() {
-        return this.deleteProductButton;
-    }
-
-    public WebElement getChangeStatusProductAction() {
-        return this.changeProductStatusButton;
-    }
-
-    public WebElement getEnableProductStatus() {
-        return this.enableProduct;
-    }
-
-    public WebElement getDisableProductStatus() {
-        return this.disableProduct;
-    }
-
-    public WebElement getUpdateProductAttributesAction() {
-        return this.updateProductAttributesButton;
-    }
+//
+//    public WebElement getDeleteProductAction() {
+//        return this.deleteProductButton;
+//    }
+//
+//    public WebElement getChangeStatusProductAction() {
+//        return this.changeProductStatusButton;
+//    }
+//
+//    public WebElement getEnableProductStatus() {
+//        return this.enableProduct;
+//    }
+//
+//    public WebElement getDisableProductStatus() {
+//        return this.disableProduct;
+//    }
+//
+//    public WebElement getUpdateProductAttributesAction() {
+//        return this.updateProductAttributesButton;
+//    }
 
     public WebElement getNextPageButton() {
         return this.nextPageButton;
@@ -162,35 +163,36 @@ public class ProductCatalogPage extends VerticalMenu {
         getDownloadableProductButton().click();
     }
 
-    public void clickActionsDropdown() {
+    public ActionsWithProductsPage clickActionsDropdown() {
         getActionsDropdown().click();
+        return new ActionsWithProductsPage();
     }
-
-    public DeleteConfirmationPopup clickDeleteProductAction() {
-        clickActionsDropdown();
-        getDeleteProductAction().click();
-        return new DeleteConfirmationPopup();
-    }
-
-    public void clickChangeStatusProductAction() {
-        clickActionsDropdown();
-        getChangeStatusProductAction().click();
-    }
-
-    public void setEnableProductStatus() {
-        clickChangeStatusProductAction();
-        getEnableProductStatus().click();
-    }
-
-    public void setDisableProduct() {
-        clickChangeStatusProductAction();
-        getDisableProductStatus().click();
-    }
-
-    public void clickUpdateProductAttributesAction() {
-        clickActionsDropdown();
-        getUpdateProductAttributesAction().click();
-    }
+//
+//    public DeleteConfirmationPopup clickDeleteProductAction() {
+//        clickActionsDropdown();
+//        getDeleteProductAction().click();
+//        return new DeleteConfirmationPopup();
+//    }
+//
+//    public void clickChangeStatusProductAction() {
+//        clickActionsDropdown();
+//        getChangeStatusProductAction().click();
+//    }
+//
+//    public void setEnableProductStatus() {
+//        clickChangeStatusProductAction();
+//        getEnableProductStatus().click();
+//    }
+//
+//    public void setDisableProduct() {
+//        clickChangeStatusProductAction();
+//        getDisableProductStatus().click();
+//    }
+//
+//    public void clickUpdateProductAttributesAction() {
+//        clickActionsDropdown();
+//        getUpdateProductAttributesAction().click();
+//    }
 
 //    public FilterObject clickFilterButton() {
 //        getFilterButton().click();
@@ -345,48 +347,48 @@ public class ProductCatalogPage extends VerticalMenu {
 
     // -------- DeletePopupInnerClass ---------//
 
-    public class DeleteConfirmationPopup {
-
-        private WebElement deleteConfirmationButton;
-        private WebElement cancelDeleteLink;
-        private WebElement closeDeletePopupButton;
-
-        public DeleteConfirmationPopup() {
-            cancelDeleteLink = Search.xpath("//footer[@class='modal-footer']/button[1]");
-            deleteConfirmationButton = Search.xpath("//footer[@class='modal-footer']/button[2]");
-            closeDeletePopupButton = Search.xpath("(//button[@data-role='closeBtn'])[2]");
-        }
+//    public class DeleteConfirmationPopup {
+//
+//        private WebElement deleteConfirmationButton;
+//        private WebElement cancelDeleteLink;
+//        private WebElement closeDeletePopupButton;
+//
+//        public DeleteConfirmationPopup() {
+//            cancelDeleteLink = Search.xpath("//footer[@class='modal-footer']/button[1]");
+//            deleteConfirmationButton = Search.xpath("//footer[@class='modal-footer']/button[2]");
+//            closeDeletePopupButton = Search.xpath("(//button[@data-role='closeBtn'])[2]");
+//        }
 
         // Getters
 
-        public WebElement getDeleteConfirmationButton() {
-            return this.deleteConfirmationButton;
-        }
-
-        public WebElement getCancelDeleteLink() {
-            return this.cancelDeleteLink;
-        }
-
-        public WebElement getCloseDeletePopupButton() {
-            return this.closeDeletePopupButton;
-        }
+//        public WebElement getDeleteConfirmationButton() {
+//            return this.deleteConfirmationButton;
+//        }
+//
+//        public WebElement getCancelDeleteLink() {
+//            return this.cancelDeleteLink;
+//        }
+//
+//        public WebElement getCloseDeletePopupButton() {
+//            return this.closeDeletePopupButton;
+//        }
 
         // PageObject Logic
 
-        public ProductCatalogPage clickDeleteConfirmationButton() {
-            new DeleteConfirmationPopup();
-            getDeleteConfirmationButton().click();
-            return new ProductCatalogPage();
-        }
-
-        public void clickCancelDeleteLink() {
-            getCancelDeleteLink().click();
-        }
-
-        public void clickCloseDeletePopupButton() {
-            getCloseDeletePopupButton().click();
-        }
-    }
+//        public ProductCatalogPage clickDeleteConfirmationButton() {
+//            new DeleteConfirmationPopup();
+//            getDeleteConfirmationButton().click();
+//            return new ProductCatalogPage();
+//        }
+//
+//        public void clickCancelDeleteLink() {
+//            getCancelDeleteLink().click();
+//        }
+//
+//        public void clickCloseDeletePopupButton() {
+//            getCloseDeletePopupButton().click();
+//        }
+//    }
 
     // -------- NoItemSelectedPopupInnerClass ---------//
 

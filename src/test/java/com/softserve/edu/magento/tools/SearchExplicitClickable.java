@@ -38,7 +38,7 @@ public class SearchExplicitClickable extends ASearch {
 //    }
 
     // TODO
-    private WebElement getPresentWebElement(By by, WebElement fromWebElement) {
+    private WebElement getClickableWebElement(By by, WebElement fromWebElement) {
         WebElement result;
         getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
         result = fromWebElement.findElement(by);
@@ -97,42 +97,42 @@ public class SearchExplicitClickable extends ASearch {
     //TODO
     @Override
     public WebElement id(String id, WebElement fromWebElement) {
-        return getPresentWebElement(By.id(id), fromWebElement);
+        return getClickableWebElement(By.id(id), fromWebElement);
     }
 
     @Override
     public WebElement name(String name, WebElement fromWebElement) {
-        return getPresentWebElement(By.name(name), fromWebElement);
+        return getClickableWebElement(By.name(name), fromWebElement);
     }
 
     @Override
     public WebElement xpath(String xpath, WebElement fromWebElement) {
-        return getPresentWebElement(By.xpath(xpath), fromWebElement);
+        return getClickableWebElement(By.xpath(xpath), fromWebElement);
     }
 
     @Override
     public WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
-        return getPresentWebElement(By.cssSelector(cssSelector), fromWebElement);
+        return getClickableWebElement(By.cssSelector(cssSelector), fromWebElement);
     }
 
     @Override
     public WebElement className(String className, WebElement fromWebElement) {
-        return getPresentWebElement(By.className(className), fromWebElement);
+        return getClickableWebElement(By.className(className), fromWebElement);
     }
 
     @Override
     public WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
-        return getPresentWebElement(By.partialLinkText(partialLinkText), fromWebElement);
+        return getClickableWebElement(By.partialLinkText(partialLinkText), fromWebElement);
     }
 
     @Override
     public WebElement linkText(String linkText, WebElement fromWebElement) {
-        return getPresentWebElement(By.linkText(linkText), fromWebElement);
+        return getClickableWebElement(By.linkText(linkText), fromWebElement);
     }
 
     @Override
     public WebElement tagName(String tagName, WebElement fromWebElement) {
-        return getPresentWebElement(By.tagName(tagName), fromWebElement);
+        return getClickableWebElement(By.tagName(tagName), fromWebElement);
     }
 
     // List

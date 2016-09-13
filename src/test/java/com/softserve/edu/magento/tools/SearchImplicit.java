@@ -61,7 +61,7 @@ public class SearchImplicit extends ASearch {
     private List<WebElement> getWebElements(By by, WebElement fromWebElement) {
         return fromWebElement.findElements(by);
     }
-    
+
     /*
    Methods, used by Search entity.
     */

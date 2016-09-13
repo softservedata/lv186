@@ -14,8 +14,6 @@ public class ProductExistsPage extends AddProductPage {
 		productAlreadyExists = Search.xpath("//div[@data-ui-id='messages-message-error']");
 	}
 
-	// Getters
-
 	public WebElement getProductAlreadyExistsMessage() {
 		return this.productAlreadyExists;
 	}

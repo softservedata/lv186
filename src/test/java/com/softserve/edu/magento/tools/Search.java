@@ -133,6 +133,14 @@ public class Search {
         return getinstance().getSearch().tagName(tagName);
     }
 
+    public static boolean stalnessOf(WebElement webElement) {
+        return getinstance().getSearch().stalenessOf(webElement);
+    }
+
+    public static WebElement waitElementToBeClickable (WebElement webElement) {
+       return getinstance().getSearch().waitElementToBeClickable(webElement);
+    }
+
     // From Elements
 
     public static WebElement id(String id, WebElement fromWebElement) {
@@ -231,4 +239,7 @@ public class Search {
         return getinstance().getSearch().tagNames(tagName, fromWebElement);
     }
 
+    public static boolean waitForSimpleLoaderDone( ) {
+        return getinstance().getSearch().waitForSimpleLoaderDone();
+    }
 }

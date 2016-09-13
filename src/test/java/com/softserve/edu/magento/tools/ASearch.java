@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import com.google.common.base.Predicate;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.internal.seleniumemulation.WaitForPageToLoad;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -28,7 +30,7 @@ public abstract class ASearch {
     }
 
     //remove Application from method params
-   public static WebDriver getWebDriver() {
+    public static WebDriver getWebDriver() {
         return Application.getWebDriver();
     }
 
@@ -124,6 +126,11 @@ public abstract class ASearch {
                 .until(ExpectedConditions.stalenessOf(webElement));
     }
 
+    public WebElement waitElementToBeClickable(WebElement webElement) {
+        return new WebDriverWait(getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
+                .until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
     private boolean checkForVisibilityLoader() {
         return (Boolean)
                 ((JavascriptExecutor) this.getWebDriver())
@@ -154,4 +161,28 @@ public abstract class ASearch {
         }
         return false;
     }
+
+    private boolean checkLoaderVisible() {
+        return (Boolean)
+            ((JavascriptExecutor) getWebDriver())
+            .executeScript("return jQuery(\"[data-component='product_form.product_form']\").is(\":visible\")");
+}
+
+    private boolean waitForLoaderHidden() {
+        return new WebDriverWait(getWebDriver(), DISAPPEAR_WAIT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver webDriver) {
+                return (Boolean) ((JavascriptExecutor) webDriver).executeScript("return jQuery(\"[data-component='product_form.product_form']\").is(\":hidden\")");
+            }
+        });
+    }
+
+    public boolean waitForSimpleLoaderDone() {
+        if (checkLoaderVisible()) {
+            waitForLoaderHidden();
+            return true;
+        }
+        return false;
+    }
+
 }

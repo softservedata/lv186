@@ -91,12 +91,9 @@ public class TestBase extends AutoTestWithReporting {
     * If you use test suites it should be moved there.
     * Otherwise move it to superclass (and then every test class  will be a "test suite").
     */
-    @AfterSuite
+    //@AfterSuite
     public void suiteTearDown(){
         AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
-        //WebDriverManager.getDriver().quit();
-        ApplicationAdmin.quitAll();
-        ApplicationCustomer.quitAll();
     }
     /*
     * TestNG specific implementation of abstract method from AutoTestWithReporting class

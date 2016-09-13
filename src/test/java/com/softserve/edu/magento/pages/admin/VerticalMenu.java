@@ -8,6 +8,7 @@ import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage;
 import com.softserve.edu.magento.pages.admin.menu.products.categories.CategoriesPage;
 import com.softserve.edu.magento.tools.Search;
+import org.openqa.selenium.internal.seleniumemulation.WaitForPageToLoad;
 import ss.af.reporting.annotations.ServiceReport;
 
 public abstract class VerticalMenu extends ATopPage {

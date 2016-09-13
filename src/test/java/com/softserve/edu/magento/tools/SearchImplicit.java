@@ -30,8 +30,7 @@ public class SearchImplicit extends ASearch {
      * @return visible webelement.
      */
     private WebElement getWebElement(By by) {
-
-        return this.getWebDriver().findElement(by);
+        return getWebDriver().findElement(by);
     }
 
     /**
@@ -56,9 +55,13 @@ public class SearchImplicit extends ASearch {
      * @return visible webelements.
      */
     private List<WebElement> getWebElements(By by) {
-        return this.getWebDriver().findElements(by);
+        return getWebDriver().findElements(by);
     }
 
+    private List<WebElement> getWebElements(By by, WebElement fromWebElement) {
+        return fromWebElement.findElements(by);
+    }
+    
     /*
    Methods, used by Search entity.
     */
@@ -169,11 +172,6 @@ public class SearchImplicit extends ASearch {
     }
 
     @Override
-    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
-        return null;
-    }
-
-    @Override
     public List<WebElement> cssSelectors(String cssSelector) {
         return getWebElements(By.cssSelector(cssSelector));
     }
@@ -196,6 +194,16 @@ public class SearchImplicit extends ASearch {
     @Override
     public List<WebElement> tagNames(String tagName) {
         return getWebElements(By.tagName(tagName));
+    }
+
+    @Override
+    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return getWebElements(By.xpath(xpath), fromWebElement);
+    }
+
+    @Override
+    public List<WebElement> tagNames(String tagName, WebElement fromWebElement) {
+        return getWebElements(By.tagName(tagName), fromWebElement);
     }
 
 }

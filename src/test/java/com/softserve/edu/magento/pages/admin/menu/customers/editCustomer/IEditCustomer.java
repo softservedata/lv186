@@ -2,12 +2,13 @@ package com.softserve.edu.magento.pages.admin.menu.customers.editCustomer;
 
 import java.util.List;
 
+import com.softserve.edu.magento.data.customer.user.IAccountInformation;
+import com.softserve.edu.magento.data.customer.user.IAdresses;
 import com.softserve.edu.magento.pages.admin.menu.sales.OrdersPage;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
-import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IAccountInformation;
-import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IAdresses;
+
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.ICustommerView;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.IOrders;
 

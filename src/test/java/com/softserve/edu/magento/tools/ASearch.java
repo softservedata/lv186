@@ -85,8 +85,6 @@ public abstract class ASearch {
 
     public abstract List<WebElement> xpaths(String xpath);
 
-    public abstract List<WebElement> xpaths(String xpath, WebElement fromWebElement);
-
     public abstract List<WebElement> cssSelectors(String cssSelector);
 
     public abstract List<WebElement> classNames(String className);
@@ -97,6 +95,12 @@ public abstract class ASearch {
 
     public abstract List<WebElement> tagNames(String tagName);
 
+    // List From Elements
+
+    public abstract List<WebElement> xpaths(String xpath, WebElement fromWebElement);
+    
+    public abstract List<WebElement> tagNames(String tagName, WebElement fromWebElement);
+    
     public void waitUntil(Predicate<WebDriver> predicate) {
         new WebDriverWait(getWebDriver(), 10).until(predicate);
     }

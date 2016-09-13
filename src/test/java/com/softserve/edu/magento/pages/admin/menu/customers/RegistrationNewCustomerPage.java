@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.pages.admin.menu.customers;
 
+import com.softserve.edu.magento.data.customer.user.CustomerAccountInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,19 +27,20 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	private WebElement saveCustomerButton;
 
 	// fields
-	private WebElement validLabelAboutSavedUser;
-	private WebElement groupSelectField;
-	private WebElement groupChangeBasedOnVatCheck;
-	private WebElement prefixInput;
-	private WebElement firstnameInput;
-	private WebElement middlenameInput;
-	private WebElement lastnameInput;
-	private WebElement sufixInput;
-	private WebElement emailInput;
-	private WebElement dateOfBirfthInput;
-	private WebElement taxVatInput;
-	private WebElement genderButton;
-	private WebElement addNewAddressesButton;
+//	private WebElement validLabelAboutSavedUser;
+//	private WebElement groupSelectField;
+//	private WebElement groupChangeBasedOnVatCheck;
+//	private WebElement prefixInput;
+//	private WebElement firstnameInput;
+//	private WebElement middlenameInput;
+//	private WebElement lastnameInput;
+//	private WebElement sufixInput;
+//	private WebElement emailInput;
+//	private WebElement dateOfBirfthInput;
+//	private WebElement taxVatInput;
+//	private WebElement genderButton;
+//	private WebElement addNewAddressesButton;
+	private CustomerAccountInfo accountInfo;
 
 
 	public RegistrationNewCustomerPage() {
@@ -49,17 +51,17 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		this.resetButton = Search.id("reset");
 		this.saveAndContinueButton = Search.id("save_and_continue");
 		this.saveCustomerButton = Search.id("save");
-		this.groupSelectField = Search.cssSelector("[name='customer[group_id]']");
-		this.groupChangeBasedOnVatCheck = Search.cssSelector("[name='customer[disable_auto_group_change]']");
-		this.prefixInput = Search.cssSelector("[name='customer[prefix]']");
-		this.firstnameInput = Search.cssSelector("[name='customer[firstname]']");
-		this.middlenameInput = Search.cssSelector("[name='customer[middlename]']");
-		this.lastnameInput = Search.cssSelector("[name='customer[lastname]']");
-		this.sufixInput = Search.cssSelector("[name='customer[suffix]']");
-		this.emailInput = Search.cssSelector("[name='customer[email]']");
-		this.dateOfBirfthInput = Search.cssSelector("[name='customer[dob]']");
-		this.taxVatInput = Search.cssSelector("[name='customer[taxvat]']");
-		this.genderButton = Search.cssSelector("[name='customer[gender]']");
+//		this.groupSelectField = Search.cssSelector("[name='customer[group_id]']");
+//		this.groupChangeBasedOnVatCheck = Search.cssSelector("[name='customer[disable_auto_group_change]']");
+//		this.prefixInput = Search.cssSelector("[name='customer[prefix]']");
+//		this.firstnameInput = Search.cssSelector("[name='customer[firstname]']");
+//		this.middlenameInput = Search.cssSelector("[name='customer[middlename]']");
+//		this.lastnameInput = Search.cssSelector("[name='customer[lastname]']");
+//		this.sufixInput = Search.cssSelector("[name='customer[suffix]']");
+//		this.emailInput = Search.cssSelector("[name='customer[email]']");
+//		this.dateOfBirfthInput = Search.cssSelector("[name='customer[dob]']");
+//		this.taxVatInput = Search.cssSelector("[name='customer[taxvat]']");
+//		this.genderButton = Search.cssSelector("[name='customer[gender]']");
 	}
 
 	public class Addresses {
@@ -237,49 +239,49 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		return this.saveCustomerButton;
 	}
 
-	public WebElement getGroupSelectField() {
-		return this.groupSelectField;
-	}
-
-	public WebElement getGroupChangeBasedOnVatCheck() {
-		return this.groupChangeBasedOnVatCheck;
-	}
-
-	public WebElement getPrefixInput() {
-		return this.prefixInput;
-	}
-
-	public WebElement getFirstnameInput() {
-		return this.firstnameInput;
-	}
-
-	public WebElement getMiddlenameInput() {
-		return this.middlenameInput;
-	}
-
-	public WebElement getLastnameInput() {
-		return this.lastnameInput;
-	}
-
-	public WebElement getSufixInput() {
-		return this.sufixInput;
-	}
-
-	public WebElement getEmailInput() {
-		return this.emailInput;
-	}
-
-	public WebElement getDateOfBirfthInput() {
-		return this.dateOfBirfthInput;
-	}
-
-	public WebElement getTaxVatInput() {
-		return this.taxVatInput;
-	}
-
-	public WebElement getGenderButton() {
-		return this.genderButton;
-	}
+//	public WebElement getGroupSelectField() {
+//		return this.groupSelectField;
+//	}
+//
+//	public WebElement getGroupChangeBasedOnVatCheck() {
+//		return this.groupChangeBasedOnVatCheck;
+//	}
+//
+//	public WebElement getPrefixInput() {
+//		return this.prefixInput;
+//	}
+//
+//	public WebElement getFirstnameInput() {
+//		return this.firstnameInput;
+//	}
+//
+//	public WebElement getMiddlenameInput() {
+//		return this.middlenameInput;
+//	}
+//
+//	public WebElement getLastnameInput() {
+//		return this.lastnameInput;
+//	}
+//
+//	public WebElement getSufixInput() {
+//		return this.sufixInput;
+//	}
+//
+//	public WebElement getEmailInput() {
+//		return this.emailInput;
+//	}
+//
+//	public WebElement getDateOfBirfthInput() {
+//		return this.dateOfBirfthInput;
+//	}
+//
+//	public WebElement getTaxVatInput() {
+//		return this.taxVatInput;
+//	}
+//
+//	public WebElement getGenderButton() {
+//		return this.genderButton;
+//	}
 
 	// get Data Business Logic
 	public String getFromValidLabelAboutSavedUserText() {
@@ -308,37 +310,37 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 
 	// clearing fields main class
 
-	public void prefixInputClear() {
-		getPrefixInput().clear();
-	}
-
-	public void firstnameInputClear() {
-		getFirstnameInput().clear();
-	}
-
-	public void middlenameInputClear() {
-		getMiddlenameInput().clear();
-	}
-
-	public void lastnameInputClear() {
-		getLastnameInput().clear();
-	}
-
-	public void sufixInputClear() {
-		getSufixInput().clear();
-	}
-
-	public void emailInputClear() {
-		getEmailInput().clear();
-	}
-
-	public void dateOfBirfthInputClear() {
-		getDateOfBirfthInput().clear();
-	}
-
-	public void taxVatInputClear() {
-		getTaxVatInput().clear();
-	}
+//	public void prefixInputClear() {
+//		getPrefixInput().clear();
+//	}
+//
+//	public void firstnameInputClear() {
+//		getFirstnameInput().clear();
+//	}
+//
+//	public void middlenameInputClear() {
+//		getMiddlenameInput().clear();
+//	}
+//
+//	public void lastnameInputClear() {
+//		getLastnameInput().clear();
+//	}
+//
+//	public void sufixInputClear() {
+//		getSufixInput().clear();
+//	}
+//
+//	public void emailInputClear() {
+//		getEmailInput().clear();
+//	}
+//
+//	public void dateOfBirfthInputClear() {
+//		getDateOfBirfthInput().clear();
+//	}
+//
+//	public void taxVatInputClear() {
+//		getTaxVatInput().clear();
+//	}
 
 	// setters Addresses class
 
@@ -409,45 +411,45 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 
 	// setters main
 
-	public void setDataInPrefixField(String prefix) {
-		prefixInputClear();
-		getPrefixInput().sendKeys(prefix);
-	}
-
-	public void setDataInFirstnameField(String firstname) {
-		firstnameInputClear();
-		getFirstnameInput().sendKeys(firstname);
-	}
-
-	public void setDataInMiddleField(String middlename) {
-		middlenameInputClear();
-		getMiddlenameInput().sendKeys(middlename);
-	}
-
-	public void setDataInLastnameField(String lastname) {
-		lastnameInputClear();
-		getLastnameInput().sendKeys(lastname);
-	}
-
-	public void setDataInSufixField(String sufix) {
-		sufixInputClear();
-		getSufixInput().sendKeys(sufix);
-	}
-
-	public void setDataInEmailField(String email) {
-		emailInputClear();
-		getEmailInput().sendKeys(email);
-	}
-
-	public void setDataInDateOfBirdthField(String dateOfBirdth) {
-		dateOfBirfthInputClear();
-		getDateOfBirfthInput().sendKeys(dateOfBirdth);
-	}
-
-	public void setDataInTaxValueField(String taxValue) {
-		taxVatInputClear();
-		getTaxVatInput().sendKeys(taxValue);
-	}
+//	public void setDataInPrefixField(String prefix) {
+//		prefixInputClear();
+//		getPrefixInput().sendKeys(prefix);
+//	}
+//
+//	public void setDataInFirstnameField(String firstname) {
+//		firstnameInputClear();
+//		getFirstnameInput().sendKeys(firstname);
+//	}
+//
+//	public void setDataInMiddleField(String middlename) {
+//		middlenameInputClear();
+//		getMiddlenameInput().sendKeys(middlename);
+//	}
+//
+//	public void setDataInLastnameField(String lastname) {
+//		lastnameInputClear();
+//		getLastnameInput().sendKeys(lastname);
+//	}
+//
+//	public void setDataInSufixField(String sufix) {
+//		sufixInputClear();
+//		getSufixInput().sendKeys(sufix);
+//	}
+//
+//	public void setDataInEmailField(String email) {
+//		emailInputClear();
+//		getEmailInput().sendKeys(email);
+//	}
+//
+//	public void setDataInDateOfBirdthField(String dateOfBirdth) {
+//		dateOfBirfthInputClear();
+//		getDateOfBirfthInput().sendKeys(dateOfBirdth);
+//	}
+//
+//	public void setDataInTaxValueField(String taxValue) {
+//		taxVatInputClear();
+//		getTaxVatInput().sendKeys(taxValue);
+//	}
 
 	public void accountInformationButtonClick() {
 		getAccountInformationButton().click();
@@ -473,17 +475,17 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		getSaveCustomerButton().click();
 	}
 
-	public void groupSelectFieldClick() {
-		getGroupSelectField().click();
-	}
-
-	public void groupChangeBasedOnVatCheckClick() {
-		getGroupChangeBasedOnVatCheck().click();
-	}
-
-	public void genderButtonClick() {
-		getGenderButton().click();
-	}
+//	public void groupSelectFieldClick() {
+//		getGroupSelectField().click();
+//	}
+//
+//	public void groupChangeBasedOnVatCheckClick() {
+//		getGroupChangeBasedOnVatCheck().click();
+//	}
+//
+//	public void genderButtonClick() {
+//		getGenderButton().click();
+//	}
 
 	public void defaultBillingAddressCheckAddressesClick() {
 		getDefaultBillingAddressCheckAddresses().click();
@@ -497,61 +499,61 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		getAddNewAddressesButton().click();
 	}
 
-	public void addNewAddressButtonClick() {
-		addNewAddressesButton.click();
-
-	}
+//	public void addNewAddressButtonClick() {
+//		addNewAddressesButton.click();
+//
+//	}
 
 	// functional createNewCustomer
 	@ServiceReport
 	public AllCustomersPageAfterSuccesRegistration setCustomerDataInLoginForm(ICustomerUser customer) {
-		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
-		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
-		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
-		setDataInLastnameField(customer.getPersonalInfo().getLastname());
-		setDataInSufixField(customer.getPersonalInfo().getSuffix());
-		setDataInEmailField(customer.getSigninInfo().getEmail());
-		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
-		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
+//		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
+//		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
+//		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
+//		setDataInLastnameField(customer.getPersonalInfo().getLastname());
+//		setDataInSufixField(customer.getPersonalInfo().getSuffix());
+//		setDataInEmailField(customer.getSigninInfo().getEmail());
+//		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+//		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		saveCustomerButtonClick();
 		return new AllCustomersPageAfterSuccesRegistration();
 	}
 
 	public void setRingerDataInLoginFormAndClickResetButton(ICustomerUser customer){
-		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
-		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
-		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
-		setDataInLastnameField(customer.getPersonalInfo().getLastname());
-		setDataInSufixField(customer.getPersonalInfo().getSuffix());
-		setDataInEmailField(customer.getSigninInfo().getEmail());
-		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
-		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
+//		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
+//		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
+//		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
+//		setDataInLastnameField(customer.getPersonalInfo().getLastname());
+//		setDataInSufixField(customer.getPersonalInfo().getSuffix());
+//		setDataInEmailField(customer.getSigninInfo().getEmail());
+//		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+//		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		resetButtonClick();
 
 	}
 
 	public RegistrationNewCustomerErrorPage setRingerDataInLoginForm(ICustomerUser customer){
-		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
-		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
-		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
-		setDataInLastnameField(customer.getPersonalInfo().getLastname());
-		setDataInSufixField(customer.getPersonalInfo().getSuffix());
-		setDataInEmailField(customer.getSigninInfo().getEmail());
-		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
-		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
+//		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
+//		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
+//		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
+//		setDataInLastnameField(customer.getPersonalInfo().getLastname());
+//		setDataInSufixField(customer.getPersonalInfo().getSuffix());
+//		setDataInEmailField(customer.getSigninInfo().getEmail());
+//		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+//		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		saveCustomerButtonClick();
 		return new RegistrationNewCustomerErrorPage();
 	}
 
 	public RegistrationNewCustomerErrorFieldsPage setInvalidFirstnameLastNameEmailDataInLoginForm(ICustomerUser customer){
-		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
-		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
-		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
-		setDataInLastnameField(customer.getPersonalInfo().getLastname());
-		setDataInSufixField(customer.getPersonalInfo().getSuffix());
-		setDataInEmailField(customer.getSigninInfo().getEmail());
-		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
-		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
+//		setDataInPrefixField(customer.getPersonalInfo().getPrefix());
+//		setDataInFirstnameField(customer.getPersonalInfo().getFirstname());
+//		setDataInMiddleField(customer.getPersonalInfo().getMiddlename());
+//		setDataInLastnameField(customer.getPersonalInfo().getLastname());
+//		setDataInSufixField(customer.getPersonalInfo().getSuffix());
+//		setDataInEmailField(customer.getSigninInfo().getEmail());
+//		// setDataInDateOfBirdthField(customer.getPersonalInfo().getBirthdayDate().);
+//		setDataInTaxValueField(customer.getContactInfo().getVatNumber());
 		saveCustomerButtonClick();
 		return new RegistrationNewCustomerErrorFieldsPage();
 	}

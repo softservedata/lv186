@@ -163,11 +163,6 @@ public class SearchExplicitPresent extends ASearch {
     }
 
     @Override
-    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
-        return null;
-    }
-
-    @Override
     public List<WebElement> cssSelectors(String cssSelector) {
         return getPresentWebElements(By.cssSelector(cssSelector));
     }
@@ -191,4 +186,15 @@ public class SearchExplicitPresent extends ASearch {
     public List<WebElement> tagNames(String tagName) {
         return getPresentWebElements(By.tagName(tagName));
     }
+
+    @Override
+    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+        return null;
+    }
+
+    @Override
+    public List<WebElement> tagNames(String tagName, WebElement fromWebElement) {
+        return null;
+    }
+
 }

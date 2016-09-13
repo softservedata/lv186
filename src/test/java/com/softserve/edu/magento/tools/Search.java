@@ -224,4 +224,11 @@ public class Search {
     public static boolean waitForLoaderDone( ) {
         return getinstance().getSearch().waitForLoaderDone();
     }
+
+    // List From Elements
+
+    public static List<WebElement> tagNames(String tagName, WebElement fromWebElement) {
+        return getinstance().getSearch().tagNames(tagName, fromWebElement);
+    }
+
 }

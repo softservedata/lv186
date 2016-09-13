@@ -153,11 +153,6 @@ public class SearchExplicitClickable extends ASearch {
     }
 
     @Override
-    public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
-        return null;
-    }
-
-    @Override
     public List<WebElement> cssSelectors(String cssSelector) {
         return null;
     }
@@ -182,5 +177,14 @@ public class SearchExplicitClickable extends ASearch {
          return null;
      }
 
-}
+     @Override
+     public List<WebElement> xpaths(String xpath, WebElement fromWebElement) {
+         return null;
+     }
 
+     @Override
+     public List<WebElement> tagNames(String tagName, WebElement fromWebElement) {
+         return null;
+     }
+
+}

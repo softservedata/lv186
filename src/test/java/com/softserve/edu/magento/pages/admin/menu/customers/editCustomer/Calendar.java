@@ -84,17 +84,28 @@ public class Calendar implements ICalendar {
         this.day = day;
     }
 
-    public String setStringData (String day, String month, String year) {
+    /**
+     * Sets the date of birth from String
+     * @param day String representation of day
+     * @param month String representation of month
+     * @param year String representation of year
+     */
+    public void setStringData (String day, String month, String year) {
+        Search.cssSelector("input[name='customer[dob]']").click();
         String result = new String();
-        return result = String.format("%s/%s/%s", day, month, year);
+        result = String.format("%s/%s/%s", day, month, year);
+        Search.cssSelector("input[name='customer[dob]']").sendKeys(result);
     }
 
+    /**
+     * Sets the date of birth with the calendar component.
+     * @param day the day to be selected.
+     * @param month the month to be selected.
+     * @param year the year to be selected.
+     */
     public void setData (String day, Calendar.Months month, String year){
        // -------------------------------- MONTH -----------------------------
         Search.cssSelector("select.ui-datepicker-month").click();
-        /*
-        Month select options.
-         */
         List<WebElement> months = Search.cssSelectors("select.ui-datepicker-month option");
         List<String> monthsString = new ArrayList<>();
         for (WebElement e : months){
@@ -112,9 +123,30 @@ public class Calendar implements ICalendar {
         }
         ASearch.getWebDriver().switchTo().activeElement();
         getYear().selectByVisibleText(yearsString.get(yearsString.indexOf(year)));
-//-------------------------------- DAY -----------------------------
+        //-------------------------------- DAY -----------------------------
         setDay(Search.cssSelectors("table.ui-datepicker-calendar a"));
         getDay().get(Integer.parseInt(day)-1).click();
+    }
+
+    /**
+     * Sets the date of birth with the calendar component.
+     * @param day the day to be selected.
+     * @param month the month to be selected.
+     * @param year the year to be selected.
+     */
+    public void setData (int day, int month, int year){
+        // -------------------------------- MONTH -----------------------------
+        Search.cssSelector("select.ui-datepicker-month").click();
+        ASearch.getWebDriver().switchTo().activeElement();
+        getMonth().selectByValue(String.valueOf(day-1));
+        //-------------------------------- YEAR -----------------------------
+        setYear(new Select(Search.cssSelector("select.ui-datepicker-year")));
+        Search.cssSelector("select.ui-datepicker-year").click();
+        ASearch.getWebDriver().switchTo().activeElement();
+        getYear().selectByValue(String.valueOf(year));
+        //-------------------------------- DAY -----------------------------
+        setDay(Search.cssSelectors("table.ui-datepicker-calendar a"));
+        getDay().get(day-1).click();
     }
 
 }

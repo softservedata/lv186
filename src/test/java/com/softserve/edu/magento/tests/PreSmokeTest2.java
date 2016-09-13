@@ -1,20 +1,6 @@
 package com.softserve.edu.magento.tests;
 
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
-import com.softserve.edu.magento.controls.ITable;
-import com.softserve.edu.magento.controls.Table;
 import com.softserve.edu.magento.data.ApplicationSources;
 import com.softserve.edu.magento.data.ApplicationSourcesRepository;
 import com.softserve.edu.magento.data.admin.AdminUserRepository;
@@ -31,9 +17,19 @@ import com.softserve.edu.magento.pages.customer.HomePageLogout;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.LoggerUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
-import com.softserve.edu.magento.tools.Search;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-public class PreSmokeTest extends TestBase {
+import java.util.concurrent.TimeUnit;
+
+public class PreSmokeTest2 extends TestBase {
 
 	//@Test//(dataProvider = "driverParameters")
 	public void checkAdminLogon1() throws Exception { // (BrowsersList browser)
@@ -86,11 +82,11 @@ public class PreSmokeTest extends TestBase {
 		// };
 		return ListUtils.get()
 				.toMultiArray(ParameterUtils.get()
-						.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+						.updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostMacAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	//@Test(dataProvider = "smokeParameters")
+	@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon21(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         SoftAssert softAssert = new SoftAssert(); 
 	    ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);	    
@@ -112,28 +108,7 @@ public class PreSmokeTest extends TestBase {
         }
         System.out.println("firstaname for olutsitc = " + AdminUserRepository.get().getAdminUserFromDB("olutsitc").getFirstname());
 	}
-
-	@Test(dataProvider = "smokeParameters")
-    public void checkTable(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
-	    System.out.println("checkTable START");
-        //SoftAssert softAssert = new SoftAssert(); 
-        ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);       
-        DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
-        AllCustomersPage allCustomersPage = dashboardPage.gotoAllCustomersPage();
-        //
-        ITable table = new Table(Search.cssSelector("table[data-role='grid']"));
-        for (int i = 0; i<table.getTableBody().size(); i++) {
-            for (int j = 0; j<table.getHeader().size(); j++) {
-                System.out.print(table.getCell(i, j).getText()+"\t");
-            }
-            System.out.println();
-        }
-        int columnIndex = table.getColumnIndexByValueOfHeader("Email");
-        table.getRowByValueInColumn("mholovanov@gmail.com", columnIndex).get(0).click();
-        table.getRowByValueInColumn("Yuriy@gmail.com", columnIndex).get(0).click();
-        Thread.sleep(10000);
-    }
-
+	
 	//@Test(dataProvider = "smokeParameters")
 	public void checkAdminLogon2(ApplicationSources applicationSources, IAdminUser adminUser) throws Exception {
         System.out.println("Class PreSmokeTest, method checkAdminLogon2(...) test START");

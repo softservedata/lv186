@@ -1,4 +1,4 @@
-/*package com.softserve.edu;
+package com.softserve.edu.magento.controls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,7 @@ import com.softserve.edu.magento.tools.Search;
  * WebElement pretable = Search.xpath("");
  * ITable table = new Table(pretable);
  */
-/*
-public final class Table {// implements ITable {
+public final class Table implements ITable {
     private static final String OUT_ROWS_RANGE = "Out of rows range. Count row in table is %d, required %d";
     private static final String OUT_COLUMN_RANGE =  "Out of column range. Count column in table is %d, required %d";
     //
@@ -45,7 +44,7 @@ public final class Table {// implements ITable {
         return tableHeader;
     }
 
-    private List<List<WebElement>> getTableBody() {
+    public List<List<WebElement>> getTableBody() {
         return tableBody;
     }
 
@@ -121,4 +120,4 @@ public final class Table {// implements ITable {
         return getTableBody().get(rowIndex).get(columnIndex);
     }
     
-}*/
+}

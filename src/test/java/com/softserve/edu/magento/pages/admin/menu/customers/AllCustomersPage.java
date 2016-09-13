@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.softserve.edu.magento.controls.ITable;
+import com.softserve.edu.magento.controls.Table;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -63,6 +65,8 @@ public class AllCustomersPage extends VerticalMenu {
 	private WebElement clearAll;
 	// written by Andrii
 	private List<WebElement> editList;
+
+	private ITable table;
 
 	// -----------------ColumnsMenuDropdown-------------------
 	private class ColumnsMenuDropdown {
@@ -406,6 +410,7 @@ public class AllCustomersPage extends VerticalMenu {
 		this.actionsdropdownmenu = new ActionsDropDownMenu();
 		this.defaultdropdownmenu = new DefaultViewDropdownMenu();
 		this.filtersdropdownmenu = new FiltersDropDownMenu();
+		this.table = new Table(Search.cssSelector("table[data-role='grid']"));
 	}
 
 	// ------------System logic get page components--------------------//
@@ -556,7 +561,7 @@ public class AllCustomersPage extends VerticalMenu {
 
 	// written by Andrii
 	public EditCustomerPage getEditCustomerPage() {
-		getEditLink(0).click();
+		table.getCell(0,0);
 		return new EditCustomerPage();
 	}
 
@@ -749,7 +754,7 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	// ------------------Mykhaylo Holovanov update--------------------------
-
+/*
 	public boolean findCustomerInTheList(ICustomerUser customerUser) {
 		String userName = customerUser.getPersonalInfo().getPrefix() + " "
 				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
@@ -858,6 +863,7 @@ public class AllCustomersPage extends VerticalMenu {
 
 	// ------------------Yaryna Kharko update
 	// 23.07.2016--------------------------
+
 	public List<RowCustomerUser> getTableCustomerUser() {
 		// TODO when there are more that 1 pagetable
 		List<WebElement> rows = Search.classNames("data-row");
@@ -1044,6 +1050,110 @@ public class AllCustomersPage extends VerticalMenu {
 			String emailText = Search.className("data-grid-cell-content",getEmail()).getText();
 			return emailText;
 		}
+	}*/
+	public ConfirmDeleteWindow getConfirmDeleteWindow() {
+		return new ConfirmDeleteWindow();
 	}
 
+	// --------------------ConfirmDeleteWindow----------------------------
+	private class ConfirmDeleteWindow {
+		private WebElement window;
+		private WebElement buttonCancel;
+		private WebElement buttonOk;
+		private WebElement exit;
+
+		public ConfirmDeleteWindow() {
+			Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
+			this.window = Search.className("modal-inner-wrap");
+			Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
+			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
+			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
+			this.exit = Search.cssSelector("header.modal-header button.action-close");
+
+		}
+
+		public WebElement getWindow() {
+			return window;
+		}
+
+		public WebElement getButtonCancel() {
+			return buttonCancel;
+		}
+
+		public WebElement getButtonOk() {
+			return buttonOk;
+		}
+
+		public WebElement getExit() {
+			return exit;
+		}
+
+		// click
+		public void clickButtonCancel() {
+			this.getButtonCancel().click();
+		}
+
+		public AllCustomersPage clickButtonOk() {
+			this.getButtonOk().click();
+			return new AllCustomersPage();
+		}
+
+		public void clickExit() {
+			this.getExit().click();
+		}
+
+	}
+	public void sendKeysSearchCustomerField(String search) {
+		this.getSearchField().sendKeys(search);
+	}
+
+	public void clearSendKeysSearchCustomerField(String search) {
+		this.getSearchField().clear();
+		this.sendKeysSearchCustomerField(search);
+	}
+
+	public AllCustomersPage doCustomerSearch(String search) {
+		this.clearSendKeysSearchCustomerField(search);
+		this.getSearchField().sendKeys(Keys.ENTER);
+		return new AllCustomersPage();
+	}
+
+	public void clickDeleteActions() {
+		goToActionsDropDownMenu().delete.click();
+	}
+
+	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) {
+		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+
+		checkCustomerUser(customerUser);
+		CustomersPage.clickDeleteActions();
+
+		this.getConfirmDeleteWindow().clickButtonOk();
+
+		return new AllCustomersPage();
+	}
+
+	public boolean confirmCustomerUserCreated(ICustomerUser customerUser){
+		boolean isCreated=false;
+		List<WebElement> column = table.getColumnByValueOfHeader("Email");
+		for(int i = 0 ;i<column.size();i++){
+			if (column.get(i).getText()
+					.trim().toLowerCase().equals(customerUser.getSigninInfo().getEmail()
+							.trim().toLowerCase())) {
+				isCreated=true;
+				break;
+			}
+		}
+
+		return isCreated;
+	}
+
+	public void checkCustomerUser(ICustomerUser customerUser){
+		if(confirmCustomerUserCreated(customerUser) == true){
+			int columnIndex = table.getColumnIndexByValueOfHeader("Email");
+			table.getRowByValueInColumn(customerUser.getSigninInfo().getEmail()
+					, columnIndex).get(0).click();
+		}
+
+	}
 }

@@ -45,8 +45,8 @@ public class CreateCustomerAccountFieldsTest4 extends TestBase{
 	  }
 	 public List<ICustomerUser> UserParametersUnSuccess() {
 			List<ICustomerUser> users = new ArrayList<ICustomerUser>();
-			users.add(CustomerUserRepository.get().User_DT_PASSWORD2());
-			users.add(CustomerUserRepository.get().User_DT_PASSWORD5());
+			//users.add(CustomerUserRepository.get().User_DT_PASSWORD2());
+			//users.add(CustomerUserRepository.get().User_DT_PASSWORD5());
 			users.add(CustomerUserRepository.get().User_DT_PASSWORD8());
 			return users;
 	 }
@@ -68,6 +68,10 @@ public class CreateCustomerAccountFieldsTest4 extends TestBase{
 		  Assert.assertTrue(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.PASSWORD));
 		  Assert.assertEquals(unsuccessful_CreateAccountPage.getErrorValidatorText(ErrorValidatorName.PASSWORD),
 				  ErrorMessage.ERROR_PASSWORD_FORMAT.toString());
+
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.FIRSTNAME));
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.LASTNAME));
+		 Assert.assertFalse(unsuccessful_CreateAccountPage.isErrorValidator(ErrorValidatorName.EMAIL));
 		  // 4.Go to  the admin page
 		  ApplicationAdmin applicationAdmin = ApplicationAdmin.get(ApplicationSourcesRepository.getChromeLocalhostMacAdmin());
 		  // 5. Log in admin
@@ -76,7 +80,7 @@ public class CreateCustomerAccountFieldsTest4 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 7. Confirm that already exist customer account is not created
-		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
 		 applicationAdmin.logout();
 	 }
@@ -92,7 +96,7 @@ public class CreateCustomerAccountFieldsTest4 extends TestBase{
 	  }
 	 public List<ICustomerUser> UserParametersSuccess() {
 			List<ICustomerUser> users = new ArrayList<ICustomerUser>();
-			users.add(CustomerUserRepository.get().User_DT_PASSWORD1());
+			//users.add(CustomerUserRepository.get().User_DT_PASSWORD1());
 		 	users.add(CustomerUserRepository.get().User_DT_PASSWORD9());
 			return users;
 	 }
@@ -124,7 +128,7 @@ public class CreateCustomerAccountFieldsTest4 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 10. Confirm that already exist customer account is not created
-		  Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  //Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // 6. Log out admin
 		 applicationAdmin.logout();
 	 }

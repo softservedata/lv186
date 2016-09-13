@@ -241,22 +241,22 @@
 								<!--<file>product.xml</file>-->
 								<!--<file>testngDashboardAdmin.xml</file>-->
 								<!--<file>TestngEditCustomer.xml</file>-->
-								<!--<file>TestngEditCustomerProper.xml</file>-->
-								<file>testngOrdersTests.xml</file>
-							</suiteXmlFiles>
-							<reportsDirectory>${testng.reports.directory}</reportsDirectory>
-						</configuration>
-					</plugin>
+								<file>testNgCustomer.xml</file>
+                                <!--<file>testngOrdersTests.xml</file>-->
+                            </suiteXmlFiles>
+                            <reportsDirectory>${testng.reports.directory}</reportsDirectory>
+                        </configuration>
+                    </plugin>
 
-				</plugins>
-			</build>
-		</profile>
+                </plugins>
+            </build>
+        </profile>
 
-		<profile>
-			<id>ci</id>
+        <profile>
+            <id>ci</id>
 
-			<dependencies>
-				<!-- - - - Automation Framework Selenium - - - -->
+            <dependencies>
+                <!-- - - - Automation Framework Selenium - - - -->
 				<!-- <dependency> -->
 				<!-- <groupId>org.seleniumhq.selenium</groupId> -->
 				<!-- <artifactId>selenium-server</artifactId> -->

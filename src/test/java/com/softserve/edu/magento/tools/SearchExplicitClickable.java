@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class SearchExplicitClickable extends ASearch {
 
     public SearchExplicitClickable() {
+
         getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
     }
 
@@ -68,6 +69,8 @@ public class SearchExplicitClickable extends ASearch {
     public WebElement cssSelector(String cssSelector) {
         return getClickableWebElement(By.cssSelector(cssSelector));
     }
+
+
 
     @Override
     public WebElement className(String className) {

@@ -1,5 +1,6 @@
 package com.softserve.edu.magento.tests;
 
+import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -17,28 +18,30 @@ import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
 
-public class EditCustomerTest {
-	@DataProvider(parallel = true)
+public class EditCustomerTest extends TestBase {
+	@DataProvider//(parallel = true)
 	public Object[][] smokeParameters(ITestContext context) {
 		return ListUtils.get()
 				.toMultiArray(
 						ParameterUtils.get()
-								.updateParametersAll(ApplicationSourcesRepository.getFirefoxLocalhostAdmin(), context),
+								.updateParametersAll(ApplicationSourcesRepository.getChromeHomeHostAdmin(), context),
 						AdminUserRepository.get().adminAndrii());
 	}
 
-	@Test(dataProvider = "smokeParameters", groups = "EditTest")
+	@Test(dataProvider = "smokeParameters")// groups = "EditTest")
 	public void saveEditCustomer(ApplicationSources applicationSources, IAdminUser adminUser) {
 		ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
 
 		DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
+		System.out.println("luck DashboardPage!");
+		AllCustomersPage allCustomersPage = dashboardPage.gotoAllCustomersPage();
+		System.out.println("luck AllCustomersPage!");
+		EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
+		System.out.println("luck EditCustomerPage!");
+		editCustomerPage.navToAccountInfo();
 
-		EditCustomerPage ediCustomerPage = dashboardPage.gotoAllCustomersPage().getEditCustomerPage();
-
-		ediCustomerPage.navToAccountInfo();
-
-		Assert.assertTrue(ediCustomerPage
-				.compareFields(ediCustomerPage.getCustomerAllData().get(8)));
+		Assert.assertTrue(editCustomerPage
+				.compareFields(editCustomerPage.getCustomerAllData().get(0)));
 		applicationAdmin.quit();
 	}
 
@@ -78,13 +81,13 @@ public class EditCustomerTest {
 		applicationAdmin.quit();
 	}
 
-	@AfterMethod(alwaysRun = true)
+	//@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
 		ApplicationAdmin.signout();
 		// ApplicationAdmin.quitAll();
 	}
 
-	@AfterClass(alwaysRun = true)
+	//@AfterClass(alwaysRun = true)
 	void tearDown() throws Exception {
 		ApplicationAdmin.quitAll();
 	}

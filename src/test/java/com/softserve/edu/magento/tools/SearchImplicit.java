@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Class for searching visible elements with
@@ -13,7 +15,7 @@ import org.openqa.selenium.WebElement;
 public class SearchImplicit extends ASearch {
 
     public SearchImplicit() {
-        getWebDriver().manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
         // TODO setup waits
         //getWebDriver().manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
         //getWebDriver().manage().timeouts().setScriptTimeout(30L, TimeUnit.SECONDS);
@@ -23,10 +25,12 @@ public class SearchImplicit extends ASearch {
     /**
      * Method to implicitly wait for visibility of
      * specific element.
+     *
      * @param by locator for element.
      * @return visible webelement.
      */
     private WebElement getWebElement(By by) {
+
         return this.getWebDriver().findElement(by);
     }
 
@@ -34,7 +38,8 @@ public class SearchImplicit extends ASearch {
      * Method to implicitly wait for visibility of
      * specific element, located from already
      * located webelement.
-     * @param by locator for element.
+     *
+     * @param by             locator for element.
      * @param fromWebElement located webelement to start
      *                       searching from.
      * @return visible webelement.
@@ -46,9 +51,9 @@ public class SearchImplicit extends ASearch {
     /**
      * Method to implicitly wait for visibility of
      * specific elements.
+     *
      * @param by locator for elements.
-     * @return
-     *       visible webelements.
+     * @return visible webelements.
      */
     private List<WebElement> getWebElements(By by) {
         return this.getWebDriver().findElements(by);
@@ -80,6 +85,12 @@ public class SearchImplicit extends ASearch {
     @Override
     public WebElement cssSelector(String cssSelector) {
         return getWebElement(By.cssSelector(cssSelector));
+    }
+
+    @Override
+    public boolean stalenessOf(WebElement webElement) {
+        return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
+                .until(ExpectedConditions.stalenessOf(webElement));
     }
 
     @Override
@@ -182,7 +193,7 @@ public class SearchImplicit extends ASearch {
     }
 
     @Override
-    public  List<WebElement> linkTexts(String linkText) {
+    public List<WebElement> linkTexts(String linkText) {
         return getWebElements(By.linkText(linkText));
     }
 

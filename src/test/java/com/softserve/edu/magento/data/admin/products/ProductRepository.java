@@ -1,5 +1,8 @@
 package com.softserve.edu.magento.data.admin.products;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductRepository {
 
     public final static String ATTRIBUTE_SET = "Test Attribute Set";
@@ -91,5 +94,17 @@ public class ProductRepository {
         IProduct product = Product.get().setProductName(VALID_PRODUCT_NAME).setSku(INVALID_SKU).setPrice(VALID_PRICE).build();
         product.setQuantity(QUANTITY);
         return product;
+    }
+    public IProduct getErikaRunningShort32Purple() {
+        IProduct product = Product.get().setProductName("Erika Running Short-32-Purple").setSku("WSH12-32-Purple").setPrice("45")
+                .build();
+        return product;
+    }
+    public List<IProduct> getListProducts(IProduct[] iProducts){
+        List<IProduct> productList = new ArrayList<>();
+        for (IProduct product : iProducts) {
+            productList.add(product);
+        }
+        return productList;
     }
 }

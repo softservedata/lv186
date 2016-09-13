@@ -17,20 +17,34 @@ import com.softserve.edu.magento.data.customer.user.ICustomerUser;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
 import com.softserve.edu.magento.tools.Search;
+import ss.af.reporting.annotations.ServiceReport;
+
+/**
+ * Class that represents the AllCustomersPageAfterSuccesRegistration
+ * @author Mickle
+ */
 
 public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
+	/*
+	 * Daclarating constats form using them in aseerts methods
+	 */
 	public final static String PAGE_TITLE = "Customers";
 	public final static String REGISTERED_CUSTOMER_TITLE = "You saved the customer.";
 	private boolean isWebElementFound = false;
-	// components
+
+	/*
+	 * Initializing componets to have access to inner classes
+	 */
 	private ColumnsMenuDropdown columnsmenudropdown;
 	private ActionsDropDownMenu actionsdropdownmenu;
 	private DefaultViewDropdownMenu defaultdropdownmenu;
 	private FiltersDropDownMenu filtersdropdownmenu;
 	private GroupsButton groupsButton;
 
-	// Elements
+	/*
+	* Initializing fields in main class
+    */
 	private WebElement customersLabel;
 	private WebElement registeredNewCustomerLabel;
 	private WebElement addNewCustomerButton;
@@ -64,10 +78,11 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 	private WebElement taxVatNumberFieldInList;
 	private WebElement genderFieldInList;
 	private WebElement clearAll;
-	// written by Andrii
 	private List<WebElement> editList;
 
-	// -----------------ColumnsMenuDropdown-------------------
+	/**
+	 *Inner class that represents the ColumnsMenuDropdown component.
+	 */
 	private class ColumnsMenuDropdown {
 		private WebElement idCheck;
 		private WebElement nameCheck;
@@ -87,6 +102,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement cityCheck;
 		private WebElement resetButton;
 
+		/**
+		 * Constructor for ColumnsMenuDropdown component.
+		 */
 		public ColumnsMenuDropdown() {
 			this.idCheck = Search.cssSelector("input[id='1']");
 			this.nameCheck = Search.cssSelector("input[id='2']");
@@ -107,7 +125,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			this.resetButton = Search.xpath("(.//*[@class='action-tertiary'])[1]");
 		}
 
-		// getters to ColumnsMenuPage
+		/*
+		 * Getters for ColumnsDropdown component
+		 */
 		public WebElement getIdCheck() {
 			return idCheck;
 		}
@@ -178,8 +198,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	}
 
-	// -----------------ActionsDropDownMenu-------------------
-
+	/**
+	 *Inner class that represents the ActionsDropDownMenu component.
+	 */
 	private class ActionsDropDownMenu {
 		private WebElement delete;
 		private WebElement subscribe;
@@ -187,6 +208,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement assignCustomerGroup;
 		private WebElement edit;
 
+		/**
+		 * Constructor for ActionsDropDownMenu component.
+		 */
 		public ActionsDropDownMenu() {
 			this.delete = Search.xpaths("//li/span[contains(text(), 'Delete')]").get(0);
 			this.subscribe = Search.xpath("(//span[text()='Subscribe to Newsletter'])[2]");
@@ -195,7 +219,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			this.edit = Search.xpath("(//span[text()='Edit'])[2]");
 		}
 
-		// getters to ActionsDropDownMenu
+		/*
+		 * Getters for ActionsDropdDownMenu component
+		 */
 		public WebElement getDelete() {
 			return delete;
 		}
@@ -218,18 +244,26 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	}
 
-	// -----------------DefaultViewDropdownMenu-------------------
+	/**
+	 *Inner class that represents the DefaultViewDropdownMenu component.
+	 */
 	private class DefaultViewDropdownMenu {
 		private WebElement defaultView;
 		private WebElement myNewView;
 		private WebElement myNewViewEdit;
 		private WebElement saveViewAs;
 
+		/**
+		 * Constructor for DefaultViewDropdownMenu component.
+		 */
 		public DefaultViewDropdownMenu() {
 			this.defaultView = Search.xpath("(.//*[@class='action-dropdown-menu-link'])[1]");
 			this.myNewView = Search.xpath("(.//*[@class='action-dropdown-menu-link'])[2]");
 		}
 
+		/*
+		 * Getters for DefaultViewDropdownMenu component
+		 */
 		public WebElement getDefaultView() {
 			return defaultView;
 		}
@@ -248,7 +282,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	}
 
-	// -----------------FiltersDropDownMenu-----------------------
+	/**
+	 *Inner class that represents the FiltersDropDownMenu component.
+	 */
 	private class FiltersDropDownMenu {
 		private WebElement filtersIdFrom;
 		private WebElement filtersIdTo;
@@ -267,6 +303,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		private WebElement filtersTaxVat;
 		private WebElement filtersGender;
 
+		/**
+		 * Constructor for FiltersDropDownMenu component.
+		 */
 		public FiltersDropDownMenu() {
 			this.filtersIdFrom = Search.cssSelector("input[name='entity_id[from]']");
 			this.filtersIdTo = Search.cssSelector("input[name='entity_id[to]']");
@@ -286,8 +325,10 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			this.filtersGender = Search.cssSelector("select[name='gender']");
 
 		}
-		// getters to FiltersDropDownMenu
 
+		/*
+		 * Getters for FiltersDropDownMenu component
+		 */
 		public WebElement getFiltersIdFrom() {
 			return filtersIdFrom;
 		}
@@ -354,12 +395,17 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	}
 
-	// -----------------Groups class-----------------------
+	/**
+	 *Inner class that represents the GroupsButton component.
+	 */
 	private class GroupsButton {
 		private WebElement general;
 		private WebElement wholesale;
 		private WebElement retailer;
 
+		/**
+		 * Constructor for GroupsButton component.
+		 */
 		public GroupsButton() {
 			this.general = Search.xpath(".//*[@id='A1HMI49']/option[2]");
 			this.wholesale = Search.xpath(".//*[@id='A1HMI49']/option[3]");
@@ -367,33 +413,28 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		}
 	}
 
-	// --------------------ConfirmDeleteWindow----------------------------
+	/**
+	 *Inner class that represents the ConfirmDeleteWindow component.
+	 */
 	private class ConfirmDeleteWindow {
 		private WebElement window;
 		private WebElement buttonCancel;
 		private WebElement buttonOk;
 		private WebElement exit;
 
-//		public ConfirmDeleteWindow() {
-//			WebDriverWait wait = new WebDriverWait(driver, 10);
-//			this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
-//
-//			this.buttonOk = driver
-//					.findElement(By.cssSelector("footer.modal-footer button.action-primary.action-accept"));
-//			this.buttonCancel = driver.findElement(By.cssSelector("button.action-secondary.action-dismiss"));
-//			this.exit = driver.findElement(By.cssSelector("header.modal-header button.action-close"));
-//		}
-
+		/**
+		 * Constructor for ConfirmDeleteWindow component.
+		 */
 		public ConfirmDeleteWindow() {
-			//WebDriverWait wait = new WebDriverWait(driver, 10);
-			//this.window = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-inner-wrap")));
-			//Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY.getSearchStrategy());
-			this.window = Search.className("modal-inner-wrap");
+
 			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
 			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
 			this.exit = Search.cssSelector("header.modal-header button.action-close");
 		}
 
+		/*
+		 * Getters for ConfirmDeleteWindow component
+		 */
 		public WebElement getWindow() {
 			return window;
 		}
@@ -410,7 +451,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			return exit;
 		}
 
-		// click
 		public void clickButtonCancel() {
 			this.getButtonCancel().click();
 		}
@@ -426,18 +466,26 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	}
 
-	// --------------------RowCustomerUser----------------------------
+	/**
+	 *Inner class that represents the RowCustomerUser component.
+	 */
 	private class RowCustomerUser {
 		WebElement check;
 		WebElement name;
 		WebElement email;
 
+		/**
+		 * Constructor for RowCustomerUser component.
+		 */
 		RowCustomerUser(WebElement row) {
 			this.check = row.findElement(By.className("data-grid-checkbox-cell"));
 			this.name = row.findElement(By.cssSelector("td:nth-child(3)"));
 			this.email = row.findElement(By.cssSelector("td:nth-child(4)"));
 		}
 
+		/*
+		 * Getters for RowCustomerUser component
+		 */
 		public WebElement getCheck() {
 			return check;
 		}
@@ -461,7 +509,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		}
 	}
 
-	// main page constructor
+	/**
+	* Constructor for main class, initializing variables
+	*/
 	public AllCustomersPageAfterSuccesRegistration() {
 		this.customersLabel = Search.xpath(".//*[@class='page-title-wrapper']");
 		this.registeredNewCustomerLabel = Search.cssSelector(".message-success > div:nth-child(1)");
@@ -497,7 +547,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		this.editList = Search.cssSelectors("a[data-repeat-index='0'");
 	}
 
-	// ----------------System logic get page components----------------------//
+	/**
+	* System logic for main page components, getters
+	*/
 
 	public ColumnsMenuDropdown getColumnsMenuDropdown() {
 		return columnsmenudropdown;
@@ -515,8 +567,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return defaultdropdownmenu;
 	}
 
-	// getters to main class
-	// get Data PageObject
+	/*
+	* Getters for main class, initializing variables
+	*/
 
 	public WebElement getClearAllButton() {
 		return this.clearAll;
@@ -647,14 +700,10 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return editList.get(index);
 	}
 
-	// written by Andrii
-//	public EditCustomerPage getEditCustomerPage() {
-//		getEditLink(3).click();
-//		return new EditCustomerPage(driver);
-//	}
 
-	// get Data Business Logic
-
+	/*
+	* Getting text information from constans from main page
+	*/
 	public String getRegisteredNewCustomerLabelgetText() {
 		return getRegisteredNewCustomerLabel().getText().trim();
 	}
@@ -671,14 +720,16 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return searchField.getText().trim();
 	}
 
-	// click for FiltersDropDownMenu
-
+	/*
+	* Clicks for  FiltersDropDownMenu
+	*/
 	public void filtersdropdownmenuIdGroupClick() {
 		filtersdropdownmenu.filtersGroup.click();
 	}
 
-	// click for DefaultViewDropdownMenu
-
+	/*
+	* Clicks for  DefaultViewForDropDownMenu
+	*/
 	public void defaultdropdownmenuDefaultViewClick() {
 		getDefaultViewDropdownMenu().getDefaultView().click();
 	}
@@ -695,8 +746,10 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		getDefaultViewDropdownMenu().getSaveViewAs().click();
 	}
 
-	// click for ActionsDropDownMenu class
 
+	/*
+	* Clicks for  ActionsDropDownMenu
+	*/
 	public void actionsdropdownmenuDeleteClick() {
 		getActionsDropDownMenu().getDelete().click();
 	}
@@ -717,8 +770,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		getActionsDropDownMenu().getEdit().click();
 	}
 
-	// click for ColumnsMenuDropdown class
-
+	/*
+	* Clicks for  ColumnsMenuDropDown
+	*/
 	public void columnsmenudropdownIdClick() {
 		getColumnsMenuDropdown().getIdCheck().click();
 	}
@@ -787,8 +841,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		getColumnsMenuDropdown().getResetButton().click();
 	}
 
-	// click for main class
-
 	public void clearAllButtonClick() {
 		getClearAllButton().click();
 	}
@@ -797,20 +849,18 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		getCustomersLabel().click();
 	}
 
-//	public void nameFieldInListClick() {
-//		Actions actions = new Actions(driver);
-//		actions.moveToElement(nameFieldInList).click().perform();
-//	}
 
-	// input data
-
+	/*
+	* InputData in search field on page
+	*/
 	public void enterDataInSearchField(String text) {
 		searchField.clear();
 		searchField.sendKeys(text, Keys.ENTER);
 	}
 
-	// functional Business Logic
-
+	/*
+	* Methods that do smth and return new pages
+	*/
 	public RegistrationNewCustomerPage goToRegistrationNewCustomerPage() {
 		getAddNewCustomerButton().click();
 		return new RegistrationNewCustomerPage();
@@ -831,17 +881,18 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return new DefaultViewDropdownMenu();
 	}
 
-	// Business Logic
+	/*
+	* Method that refresh page
+	*/
 	public AllCustomersPage refreshAllCustomersPage() {
 		AllCustomersPage page = new AllCustomersPage();
-		// page.clearAll =
-		// driver.findElement(By.xpath("//button[contains(text(), 'Clear
-		// all')]"));
 		return page;
 	}
 
-	// --------------Mykhaylo Holovanov update Methods--------------------------
 
+	/**
+     *  Method for searching customer in the table
+     */
 	public boolean findCustomerInTheListAfterSearch(ICustomerUser customerUser) {
 		String userName = customerUser.getPersonalInfo().getPrefix() + " "
 				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
@@ -854,7 +905,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -867,8 +918,11 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return isWebElementFound;
 	}
 
-	public boolean findDeletedColumn() {
 
+	/*
+	* Method that finds deleted column
+	*/
+	public boolean findDeletedColumn() {
 		List<WebElement> customers = null;
 		WebElement customer = null;
 		while (!isWebElementFound) {
@@ -876,7 +930,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -894,7 +948,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		List<String> usernames = new ArrayList<String>();
 		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
 			usernames.add(rowsCustomerUserTable.get(i).getNameText());
-			System.out.println(rowsCustomerUserTable.get(i).getNameText());
+		//	System.out.println(rowsCustomerUserTable.get(i).getNameText());
 		}
 		return usernames;
 	}
@@ -918,6 +972,10 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		return isNameFieldSorted;
 	}
 
+	/**
+     *  Method for searching customer in the table
+     */
+	@ServiceReport
 	public boolean findCustomerInTheList(ICustomerUser customerUser) {
 		String userName = customerUser.getPersonalInfo().getPrefix() + " "
 				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
@@ -929,7 +987,7 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 			if (customers.size() > 0) {
 				isWebElementFound = true;
 				customer = customers.get(0);
-				System.out.println("++++++++++  FOUNDED !!!!!!!!");
+
 			} else {
 				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
 				if (next.size() > 0) {
@@ -964,7 +1022,6 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	public void checkCustomerUser(RowCustomerUser rowCustomerUser) {
 		rowCustomerUser.getName().click();
-		System.out.println("checked USER" + rowCustomerUser.getNameText());
 	}
 
 	public void checkCustomerUser(List<RowCustomerUser> rowsCustomerUser) {
@@ -988,6 +1045,9 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 
 	}
 
+	/*
+     *  Method that input text in searchfield
+     */
 	public void sendKeysSearchCustomerField(String search) {
 		this.getSearchField().sendKeys(search);
 	}
@@ -997,18 +1057,28 @@ public class AllCustomersPageAfterSuccesRegistration extends VerticalMenu {
 		this.sendKeysSearchCustomerField(search);
 	}
 
+	/*
+     *  Method for searching customer in the table and returns new page
+     */
 	public AllCustomersPageAfterSuccesRegistration doCustomerSearch(String search) {
 		this.clearSendKeysSearchCustomerField(search);
 		this.getSearchField().sendKeys(Keys.ENTER);
 		return new AllCustomersPageAfterSuccesRegistration();
 	}
 
+	/*
+     *  Method that clicks delete button
+     */
 	public void clickDeleteActions() {
 		// Actions build = new Actions(driver);
 		// build.moveToElement(getDelete()).build().perform();
 		goToActionsDropDownMenu().getDelete().click();
 	}
 
+	/*
+     *  Methods for deleting customer
+     */
+	@ServiceReport
 	public void deleteCustomerUser(ICustomerUser customerUser) throws InterruptedException {
 		AllCustomersPageAfterSuccesRegistration CustomersPage = doCustomerSearch(
 				customerUser.getPersonalInfo().getFullName());

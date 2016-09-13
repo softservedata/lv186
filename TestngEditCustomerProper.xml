@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+    <parameter name="browser" value="Chrome" />
+    <parameter name="driverPath" value="D:\Application\chromedriver.exe" />
+    <test name="Test">
+        <!--<groups>-->
+            <!--<run>-->
+                <!--<include name="positive" />-->
+                <!--&lt;!&ndash;<include name="negative" />&ndash;&gt;-->
+            <!--</run>-->
+        <!--</groups>-->
+        <classes>
+            <class name="com.softserve.edu.magento.tests.EditCustomerTestProper">
+                <methods>
+                    <include name="verifyInputSymbols" />
+                    <!--<include name="verifySymbolsMaxCountMandatoryField" />-->
+                    <!--<include name="verifySymbolsMaxCountDisplayed"/>-->
+                    <!--<include name="verifySymbolsMaxCountRegularField" />-->
+                    <include name="pickNewDefaultBillingAddress"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

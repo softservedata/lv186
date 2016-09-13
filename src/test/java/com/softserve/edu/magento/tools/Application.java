@@ -6,6 +6,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 
 import com.softserve.edu.magento.data.ApplicationSources;
+import com.softserve.edu.magento.db.services.ConnectionManager;
+import com.softserve.edu.magento.db.services.DataSource;
+import com.softserve.edu.magento.db.services.DataSourceRepository.DataSourceNames;
 import com.softserve.edu.magento.tools.BrowserRepository.BrowsersList;
 import com.softserve.edu.magento.tools.Search.SearchStrategyList;
 
@@ -17,6 +20,7 @@ public abstract class Application<TStartPage> {
     protected Application(ApplicationSources applicationSources) {
         this.applicationSources = applicationSources;
         this.startBrowser();
+        setDataSource();
     }
    
 //    public static Application get(ApplicationSources applicationSources) {
@@ -39,17 +43,18 @@ public abstract class Application<TStartPage> {
             if (driver == null) {
                 driver = BrowsersList.FIREFOX_DEFAULT.getWebDriver(null);
             }
-            driver.manage().timeouts().implicitlyWait(5/*applicationSources.getImplicitTimeOut()*/, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(applicationSources.getImplicitTimeOut(), TimeUnit.SECONDS);
             // TODO setup waits
-            //driver.manage().timeouts().pageLoadTimeout(180L, TimeUnit.SECONDS);
-            //driver.manage().timeouts().setScriptTimeout(180L, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(10L, TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(10L, TimeUnit.SECONDS);
             //
             // Save browser
             drivers.put(Thread.currentThread().getId(), driver);
             setSearchStrategy();
         }
     }
-    //removed "this" from setStrategy
+    
+    // removed "this" from setStrategy
     protected void setSearchStrategy() {
         boolean isDefaultStrategy = true;
         for (SearchStrategyList searchStrategy : SearchStrategyList.values()) {
@@ -64,7 +69,20 @@ public abstract class Application<TStartPage> {
             Search.setStrategy(SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
         }
     }
-    //made method static
+    
+    protected void setDataSource() {
+        DataSource dataSource = DataSourceNames.MYSQL_DEFAULT.getDataSource();
+        for (DataSourceNames dataSourceNames : DataSourceNames.values()) {
+            if (dataSourceNames.toString().toLowerCase()
+                    .contains(getApplicationSources().getDataSourceName().toLowerCase())) {
+                dataSource = dataSourceNames.getDataSource();
+                break;
+            }
+        }
+        ConnectionManager.getInstance(dataSource);
+    }
+    
+    // made method static
     protected static WebDriver getWebDriver() {
         return drivers.get(Thread.currentThread().getId());
     }

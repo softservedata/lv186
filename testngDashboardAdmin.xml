@@ -7,9 +7,7 @@
 		<classes>
 			<class name="com.softserve.edu.magento.tests.SmokeTestsDashboard">
 				<methods>
-					<include name="findCustomerFromLastOrders" />
-					<include name="checkReloadMessage" />
-	<!--				<include name="checkSearchResults" />-->
+					<include name="testOrdersPages"/>
 				</methods>
 			</class>
 		</classes>

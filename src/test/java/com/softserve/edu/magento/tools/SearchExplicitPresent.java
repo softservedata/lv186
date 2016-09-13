@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * Class for searching present elements with
  * explicit timeout.
  */
-public class SearchExplicitPresent extends ASearch{
+public class SearchExplicitPresent extends ASearch {
 
     public SearchExplicitPresent() {
         getWebDriver().manage().timeouts().implicitlyWait(0L, TimeUnit.SECONDS);
@@ -21,9 +21,9 @@ public class SearchExplicitPresent extends ASearch{
     /**
      * Method to explicitly wait for presence of
      * specific element.
+     *
      * @param by locator for element.
-     * @return
-     *       present webelement.
+     * @return present webelement.
      */
     private WebElement getPresentWebElement(By by) {
         return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
@@ -49,9 +49,9 @@ public class SearchExplicitPresent extends ASearch{
     /**
      * Method to explicitly wait for presence of
      * specific elements.
+     *
      * @param by locator for elements.
-     * @return
-     *       present webelements.
+     * @return present webelements.
      */
     private List<WebElement> getPresentWebElements(By by) {
         return new WebDriverWait(this.getWebDriver(), EXPLICIT_WAIT_TIMEOUT)
@@ -82,68 +82,73 @@ public class SearchExplicitPresent extends ASearch{
         return getPresentWebElement(By.cssSelector(cssSelector));
     }
 
+
     @Override
     public WebElement className(String className) {
         return getPresentWebElement(By.className(className));
     }
 
     @Override
-    public  WebElement partialLinkText(String partialLinkText) {
+    public WebElement partialLinkText(String partialLinkText) {
         return getPresentWebElement(By.partialLinkText(partialLinkText));
     }
 
     @Override
-    public  WebElement linkText(String linkText) {
+    public WebElement linkText(String linkText) {
         return getPresentWebElement(By.linkText(linkText));
     }
 
     @Override
-    public  WebElement tagName(String tagName) {
+    public WebElement tagName(String tagName) {
         return getPresentWebElement(By.tagName(tagName));
     }
 
 // From Elements
 
     @Override
-    public  WebElement id(String id, WebElement fromWebElement) {
+    public WebElement id(String id, WebElement fromWebElement) {
         return getPresentWebElement(By.id(id), fromWebElement);
     }
 
     @Override
-    public  WebElement name(String name, WebElement fromWebElement) {
+    public WebElement name(String name, WebElement fromWebElement) {
         return getPresentWebElement(By.name(name), fromWebElement);
     }
 
     @Override
-    public  WebElement xpath(String xpath, WebElement fromWebElement) {
+    public WebElement xpath(String xpath, WebElement fromWebElement) {
         return getPresentWebElement(By.xpath(xpath), fromWebElement);
     }
+
     @Override
-    public  WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
+    public WebElement cssSelector(String cssSelector, WebElement fromWebElement) {
         return getPresentWebElement(By.cssSelector(cssSelector), fromWebElement);
     }
+
     @Override
-    public  WebElement className(String className, WebElement fromWebElement) {
+    public WebElement className(String className, WebElement fromWebElement) {
         return getPresentWebElement(By.className(className), fromWebElement);
     }
+
     @Override
-    public  WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
+    public WebElement partialLinkText(String partialLinkText, WebElement fromWebElement) {
         return getPresentWebElement(By.partialLinkText(partialLinkText), fromWebElement);
     }
+
     @Override
-    public  WebElement linkText(String linkText, WebElement fromWebElement) {
+    public WebElement linkText(String linkText, WebElement fromWebElement) {
         return getPresentWebElement(By.linkText(linkText), fromWebElement);
     }
 
     @Override
-    public  WebElement tagName(String tagName, WebElement fromWebElement) {
-        return getPresentWebElement(By.tagName(tagName),fromWebElement);
+    public WebElement tagName(String tagName, WebElement fromWebElement) {
+        return getPresentWebElement(By.tagName(tagName), fromWebElement);
     }
 
     // List
 
     @Override
-    public  List<WebElement> ids(String id) {
+    public List<WebElement> ids(String id) {
         return getPresentWebElements(By.id(id));
     }
 
@@ -153,7 +158,7 @@ public class SearchExplicitPresent extends ASearch{
     }
 
     @Override
-    public  List<WebElement> xpaths(String xpath) {
+    public List<WebElement> xpaths(String xpath) {
         return getPresentWebElements(By.xpath(xpath));
     }
 
@@ -163,27 +168,27 @@ public class SearchExplicitPresent extends ASearch{
     }
 
     @Override
-    public  List<WebElement> cssSelectors(String cssSelector) {
+    public List<WebElement> cssSelectors(String cssSelector) {
         return getPresentWebElements(By.cssSelector(cssSelector));
     }
 
     @Override
-    public  List<WebElement> classNames(String className) {
+    public List<WebElement> classNames(String className) {
         return getPresentWebElements(By.className(className));
     }
 
     @Override
-    public  List<WebElement> partialLinkTexts(String partialLinkText) {
+    public List<WebElement> partialLinkTexts(String partialLinkText) {
         return getPresentWebElements(By.partialLinkText(partialLinkText));
     }
 
     @Override
-    public  List<WebElement> linkTexts(String linkText) {
+    public List<WebElement> linkTexts(String linkText) {
         return getPresentWebElements(By.linkText(linkText));
     }
 
     @Override
-    public  List<WebElement> tagNames(String tagName) {
+    public List<WebElement> tagNames(String tagName) {
         return getPresentWebElements(By.tagName(tagName));
     }
 }

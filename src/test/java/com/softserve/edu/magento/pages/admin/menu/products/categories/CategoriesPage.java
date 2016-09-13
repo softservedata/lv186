@@ -62,9 +62,9 @@ public class CategoriesPage extends VerticalMenu{
         private WebElement close;
 
         public Nothification(){
-            this.ok = Search.className("action-primary action-accept");
-            this.cancel = Search.className("action-secondary action-dismiss");
-            this.close = Search.className("action-close");
+            this.ok = Search.xpath("//button[@class='action-primary action-accept']");
+            this.cancel = Search.xpath("//button[@class='action-secondary action-dismiss']");
+            this.close = Search.xpath("//button[@class='action-close']");
         }
 
         public WebElement getOk(){
@@ -99,7 +99,7 @@ public class CategoriesPage extends VerticalMenu{
 
     private WebElement save;
     private WebElement addRootCategory;
-    private WebElement addSubcategory;
+    private WebElement addSubCategory;
     private WebElement enabledCategory;
     private WebElement includeInMenu;
     private WebElement categoryName;
@@ -127,7 +127,7 @@ public class CategoriesPage extends VerticalMenu{
     public CategoriesPage(){
         this.save = Search.id("save");
         this.addRootCategory = Search.id("add_root_category_button");
-        this.addSubcategory = Search.id("add_subcategory_button");
+        this.addSubCategory = Search.id("add_subcategory_button");
         this.treeComponent = new CategoryTree();
         this.enabledCategory = Search.xpath("//input[@type='checkbox' and @name='is_active']");
         this.includeInMenu = Search.xpath("//input[@type='checkbox' and @name='include_in_menu']");
@@ -138,7 +138,7 @@ public class CategoriesPage extends VerticalMenu{
         this.productsInCategory = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Products in Category')]/../..");
         this.design = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Design')]/../..");
         this.scheduleDesignUpdate = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Schedule Design Update')]/../..");
-
+        this.nothificationComponent = null;
     }
 
     // Page Object
@@ -152,8 +152,8 @@ public class CategoriesPage extends VerticalMenu{
         return addRootCategory;
     }
 
-    public WebElement getAddSubcategory() {
-        return addSubcategory;
+    public WebElement getAddSubCategory() {
+        return addSubCategory;
     }
 
     public WebElement getEnabledCategory() {
@@ -232,9 +232,24 @@ public class CategoriesPage extends VerticalMenu{
         return nothificationComponent;
     }
 
-    public CategoriesPage refresh(){
-        return new CategoriesPage();
-    }
+//    public CategoriesPage refresh(){
+//        return new CategoriesPage();
+//    }
+     public void refresh(){
+         this.save = Search.id("save");
+         this.addRootCategory = Search.id("add_root_category_button");
+         this.addSubCategory = Search.id("add_subcategory_button");
+         this.treeComponent = new CategoryTree();
+         this.enabledCategory = Search.xpath("//input[@type='checkbox' and @name='is_active']");
+         this.includeInMenu = Search.xpath("//input[@type='checkbox' and @name='include_in_menu']");
+         this.categoryName = Search.xpath("//input[@type='text' and @name='name' and @class='admin__control-text']");
+         this.content = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Content')]/../..");
+         this.displaySettings = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Display Settings')]/../..");
+         this.searchEngineOptimization = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Search Engine Optimization')]/../..");
+         this.productsInCategory = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Products in Category')]/../..");
+         this.design = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Design')]/../..");
+         this.scheduleDesignUpdate = Search.xpath("//div[@class='fieldset-wrapper-title']//span[contains(text(),'Schedule Design Update')]/../..");
+     }
 
 
     //------------ Get Data Business Logic -----------------
@@ -249,7 +264,7 @@ public class CategoriesPage extends VerticalMenu{
     }
 
     public String getAddSubcategoryText() {
-        return addSubcategory.getText();
+        return addSubCategory.getText();
     }
 
     public String getEnabledCategoryText() {
@@ -306,14 +321,17 @@ public class CategoriesPage extends VerticalMenu{
 
     public void clickSave(){
         getSave().click();
+        refresh();
     }
 
     public void clickAddRootCategory() {
         getAddRootCategory().click();
+        refresh();
     }
 
     public void clickAddSubCategory() {
-        getAddSubcategory().click();
+        getAddSubCategory().click();
+        refresh();
     }
 
     public void clickEnabledCategory() {
@@ -358,21 +376,24 @@ public class CategoriesPage extends VerticalMenu{
         this.scheduleDesignUpdateComponent = new ScheduleDesignUpdateComponent();
     }
 
-    public void clickDelete() {
+    public void clickDelete(){
         getDelete().click();
         this.nothificationComponent = new Nothification();
     }
 
     public void clickOkNothification(){
         nothificationComponent.clickOk();
+        refresh();
     }
 
     public void clickCanselNothification(){
         nothificationComponent.clickCancel();
+        refresh();
     }
 
     public void clickCloseNothification(){
         nothificationComponent.clickClose();
+        refresh();
     }
 
 
@@ -422,6 +443,7 @@ public class CategoriesPage extends VerticalMenu{
     public void selectCategory (String name){
         if (checkCategoryByName(name)){
             treeComponent.findCategoryByName(name).click();
+            refresh();
             initDeleteButton();
         }else System.out.println("There is no category named: " + name);
     }
@@ -441,14 +463,9 @@ public class CategoriesPage extends VerticalMenu{
 
     public void addNewCategory (String name){
         if (!checkCategoryByName(name)){
-            System.out.println("chech done");
             clickAddRootCategory();
-            System.out.println("click addRootCat");
-            //Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY.getSearchStrategy());
             setCategoryName(name);
-            System.out.println("set category name");
             clickSave();
-            System.out.println("click Save");
         } else System.out.print("Category with this name already exists");
     }
 
@@ -463,7 +480,7 @@ public class CategoriesPage extends VerticalMenu{
     }
 
     public void deleteCategory (String name){
-        if (!checkCategoryByName(name)){
+        if (checkCategoryByName(name)){
             selectCategory(name);
             clickDelete();
             clickOkNothification();

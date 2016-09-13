@@ -32,20 +32,21 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	private WebElement validLabelAboutSavedUser;
 	private WebElement groupSelectField;
 	private WebElement groupChangeBasedOnVatCheck;
-	private WebElement prefixInput;
-	private WebElement firstnameInput;
-	private WebElement middlenameInput;
-	private WebElement lastnameInput;
-	private WebElement sufixInput;
-	private WebElement emailInput;
-	private WebElement dateOfBirfthInput;
-	private WebElement taxVatInput;
-	private WebElement genderButton;
+//	private WebElement prefixInput;
+//	private WebElement firstnameInput;
+//	private WebElement middlenameInput;
+//	private WebElement lastnameInput;
+//	private WebElement sufixInput;
+//	private WebElement emailInput;
+//	private WebElement dateOfBirfthInput;
+//	private WebElement taxVatInput;
+//	private WebElement genderButton;
 	private WebElement addNewAddressesButton;
 	private CustomerAccountInfo accountInfo;
 
 
 	public RegistrationNewCustomerPage() {
+		this.accountInfo=new CustomerAccountInfo();
 		this.newCustomerLabel = Search.cssSelector(".page-title");
 		this.accountInformationButton = Search.id("tab_customer");
 		this.addressesButton = Search.id("tab_address");
@@ -55,15 +56,15 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		this.saveCustomerButton = Search.id("save");
 		this.groupSelectField = Search.cssSelector("[name='customer[group_id]']");
 		this.groupChangeBasedOnVatCheck = Search.cssSelector("[name='customer[disable_auto_group_change]']");
-		this.prefixInput = Search.cssSelector("[name='customer[prefix]']");
-		this.firstnameInput = Search.cssSelector("[name='customer[firstname]']");
-		this.middlenameInput = Search.cssSelector("[name='customer[middlename]']");
-		this.lastnameInput = Search.cssSelector("[name='customer[lastname]']");
-		this.sufixInput = Search.cssSelector("[name='customer[suffix]']");
-		this.emailInput = Search.cssSelector("[name='customer[email]']");
-		this.dateOfBirfthInput = Search.cssSelector("[name='customer[dob]']");
-		this.taxVatInput = Search.cssSelector("[name='customer[taxvat]']");
-		this.genderButton = Search.cssSelector("[name='customer[gender]']");
+//		this.prefixInput = Search.cssSelector("[name='customer[prefix]']");
+//		this.firstnameInput = Search.cssSelector("[name='customer[firstname]']");
+//		this.middlenameInput = Search.cssSelector("[name='customer[middlename]']");
+//		this.lastnameInput = Search.cssSelector("[name='customer[lastname]']");
+//		this.sufixInput = Search.cssSelector("[name='customer[suffix]']");
+//		this.emailInput = Search.cssSelector("[name='customer[email]']");
+//		this.dateOfBirfthInput = Search.cssSelector("[name='customer[dob]']");
+//		this.taxVatInput = Search.cssSelector("[name='customer[taxvat]']");
+//		this.genderButton = Search.cssSelector("[name='customer[gender]']");
 	}
 
 	public class Addresses {
@@ -250,40 +251,40 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	}
 
 	public WebElement getPrefixInput() {
-		return this.prefixInput;
+		return accountInfo.getPrefix();
 	}
 
 	public WebElement getFirstnameInput() {
-		return this.firstnameInput;
+		return accountInfo.getFirstname();
 	}
 
 	public WebElement getMiddlenameInput() {
-		return this.middlenameInput;
+		return accountInfo.getMiddlename();
 	}
 
 	public WebElement getLastnameInput() {
-		return this.lastnameInput;
+		return accountInfo.getLastname();
 	}
 
 	public WebElement getSufixInput() {
-		return this.sufixInput;
+		return accountInfo.getSuffix();
 	}
 
 	public WebElement getEmailInput() {
-		return this.emailInput;
+		return accountInfo.getEmail();
 	}
 
 	public WebElement getDateOfBirfthInput() {
-		return this.dateOfBirfthInput;
+		return accountInfo.getDateOfBirth();
 	}
 
 	public WebElement getTaxVatInput() {
-		return this.taxVatInput;
+		return accountInfo.getTax();
 	}
 
-	public WebElement getGenderButton() {
-		return this.genderButton;
-	}
+//	public WebElement getGenderButton() {
+//		return accountInfo.getGender();
+//	}
 
 	// get Data Business Logic
 	public String getFromValidLabelAboutSavedUserText() {
@@ -414,33 +415,33 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	// setters main
 
 	public void setDataInPrefixField(String prefix) {
-		prefixInputClear();
-		getPrefixInput().sendKeys(prefix);
+		accountInfo.getPrefix().clear();
+		accountInfo.getPrefix().sendKeys(prefix);
 	}
 
 	public void setDataInFirstnameField(String firstname) {
-		firstnameInputClear();
-		getFirstnameInput().sendKeys(firstname);
+		accountInfo.getFirstname().clear();
+		accountInfo.getFirstname().sendKeys(firstname);
 	}
 
 	public void setDataInMiddleField(String middlename) {
-		middlenameInputClear();
-		getMiddlenameInput().sendKeys(middlename);
+		accountInfo.getMiddlename().clear();
+		accountInfo.getMiddlename().sendKeys(middlename);
 	}
 
 	public void setDataInLastnameField(String lastname) {
-		lastnameInputClear();
-		getLastnameInput().sendKeys(lastname);
+		accountInfo.getLastname().clear();
+		accountInfo.getLastname().sendKeys(lastname);
 	}
 
 	public void setDataInSufixField(String sufix) {
-		sufixInputClear();
-		getSufixInput().sendKeys(sufix);
+		accountInfo.getSuffix().clear();
+		accountInfo.getSuffix().sendKeys(sufix);
 	}
 
 	public void setDataInEmailField(String email) {
-		emailInputClear();
-		getEmailInput().sendKeys(email);
+		accountInfo.getEmail().clear();
+		accountInfo.getEmail().sendKeys(email);
 	}
 
 	public void setDataInDateOfBirdthField(String dateOfBirdth) {
@@ -449,8 +450,8 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 	}
 
 	public void setDataInTaxValueField(String taxValue) {
-		taxVatInputClear();
-		getTaxVatInput().sendKeys(taxValue);
+		accountInfo.getTax().clear();
+		accountInfo.getTax().sendKeys(taxValue);
 	}
 
 	public void accountInformationButtonClick() {
@@ -485,9 +486,9 @@ public class RegistrationNewCustomerPage extends VerticalMenu {
 		getGroupChangeBasedOnVatCheck().click();
 	}
 
-	public void genderButtonClick() {
-		getGenderButton().click();
-	}
+//	public void genderButtonClick() {
+//		getGenderButton().click();
+//	}
 
 	public void defaultBillingAddressCheckAddressesClick() {
 		getDefaultBillingAddressCheckAddresses().click();

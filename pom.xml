@@ -95,11 +95,11 @@
 		</dependency>
 
 		<!-- af.reporting library dependency -->
-		<dependency>
-			<groupId>SSAF</groupId>
-			<artifactId>af.reporting</artifactId>
-			<version>0.0.2</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>SSAF</groupId>-->
+			<!--<artifactId>af.reporting</artifactId>-->
+			<!--<version>0.0.2</version>-->
+		<!--</dependency>-->
 
 		<!-- Gson -->
 		<dependency>
@@ -242,10 +242,10 @@
 								<!--<suiteXmlFile>testng.xml</suiteXmlFile>-->
 								<!--<file>testng.xml</file>-->
 								<!--<file>testngyYarynaKharko.xml</file>-->
-								<!--<file>product.xml</file>-->
+								<file>product.xml</file>
 								<!--<file>testngDashboardAdmin.xml</file>-->
 								<!--<file>TestngEditCustomer.xml</file>-->
-								<file>testNgCustomer.xml</file>
+								<!--<file>testNgCustomer.xml</file>-->
                                 <!--<file>testngOrdersTests.xml</file>-->
                             </suiteXmlFiles>
                             <reportsDirectory>${testng.reports.directory}</reportsDirectory>

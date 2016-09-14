@@ -7,10 +7,10 @@
 		<classes>
 			<class name="com.softserve.edu.magento.tests.ProductSaveTest">
 				<methods>
-					<!--<include name="checkProductSaved" />-->
+					<include name="checkProductSaved" />
 					<!--<include name="checkProductSaveAndNew" />-->
 					<!--<include name="checkProductSaveAndClose"/>-->
-					<include name="checkProductSaveAndDuplicate" />
+					<!--<include name="checkProductSaveAndDuplicate" />-->
 				</methods>
 			</class>
 			<!--<class name="com.softserve.edu.magento.tests.ProductValidationTest">-->

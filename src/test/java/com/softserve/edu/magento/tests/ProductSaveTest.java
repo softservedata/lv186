@@ -15,12 +15,12 @@ import com.softserve.edu.magento.tools.ParameterUtils;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import ss.af.reporting.annotations.ServiceReport;
+//import ss.af.reporting.annotations.ServiceReport;
 
 /**
  * Created by Yulia Nevinglovskaya on 8/18/2016.
  */
-public class ProductSaveTest extends TestBase {
+public class ProductSaveTest /*extends TestBase*/ {
     private SoftAssert softAssert = new SoftAssert();
 
     @DataProvider
@@ -39,7 +39,7 @@ public class ProductSaveTest extends TestBase {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    @ServiceReport
+    //@ServiceReport
     public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -95,7 +95,7 @@ public class ProductSaveTest extends TestBase {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    @ServiceReport
+    //@ServiceReport
     public void checkProductSaveAndNew(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -146,7 +146,7 @@ public class ProductSaveTest extends TestBase {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    @ServiceReport
+    //@ServiceReport
     public void checkProductSaveAndDuplicate(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -221,7 +221,7 @@ public class ProductSaveTest extends TestBase {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    @ServiceReport
+    //@ServiceReport
     public void checkProductSaveAndClose(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);

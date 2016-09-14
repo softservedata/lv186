@@ -95,11 +95,11 @@
 		</dependency>
 
 		<!-- af.reporting library dependency -->
-		<!--<dependency>-->
-			<!--<groupId>SSAF</groupId>-->
-			<!--<artifactId>af.reporting</artifactId>-->
-			<!--<version>0.0.2</version>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>SSAF</groupId>
+			<artifactId>af.reporting</artifactId>
+			<version>0.0.2</version>
+		</dependency>
 
 		<!-- Gson -->
 		<dependency>

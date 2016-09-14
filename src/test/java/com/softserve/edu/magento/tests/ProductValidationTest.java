@@ -55,7 +55,6 @@ public class ProductValidationTest extends TestBase {
 
         /* Check if error messages appeared */
         softAssert.assertEquals(productExistsPage.getProductAlreadyExistsMessageText(), Constants.PRODUCT_ALREADY_EXISTS_MESSAGE);
-
     }
 
     /**
@@ -81,7 +80,6 @@ public class ProductValidationTest extends TestBase {
         softAssert.assertEquals(productValidatorPage.getProductNameValidatorText(), Constants.REQUIRED_EMPTY_FIELD_MESSAGE);
         softAssert.assertEquals(productValidatorPage.getSkuValidatorText(), Constants.REQUIRED_EMPTY_FIELD_MESSAGE);
         softAssert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.REQUIRED_EMPTY_FIELD_MESSAGE);
-
     }
 
     /**
@@ -107,9 +105,6 @@ public class ProductValidationTest extends TestBase {
 		/* Check if error messages appeared */
         softAssert.assertEquals(productValidatorPage.getProductNameInputText(), ProductRepository.INVALID_PRODUCT_NAME);
         softAssert.assertEquals(productValidatorPage.getProductNameValidatorText(), Constants.TOO_LONG_PRODUCT_NAME_MESSAGE);
-
-		/* Logout */
-        //productValidatorPage.logout();
     }
 
     /**
@@ -162,7 +157,6 @@ public class ProductValidationTest extends TestBase {
         softAssert.assertEquals(productValidatorPage.getPriceValidatorText(), Constants.INVALID_PRICE_FIELD_MESSAGE);
         softAssert.assertEquals(productValidatorPage.getProductNameInputText(), ProductRepository.VALID_PRODUCT_NAME);
         softAssert.assertEquals(productValidatorPage.getSkuInputText(), ProductRepository.VALID_SKU);
-
     }
 
     @AfterMethod

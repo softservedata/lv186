@@ -1,15 +1,23 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.base.Predicate;
+import com.softserve.edu.magento.controls.ITable;
+import com.softserve.edu.magento.controls.Table;
+import com.softserve.edu.magento.data.admin.products.Product;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.magento.data.admin.products.Filter;
 import com.softserve.edu.magento.pages.admin.VerticalMenu;
 import com.softserve.edu.magento.tools.Search;
+import org.openqa.selenium.support.FindBy;
 
 public class ProductCatalogPage extends VerticalMenu {
+    public final static int COLUMN_PRODUCT_CHECK = 0;
+    public final static int COLUMN_PRODUCT_NAME = 3;
+    public final static int COLUMN_PRODUCT_ATTRIBUTE_SET = 5;
+    public final static int COLUMN_PRODUCT_SKU = 6;
+    public final static int COLUMN_PRODUCT_PRICE = 7;
+    public final static int COLUMN_PRODUCT_QUANTITY = 8;
 
     // Fields
     private WebElement pageTitle;
@@ -22,22 +30,15 @@ public class ProductCatalogPage extends VerticalMenu {
     private WebElement bundleProductButton;
     private WebElement downloadableProductButton;
 
+    private ITable table;
     private WebElement actionsDropdown;
-//    private WebElement deleteProductButton;
-//    private WebElement changeProductStatusButton;
-//    private WebElement enableProduct;
-//    private WebElement disableProduct;
-//    private WebElement updateProductAttributesButton;
-
-//    private WebElement filterButton;
+    private WebElement filterButton;
     private WebElement nextPageButton;
-    List<WebElement> productRowsSource;
-    private List<ProductRow> productRows;
 
-    public ProductCatalogPage() {
+    protected ProductCatalogPage() {
+//        Search.waitForSimpleLoaderDone();
         pageTitle = Search.className("page-title");
         addProductButton = Search.id("add_new_product-button");
-        //addProductButton = Search.xpath("//button[@data-ui-id='products-list-add-new-product-button']");
         addProductToggleButton = Search.className("action-toggle");
         simpleProductButton = Search.cssSelector("span[title='Simple Product']");
         configurableProductButton = Search.cssSelector("span[title='Configurable Product']");
@@ -46,18 +47,33 @@ public class ProductCatalogPage extends VerticalMenu {
         bundleProductButton = Search.cssSelector("span[title='Bundle Product']");
         downloadableProductButton = Search.cssSelector("span[title='Downloadable Product']");
         actionsDropdown = Search.xpath("(//button[@class='action-select'])[1]");
-//        deleteProductButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]");
-//        changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
-//        enableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Enable')])[1]");
-//        disableProduct = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Disable')])[1]");
-//        updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
         nextPageButton = Search.cssSelector("button[title='Next Page']");
-//        filterButton = Search.xpath("(//button[@class='action-default'])[1]");
-        productRows = new ArrayList<>();
-        productRowsSource = Search.cssSelectors("tbody tr");
+        filterButton = Search.xpath("(//button[@class='action-default'])[1]");
+//        Search.waitForSimpleLoaderDone();
+        table = new Table(Search.cssSelector("table[data-role='grid']"));
     }
 
+    public static ProductCatalogPage createProductCatalogPageInstance(){
+        Search.waitUntil(new Predicate<WebDriver>() {
+            @Override
+            public boolean apply(WebDriver webDriver) {
+                ProductCatalogPage newPage = null;
+                try{
+                    newPage = new ProductCatalogPage();
+                } catch (Throwable error){
+                }
+                return newPage != null;
+            }
+        });
+        return new ProductCatalogPage();
+    }
+
+
     // Getters
+
+    public ITable getTable() {
+        return table;
+    }
 
     public WebElement getPageTitle() {
         return this.pageTitle;
@@ -98,36 +114,18 @@ public class ProductCatalogPage extends VerticalMenu {
     public WebElement getActionsDropdown() {
         return this.actionsDropdown;
     }
-//
-//    public WebElement getDeleteProductAction() {
-//        return this.deleteProductButton;
-//    }
-//
-//    public WebElement getChangeStatusProductAction() {
-//        return this.changeProductStatusButton;
-//    }
-//
-//    public WebElement getEnableProductStatus() {
-//        return this.enableProduct;
-//    }
-//
-//    public WebElement getDisableProductStatus() {
-//        return this.disableProduct;
-//    }
-//
-//    public WebElement getUpdateProductAttributesAction() {
-//        return this.updateProductAttributesButton;
-//    }
 
     public WebElement getNextPageButton() {
         return this.nextPageButton;
     }
 
-//    public WebElement getFilterButton() {
-//        return this.filterButton;
-//    }
+    public WebElement getFilterButton() {
+        return this.filterButton;
+    }
 
-    public String getPageTitleText() {return pageTitle.getText();}
+    public String getPageTitleText() {
+        return pageTitle.getText();
+    }
 
     // PageObject Logic
 
@@ -165,39 +163,8 @@ public class ProductCatalogPage extends VerticalMenu {
 
     public ActionsWithProductsPage clickActionsDropdown() {
         getActionsDropdown().click();
-        return new ActionsWithProductsPage();
+        return ActionsWithProductsPage.createActionsWithProductPage();
     }
-//
-//    public DeleteConfirmationPopup clickDeleteProductAction() {
-//        clickActionsDropdown();
-//        getDeleteProductAction().click();
-//        return new DeleteConfirmationPopup();
-//    }
-//
-//    public void clickChangeStatusProductAction() {
-//        clickActionsDropdown();
-//        getChangeStatusProductAction().click();
-//    }
-//
-//    public void setEnableProductStatus() {
-//        clickChangeStatusProductAction();
-//        getEnableProductStatus().click();
-//    }
-//
-//    public void setDisableProduct() {
-//        clickChangeStatusProductAction();
-//        getDisableProductStatus().click();
-//    }
-//
-//    public void clickUpdateProductAttributesAction() {
-//        clickActionsDropdown();
-//        getUpdateProductAttributesAction().click();
-//    }
-
-//    public FilterObject clickFilterButton() {
-//        getFilterButton().click();
-//        return new FilterObject();
-//    }
 
     // Functional Business Logic
     public AddProductPage gotoAddProductPage() {
@@ -205,31 +172,47 @@ public class ProductCatalogPage extends VerticalMenu {
         return new AddProductPage();
     }
 
-    public ProductRow getRowWithProductName(String productName) {
-        for (WebElement row1 : productRowsSource) {
-            ProductRow productRow = new ProductRow(row1);
-            productRows.add(productRow);
-        }
-        for (ProductRow row2 : productRows) {
-            if (row2.getProductNameText().equals(productName)) {
-                return row2;
-            }
-        }
-        return null;
+    public boolean isProductWithNameExist(String productName) {
+        return table.getRowIndexByValueInColumn(productName, COLUMN_PRODUCT_NAME) != -1;
     }
 
-    public ProductRow getRowWithDuplicatedProduct(String productName, String sku) {
-        for (ProductRow row : productRows) {
-            if (row.getProductNameText().equals(productName) && row.getProductSkuText().equals(sku)) {
-                return row;
-            }
-        }
-        return null;
+    public void selectProductByIndex(int rowIndex) {
+        table.getCell(rowIndex, COLUMN_PRODUCT_CHECK).click();
+    }
+
+    public int getRowIndexByName(String productName) {
+        int productIndex = table.getRowIndexByValueInColumn(productName, COLUMN_PRODUCT_NAME);
+        return productIndex;
+    }
+
+    public int getRowIndexBySku(String productSku) {
+        int productIndex = table.getRowIndexByValueInColumn(productSku, COLUMN_PRODUCT_SKU);
+        return productIndex;
+    }
+
+    public String getProductAttributeSetTextByRowIndex(int rowIndex) {
+        WebElement productAttributeSet = table.getCell(rowIndex, COLUMN_PRODUCT_ATTRIBUTE_SET);
+        return productAttributeSet.getText();
+    }
+
+    public String getProductSkuTextByRowIndex(int rowIndex) {
+        WebElement productSku = table.getCell(rowIndex, COLUMN_PRODUCT_SKU);
+        return productSku.getText();
+    }
+
+    public String getProductPriceTextByRowIndex(int rowIndex) {
+        WebElement productPrice = table.getCell(rowIndex, COLUMN_PRODUCT_PRICE);
+        return productPrice.getText();
+    }
+
+    public String getProductQuantityTextByRowIndex(int rowIndex) {
+        WebElement productQuantity = table.getCell(rowIndex, COLUMN_PRODUCT_QUANTITY);
+        return productQuantity.getText();
     }
 
     public ProductCatalogPage moveToNextPage() {
         nextPageButton.click();
-        return new ProductCatalogPage();
+        return ProductCatalogPage.createProductCatalogPageInstance();
     }
 
     public boolean checkNextPageButtonIsEnabled() {
@@ -239,156 +222,6 @@ public class ProductCatalogPage extends VerticalMenu {
             return false;
         }
     }
-
-    public List<ProductRow> getProducts() {
-        return productRows;
-    }
-
-    // -------- ProductRowInnerClass ---------//
-
-    public class ProductRow {
-        private WebElement productCheckbox;
-        private WebElement productId;
-        private WebElement productName;
-        private WebElement productType;
-        private WebElement productAttributeSet;
-        private WebElement productSku;
-        private WebElement productPrice;
-        private WebElement productQuantity;
-        private WebElement productVisibility;
-        private WebElement productStatus;
-        private WebElement productWebsites;
-        private WebElement productActions;
-        private WebElement noProductFound;
-
-        private ProductRow(WebElement row) {
-            productCheckbox = Search.cssSelector("td:first-child", row);
-            productId = Search.cssSelector("td:nth-child(2)", row);
-            productName = Search.cssSelector("td:nth-child(4)", row);
-            productType = Search.cssSelector("td:nth-child(5)", row);
-            productAttributeSet = Search.cssSelector("td:nth-child(6)", row);
-            productSku = Search.cssSelector("td:nth-child(7)", row);
-            productPrice = Search.cssSelector("td:nth-child(8)", row);
-            productQuantity = Search.cssSelector("td:nth-child(9)", row);
-            productVisibility = Search.cssSelector("td:nth-child(10)", row);
-            productStatus = Search.cssSelector("td:nth-child(11)", row);
-            productWebsites = Search.cssSelector("td:nth-child(12)", row);
-            productActions = Search.cssSelector("td:nth-child(13)", row);
-        }
-
-        // Getters
-
-        public WebElement getProductCheckbox() {
-            return this.productCheckbox;
-        }
-
-        public WebElement getProductAction() {
-            return this.productActions;
-        }
-
-        public String getProductIdText() {
-            return productId.getText();
-        }
-
-        public String getProductNameText() {
-            return productName.getText();
-        }
-
-        public String getProductTypeText() {
-            return productType.getText();
-        }
-
-        public String getProductAttributeSetText() {
-            return productAttributeSet.getText();
-        }
-
-        public String getProductSkuText() {
-            return productSku.getText();
-        }
-
-        public String getProductPriceText() {
-            return productPrice.getText();
-        }
-
-        public String getProductQuantityText() {
-            return productQuantity.getText();
-        }
-
-        public String getProductVisibilityText() {
-            return productVisibility.getText();
-        }
-
-        public String getProductStatusText() {
-            return productStatus.getText();
-        }
-
-        public String getProductWebsitesText() {
-            return productWebsites.getText();
-        }
-
-        public String getNoProductFoundMessage() {
-            return noProductFound.getText();
-        }
-
-        // Functional
-
-        public void editProduct() {
-            getProductAction().click();
-        }
-
-        public boolean isProductCheckboxSelected() {
-            return getProductCheckbox().isSelected();
-        }
-
-        public void selectProduct() {
-            getProductCheckbox().click();
-        }
-    }
-
-    // -------- DeletePopupInnerClass ---------//
-
-//    public class DeleteConfirmationPopup {
-//
-//        private WebElement deleteConfirmationButton;
-//        private WebElement cancelDeleteLink;
-//        private WebElement closeDeletePopupButton;
-//
-//        public DeleteConfirmationPopup() {
-//            cancelDeleteLink = Search.xpath("//footer[@class='modal-footer']/button[1]");
-//            deleteConfirmationButton = Search.xpath("//footer[@class='modal-footer']/button[2]");
-//            closeDeletePopupButton = Search.xpath("(//button[@data-role='closeBtn'])[2]");
-//        }
-
-        // Getters
-
-//        public WebElement getDeleteConfirmationButton() {
-//            return this.deleteConfirmationButton;
-//        }
-//
-//        public WebElement getCancelDeleteLink() {
-//            return this.cancelDeleteLink;
-//        }
-//
-//        public WebElement getCloseDeletePopupButton() {
-//            return this.closeDeletePopupButton;
-//        }
-
-        // PageObject Logic
-
-//        public ProductCatalogPage clickDeleteConfirmationButton() {
-//            new DeleteConfirmationPopup();
-//            getDeleteConfirmationButton().click();
-//            return new ProductCatalogPage();
-//        }
-//
-//        public void clickCancelDeleteLink() {
-//            getCancelDeleteLink().click();
-//        }
-//
-//        public void clickCloseDeletePopupButton() {
-//            getCloseDeletePopupButton().click();
-//        }
-//    }
 
     // -------- NoItemSelectedPopupInnerClass ---------//
 

@@ -1470,7 +1470,7 @@ public abstract class VerticalMenu extends ATopPage {
 
 	public ProductCatalogPage gotoProductCatalogPage() {
 		clickMenuProductsCatalog();
-		return new ProductCatalogPage();
+		return ProductCatalogPage.createProductCatalogPageInstance();
 	}
 
 

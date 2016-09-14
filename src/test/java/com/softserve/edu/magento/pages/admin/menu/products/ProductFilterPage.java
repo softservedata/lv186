@@ -1,7 +1,9 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
+import com.google.common.base.Predicate;
 import com.softserve.edu.magento.data.admin.products.Filter;
 import com.softserve.edu.magento.tools.Search;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -22,6 +24,7 @@ public class ProductFilterPage extends ProductCatalogPage {
     private WebElement cancelFiltersButton;
 
     private ProductFilterPage() {
+
         filterButton = Search.xpath("(//button[@class='action-default'])[1]");
         filterIdFromInput = Search.cssSelector("input[name='entity_id[from]']");
         filterIdToInput = Search.cssSelector("input[name='entity_id[to]']");
@@ -33,6 +36,22 @@ public class ProductFilterPage extends ProductCatalogPage {
         filterSkuInput = Search.cssSelector("input[name='sku']");
         applyFiltersButton = Search.className("action-secondary");
         cancelFiltersButton = Search.cssSelector(".admin__footer-main-actions .action-tertiary");
+    }
+
+    public static ProductFilterPage createProductFilterPage(){
+        Search.waitUntil(new Predicate<WebDriver>() {
+            @Override
+            public boolean apply(WebDriver webDriver) {
+                ProductCatalogPage newPage = null;
+                try{
+                    newPage = new ProductFilterPage();
+                } catch (Throwable error){
+                }
+                return newPage != null;
+            }
+        });
+        return new ProductFilterPage();
+
     }
 
     // Getters
@@ -158,7 +177,7 @@ public class ProductFilterPage extends ProductCatalogPage {
 
     public ProductCatalogPage applyFilters() {
         applyFiltersButton.click();
-        return new ProductCatalogPage();
+        return ProductCatalogPage.createProductCatalogPageInstance();
     }
 
     public void clickCancelFiltersButton() {

@@ -16,6 +16,7 @@ public class ProductValidatorPage extends AddProductPage {
 
     public ProductValidatorPage() {
 
+        Search.waitForSimpleLoaderDone();
         List<WebElement> productNameValidators = Search.xpaths("//div[@data-index='name']//label[@class='admin__field-error']");
         List<WebElement> skuValidators = Search.xpaths("(//div[@data-index='sku']//label[@class='admin__field-error'])");
         List<WebElement> priceValidators = Search.xpaths("(//fieldset[@data-index='container_price']//label[@class='admin__field-error'])");

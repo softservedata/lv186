@@ -1,6 +1,8 @@
 package com.softserve.edu.magento.pages.admin.menu.products;
 
+import com.google.common.base.Predicate;
 import com.softserve.edu.magento.tools.Search;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -8,14 +10,14 @@ import org.openqa.selenium.WebElement;
  */
 public class ActionsWithProductsPage extends ProductCatalogPage {
 
-    //private WebElement actionsDropdown;
     private WebElement deleteProductButton;
     private WebElement changeProductStatusButton;
     private WebElement enableProduct;
     private WebElement disableProduct;
     private WebElement updateProductAttributesButton;
 
-    ActionsWithProductsPage() {
+    private ActionsWithProductsPage() {
+        Search.waitForSimpleLoaderDone();
         //actionsDropdown = Search.xpath("(//div[@class='action-select-wrap'])[1]");
         deleteProductButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Delete')])[1]");
         changeProductStatusButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Change')])[1]");
@@ -24,11 +26,21 @@ public class ActionsWithProductsPage extends ProductCatalogPage {
         updateProductAttributesButton = Search.xpath("(//div[@class='action-menu-items']//span[contains(text(), 'Update')])[1]");
     }
 
+    public static ActionsWithProductsPage createActionsWithProductPage(){
+        Search.waitUntil(new Predicate<WebDriver>() {
+            @Override
+            public boolean apply(WebDriver webDriver) {
+                ProductCatalogPage newPage = null;
+                try{
+                    newPage = new ActionsWithProductsPage();
+                } catch (Throwable error){
+                }
+                return newPage != null;
+            }
+        });
+        return new ActionsWithProductsPage();
+    }
     // Getters
-
-//    public WebElement getActionsDropdown() {
-//        return this.actionsDropdown;
-//    }
 
     public WebElement getDeleteProduct() {
         return this.deleteProductButton;
@@ -52,10 +64,6 @@ public class ActionsWithProductsPage extends ProductCatalogPage {
 
     // PageObject Logic
 
-//    public void clickActionsDropdown() {
-//        getActionsDropdown().click();
-//    }
-
     public DeleteConfirmationPopup clickDeleteProductButton() {
         //clickActionsDropdown();
         getDeleteProduct().click();
@@ -63,7 +71,6 @@ public class ActionsWithProductsPage extends ProductCatalogPage {
     }
 
     public void clickChangeProductStatus() {
-        //clickActionsDropdown();
         getChangeProductStatus().click();
     }
 
@@ -90,8 +97,10 @@ public class ActionsWithProductsPage extends ProductCatalogPage {
         private WebElement closeDeletePopupButton;
 
         public DeleteConfirmationPopup() {
+            //Search.waitForSimpleLoaderDone();
             cancelDeleteLink = Search.xpath("//footer[@class='modal-footer']/button[1]");
-            deleteConfirmationButton = Search.xpath("//footer[@class='modal-footer']/button[2]");
+            //deleteConfirmationButton = Search.xpath("//footer[@class='modal-footer']/button[2]");
+            deleteConfirmationButton = Search.className("action-accept");
             closeDeletePopupButton = Search.xpath("(//button[@data-role='closeBtn'])[2]");
         }
 
@@ -112,9 +121,9 @@ public class ActionsWithProductsPage extends ProductCatalogPage {
         // PageObject Logic
 
         public ProductCatalogPage clickDeleteConfirmationButton() {
-            //Search.waitElementToBeClickable(getDeleteConfirmationButton());
+            Search.waitElementToBeClickable(getDeleteConfirmationButton());
             getDeleteConfirmationButton().click();
-            return new ProductCatalogPage();
+            return ProductCatalogPage.createProductCatalogPageInstance();
         }
 
         public void clickCancelDeleteLink() {
@@ -124,5 +133,7 @@ public class ActionsWithProductsPage extends ProductCatalogPage {
         public void clickCloseDeletePopupButton() {
             getCloseDeletePopupButton().click();
         }
+
     }
+
 }

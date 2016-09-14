@@ -185,7 +185,7 @@ public class AddProductPage extends VerticalMenu {
     public ProductCatalogPage clickBackButton() {
         backButton = Search.id("back");
         getBackButton().click();
-        return new ProductCatalogPage();
+        return ProductCatalogPage.createProductCatalogPageInstance();
     }
 
     public void clickAddAttributeButton() {
@@ -193,7 +193,6 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public void setProductNameInputWithClear(String productName) {
-        //Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_CLICKABLE.getSearchStrategy());
         getProductNameInput().click();
         clearProductNameInput();
         setProductName(productName);
@@ -248,7 +247,7 @@ public class AddProductPage extends VerticalMenu {
 
     public ProductCatalogPage returnToProductPage() {
         clickBackButton();
-        return new ProductCatalogPage();
+        return ProductCatalogPage.createProductCatalogPageInstance();
     }
 
     public SuccessProductSavePage gotoSuccessProductSavePageAfterSave() {
@@ -273,8 +272,7 @@ public class AddProductPage extends VerticalMenu {
 
     public ProductCatalogPage gotoCatalogPageAfterSaveClose() {
         clickSaveAndCloseButton();
-        Search.stalnessOf(getProductNameInput());
-        return new ProductCatalogPage();
+        return ProductCatalogPage.createProductCatalogPageInstance();
     }
 
     public ProductExistsPage gotoProductExistsPageAfterSave() {
@@ -316,19 +314,18 @@ public class AddProductPage extends VerticalMenu {
     }
 
     public ProductValidatorPage gotoProductValidatorPageAfterSaveAndClose() {
-        waitPageLoaded();
         clickSaveAndCloseButton();
         return new ProductValidatorPage();
     }
 
-    public void waitPageLoaded() {
-        List<WebElement> loaders = new ArrayList<>();
-        int currentSize = 0;
-        while (currentSize == loaders.size()) {
-            List<WebElement> blocker = Search.xpaths("//div[@class='loading-mask']");
-            loaders.addAll(blocker);
-            currentSize++;
-        }
-    }
+//    public void waitPageLoaded() {
+//        List<WebElement> loaders = new ArrayList<>();
+//        int currentSize = 0;
+//        while (currentSize == loaders.size()) {
+//            List<WebElement> blocker = Search.xpaths("//div[@class='loading-mask']");
+//            loaders.addAll(blocker);
+//            currentSize++;
+//        }
+//    }
 
 }

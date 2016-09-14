@@ -14,7 +14,7 @@ import com.softserve.edu.magento.tools.Search;
  */
 public final class Table implements ITable {
     private static final String OUT_ROWS_RANGE = "Out of rows range. Count row in table is %d, required %d";
-    private static final String OUT_COLUMN_RANGE =  "Out of column range. Count column in table is %d, required %d";
+    private static final String OUT_COLUMN_RANGE = "Out of column range. Count column in table is %d, required %d";
     //
     private WebElement tableWebElement;
     private List<WebElement> tableHeader;
@@ -32,8 +32,8 @@ public final class Table implements ITable {
         //
         tableHeader = Search.tagNames("th", tableWebElement);
         WebElement tBody = Search.tagName("tbody", tableWebElement);
-        for (WebElement tabteRow : Search.tagNames("tr", tBody)) {
-            tableBody.add(Search.tagNames("td", tabteRow));
+        for (WebElement tableRow : Search.tagNames("tr", tBody)) {
+            tableBody.add(Search.tagNames("td", tableRow));
         }
     }
 
@@ -69,6 +69,7 @@ public final class Table implements ITable {
             if (row.get(columnIndex).getText()
                     .trim().toLowerCase().equals(value.trim().toLowerCase())) {
                 rowIndex = i;
+                System.out.println("rowIndex = " + rowIndex);
                 break;
             }
         }
@@ -88,8 +89,8 @@ public final class Table implements ITable {
     }
 
     public List<WebElement> getColumnByValueInRow(String value, int rowIndex) {
-        int columnIndex =-1;
-        int i=-1;
+        int columnIndex = -1;
+        int i = -1;
         for (WebElement cell : getRowByIndex(rowIndex)) {
             i++;
             if (cell.getText().trim().toLowerCase().equals(value.trim().toLowerCase())) {
@@ -105,8 +106,8 @@ public final class Table implements ITable {
     }
 
     public int getColumnIndexByValueOfHeader(String value) {
-        int columnIndex =-1;
-        int i=-1;
+        int columnIndex = -1;
+        int i = -1;
         for (WebElement cell : getHeader()) {
             i++;
             if (cell.getText().trim().toLowerCase().equals(value.trim().toLowerCase())) {
@@ -121,7 +122,7 @@ public final class Table implements ITable {
         return getTableBody().get(rowIndex).get(columnIndex);
     }
 
-    public void clickEditLink (){
+    public void clickEditLink() {
         getColumnByValueOfHeader("Action")
                 .get(getRowIndexByValueInColumn("Yaroslav Harasym", getColumnIndexByValueOfHeader("Name")))
                 .findElement(By.cssSelector("a")).click();

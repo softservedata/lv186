@@ -6,14 +6,12 @@ import com.softserve.edu.magento.data.admin.AdminUserRepository;
 import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.data.admin.products.Constants;
 import com.softserve.edu.magento.data.admin.products.IProduct;
-import com.softserve.edu.magento.data.admin.products.Product;
 import com.softserve.edu.magento.data.admin.products.ProductRepository;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.pages.admin.menu.products.*;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
-import com.softserve.edu.magento.tools.Search;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -65,23 +63,28 @@ public class ProductSaveTest extends TestBase {
 
 		/* Go to page with catalog and find row with needed name */
         ProductCatalogPage catalogPage = savePage.returnToProductPage();
-        ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
-        while (row == null) {
+        int productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+        while (productRowIndex == -1) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
                 catalogPage = catalogPage.moveToNextPage();
-                row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
+                productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
             } else {
                 break;
             }
         }
 
 		/* Check if saved product is present in catalog */
-        softAssert.assertNotNull(row);
-        softAssert.assertEquals(row.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
-        softAssert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
-        softAssert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
-        softAssert.assertEquals(row.getProductQuantityText(), ProductRepository.QUANTITY_FOR_CHECK);
-
+        softAssert.assertNotEquals(productRowIndex, -1);
+        if (productRowIndex != -1) {
+            String attributeSetText = catalogPage.getProductAttributeSetTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(attributeSetText, ProductRepository.ATTRIBUTE_SET);
+            String skuText = catalogPage.getProductSkuTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(skuText, ProductRepository.VALID_SKU);
+            String priceText = catalogPage.getProductPriceTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(priceText, ProductRepository.VALID_PRICE_FOR_CHECK);
+            String quantityText = catalogPage.getProductQuantityTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(quantityText, ProductRepository.QUANTITY_FOR_CHECK);
+        }
     }
 
     /**
@@ -114,21 +117,24 @@ public class ProductSaveTest extends TestBase {
 
         /* Find row with newly saved product */
         ProductCatalogPage catalogPage = savePage.returnToProductPage();
-        ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME_2);
-        while (row == null) {
+        int productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+        while (productRowIndex == -1) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
                 catalogPage = catalogPage.moveToNextPage();
-                row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME_2);
+                productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
             } else {
                 break;
             }
         }
 
         /* Check if new product is present in catalog */
-        softAssert.assertNotNull(row);
-        softAssert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
-        softAssert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
-
+        softAssert.assertNotEquals(productRowIndex, -1);
+        if (productRowIndex != -1) {
+            String skuText = catalogPage.getProductSkuTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(skuText, ProductRepository.VALID_SKU);
+            String priceText = catalogPage.getProductPriceTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(priceText, ProductRepository.VALID_PRICE_FOR_CHECK);
+        }
     }
 
     /**
@@ -163,39 +169,48 @@ public class ProductSaveTest extends TestBase {
 
         /* Find row with newly saved product */
         ProductCatalogPage catalogPage = savePage.returnToProductPage();
-        ProductCatalogPage.ProductRow row1 = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME_3);
-        while (row1 == null) {
+        int productRowIndex1 = catalogPage.getRowIndexBySku(ProductRepository.VALID_SKU);
+        while (productRowIndex1 == -1) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
                 catalogPage = catalogPage.moveToNextPage();
-                row1 = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME_3);
+                productRowIndex1 = catalogPage.getRowIndexBySku(ProductRepository.VALID_SKU);
             } else {
                 break;
             }
         }
 
         /* Check if new product is present in catalog */
-        softAssert.assertNotNull(row1);
-        softAssert.assertEquals(row1.getProductSkuText(), ProductRepository.VALID_SKU);
-        softAssert.assertEquals(row1.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
-        softAssert.assertEquals(row1.getProductQuantityText(), ProductRepository.QUANTITY_FOR_CHECK);
+        softAssert.assertNotEquals(productRowIndex1, -1);
+        if (productRowIndex1 != -1) {
+            String skuText = catalogPage.getProductSkuTextByRowIndex(productRowIndex1);
+            softAssert.assertEquals(skuText, ProductRepository.VALID_SKU);
+            String priceText = catalogPage.getProductPriceTextByRowIndex(productRowIndex1);
+            softAssert.assertEquals(priceText, ProductRepository.VALID_PRICE_FOR_CHECK);
+            String quantityText = catalogPage.getProductQuantityTextByRowIndex(productRowIndex1);
+            softAssert.assertEquals(quantityText, ProductRepository.QUANTITY_FOR_CHECK);
+        }
 
         /* Find row with duplicated product */
-        ProductCatalogPage.ProductRow row2 = catalogPage.getRowWithDuplicatedProduct(ProductRepository.VALID_PRODUCT_NAME, ProductRepository.VALID_SKU_DUPLICATED);
-        while (row2 == null) {
+        int productRowIndex2 = catalogPage.getRowIndexBySku(ProductRepository.VALID_SKU_DUPLICATED);
+        while (productRowIndex2 == -1) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
                 catalogPage = catalogPage.moveToNextPage();
-                row2 = catalogPage.getRowWithDuplicatedProduct(ProductRepository.VALID_PRODUCT_NAME, ProductRepository.VALID_SKU_DUPLICATED);
+                productRowIndex2 = catalogPage.getRowIndexBySku(ProductRepository.VALID_SKU);
             } else {
                 break;
             }
         }
 
         /* Check if duplicated product is present in catalog */
-        softAssert.assertNotNull(row2);
-        softAssert.assertEquals(row2.getProductSkuText(), ProductRepository.VALID_SKU_DUPLICATED);
-        softAssert.assertEquals(row2.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
-        softAssert.assertEquals(row2.getProductQuantityText(), "");
-
+        softAssert.assertNotEquals(productRowIndex2, -1);
+        if (productRowIndex2 != -1) {
+            String skuText = catalogPage.getProductSkuTextByRowIndex(productRowIndex2);
+            softAssert.assertEquals(skuText, ProductRepository.VALID_SKU_DUPLICATED);
+            String priceText = catalogPage.getProductPriceTextByRowIndex(productRowIndex2);
+            softAssert.assertEquals(priceText, ProductRepository.VALID_PRICE_FOR_CHECK);
+            String quantityText = catalogPage.getProductQuantityTextByRowIndex(productRowIndex2);
+            softAssert.assertEquals(quantityText, "");
+        }
     }
 
     /**
@@ -223,39 +238,50 @@ public class ProductSaveTest extends TestBase {
         softAssert.assertEquals(catalogPage.getPageTitleText(), Constants.CATALOG_PAGE_TITLE);
 
         /* Find row with newly saved product */
-        ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
-        while (row == null) {
+        int productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+        while (productRowIndex == -1) {
             if (catalogPage.checkNextPageButtonIsEnabled()) {
                 catalogPage = catalogPage.moveToNextPage();
-                row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
+                productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
             } else {
                 break;
             }
         }
 
         /* Check if new product is present in catalog */
-        softAssert.assertNotNull(row);
-        softAssert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
-        softAssert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
-
+        softAssert.assertNotEquals(productRowIndex, -1);
+        if (productRowIndex != -1) {
+            String skuText = catalogPage.getProductSkuTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(skuText, ProductRepository.VALID_SKU);
+            String priceText = catalogPage.getProductPriceTextByRowIndex(productRowIndex);
+            softAssert.assertEquals(priceText, ProductRepository.VALID_PRICE_FOR_CHECK);
+        }
     }
 
 
     @AfterMethod
     public void afterMethod() {
-        ProductCatalogPage catalogPage = new ProductCatalogPage();
-//        while(catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME) != null) {
-//            ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
-//            row.selectProduct();
-//            ActionsWithProductsPage.DeleteConfirmationPopup popup = catalogPage.clickActionsDropdown().clickDeleteProductButton();
-//            popup.clickDeleteConfirmationButton();
-//        }
-        catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
-        ProductCatalogPage.ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
-        row.selectProduct();
-        ActionsWithProductsPage.DeleteConfirmationPopup popup = catalogPage.clickActionsDropdown().clickDeleteProductButton();
-        popup.clickDeleteConfirmationButton();
-
+        boolean productDeleted;
+        do{
+            productDeleted = false;
+            ProductCatalogPage catalogPage = ProductCatalogPage.createProductCatalogPageInstance();
+            catalogPage.gotoProductCatalogPage();
+            int productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+            while (productRowIndex == -1) {
+                if (catalogPage.checkNextPageButtonIsEnabled()) {
+                    catalogPage = catalogPage.moveToNextPage();
+                    productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+                } else {
+                    break;
+                }
+            }
+            if(productRowIndex != -1){
+                catalogPage.selectProductByIndex(productRowIndex);
+                ActionsWithProductsPage.DeleteConfirmationPopup popup = catalogPage.clickActionsDropdown().clickDeleteProductButton();
+                popup.clickDeleteConfirmationButton();
+                productDeleted = true;
+            }
+        }while(productDeleted);
         ApplicationAdmin.signout();
     }
 

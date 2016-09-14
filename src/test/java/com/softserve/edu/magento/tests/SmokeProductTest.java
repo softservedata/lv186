@@ -19,7 +19,6 @@ import com.softserve.edu.magento.data.admin.products.IProduct;
 import com.softserve.edu.magento.data.admin.products.ProductRepository;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
-import com.softserve.edu.magento.pages.admin.menu.products.ProductCatalogPage.ProductRow;
 import com.softserve.edu.magento.tools.ParameterUtils;
 import ss.af.reporting.annotations.ServiceReport;
 
@@ -67,24 +66,27 @@ public class SmokeProductTest extends TestBase {
 
 		/* Go to page with catalog and find row with needed name */
 		ProductCatalogPage catalogPage = savePage.returnToProductPage();
-		ProductRow row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
-		while (row == null) {
+		int productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+		while (productRowIndex == -1) {
 			if (catalogPage.checkNextPageButtonIsEnabled()) {
 				catalogPage = catalogPage.moveToNextPage();
-				row = catalogPage.getRowWithProductName(ProductRepository.VALID_PRODUCT_NAME);
+				productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
 			} else {
 				break;
 			}
 		}
 
 		/* Check if saved product is present in catalog */
-		Assert.assertNotNull(row);
-		Assert.assertEquals(row.getProductAttributeSetText(), ProductRepository.ATTRIBUTE_SET);
-		Assert.assertEquals(row.getProductSkuText(), ProductRepository.VALID_SKU);
-		Assert.assertEquals(row.getProductPriceText(), ProductRepository.VALID_PRICE_FOR_CHECK);
+		Assert.assertNotEquals(productRowIndex, -1);
+		if(productRowIndex != -1){
+			String skuText = catalogPage.getProductSkuTextByRowIndex(productRowIndex);
+			Assert.assertEquals(skuText, ProductRepository.VALID_SKU);
+			String priceText = catalogPage.getProductPriceTextByRowIndex(productRowIndex);
+			Assert.assertEquals(priceText, ProductRepository.VALID_PRICE_FOR_CHECK);
+		}
 
 		/* Delete saved product */
-		row.selectProduct();
+		//row.selectProduct();
 		ActionsWithProductsPage.DeleteConfirmationPopup popup = catalogPage.clickActionsDropdown().clickDeleteProductButton();
 		catalogPage = popup.clickDeleteConfirmationButton();
 

@@ -1,5 +1,0 @@
-1. (?) Add support for logging test actions (aka steps to reproduce generation)
-2. Move resources(images and xslt`s) references to System.properties (remove hardcode)
-3. Add support for multiple test method re-runs
-4. Check if graphs are build with average values
-5. Add a folder with resources for report .htmls (a-la htmls in top folder, resources in sub-folder)

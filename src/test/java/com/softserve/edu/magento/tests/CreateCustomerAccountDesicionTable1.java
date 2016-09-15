@@ -83,11 +83,11 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
 		  //Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
-		 Assert.assertTrue(allCustomersPage.confirmCustomerUserCreated(customerUser));
+		 Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		 applicationAdmin.logout();
 	 }
 	 
-	 //@Test(dataProvider = "ApplicationParameters")
+	 @Test(dataProvider = "ApplicationParameters")
 	  public void testCreateNewAccount2(ApplicationSources applicationSources,IAdminUser adminUser) {
 		 ICustomerUser customerUser = CustomerUserRepository.get().User_DT2();
 		 TestCustomerUser.get().setCustomerUser(customerUser);
@@ -121,7 +121,7 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
-		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		 applicationAdmin.logout();
 	 }
 	 //@Test(dataProvider = "ApplicationParameters")
@@ -158,7 +158,7 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
-		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		 applicationAdmin.logout();
 	 }
 	 //@Test(dataProvider = "ApplicationParameters")
@@ -197,7 +197,7 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
-		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
 		  // 1. Log out admin
 		  applicationAdmin.logout();
@@ -239,7 +239,7 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
-		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  applicationAdmin.logout();
 	 }
 	 //@Test(dataProvider = "ApplicationParameters")
@@ -278,7 +278,7 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
-		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  applicationAdmin.logout();
 	 }
 	 //@Test(dataProvider = "ApplicationParameters")
@@ -310,13 +310,12 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
-		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  applicationAdmin.logout();
 	 }
-	 //@Test(dataProvider = "ApplicationParameters")
+	 @Test(dataProvider = "ApplicationParameters")
 	  public void testCreateNewAccount8(ApplicationSources applicationSources, IAdminUser adminUser) {
 		  ICustomerUser customerUser = CustomerUserRepository.get().User_DT8();
-		  TestCustomerUser.get().setCustomerUser(customerUser);
 		  //Precondition
 		  // Prepare our application
 		  ApplicationCustomer applicationCustomer = ApplicationCustomer.get(applicationSources);
@@ -333,8 +332,8 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		  AllCustomersPage allCustomersPage = applicationAdmin.load()
 				  .successAdminLogin(adminUser)
 				  .gotoAllCustomersPage();
-		  //Assert.assertFalse(allCustomersPage
-				  //.confirmAlreadyExistCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage
+				  .confirmAlreadyExistCustomerUserIsCreated(customerUser));
 		  allCustomersPage.clickSignOut();  
 	  }
 	//@Test(dataProvider = "ApplicationParameters")
@@ -363,7 +362,7 @@ public class CreateCustomerAccountDesicionTable1 extends TestBase{
 		AllCustomersPage allCustomersPage = applicationAdmin.load()
 				.successAdminLogin(adminUser)
 				.gotoAllCustomersPage();
-		//Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		applicationAdmin.logout();
 	}
 

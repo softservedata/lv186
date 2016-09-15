@@ -52,7 +52,7 @@ public class TestCustomerUser {
         //}
 
 
-         if(allCustomersPage.confirmCustomerUserCreated(testCustomer) == true ) {
+         if(allCustomersPage.confirmCustomerUserIsCreated(testCustomer) == true ) {
             allCustomersPage = allCustomersPage.deleteCustomerUser(testCustomer);
         }
 

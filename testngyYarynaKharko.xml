@@ -6,6 +6,8 @@
   <test name="Test">
     <classes>
       <class name="com.softserve.edu.magento.tests.CreateCustomerAccountDesicionTable1"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest1"/>
+      <class name="com.softserve.edu.magento.tests.CreateCustomerAccountFieldsTest2"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

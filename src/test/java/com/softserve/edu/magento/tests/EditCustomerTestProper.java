@@ -7,6 +7,7 @@ import com.softserve.edu.magento.data.admin.IAdminUser;
 import com.softserve.edu.magento.pages.admin.ApplicationAdmin;
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
 import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.ShellExecutor;
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
@@ -18,25 +19,31 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import static com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Constants.DEFAULT_BILLING_ADDRESS;
 import static com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Constants.PAGE_TITLE;
+import static java.nio.file.Files.readAllBytes;
+import static java.nio.file.Paths.get;
 import static org.testng.Assert.assertTrue;
 
 /**
  * Created by ayaremctc on 25.08.2016.
  */
-public class EditCustomerTestProper extends  TestBase {
+public class EditCustomerTestProper extends TestBase {
     @DataProvider
     public Object[][] smokeParameters(ITestContext context) {
         return ListUtils.get()
                 .toMultiArray(
                         ParameterUtils.get()
-                                .updateParametersAll(ApplicationSourcesRepository.getNewChromeLocalHostAdmin(), context),
+                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
                         AdminUserRepository.get().adminAndrii());
     }
 
-    @Test (dataProvider = "smokeParameters",  groups = "positive")
-    public  void verifyInputSymbols(ApplicationSources applicationSources, IAdminUser adminUser) {
+    //@Test (dataProvider = "smokeParameters",  groups = "positive")
+    public void verifyInputSymbols(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -57,12 +64,12 @@ public class EditCustomerTestProper extends  TestBase {
 
         //Verify changes has been made.
         assertTrue(PAGE_TITLE.toString()
-                .contains(editCustomerPage.stringFromFile("SpecialSymbols.txt").substring(0, 5)) );
+                .contains(editCustomerPage.stringFromFile("SpecialSymbols.txt").substring(0, 5)));
         applicationAdmin.quit();
     }
 
-    @Test (dataProvider = "smokeParameters",  groups = "positive")
-    public  void verifySymbolsMaxCountMandatoryField(ApplicationSources applicationSources, IAdminUser adminUser) {
+    //@Test (dataProvider = "smokeParameters",  groups = "positive")
+    public void verifySymbolsMaxCountMandatoryField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -86,8 +93,8 @@ public class EditCustomerTestProper extends  TestBase {
         applicationAdmin.quit();
     }
 
-    @Test (dataProvider = "smokeParameters", groups = "negative")
-    public  void verifySymbolsMaxCountRegularField(ApplicationSources applicationSources, IAdminUser adminUser) {
+    //@Test (dataProvider = "smokeParameters", groups = "negative")
+    public void verifySymbolsMaxCountRegularField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         SoftAssert softAssert = new SoftAssert();
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -120,8 +127,8 @@ public class EditCustomerTestProper extends  TestBase {
         applicationAdmin.quit();
     }
 
-    @Test (dataProvider = "smokeParameters", groups = "negative")
-    public  void verifySymbolsMaxCountDisplayed(ApplicationSources applicationSources, IAdminUser adminUser) {
+    //@Test (dataProvider = "smokeParameters", groups = "negative")
+    public void verifySymbolsMaxCountDisplayed(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -148,8 +155,8 @@ public class EditCustomerTestProper extends  TestBase {
         applicationAdmin.quit();
     }
 
-    @Test (dataProvider = "smokeParameters", groups = "positive")
-    public  void pickNewDefaultBillingAddress(ApplicationSources applicationSources, IAdminUser adminUser) {
+    @Test(dataProvider = "smokeParameters", groups = "positive")
+    public void pickNewDefaultBillingAddress(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
@@ -177,7 +184,9 @@ public class EditCustomerTestProper extends  TestBase {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         ApplicationAdmin.signout();
-       //ApplicationAdmin.quitAll();
+        ShellExecutor executor = new ShellExecutor();
+        executor.executeFile("Magento Restore.sh");
+        //ApplicationAdmin.quitAll();
     }
 
     @AfterClass(alwaysRun = true)

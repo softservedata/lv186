@@ -66,7 +66,7 @@ public class AllCustomersPage extends VerticalMenu {
 	// written by Andrii
 	private List<WebElement> editList;
 
-	private ITable table;
+	private Table table;
 
 	// -----------------ColumnsMenuDropdown-------------------
 	private class ColumnsMenuDropdown {
@@ -554,6 +554,10 @@ public class AllCustomersPage extends VerticalMenu {
 		return this.genderFieldInList;
 	}
 
+	public Table getTable (){
+	    return  this.table;
+    }
+
 	// written by Andrii
 	public WebElement getEditLink(int index) {
 		return editList.get(index);
@@ -561,7 +565,7 @@ public class AllCustomersPage extends VerticalMenu {
 
 	// written by Andrii
 	public EditCustomerPage getEditCustomerPage() {
-		table.getCell(0,0);
+        getTable().clickEditLink();
 		return new EditCustomerPage();
 	}
 
@@ -753,9 +757,9 @@ public class AllCustomersPage extends VerticalMenu {
 		return page;
 	}
 
-	public ITable getTable() {
-		return this.table;
-	}
+//	public ITable getTable() {
+//		return this.table;
+//	}
 	public ConfirmDeleteWindow getConfirmDeleteWindow() {
 		return new ConfirmDeleteWindow();
 	}

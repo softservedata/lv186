@@ -753,167 +753,84 @@ public class AllCustomersPage extends VerticalMenu {
 		return page;
 	}
 
-	// ------------------Mykhaylo Holovanov update--------------------------
-/*
-	public boolean findCustomerInTheList(ICustomerUser customerUser) {
-		String userName = customerUser.getPersonalInfo().getPrefix() + " "
-				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
-				+ " " + customerUser.getPersonalInfo().getLastname() + " " + customerUser.getPersonalInfo().getSuffix();
-		List<WebElement> customers = null;
-		WebElement customer = null;
-		while (!isWebElementFound) {
-			customers = Search.xpaths("//div[contains(text(),'" + userName + "')]");
-			if (customers.size() > 0) {
-				isWebElementFound = true;
-				customer = customers.get(0);
-
-			} else {
-				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
-				if (next.size() > 0) {
-					next.get(0).click();
-				} else {
-					break;
-				}
-			}
-		}
-		return isWebElementFound;
+	public ITable getTable() {
+		return this.table;
+	}
+	public ConfirmDeleteWindow getConfirmDeleteWindow() {
+		return new ConfirmDeleteWindow();
 	}
 
-	public boolean findCustomerInTheListAfterSearch(ICustomerUser customerUser) {
-		String userName = customerUser.getPersonalInfo().getPrefix() + " "
-				+ customerUser.getPersonalInfo().getFirstname() + " " + customerUser.getPersonalInfo().getMiddlename()
-				+ " " + customerUser.getPersonalInfo().getLastname() + " " + customerUser.getPersonalInfo().getSuffix();
-		enterDataInSearchField(userName);
-		List<WebElement> customers = null;
-		WebElement customer = null;
-		while (!isWebElementFound) {
-			customers = Search.xpaths("//div[contains(text(),'" + userName + "')]");
-			if (customers.size() > 0) {
-				isWebElementFound = true;
-				customer = customers.get(0);
+	// --------------------ConfirmDeleteWindow----------------------------
+	private class ConfirmDeleteWindow {
+		private WebElement window;
+		private WebElement buttonCancel;
+		private WebElement buttonOk;
+		private WebElement exit;
 
-			} else {
-				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
-				if (next.size() > 0) {
-					next.get(0).click();
-				} else {
-					break;
-				}
-			}
-		}
-		return isWebElementFound;
-	}
-
-	public boolean findDeletedColumn() {
-
-		List<WebElement> customers = null;
-		WebElement customer = null;
-		while (!isWebElementFound) {
-			customers = Search.xpaths("(//span[contains(text(),'Name')])[3]");
-			if (customers.size() > 0) {
-				isWebElementFound = true;
-				customer = customers.get(0);
-
-			} else {
-				List<WebElement> next = Search.xpaths(".//*[@class='action-next'][1]");
-				if (next.size() > 0) {
-					next.get(0).click();
-				} else {
-					break;
-				}
-			}
-		}
-		return isWebElementFound;
-	}
-
-	public List<String> getColumnsNameFromTable() {
-		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
-		List<String> usernames = new ArrayList<String>();
-		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
-			usernames.add(rowsCustomerUserTable.get(i).getNameText());
-			System.out.println(rowsCustomerUserTable.get(i).getNameText());
-		}
-		return usernames;
-	}
-
-	public Boolean sortedNameField() {
-		boolean isNameFieldSorted = true;
-		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
-		List<String> usernames = new ArrayList<String>();
-		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
-			usernames.add(rowsCustomerUserTable.get(i).getNameText());
-		}
-
-		List<String> sortedNames = new ArrayList<>(usernames);
-		Collections.sort(sortedNames);
-
-		for (int i = 0; i < usernames.size(); i++) {
-			if (!usernames.get(i).equals(sortedNames.get(i))) {
-				isNameFieldSorted = false;
-				break;
-			}
+		public ConfirmDeleteWindow() {
+			Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
+			this.window = Search.className("modal-inner-wrap");
+			Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
+			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
+			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
+			this.exit = Search.cssSelector("header.modal-header button.action-close");
 
 		}
-		if (isNameFieldSorted == false) {
-			nameFieldInListClick();
-			isNameFieldSorted = true;
+
+		public WebElement getWindow() {
+			return window;
 		}
-		return isNameFieldSorted;
-	}
 
-	// ------------------Yaryna Kharko update
-	// 23.07.2016--------------------------
-
-	public List<RowCustomerUser> getTableCustomerUser() {
-		// TODO when there are more that 1 pagetable
-		List<WebElement> rows = Search.classNames("data-row");
-		List<RowCustomerUser> rowsCustomerUserTable = new ArrayList<RowCustomerUser>();
-		for (int i = 0; i < rows.size(); i++) {
-			rowsCustomerUserTable.add(new RowCustomerUser(rows.get(i)));
+		public WebElement getButtonCancel() {
+			return buttonCancel;
 		}
-		return rowsCustomerUserTable;
-	}
 
-	public List<String> getNameColumn() {
-		List<RowCustomerUser> rowsCustomerUserTable = getTableCustomerUser();
-		List<String> usernames = new ArrayList<String>();
-		for (int i = 0; i < rowsCustomerUserTable.size(); i++) {
-			usernames.add(rowsCustomerUserTable.get(i).getNameText());
-			System.out.println(rowsCustomerUserTable.get(i).getNameText());
+		public WebElement getButtonOk() {
+			return buttonOk;
 		}
-		return usernames;
-	}
 
-	public void checkCustomerUser(RowCustomerUser rowCustomerUser) {
-		rowCustomerUser.getName().click();
-	}
-
-	public void checkCustomerUser(List<RowCustomerUser> rowsCustomerUser) {
-		for (int i = 0; i < rowsCustomerUser.size(); i++) {
-			checkCustomerUser(rowsCustomerUser.get(i));
+		public WebElement getExit() {
+			return exit;
 		}
-	}
 
-	public List<RowCustomerUser> findCustomerUsersByName(List<RowCustomerUser> rowsCustomerUser,
-			ICustomerUser customerUser) {
-		List<RowCustomerUser> foundRowCustomerUser = new ArrayList<RowCustomerUser>();
-		String username = customerUser.getPersonalInfo().getFullName();
-		String email = customerUser.getSigninInfo().getEmail();
-		for (int i = 0; i < rowsCustomerUser.size(); i++) {
-			if (rowsCustomerUser.get(i).getNameText().equals(username)
-					&& rowsCustomerUser.get(i).getEmailText().equals(email)) {
-				foundRowCustomerUser.add(rowsCustomerUser.get(i));
-			}
+		// click
+		public void clickButtonCancel() {
+			this.getButtonCancel().click();
 		}
-		return foundRowCustomerUser;
+
+		public AllCustomersPage clickButtonOk() {
+			this.getButtonOk().click();
+			return new AllCustomersPage();
+		}
+
+		public void clickExit() {
+			this.getExit().click();
+		}
 
 	}
+	public static enum TableHeaders {
+		EMAIL("Email"),
+		NAME("Name"),
+		NODATA("We couldn't find any records.");
+		;
+		//
+		private String field;
 
+		private TableHeaders(String field) {
+			this.field = field;
+		}
+
+		@Override
+		public String toString() {
+			return this.field;
+		}
+	}
 	public void sendKeysSearchCustomerField(String search) {
 		this.getSearchField().sendKeys(search);
 	}
 
 	public void clearSendKeysSearchCustomerField(String search) {
+		this.getSearchField().click();
 		this.getSearchField().clear();
 		this.sendKeysSearchCustomerField(search);
 	}
@@ -931,229 +848,106 @@ public class AllCustomersPage extends VerticalMenu {
 	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) {
 		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
 
-		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),
-				customerUser);
-		if (foundCustomerUsersByName.size() > 0) {
-			checkCustomerUser(foundCustomerUsersByName);
+		if (CustomersPage.tableIsEmpty()==false) {
+			CustomersPage.checkCustomerUser(customerUser);
 			CustomersPage.clickDeleteActions();
-
-			this.getConfirmDeleteWindow().clickButtonOk();
-
+			CustomersPage.getConfirmDeleteWindow().clickButtonOk();
 		}
+
+
 		return new AllCustomersPage();
 	}
 
-	public List<RowCustomerUser> findCustomersUser(ICustomerUser customerUser) {
+	public boolean confirmCustomerUserIsCreated(ICustomerUser customerUser){
+
 		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
-		List<RowCustomerUser> foundCustomerUsersByName = findCustomerUsersByName(CustomersPage.getTableCustomerUser(),
-				customerUser);
-		return foundCustomerUsersByName;
-	}
-
-	public Boolean confirmCustomerUserIsCreated(ICustomerUser customerUser) {
-		if (this.findCustomersUser(customerUser).size() > 0) {
-			return true;
-		} else
-			return false;
-	}
-
-	public Boolean confirmAlreadyExistCustomerUserIsCreated(ICustomerUser customerUser) {
-		if (this.findCustomersUser(customerUser).size() >= 2) {
-			return true;
-		} else
-			return false;
-	}
-
-	public ConfirmDeleteWindow getConfirmDeleteWindow() {
-		return new ConfirmDeleteWindow();
-	}
-
-	// --------------------ConfirmDeleteWindow----------------------------
-	private class ConfirmDeleteWindow {
-		private WebElement window;
-		private WebElement buttonCancel;
-		private WebElement buttonOk;
-		private WebElement exit;
-
-		public ConfirmDeleteWindow() {
-			Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
-			this.window = Search.className("modal-inner-wrap");
-			Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
-			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
-			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
-			this.exit = Search.cssSelector("header.modal-header button.action-close");
-
+		boolean isCreated = false;
+		if(CustomersPage.IsCustomerUserCreated(customerUser) == true) {
+			isCreated = true;
 		}
-
-		public WebElement getWindow() {
-			return window;
-		}
-
-		public WebElement getButtonCancel() {
-			return buttonCancel;
-		}
-
-		public WebElement getButtonOk() {
-			return buttonOk;
-		}
-
-		public WebElement getExit() {
-			return exit;
-		}
-
-		// click
-		public void clickButtonCancel() {
-			this.getButtonCancel().click();
-		}
-
-		public AllCustomersPage clickButtonOk() {
-			this.getButtonOk().click();
-			return new AllCustomersPage();
-		}
-
-		public void clickExit() {
-			this.getExit().click();
-		}
-
-	}
-
-	// --------------------RowCustomerUser----------------------------
-	private class RowCustomerUser {
-		WebElement check;
-		WebElement name;
-		WebElement email;
-
-		RowCustomerUser(WebElement row) {
-			this.check = Search.className("data-grid-checkbox-cell",row);
-			this.name = Search.cssSelector("td:nth-child(3)",row);
-			this.email = Search.cssSelector("td:nth-child(4)",row);
-		}
-
-		public WebElement getCheck() {
-			return check;
-		}
-
-		public WebElement getName() {
-			return name;
-		}
-
-		public WebElement getEmail() {
-			return email;
-		}
-
-		public String getNameText() {
-			String nameText = Search.className("data-grid-cell-content",getName()).getText();
-			return nameText;
-		}
-
-		public String getEmailText() {
-			String emailText = Search.className("data-grid-cell-content",getEmail()).getText();
-			return emailText;
-		}
-	}*/
-	public ConfirmDeleteWindow getConfirmDeleteWindow() {
-		return new ConfirmDeleteWindow();
-	}
-
-	// --------------------ConfirmDeleteWindow----------------------------
-	private class ConfirmDeleteWindow {
-		private WebElement window;
-		private WebElement buttonCancel;
-		private WebElement buttonOk;
-		private WebElement exit;
-
-		public ConfirmDeleteWindow() {
-			Search.setStrategy(Search.SearchStrategyList.EXPLICIT_STRATEGY_PRESENT.getSearchStrategy());
-			this.window = Search.className("modal-inner-wrap");
-			Search.setStrategy(Search.SearchStrategyList.IMPLICIT_STRATEGY.getSearchStrategy());
-			this.buttonOk = Search.cssSelector("footer.modal-footer button.action-primary.action-accept");
-			this.buttonCancel = Search.cssSelector("button.action-secondary.action-dismiss");
-			this.exit = Search.cssSelector("header.modal-header button.action-close");
-
-		}
-
-		public WebElement getWindow() {
-			return window;
-		}
-
-		public WebElement getButtonCancel() {
-			return buttonCancel;
-		}
-
-		public WebElement getButtonOk() {
-			return buttonOk;
-		}
-
-		public WebElement getExit() {
-			return exit;
-		}
-
-		// click
-		public void clickButtonCancel() {
-			this.getButtonCancel().click();
-		}
-
-		public AllCustomersPage clickButtonOk() {
-			this.getButtonOk().click();
-			return new AllCustomersPage();
-		}
-
-		public void clickExit() {
-			this.getExit().click();
-		}
-
-	}
-	public void sendKeysSearchCustomerField(String search) {
-		this.getSearchField().sendKeys(search);
-	}
-
-	public void clearSendKeysSearchCustomerField(String search) {
-		this.getSearchField().clear();
-		this.sendKeysSearchCustomerField(search);
-	}
-
-	public AllCustomersPage doCustomerSearch(String search) {
-		this.clearSendKeysSearchCustomerField(search);
-		this.getSearchField().sendKeys(Keys.ENTER);
-		return new AllCustomersPage();
-	}
-
-	public void clickDeleteActions() {
-		goToActionsDropDownMenu().delete.click();
-	}
-
-	public AllCustomersPage deleteCustomerUser(ICustomerUser customerUser) {
-		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
-
-		checkCustomerUser(customerUser);
-		CustomersPage.clickDeleteActions();
-
-		this.getConfirmDeleteWindow().clickButtonOk();
-
-		return new AllCustomersPage();
-	}
-
-	public boolean confirmCustomerUserCreated(ICustomerUser customerUser){
-		boolean isCreated=false;
-		List<WebElement> column = table.getColumnByValueOfHeader("Email");
-		for(int i = 0 ;i<column.size();i++){
-			if (column.get(i).getText()
-					.trim().toLowerCase().equals(customerUser.getSigninInfo().getEmail()
-							.trim().toLowerCase())) {
-				isCreated=true;
-				break;
-			}
-		}
-
 		return isCreated;
+		/*boolean isCreated = false;
+			List<WebElement> column = table.getColumnByValueOfHeader("Email");
+			if (column.size() != 0) {
+				for (int i = 0; i < column.size(); i++) {
+					if (column.get(i).getText()
+							.trim().toLowerCase().equals(customerUser.getSigninInfo().getEmail()
+									.trim().toLowerCase())) {
+						//int columnIndex = table.getColumnIndexByValueOfHeader("Email");
+						//int columnIndexName = table.getColumnIndexByValueOfHeader("Name");
+						//String fulllName = table.getRowByValueInColumn(customerUser.getPersonalInfo().getFullName()
+						//		, columnIndex).get(columnIndexName).getText().trim().toLowerCase();
+						//if(fulllName.equals(customerUser.getPersonalInfo().getFullName())) {
+						isCreated = true;
+						break;
+						//}
+
+					}
+				}
+			}
+
+			return isCreated;*/
+		//return CustomersPage.IsCustomerUserCreated(customerUser);
+		//return doCustomerSearch(customerUser.getPersonalInfo().getFullName()).IsCustomerUserCreated(customerUser);
+
+	}
+	public boolean IsCustomerUserCreated(ICustomerUser customerUser){
+		if(tableIsEmpty() == false) {
+			boolean isCreated = false;
+			List<WebElement> column = getTable().getColumnByValueOfHeader(TableHeaders.EMAIL.toString());
+			for (int i = 0; i < column.size(); i++) {
+				if (column.get(i).getText()
+						.trim().toLowerCase().equals(customerUser.getSigninInfo().getEmail()
+								.trim().toLowerCase())) {
+					isCreated = true;
+					break;
+				}
+			}
+
+			return isCreated;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean confirmAlreadyExistCustomerUserIsCreated(ICustomerUser customerUser){
+
+		AllCustomersPage CustomersPage = doCustomerSearch(customerUser.getPersonalInfo().getFullName());
+		if(CustomersPage.tableIsEmpty() == false) {
+			int count = 0;
+			boolean isAlreadyExistCustomerCreated = false;
+			List<WebElement> column = CustomersPage.getTable().getColumnByValueOfHeader(TableHeaders.EMAIL.toString());
+			for (int i = 0; i < column.size(); i++) {
+				if (column.get(i).getText()
+						.trim().toLowerCase().equals(customerUser.getSigninInfo().getEmail()
+								.trim().toLowerCase())) {
+					count++;
+				}
+			}
+			if (count >= 2) {
+				isAlreadyExistCustomerCreated = true;
+			} else {
+				isAlreadyExistCustomerCreated = false;
+			}
+			return isAlreadyExistCustomerCreated;
+		} else return false;
+
 	}
 
 	public void checkCustomerUser(ICustomerUser customerUser){
-		if(confirmCustomerUserCreated(customerUser) == true){
-			int columnIndex = table.getColumnIndexByValueOfHeader("Email");
-			table.getRowByValueInColumn(customerUser.getSigninInfo().getEmail()
-					, columnIndex).get(0).click();
+		if (IsCustomerUserCreated(customerUser) == true) {
+				int columnIndex = getTable().getColumnIndexByValueOfHeader(TableHeaders.EMAIL.toString());
+				getTable().getRowByValueInColumn(customerUser.getSigninInfo().getEmail()
+						, columnIndex).get(0).click();
 		}
-
+	}
+	public boolean tableIsEmpty() {
+		boolean isEmpty = false;
+		if(getTable().getCell(1,0).getText().trim().toLowerCase().equals(TableHeaders.NODATA.toString().trim().toLowerCase())) {
+			isEmpty = true;
+			System.out.println("table empty");
+		}
+		System.out.println(getTable().getCell(1,0).getText().trim().toLowerCase());
+		return isEmpty;
 	}
 }

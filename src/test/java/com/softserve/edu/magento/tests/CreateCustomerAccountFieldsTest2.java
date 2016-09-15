@@ -80,7 +80,7 @@ public class CreateCustomerAccountFieldsTest2 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 7. Confirm that customer account is not created
-		  //Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
 		  allCustomersPage.clickSignOut();
 	 }
@@ -127,7 +127,7 @@ public class CreateCustomerAccountFieldsTest2 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 10. Confirm that customer account is created
-		  //Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertTrue(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // 11. Log out admin
 		  allCustomersPage.clickSignOut();
 	 }

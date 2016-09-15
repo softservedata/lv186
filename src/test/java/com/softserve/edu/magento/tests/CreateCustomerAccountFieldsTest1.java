@@ -92,7 +92,7 @@ public class CreateCustomerAccountFieldsTest1 extends TestBase{
 				  .successAdminLogin(AdminUserRepository.get().adminYaryna())
 				  .gotoAllCustomersPage();
 		  // 7. Confirm that already exist customer account is not created
-//		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
+		  Assert.assertFalse(allCustomersPage.confirmCustomerUserIsCreated(customerUser));
 		  // Return to the previous state
 		  allCustomersPage.clickSignOut();
 	 }

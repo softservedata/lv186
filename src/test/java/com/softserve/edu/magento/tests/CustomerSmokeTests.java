@@ -1,6 +1,7 @@
 package com.softserve.edu.magento.tests;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.*;
+import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.Calendar;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -60,7 +61,7 @@ public class CustomerSmokeTests extends TestBase{
 		softAssert.assertEquals(regNewCust.getFromNewCustomerLabelText(), regNewCust.PAGE_TITLE);
 		// setting data to login form
 		AllCustomersPageAfterSuccesRegistration allCustAfter = regNewCust
-				.setCustomerDataInLoginForm(CustomerUserRepositoryForAdmin.get().NewCustomerRegistrationFromAdminSide());
+				.setCustomerDataInLoginForm(Calendar.initCalendar());
 		// Verify that new Customer was registered
 		softAssert.assertEquals(allCustAfter.getRegisteredNewCustomerLabelgetText(),
 				allCustAfter.REGISTERED_CUSTOMER_TITLE);
@@ -144,9 +145,9 @@ public class CustomerSmokeTests extends TestBase{
 		// setting data to login form
 		regNewCust.setRingerDataInLoginFormAndClickResetButton(CustomerUserRepositoryForAdmin.get().SteveRinger());
 		// Verify that fielsds are empty
-		//softAssert.assertTrue(regNewCust.getFirstnameInput().getText().isEmpty(), "Firstname field isn't empty!");
-		//softAssert.assertTrue(regNewCust.getLastnameInput().getText().isEmpty(), "Lastname field isn't empty!");
-		//softAssert.assertTrue(regNewCust.getEmailInput().getText().isEmpty(), "Email field isn't empty!");
+		softAssert.assertTrue(regNewCust.getFirstnameInput().getText().isEmpty(), "Firstname field isn't empty!");
+		softAssert.assertTrue(regNewCust.getLastnameInput().getText().isEmpty(), "Lastname field isn't empty!");
+		softAssert.assertTrue(regNewCust.getEmailInput().getText().isEmpty(), "Email field isn't empty!");
 		// Sign Out Admin
 		applicationAdmin.quit();
 

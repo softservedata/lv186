@@ -34,7 +34,6 @@ public class Calendar implements ICalendar {
         this.day = Search.cssSelectors("table.ui-datepicker-calendar a");
         this.goToday = Search.cssSelector("button[data-handler='today']");
         this.close = Search.cssSelector("button[data-handler='hide']");
-        System.out.println("Constructor done!");
     }
 
     /**

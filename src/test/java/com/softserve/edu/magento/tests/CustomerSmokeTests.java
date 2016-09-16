@@ -43,7 +43,7 @@ public class CustomerSmokeTests extends TestBase{
 
 
 
-	@Test(dataProvider = "smokeParameters", priority = 1)
+	//@Test(dataProvider = "smokeParameters", priority = 1)
 	@ServiceReport
 	public void validRegistrationNewCustomerAndFindInTheTable(ApplicationSources applicationSources,
 			IAdminUser adminUser) throws Exception {
@@ -154,7 +154,7 @@ public class CustomerSmokeTests extends TestBase{
 
 	}
 
-	//@Test(dataProvider = "smokeParameters", priority = 1)
+	@Test(dataProvider = "smokeParameters", priority = 1)
 	public void findSortedColumnNameInCustomerList(ApplicationSources applicationSources, IAdminUser adminUser)
 			throws Exception {
 		// Precondition
@@ -166,8 +166,9 @@ public class CustomerSmokeTests extends TestBase{
 		// Verify that AllCustomersPage is opened
 		Assert.assertEquals(acp.getCustomersLabelText(), acp.PAGE_TITLE);
 		// check fields if sorted
-		//Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
+		Assert.assertTrue(acp.sortedNameField(), "Names Aren't sorted!");
 		// Sign Out Admin
+		Thread.sleep(3000);
 		applicationAdmin.quit();
 	}
 

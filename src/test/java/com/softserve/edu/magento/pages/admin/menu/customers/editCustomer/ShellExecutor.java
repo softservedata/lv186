@@ -30,7 +30,7 @@ public class ShellExecutor {
      * @return 031
      */
     public List<String> executeFile(String scriptFileName) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         try {
 
             /**
@@ -49,8 +49,10 @@ public class ShellExecutor {
             session.setConfig("StrictHostKeyChecking", "no");
             session.setPassword(PASSWORD);
             session.connect();
+            System.out.println("SSH connection done!");
             //create the excution channel over the session
             ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
+            System.out.println("execution connection done!");
             // Gets an InputStream for this channel. All data arriving in as messages from the remote side can be read from this stream.
             InputStream in = channelExec.getInputStream();
             // Set the command that you want to execute

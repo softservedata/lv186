@@ -10,14 +10,9 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
-import ss.af.reporting.AutomationSuiteContext;
-import ss.af.reporting.GenericReportsFactory;
-import ss.af.reporting.HtmlReportSettings;
-import ss.af.reporting.ReportListenerLevel;
-import ss.af.reporting.SuiteReportChain;
-import ss.af.reporting.TestReport;
-import ss.af.reporting.TestReportFactory;
+import ss.af.reporting.*;
 import ss.af.reporting.baseclasses.AutoTestWithReporting;
+import ss.af.reporting.statistics.StatisticsCollector;
 import ss.af.reporting.utils.Utils;
 
 import java.lang.reflect.Method;
@@ -92,8 +87,14 @@ public class TestBase extends AutoTestWithReporting {
     * Otherwise move it to superclass (and then every test class  will be a "test suite").
     */
     @AfterSuite
-    public void suiteTearDown(){
-        AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
+    public void suiteTearDown() throws InterruptedException {
+        //AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
+        AutomationSuiteContext ctx = AutomationSuiteContext.getInstance();
+        System.out.println("ctx "+ctx);
+        SuiteReport suiteReport = ctx.getSuiteReport();
+        System.out.println("suiteReport "+suiteReport);
+        Thread.sleep(1000);
+        suiteReport.closeReport();
         //WebDriverManager.getDriver().quit();
         ApplicationAdmin.quitAll();
         ApplicationCustomer.quitAll();

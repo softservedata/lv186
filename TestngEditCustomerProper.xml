@@ -13,11 +13,11 @@
         <classes>
             <class name="com.softserve.edu.magento.tests.EditCustomerTestProper">
                 <methods>
-                    <!--<include name="verifyInputSymbols" />-->
+                    <include name="verifyInputSymbols" />
                     <!--<include name="verifySymbolsMaxCountMandatoryField" />-->
                     <!--<include name="verifySymbolsMaxCountDisplayed"/>-->
                     <!--<include name="verifySymbolsMaxCountRegularField" />-->
-                    <include name="pickNewDefaultBillingAddress"/>
+                    <!--<include name="pickNewDefaultBillingAddress"/>-->
                 </methods>
             </class>
         </classes>

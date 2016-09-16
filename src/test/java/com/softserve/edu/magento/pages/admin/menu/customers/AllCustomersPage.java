@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.softserve.edu.magento.controls.ITable;
 import com.softserve.edu.magento.controls.Table;
+import com.softserve.edu.magento.tools.ASearch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -713,11 +714,35 @@ public class AllCustomersPage extends VerticalMenu {
 	}
 
 	public void nameFieldInListClick() {
-		//Actions actions = new Actions(driver);
-
-	//	actions.moveToElement(nameFieldInList).click().perform();
+		Actions actions = new Actions(ASearch.getWebDriver());
+		actions.moveToElement(nameFieldInList).click().perform();
 		// getNameFieldInList().click();
 	}
+
+    public Boolean sortedNameField() {
+        boolean isNameFieldSorted = true;
+        List<WebElement> columnName = table.getColumnByValueOfHeader("Name");
+        List<String> usernames = new ArrayList<String>();
+        for(WebElement element : columnName){
+            usernames.add(element.getText());
+        }
+
+        List<String> sortedNames = new ArrayList<>(usernames);
+        Collections.sort(sortedNames);
+
+        for (int i = 0; i < usernames.size(); i++) {
+            if (!usernames.get(i).equals(sortedNames.get(i))) {
+                isNameFieldSorted = false;
+                break;
+            }
+
+        }
+        if (isNameFieldSorted == false) {
+            nameFieldInListClick();
+            isNameFieldSorted = true;
+        }
+        return isNameFieldSorted;
+    }
 
 	// input data
 

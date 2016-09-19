@@ -27,7 +27,7 @@ public class ProductSaveTest {
     public Object[][] parameters(ITestContext context) {
         return ListUtils.get()
                 .toMultiArray(ParameterUtils.get()
-                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+                                .updateParametersAll(ApplicationSourcesRepository.getPhantomJSLocalhostWindowsAdmin(), context),
                         AdminUserRepository.get().adminYulia());
     }
 
@@ -93,7 +93,7 @@ public class ProductSaveTest {
      * @param applicationSources
      * @param adminUser
      */
-    @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     public void checkProductSaveAndNew(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -143,7 +143,7 @@ public class ProductSaveTest {
      * @param applicationSources
      * @param adminUser
      */
-    @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     public void checkProductSaveAndDuplicate(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -217,7 +217,7 @@ public class ProductSaveTest {
      * @param applicationSources
      * @param adminUser
      */
-    @Test(dataProvider = "parameters")
+    //@Test(dataProvider = "parameters")
     public void checkProductSaveAndClose(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -257,27 +257,27 @@ public class ProductSaveTest {
 
     @AfterMethod
     public void afterMethod() {
-        boolean productDeleted;
-        do{
-            productDeleted = false;
-            ProductCatalogPage catalogPage = ProductCatalogPage.createProductCatalogPageInstance();
-            catalogPage.gotoProductCatalogPage();
-            int productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
-            while (productRowIndex == -1) {
-                if (catalogPage.checkNextPageButtonIsEnabled()) {
-                    catalogPage = catalogPage.moveToNextPage();
-                    productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
-                } else {
-                    break;
-                }
-            }
-            if(productRowIndex != -1){
-                catalogPage.selectProductByIndex(productRowIndex);
-                ActionsWithProductsPage.DeleteConfirmationPopup popup = catalogPage.clickActionsDropdown().clickDeleteProductButton();
-                popup.clickDeleteConfirmationButton();
-                productDeleted = true;
-            }
-        }while(productDeleted);
+//        boolean productDeleted;
+//        do{
+//            productDeleted = false;
+//            ProductCatalogPage catalogPage = ProductCatalogPage.createProductCatalogPageInstance();
+//            catalogPage.gotoProductCatalogPage();
+//            int productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+//            while (productRowIndex == -1) {
+//                if (catalogPage.checkNextPageButtonIsEnabled()) {
+//                    catalogPage = catalogPage.moveToNextPage();
+//                    productRowIndex = catalogPage.getRowIndexByName(ProductRepository.VALID_PRODUCT_NAME);
+//                } else {
+//                    break;
+//                }
+//            }
+//            if(productRowIndex != -1){
+//                catalogPage.selectProductByIndex(productRowIndex);
+//                ActionsWithProductsPage.DeleteConfirmationPopup popup = catalogPage.clickActionsDropdown().clickDeleteProductButton();
+//                popup.clickDeleteConfirmationButton();
+//                productDeleted = true;
+//            }
+//        }while(productDeleted);
         ApplicationAdmin.signout();
     }
 

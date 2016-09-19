@@ -307,10 +307,7 @@
 								</surefire.webdriver.driverpath>
 							</systemPropertyVariables>
 							<suiteXmlFiles>
-								<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
-								<!--<file>TestngEditCustomer.xml</file>-->
-
-								<!-- <file>testng1.xml</file> -->
+								 <suiteXmlFile>product.xml</suiteXmlFile>
 							</suiteXmlFiles>
 							<reportsDirectory>${testng.reports.directory}</reportsDirectory>
 						</configuration>

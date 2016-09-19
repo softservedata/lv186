@@ -4,9 +4,7 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class ShellExecutor {
      * @param scriptFileName
      * @return 031
      */
-    public List<String> executeFile(String scriptFileName) {
+    public void executeFile(String scriptFileName) {
         List<String> result = new ArrayList<>();
         try {
 
@@ -60,29 +58,8 @@ public class ShellExecutor {
             channelExec.setCommand("sh " + scriptFileName);
             // Execute the command
             channelExec.connect();
-            // Read the output from the input stream we set above
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            String line;
-            //Read each line from the buffered reader and add it to result list
-            // You can also simple print the result here
-            while ((line = reader.readLine()) != null){
-                result.add(line);
-            }
-            //retrieve the exit status of the remote command corresponding to this channel
-            int exitStatus = channelExec.getExitStatus();
-            //Safely disconnect channel and disconnect session. If not done then it may cause resource leak
-            channelExec.disconnect();
-            session.disconnect();
-            if (exitStatus < 0) {
-                System.out.println("Done, but exit status not set!");
-            } else if (exitStatus > 0) {
-                System.out.println("Done, but with error!");
-            } else {
-                System.out.println("Done!");
-            }
         } catch (Exception e){
             System.err.println("Error: " + e);
         }
-        return result;
     }
 }

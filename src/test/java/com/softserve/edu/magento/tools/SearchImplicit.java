@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SearchImplicit extends ASearch {
 
     public SearchImplicit() {
-        getWebDriver().manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
+        getWebDriver().manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
         // TODO setup waits
         getWebDriver().manage().timeouts().pageLoadTimeout(10L, TimeUnit.SECONDS);
         getWebDriver().manage().timeouts().setScriptTimeout(10L, TimeUnit.SECONDS);

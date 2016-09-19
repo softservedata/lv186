@@ -11,7 +11,6 @@ import com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.ShellEx
 import com.softserve.edu.magento.pages.admin.menu.dashboard.DashboardPage;
 import com.softserve.edu.magento.tools.ListUtils;
 import com.softserve.edu.magento.tools.ParameterUtils;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -19,14 +18,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import static com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Constants.DEFAULT_BILLING_ADDRESS;
 import static com.softserve.edu.magento.pages.admin.menu.customers.editCustomer.EditCustomerPage.Constants.PAGE_TITLE;
-import static java.nio.file.Files.readAllBytes;
-import static java.nio.file.Paths.get;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -48,27 +41,27 @@ public class EditCustomerTestProper extends TestBase {
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
         DashboardPage dashboardPage = applicationAdmin.load().successAdminLogin(adminUser);
         AllCustomersPage allCustomersPage = dashboardPage.gotoAllCustomersPage();
-//        EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
-//
-//        //click Account Information tab.
-//        editCustomerPage.navToAccountInfo();
-//
-//        //enter values into field
-//        editCustomerPage.enterValuesIntoFields(editCustomerPage.stringFromFile("SpecialSymbols.txt"));
-//
-//        //click 'Save & Continue Edit' button.
-//        editCustomerPage = editCustomerPage.saveAndContinueEdit();
-//
-//        //save page title.
-//        PAGE_TITLE.setValue(editCustomerPage.getEditCustomerTitle());
-//
-//        //Verify changes has been made.
-//        assertTrue(PAGE_TITLE.toString()
-//                .contains(editCustomerPage.stringFromFile("SpecialSymbols.txt").substring(0, 5)));
+        EditCustomerPage editCustomerPage = allCustomersPage.getEditCustomerPage();
+
+        //click Account Information tab.
+        editCustomerPage.navToAccountInfo();
+
+        //enter values into field
+        editCustomerPage.enterValuesIntoFields(editCustomerPage.stringFromFile("SpecialSymbols.txt"));
+
+        //click 'Save & Continue Edit' button.
+        editCustomerPage = editCustomerPage.saveAndContinueEdit();
+
+        //save page title.
+        PAGE_TITLE.setValue(editCustomerPage.getEditCustomerTitle());
+
+        //Verify changes has been made.
+        assertTrue(PAGE_TITLE.toString()
+                .contains(editCustomerPage.stringFromFile("SpecialSymbols.txt").substring(0, 5)));
         applicationAdmin.quit();
     }
 
-    //@Test (dataProvider = "smokeParameters",  groups = "positive")
+    @Test (dataProvider = "smokeParameters",  groups = "positive")
     public void verifySymbolsMaxCountMandatoryField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -93,7 +86,7 @@ public class EditCustomerTestProper extends TestBase {
         applicationAdmin.quit();
     }
 
-    //@Test (dataProvider = "smokeParameters", groups = "negative")
+    @Test (dataProvider = "smokeParameters", groups = "negative")
     public void verifySymbolsMaxCountRegularField(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         SoftAssert softAssert = new SoftAssert();
@@ -127,7 +120,7 @@ public class EditCustomerTestProper extends TestBase {
         applicationAdmin.quit();
     }
 
-    //@Test (dataProvider = "smokeParameters", groups = "negative")
+    @Test (dataProvider = "smokeParameters", groups = "negative")
     public void verifySymbolsMaxCountDisplayed(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -155,7 +148,7 @@ public class EditCustomerTestProper extends TestBase {
         applicationAdmin.quit();
     }
 
-   // @Test(dataProvider = "smokeParameters", groups = "positive")
+    @Test(dataProvider = "smokeParameters", groups = "positive")
     public void pickNewDefaultBillingAddress(ApplicationSources applicationSources, IAdminUser adminUser) {
         // precondition
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -184,13 +177,13 @@ public class EditCustomerTestProper extends TestBase {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         ApplicationAdmin.signout();
-        ShellExecutor executor = new ShellExecutor();
-        executor.executeFile("dropmagento.sh");
-        //ApplicationAdmin.quitAll();
+        ApplicationAdmin.quitAll();
     }
 
     @AfterClass(alwaysRun = true)
     void tearDown() throws Exception {
+        ShellExecutor executor = new ShellExecutor();
+        executor.executeFile("dropmagento.sh");
         ApplicationAdmin.quitAll();
     }
 

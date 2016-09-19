@@ -88,14 +88,7 @@ public class TestBase extends AutoTestWithReporting {
     */
     @AfterSuite
     public void suiteTearDown() throws InterruptedException {
-        //AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
-        AutomationSuiteContext ctx = AutomationSuiteContext.getInstance();
-        System.out.println("ctx "+ctx);
-        SuiteReport suiteReport = ctx.getSuiteReport();
-        System.out.println("suiteReport "+suiteReport);
-        Thread.sleep(1000);
-        suiteReport.closeReport();
-        //WebDriverManager.getDriver().quit();
+        AutomationSuiteContext.getInstance().getSuiteReport().closeReport();
         ApplicationAdmin.quitAll();
         ApplicationCustomer.quitAll();
     }

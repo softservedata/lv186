@@ -17,6 +17,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.softserve.edu.magento.pages.admin.menu.customers.AllCustomersPage;
+import ss.af.reporting.annotations.ServiceReport;
 
 import static java.nio.file.Files.readAllBytes;
 import static java.nio.file.Paths.get;
@@ -102,6 +103,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
      * Finds validator and inits it.
      * @return new errorLabel
      */
+    @ServiceReport
     public WebElement locateErrorLabel() {
     	try{
             this.errorLabel = Search.cssSelector("label.admin__field-error");
@@ -771,6 +773,7 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
 	 * field.
 	 * @param value value to be entered.
 	 */
+
 	public void enterValueIntoPrefix (String value){
 	    getAccountInformation().getPrefix().sendKeys(value);
     }
@@ -803,8 +806,8 @@ public class EditCustomerPage extends ACustomPageSideMenu implements IEditCustom
         enterValueIntoFirstname(value);
         enterValueIntoLastname(value);
     }
-    //Addresses business logic.
 
+    //Addresses business logic.
     /**
      * Createsthe new address and enters
      * values into mandatory fields.

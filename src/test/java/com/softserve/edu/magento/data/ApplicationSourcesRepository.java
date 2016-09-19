@@ -44,7 +44,7 @@ public final class ApplicationSourcesRepository {
 
     public static ApplicationSources getPhantomJSLocalhostWindowsAdmin() {
         return new ApplicationSources("PhantomJSTemporary",
-                "C:\\Program Files (x86)\\PhantomJS\\phantomjs.exe", 5L, 5L, "Implicit",
+                "./target/test-classes/lib/phantomjs.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento/admin",
                 new String(), "MySqlLocalHost");
     }

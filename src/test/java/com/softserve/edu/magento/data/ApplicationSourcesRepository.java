@@ -15,7 +15,7 @@ public final class ApplicationSourcesRepository {
 
     public static ApplicationSources getChromeLocalhostAdmin() {
         return new ApplicationSources("ChromeDriverTemporary",
-                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe", 5L, 5L, "Implicit",
+                /*"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe",*/ "./target/test-classes/chromedriver.exe", 5L, 5L, "Implicit",
                 "http://192.168.195.210/magento/admin",
                 new String(), "MySqlTrainingLocal");
     }

@@ -30,9 +30,11 @@
 		<org.testng.version>6.9.10</org.testng.version>
 		<testng.reports.directory>./target/surefire-reports/test-output</testng.reports.directory>
 		<!-- <profile.ci.webdriver.name>htmlunitdriver</profile.ci.webdriver.name> -->
-		<profile.ci.webdriver.name>phantomjstemporary</profile.ci.webdriver.name>
+		<!--<profile.ci.webdriver.name>phantomjstemporary</profile.ci.webdriver.name>-->
+		<profile.ci.webdriver.name>chromedrivertemporary</profile.ci.webdriver.name>
 		 <!--<profile.ci.webdriver.driverpath>C:/Program Files (x86)/PhantomJS/phantomjs.exe</profile.ci.webdriver.driverpath>-->
-		<profile.ci.webdriver.driverpath>./target/test-classes/phantomjs.exe</profile.ci.webdriver.driverpath>
+		<!--<profile.ci.webdriver.driverpath>./target/test-classes/phantomjs.exe</profile.ci.webdriver.driverpath>-->
+		<profile.ci.webdriver.driverpath>./target/test-classes/chromedriver.exe</profile.ci.webdriver.driverpath>
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 		<org.seleniumhq.version>2.53.1</org.seleniumhq.version>
 		<org.seleniumhq.selenium.htmlunit-driver>2.21</org.seleniumhq.selenium.htmlunit-driver>

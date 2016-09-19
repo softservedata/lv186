@@ -27,7 +27,7 @@ public class ProductSaveTest {
     public Object[][] parameters(ITestContext context) {
         return ListUtils.get()
                 .toMultiArray(ParameterUtils.get()
-                                .updateParametersAll(ApplicationSourcesRepository.getPhantomJSLocalhostWindowsAdmin(), context),
+                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
                         AdminUserRepository.get().adminYulia());
     }
 

@@ -20,7 +20,7 @@ import org.testng.asserts.SoftAssert;
 /**
  * Created by Yulia Nevinglovskaya on 8/18/2016.
  */
-public class ProductSaveTest /*extends TestBase*/ {
+public class ProductSaveTest {
     private SoftAssert softAssert = new SoftAssert();
 
     @DataProvider
@@ -39,7 +39,6 @@ public class ProductSaveTest /*extends TestBase*/ {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    //@ServiceReport
     public void checkProductSaved(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -95,7 +94,6 @@ public class ProductSaveTest /*extends TestBase*/ {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    //@ServiceReport
     public void checkProductSaveAndNew(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -146,7 +144,6 @@ public class ProductSaveTest /*extends TestBase*/ {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    //@ServiceReport
     public void checkProductSaveAndDuplicate(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);
@@ -221,7 +218,6 @@ public class ProductSaveTest /*extends TestBase*/ {
      * @param adminUser
      */
     @Test(dataProvider = "parameters")
-    //@ServiceReport
     public void checkProductSaveAndClose(ApplicationSources applicationSources, IAdminUser adminUser) {
         /* Log in and go to AddProductPage */
         ApplicationAdmin applicationAdmin = ApplicationAdmin.get(applicationSources);

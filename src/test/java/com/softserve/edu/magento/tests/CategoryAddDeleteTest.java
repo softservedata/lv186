@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ss.af.reporting.annotations.ServiceReport;
 
-public class CategoryAddDeleteTest extends TestBase{
+public class CategoryAddDeleteTest {
     private SoftAssert softAccert = new SoftAssert();
 
     @DataProvider
@@ -31,7 +31,7 @@ public class CategoryAddDeleteTest extends TestBase{
     }
 
     @Test(dataProvider = "parameters", priority = 1)
-    @ServiceReport
+    //@ServiceReport
     public void addRootCategory(ApplicationSources applicationSources, IAdminUser adminUser){
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
 
@@ -44,7 +44,7 @@ public class CategoryAddDeleteTest extends TestBase{
     }
 
     @Test (dataProvider = "parameters", priority = 2)
-    @ServiceReport
+    //@ServiceReport
     public void addSubCategory(ApplicationSources applicationSources, IAdminUser adminUser) {
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
 
@@ -57,7 +57,7 @@ public class CategoryAddDeleteTest extends TestBase{
     }
 
     @Test(dataProvider = "parameters", priority = 3)
-    @ServiceReport
+    //@ServiceReport
     public void deleteCategoryTest(ApplicationSources applicationSources, IAdminUser adminUser) {
         ApplicationAdmin admin = ApplicationAdmin.get(applicationSources);
 

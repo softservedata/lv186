@@ -3,7 +3,7 @@
 <suite name="Suite">
 	<parameter name="browser" value="Chrome" />
 	<!--<parameter name="driverPath" value="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe" />-->
-	<parameter name="driverPath" value="./target/test-classes/chromedriver.exe" />
+	<parameter name="driverPath" value="tools\chromedrive\chromedriver.exe" />
 	<!--<parameter name="browser" value="Phantomjs" />-->
 	<!--<parameter name="driverPath" value="./target/test-classes/phantomjs.exe" />-->
 	<test name="Test1">

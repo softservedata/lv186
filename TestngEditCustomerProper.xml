@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
     <parameter name="browser" value="Chrome" />
-    <parameter name="driverPath" value="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe" />
+    <parameter name="driverPath" value="D:\Application\chromedriver.exe" />
     <test name="Test">
         <!--<groups>-->
             <!--<run>-->
@@ -14,8 +14,8 @@
             <class name="com.softserve.edu.magento.tests.EditCustomerTestProper">
                 <methods>
                     <include name="verifyInputSymbols" />
-                    <include name="verifySymbolsMaxCountMandatoryField" />
-                    <include name="verifySymbolsMaxCountDisplayed"/>
+                    <!--<include name="verifySymbolsMaxCountMandatoryField" />-->
+                    <!--<include name="verifySymbolsMaxCountDisplayed"/>-->
                     <!--<include name="verifySymbolsMaxCountRegularField" />-->
                     <!--<include name="pickNewDefaultBillingAddress"/>-->
                 </methods>

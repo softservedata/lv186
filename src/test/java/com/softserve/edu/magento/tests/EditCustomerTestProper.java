@@ -31,7 +31,7 @@ public class EditCustomerTestProper extends TestBase {
         return ListUtils.get()
                 .toMultiArray(
                         ParameterUtils.get()
-                                .updateParametersAll(ApplicationSourcesRepository.getChromeLocalhostAdmin(), context),
+                                .updateParametersAll(ApplicationSourcesRepository.getNewChromeLocalHostAdmin(), context),
                         AdminUserRepository.get().adminAndrii());
     }
 
@@ -183,7 +183,7 @@ public class EditCustomerTestProper extends TestBase {
     @AfterClass(alwaysRun = true)
     void tearDown() throws Exception {
         ShellExecutor executor = new ShellExecutor();
-        executor.executeFile("dropmagento.sh");
+        executor.executeFile("restore.sh");
         ApplicationAdmin.quitAll();
     }
 

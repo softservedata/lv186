@@ -12,11 +12,11 @@ import java.util.List;
  * Created by ayaremctc on 15.09.2016.
  */
 public class ShellExecutor {
-    private final static String USERNAME = "root"; // username for remote host
+    private final static String USERNAME = "lv186"; // username for remote host
 
-    private final static String PASSWORD = "qwerty186"; // password of the remote host
+    private final static String PASSWORD = "qwerty-1"; // password of the remote host
 
-    private final static String HOST = "192.168.103.135"; // remote host address
+    private final static String HOST = "192.168.195.210"; // remote host address
 
     private final static int PORT = 22;
 

@@ -123,7 +123,7 @@ public final class Table implements ITable {
 
     public void clickEditLink (){
         getColumnByValueOfHeader("Action")
-                .get(getRowIndexByValueInColumn("garasym@gmail.com", getColumnIndexByValueOfHeader("Email")))
+                .get(getRowIndexByValueInColumn("car.ivan@groznuy.com", getColumnIndexByValueOfHeader("Email")))
                 .findElement(By.cssSelector("a")).click();
     }
 //    int columnIndex = getColumnIndexByValueOfHeader("Name");
